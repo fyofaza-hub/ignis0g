@@ -1,0 +1,1479 @@
+[
+  {
+    "campaign": "BASS-II",
+    "run_id": "GMT45-T1",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat fabric",
+    "direction": "concurrent",
+    "airflow_cms": [
+      10.0
+    ],
+    "airflow_basis": "constant",
+    "oxygen_vol_pct": [
+      18.5
+    ],
+    "oxygen_basis": "fixed",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 7.1, p. 96, GMT45-T1; setup §7.1.3",
+    "width_cm": 2.2,
+    "thickness_mm": 0.32,
+    "length_cm": 10,
+    "pressure_atm": 1,
+    "outcome": null,
+    "diagnostics": [
+      "Side-view video camera",
+      "Top-view still camera"
+    ],
+    "notes": [
+      "Table 7.1 footnote b flags the O₂ reading as potentially inaccurate."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "GMT45-T2",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat fabric",
+    "direction": "concurrent",
+    "airflow_cms": [
+      10.0,
+      5.0
+    ],
+    "airflow_basis": "start_end",
+    "oxygen_vol_pct": [
+      18.5
+    ],
+    "oxygen_basis": "fixed",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 7.1, p. 96, GMT45-T2; setup §7.1.3",
+    "width_cm": 2.2,
+    "thickness_mm": 0.32,
+    "length_cm": 10,
+    "pressure_atm": 1,
+    "outcome": null,
+    "diagnostics": [
+      "Side-view video camera",
+      "Top-view still camera"
+    ],
+    "notes": [
+      "Table 7.1 footnote b flags the O₂ reading as potentially inaccurate.",
+      "Air speed is reported at the start and end; the transition rate was not standardized."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "GMT45-T4",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat fabric",
+    "direction": "concurrent",
+    "airflow_cms": [
+      10.0,
+      2.2
+    ],
+    "airflow_basis": "start_end",
+    "oxygen_vol_pct": [
+      18.7
+    ],
+    "oxygen_basis": "fixed",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 7.1, p. 96, GMT45-T4; setup §7.1.3",
+    "width_cm": 2.2,
+    "thickness_mm": 0.32,
+    "length_cm": 10,
+    "pressure_atm": 1,
+    "outcome": "quenched",
+    "diagnostics": [
+      "Side-view video camera",
+      "Top-view still camera"
+    ],
+    "notes": [
+      "Air speed is reported at the start and end; the transition rate was not standardized."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "GMT45-T15",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat fabric",
+    "direction": "concurrent",
+    "airflow_cms": [
+      10.0,
+      29.0
+    ],
+    "airflow_basis": "start_end",
+    "oxygen_vol_pct": [
+      18.7
+    ],
+    "oxygen_basis": "fixed",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 7.1, p. 96, GMT45-T15; setup §7.1.3",
+    "width_cm": 2.2,
+    "thickness_mm": 0.32,
+    "length_cm": 10,
+    "pressure_atm": 1,
+    "outcome": "no_blowoff",
+    "diagnostics": [
+      "Side-view video camera",
+      "Top-view still camera"
+    ],
+    "notes": [
+      "Air speed is reported at the start and end; the transition rate was not standardized."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "GMT100-T5",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat fabric",
+    "direction": "concurrent",
+    "airflow_cms": [
+      10.0,
+      2.4
+    ],
+    "airflow_basis": "start_end",
+    "oxygen_vol_pct": [
+      18.8
+    ],
+    "oxygen_basis": "fixed",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 7.1, p. 96, GMT100-T5; setup §7.1.3",
+    "width_cm": 2.2,
+    "thickness_mm": 0.32,
+    "length_cm": 10,
+    "pressure_atm": 1,
+    "outcome": null,
+    "diagnostics": [
+      "Side-view video camera",
+      "Top-view still camera"
+    ],
+    "notes": [
+      "Air speed is reported at the start and end; the transition rate was not standardized."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "GMT100-T6",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat fabric",
+    "direction": "concurrent",
+    "airflow_cms": [
+      4.5,
+      2.6
+    ],
+    "airflow_basis": "start_end",
+    "oxygen_vol_pct": [
+      18.8
+    ],
+    "oxygen_basis": "fixed",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 7.1, p. 96, GMT100-T6; setup §7.1.3",
+    "width_cm": 2.2,
+    "thickness_mm": 0.32,
+    "length_cm": 10,
+    "pressure_atm": 1,
+    "outcome": null,
+    "diagnostics": [
+      "Side-view video camera",
+      "Top-view still camera"
+    ],
+    "notes": [
+      "Air speed is reported at the start and end; the transition rate was not standardized."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "GMT100-T13",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat fabric",
+    "direction": "concurrent",
+    "airflow_cms": [
+      4.0,
+      2.2
+    ],
+    "airflow_basis": "start_end",
+    "oxygen_vol_pct": [
+      17.5
+    ],
+    "oxygen_basis": "fixed",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 7.1, p. 96, GMT100-T13; setup §7.1.3",
+    "width_cm": 2.2,
+    "thickness_mm": 0.32,
+    "length_cm": 10,
+    "pressure_atm": 1,
+    "outcome": "quenched",
+    "diagnostics": [
+      "Side-view video camera",
+      "Top-view still camera"
+    ],
+    "notes": [
+      "Air speed is reported at the start and end; the transition rate was not standardized."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "GMT100-T16",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat fabric",
+    "direction": "concurrent",
+    "airflow_cms": [
+      4.0,
+      3.0
+    ],
+    "airflow_basis": "start_end",
+    "oxygen_vol_pct": [
+      17.6
+    ],
+    "oxygen_basis": "fixed",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 7.1, p. 96, GMT100-T16; setup §7.1.3",
+    "width_cm": 2.2,
+    "thickness_mm": 0.32,
+    "length_cm": 10,
+    "pressure_atm": 1,
+    "outcome": null,
+    "diagnostics": [
+      "Side-view video camera",
+      "Top-view still camera"
+    ],
+    "notes": [
+      "Air speed is reported at the start and end; the transition rate was not standardized."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "GMT175-T9",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat fabric",
+    "direction": "concurrent",
+    "airflow_cms": [
+      10.0
+    ],
+    "airflow_basis": "constant",
+    "oxygen_vol_pct": [
+      16.4
+    ],
+    "oxygen_basis": "fixed",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 7.1, p. 96, GMT175-T9; setup §7.1.3",
+    "width_cm": 2.2,
+    "thickness_mm": 0.32,
+    "length_cm": 10,
+    "pressure_atm": 1,
+    "outcome": "no_ignition",
+    "diagnostics": [
+      "Side-view video camera",
+      "Top-view still camera"
+    ],
+    "notes": []
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "GMT175-T10",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat fabric",
+    "direction": "concurrent",
+    "airflow_cms": [
+      5.0
+    ],
+    "airflow_basis": "constant",
+    "oxygen_vol_pct": [
+      16.4
+    ],
+    "oxygen_basis": "fixed",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 7.1, p. 96, GMT175-T10; setup §7.1.3",
+    "width_cm": 2.2,
+    "thickness_mm": 0.32,
+    "length_cm": 10,
+    "pressure_atm": 1,
+    "outcome": "no_ignition",
+    "diagnostics": [
+      "Side-view video camera",
+      "Top-view still camera"
+    ],
+    "notes": []
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "GMT175-T18",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat fabric",
+    "direction": "concurrent",
+    "airflow_cms": [
+      5.0,
+      2.6
+    ],
+    "airflow_basis": "start_end",
+    "oxygen_vol_pct": [
+      17.4
+    ],
+    "oxygen_basis": "fixed",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 7.1, p. 96, GMT175-T18; setup §7.1.3",
+    "width_cm": 2.2,
+    "thickness_mm": 0.32,
+    "length_cm": 10,
+    "pressure_atm": 1,
+    "outcome": "quenched",
+    "diagnostics": [
+      "Side-view video camera",
+      "Top-view still camera"
+    ],
+    "notes": [
+      "Air speed is reported at the start and end; the transition rate was not standardized."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "GMT178-T11",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat fabric",
+    "direction": "concurrent",
+    "airflow_cms": [
+      4.0
+    ],
+    "airflow_basis": "constant",
+    "oxygen_vol_pct": [
+      17.1
+    ],
+    "oxygen_basis": "fixed",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 7.1, p. 96, GMT178-T11; setup §7.1.3",
+    "width_cm": 2.2,
+    "thickness_mm": 0.32,
+    "length_cm": 10,
+    "pressure_atm": 1,
+    "outcome": null,
+    "diagnostics": [
+      "Side-view video camera",
+      "Top-view still camera"
+    ],
+    "notes": []
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "GMT178-T12",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat fabric",
+    "direction": "concurrent",
+    "airflow_cms": [
+      5.0
+    ],
+    "airflow_basis": "constant",
+    "oxygen_vol_pct": [
+      16.8
+    ],
+    "oxygen_basis": "fixed",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 7.1, p. 96, GMT178-T12; setup §7.1.3",
+    "width_cm": 2.2,
+    "thickness_mm": 0.32,
+    "length_cm": 10,
+    "pressure_atm": 1,
+    "outcome": "no_ignition",
+    "diagnostics": [
+      "Side-view video camera",
+      "Top-view still camera"
+    ],
+    "notes": []
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "GMT178-T14",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat fabric",
+    "direction": "concurrent",
+    "airflow_cms": [
+      4.0,
+      2.8
+    ],
+    "airflow_basis": "start_end",
+    "oxygen_vol_pct": [
+      16.9
+    ],
+    "oxygen_basis": "fixed",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 7.1, p. 96, GMT178-T14; setup §7.1.3",
+    "width_cm": 2.2,
+    "thickness_mm": 0.32,
+    "length_cm": 10,
+    "pressure_atm": 1,
+    "outcome": "quenched",
+    "diagnostics": [
+      "Side-view video camera",
+      "Top-view still camera"
+    ],
+    "notes": [
+      "Air speed is reported at the start and end; the transition rate was not standardized."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "GMT178-T17",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat fabric",
+    "direction": "concurrent",
+    "airflow_cms": [
+      6.0,
+      53.0
+    ],
+    "airflow_basis": "start_end",
+    "oxygen_vol_pct": [
+      16.9
+    ],
+    "oxygen_basis": "fixed",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 7.1, p. 96, GMT178-T17; setup §7.1.3",
+    "width_cm": 2.2,
+    "thickness_mm": 0.32,
+    "length_cm": 10,
+    "pressure_atm": 1,
+    "outcome": "no_blowoff",
+    "diagnostics": [
+      "Side-view video camera",
+      "Top-view still camera"
+    ],
+    "notes": [
+      "Air speed is reported at the start and end; the transition rate was not standardized."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "GMT190-T19",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat fabric",
+    "direction": "concurrent",
+    "airflow_cms": [
+      11.0
+    ],
+    "airflow_basis": "constant",
+    "oxygen_vol_pct": [
+      17.2
+    ],
+    "oxygen_basis": "fixed",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 7.1, p. 96, GMT190-T19; setup §7.1.3",
+    "width_cm": 1.2,
+    "thickness_mm": 0.32,
+    "length_cm": 10,
+    "pressure_atm": 1,
+    "outcome": null,
+    "diagnostics": [
+      "Side-view video camera",
+      "Top-view still camera"
+    ],
+    "notes": []
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "GMT190-T20",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat fabric",
+    "direction": "concurrent",
+    "airflow_cms": [
+      11.0,
+      3.0
+    ],
+    "airflow_basis": "start_end",
+    "oxygen_vol_pct": [
+      17.2
+    ],
+    "oxygen_basis": "fixed",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 7.1, p. 96, GMT190-T20; setup §7.1.3",
+    "width_cm": 1.2,
+    "thickness_mm": 0.32,
+    "length_cm": 10,
+    "pressure_atm": 1,
+    "outcome": "quenched",
+    "diagnostics": [
+      "Side-view video camera",
+      "Top-view still camera"
+    ],
+    "notes": [
+      "Air speed is reported at the start and end; the transition rate was not standardized."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "GMT190-T21",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat fabric",
+    "direction": "concurrent",
+    "airflow_cms": [
+      11.0,
+      47.0
+    ],
+    "airflow_basis": "start_end",
+    "oxygen_vol_pct": [
+      17.2
+    ],
+    "oxygen_basis": "fixed",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 7.1, p. 96, GMT190-T21; setup §7.1.3",
+    "width_cm": 1.2,
+    "thickness_mm": 0.32,
+    "length_cm": 10,
+    "pressure_atm": 1,
+    "outcome": "blowoff",
+    "diagnostics": [
+      "Side-view video camera",
+      "Top-view still camera"
+    ],
+    "notes": [
+      "Air speed is reported at the start and end; the transition rate was not standardized."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "GMT190-T22",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat fabric",
+    "direction": "concurrent",
+    "airflow_cms": [
+      10.5,
+      5.0
+    ],
+    "airflow_basis": "start_end",
+    "oxygen_vol_pct": [
+      17.1
+    ],
+    "oxygen_basis": "fixed",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 7.1, p. 96, GMT190-T22; setup §7.1.3",
+    "width_cm": 1.2,
+    "thickness_mm": 0.32,
+    "length_cm": 10,
+    "pressure_atm": 1,
+    "outcome": "quenched",
+    "diagnostics": [
+      "Side-view video camera",
+      "Top-view still camera"
+    ],
+    "notes": [
+      "Air speed is reported at the start and end; the transition rate was not standardized."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "GMT190-T23",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat fabric",
+    "direction": "concurrent",
+    "airflow_cms": [
+      10.0
+    ],
+    "airflow_basis": "constant",
+    "oxygen_vol_pct": [
+      17.2
+    ],
+    "oxygen_basis": "fixed",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 7.1, p. 96, GMT190-T23; setup §7.1.3",
+    "width_cm": 2.2,
+    "thickness_mm": 0.32,
+    "length_cm": null,
+    "pressure_atm": 1,
+    "outcome": "no_ignition",
+    "diagnostics": [
+      "Side-view video camera",
+      "Top-view still camera"
+    ],
+    "notes": [
+      "Previously used specimen. Section 7.1.4 describes reduced unburned length; the original exposed length is not assigned to this run."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "GMT190-T24",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat fabric",
+    "direction": "concurrent",
+    "airflow_cms": [
+      10.0
+    ],
+    "airflow_basis": "constant",
+    "oxygen_vol_pct": [
+      18.2
+    ],
+    "oxygen_basis": "fixed",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 7.1, p. 96, GMT190-T24; setup §7.1.3",
+    "width_cm": 2.2,
+    "thickness_mm": 0.32,
+    "length_cm": null,
+    "pressure_atm": 1,
+    "outcome": "one_sided_flame",
+    "diagnostics": [
+      "Side-view video camera",
+      "Top-view still camera"
+    ],
+    "notes": [
+      "Previously used specimen. Section 7.1.4 describes reduced unburned length; the original exposed length is not assigned to this run."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "GMT216-T25",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat fabric",
+    "direction": "concurrent",
+    "airflow_cms": [
+      5.0,
+      2.5
+    ],
+    "airflow_basis": "start_end",
+    "oxygen_vol_pct": [
+      20.8
+    ],
+    "oxygen_basis": "fixed",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 7.1, p. 96, GMT216-T25; setup §7.1.3",
+    "width_cm": 2.2,
+    "thickness_mm": 0.32,
+    "length_cm": null,
+    "pressure_atm": 1,
+    "outcome": "ignited",
+    "diagnostics": [
+      "Side-view video camera",
+      "Top-view still camera"
+    ],
+    "notes": [
+      "Previously used specimen. Section 7.1.4 describes reduced unburned length; the original exposed length is not assigned to this run.",
+      "Air speed is reported at the start and end; the transition rate was not standardized."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "GMT216-T26",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat fabric",
+    "direction": "concurrent",
+    "airflow_cms": [
+      5.0,
+      2.5
+    ],
+    "airflow_basis": "start_end",
+    "oxygen_vol_pct": [
+      20.8
+    ],
+    "oxygen_basis": "fixed",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 7.1, p. 96, GMT216-T26; setup §7.1.3",
+    "width_cm": 2.2,
+    "thickness_mm": 0.32,
+    "length_cm": null,
+    "pressure_atm": 1,
+    "outcome": "ignited",
+    "diagnostics": [
+      "Side-view video camera",
+      "Top-view still camera"
+    ],
+    "notes": [
+      "Previously used specimen. Section 7.1.4 describes reduced unburned length; the original exposed length is not assigned to this run.",
+      "Air speed is reported at the start and end; the transition rate was not standardized."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "GMT216-T27",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat fabric",
+    "direction": "concurrent",
+    "airflow_cms": [
+      5.0,
+      2.0
+    ],
+    "airflow_basis": "start_end",
+    "oxygen_vol_pct": [
+      20.7
+    ],
+    "oxygen_basis": "fixed",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 7.1, p. 96, GMT216-T27; setup §7.1.3",
+    "width_cm": 1.2,
+    "thickness_mm": 0.32,
+    "length_cm": null,
+    "pressure_atm": 1,
+    "outcome": "ignited",
+    "diagnostics": [
+      "Side-view video camera",
+      "Top-view still camera"
+    ],
+    "notes": [
+      "Previously used specimen. Section 7.1.4 describes reduced unburned length; the original exposed length is not assigned to this run.",
+      "Air speed is reported at the start and end; the transition rate was not standardized."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "GMT216-T28a",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat fabric",
+    "direction": "concurrent",
+    "airflow_cms": [
+      5.0
+    ],
+    "airflow_basis": "constant",
+    "oxygen_vol_pct": [
+      20.7
+    ],
+    "oxygen_basis": "fixed",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 7.1, p. 96, GMT216-T28a; setup §7.1.3",
+    "width_cm": 1.2,
+    "thickness_mm": 0.32,
+    "length_cm": null,
+    "pressure_atm": 1,
+    "outcome": "no_ignition",
+    "diagnostics": [
+      "Side-view video camera",
+      "Top-view still camera"
+    ],
+    "notes": [
+      "Previously used specimen. Section 7.1.4 describes reduced unburned length; the original exposed length is not assigned to this run."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "GMT216-T28b",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat fabric",
+    "direction": "concurrent",
+    "airflow_cms": [
+      5.0
+    ],
+    "airflow_basis": "constant",
+    "oxygen_vol_pct": [
+      20.7
+    ],
+    "oxygen_basis": "fixed",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 7.1, p. 96, GMT216-T28b; setup §7.1.3",
+    "width_cm": 1.2,
+    "thickness_mm": 0.32,
+    "length_cm": null,
+    "pressure_atm": 1,
+    "outcome": "no_ignition",
+    "diagnostics": [
+      "Side-view video camera",
+      "Top-view still camera"
+    ],
+    "notes": [
+      "Previously used specimen. Section 7.1.4 describes reduced unburned length; the original exposed length is not assigned to this run."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "GMT216-T29",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat fabric",
+    "direction": "concurrent",
+    "airflow_cms": [
+      5.0,
+      2.0
+    ],
+    "airflow_basis": "start_end",
+    "oxygen_vol_pct": [
+      20.7
+    ],
+    "oxygen_basis": "fixed",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 7.1, p. 96, GMT216-T29; setup §7.1.3",
+    "width_cm": 1.2,
+    "thickness_mm": 0.32,
+    "length_cm": null,
+    "pressure_atm": 1,
+    "outcome": "ignited",
+    "diagnostics": [
+      "Side-view video camera",
+      "Top-view still camera"
+    ],
+    "notes": [
+      "Previously used specimen. Section 7.1.4 describes reduced unburned length; the original exposed length is not assigned to this run.",
+      "Air speed is reported at the start and end; the transition rate was not standardized."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "M1",
+    "material": "Clear cast PMMA",
+    "geometry": "flat slab",
+    "direction": "opposed",
+    "airflow_cms": [
+      9.0
+    ],
+    "airflow_basis": "constant",
+    "oxygen_vol_pct": [
+      22.2,
+      21.9
+    ],
+    "oxygen_basis": "start_end",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 5.1, p. 57, M1; setup §5.1",
+    "width_cm": 2.2,
+    "length_cm": 10,
+    "thickness_mm": 1.0,
+    "burning_sides": 1,
+    "spread_rate_mm_s": [
+      0.071
+    ],
+    "burn_duration_s": 384.0,
+    "diagnostics": [
+      "Two cameras; flame-front tracking"
+    ],
+    "notes": [
+      "O₂ was recorded at the start and end of the run, not per airflow plateau."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "M2",
+    "material": "Clear cast PMMA",
+    "geometry": "flat slab",
+    "direction": "opposed",
+    "airflow_cms": [
+      20.0,
+      15.0
+    ],
+    "airflow_basis": "plateaus",
+    "oxygen_vol_pct": [
+      22.2,
+      21.2
+    ],
+    "oxygen_basis": "start_end",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 5.1, p. 57, M2; setup §5.1",
+    "width_cm": 2.2,
+    "length_cm": 10,
+    "thickness_mm": 3.0,
+    "burning_sides": 1,
+    "spread_rate_mm_s": [
+      0.052,
+      0.033
+    ],
+    "burn_duration_s": 1374.0,
+    "diagnostics": [
+      "Two cameras; flame-front tracking"
+    ],
+    "notes": [
+      "O₂ was recorded at the start and end of the run, not per airflow plateau."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "M3",
+    "material": "Clear cast PMMA",
+    "geometry": "flat slab",
+    "direction": "opposed",
+    "airflow_cms": [
+      10.0,
+      20.0
+    ],
+    "airflow_basis": "plateaus",
+    "oxygen_vol_pct": [
+      20.8,
+      19.7
+    ],
+    "oxygen_basis": "start_end",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 5.1, p. 57, M3; setup §5.1",
+    "width_cm": 2.2,
+    "length_cm": 10,
+    "thickness_mm": 5.0,
+    "burning_sides": 1,
+    "spread_rate_mm_s": [
+      0.029,
+      0.024
+    ],
+    "burn_duration_s": 1206.0,
+    "diagnostics": [
+      "Two cameras; flame-front tracking"
+    ],
+    "notes": [
+      "O₂ was recorded at the start and end of the run, not per airflow plateau."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "M4",
+    "material": "Clear cast PMMA",
+    "geometry": "flat slab",
+    "direction": "opposed",
+    "airflow_cms": [
+      5.0,
+      3.0
+    ],
+    "airflow_basis": "plateaus",
+    "oxygen_vol_pct": [
+      21.8,
+      19.8
+    ],
+    "oxygen_basis": "start_end",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 5.1, p. 57, M4; setup §5.1",
+    "width_cm": 2.2,
+    "length_cm": 10,
+    "thickness_mm": 5.0,
+    "burning_sides": 2,
+    "spread_rate_mm_s": [
+      0.045,
+      0.033
+    ],
+    "burn_duration_s": 1188.0,
+    "diagnostics": [
+      "Two cameras; flame-front tracking"
+    ],
+    "notes": [
+      "O₂ was recorded at the start and end of the run, not per airflow plateau."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "M5",
+    "material": "Clear cast PMMA",
+    "geometry": "flat slab",
+    "direction": "opposed",
+    "airflow_cms": [
+      10.0
+    ],
+    "airflow_basis": "constant",
+    "oxygen_vol_pct": [
+      22.2,
+      19.0
+    ],
+    "oxygen_basis": "start_end",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 5.1, p. 57, M5; setup §5.1",
+    "width_cm": 2.2,
+    "length_cm": 10,
+    "thickness_mm": 3.0,
+    "burning_sides": 2,
+    "spread_rate_mm_s": [
+      0.071
+    ],
+    "burn_duration_s": 1632.0,
+    "diagnostics": [
+      "Two cameras; flame-front tracking"
+    ],
+    "notes": [
+      "O₂ was recorded at the start and end of the run, not per airflow plateau."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "M6",
+    "material": "Clear cast PMMA",
+    "geometry": "flat slab",
+    "direction": "opposed",
+    "airflow_cms": [
+      10.0,
+      8.0
+    ],
+    "airflow_basis": "plateaus",
+    "oxygen_vol_pct": [
+      21.8,
+      20.7
+    ],
+    "oxygen_basis": "start_end",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 5.1, p. 57, M6; setup §5.1",
+    "width_cm": 2.2,
+    "length_cm": 10,
+    "thickness_mm": 1.0,
+    "burning_sides": 2,
+    "spread_rate_mm_s": null,
+    "burn_duration_s": 1008.0,
+    "diagnostics": [
+      "Two cameras; flame-front tracking"
+    ],
+    "notes": [
+      "O₂ was recorded at the start and end of the run, not per airflow plateau.",
+      "The report did not track the spread rate."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "M7",
+    "material": "Clear cast PMMA",
+    "geometry": "flat slab",
+    "direction": "opposed",
+    "airflow_cms": [
+      10.0,
+      6.0,
+      5.0,
+      3.0
+    ],
+    "airflow_basis": "plateaus",
+    "oxygen_vol_pct": [
+      18.9,
+      18.4
+    ],
+    "oxygen_basis": "start_end",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 5.1, p. 57, M7; setup §5.1",
+    "width_cm": 1.2,
+    "length_cm": 10,
+    "thickness_mm": 1.0,
+    "burning_sides": 2,
+    "spread_rate_mm_s": [
+      0.106,
+      0.099,
+      0.083,
+      0.07
+    ],
+    "burn_duration_s": 1104.0,
+    "diagnostics": [
+      "Two cameras; flame-front tracking"
+    ],
+    "notes": [
+      "O₂ was recorded at the start and end of the run, not per airflow plateau."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "M8",
+    "material": "Clear cast PMMA",
+    "geometry": "flat slab",
+    "direction": "opposed",
+    "airflow_cms": [
+      10.0,
+      6.0,
+      5.0
+    ],
+    "airflow_basis": "plateaus",
+    "oxygen_vol_pct": [
+      19.1,
+      18.2
+    ],
+    "oxygen_basis": "start_end",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 5.1, p. 57, M8; setup §5.1",
+    "width_cm": 1.2,
+    "length_cm": 10,
+    "thickness_mm": 2.0,
+    "burning_sides": 2,
+    "spread_rate_mm_s": [
+      0.057,
+      0.056,
+      0.04
+    ],
+    "burn_duration_s": 1512.0,
+    "diagnostics": [
+      "Two cameras; flame-front tracking"
+    ],
+    "notes": [
+      "O₂ was recorded at the start and end of the run, not per airflow plateau."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "M9",
+    "material": "Clear cast PMMA",
+    "geometry": "flat slab",
+    "direction": "opposed",
+    "airflow_cms": [
+      14.0
+    ],
+    "airflow_basis": "constant",
+    "oxygen_vol_pct": [
+      18.0,
+      17.6
+    ],
+    "oxygen_basis": "start_end",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 5.1, p. 57, M9; setup §5.1",
+    "width_cm": 1.2,
+    "length_cm": 10,
+    "thickness_mm": 3.0,
+    "burning_sides": 2,
+    "spread_rate_mm_s": [
+      0.025
+    ],
+    "burn_duration_s": 1008.0,
+    "diagnostics": [
+      "Two cameras; flame-front tracking"
+    ],
+    "notes": [
+      "O₂ was recorded at the start and end of the run, not per airflow plateau."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "M10",
+    "material": "Clear cast PMMA",
+    "geometry": "flat slab",
+    "direction": "opposed",
+    "airflow_cms": [
+      15.0,
+      10.0
+    ],
+    "airflow_basis": "plateaus",
+    "oxygen_vol_pct": [
+      20.1,
+      18.6
+    ],
+    "oxygen_basis": "start_end",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 5.1, p. 57, M10; setup §5.1",
+    "width_cm": 1.2,
+    "length_cm": 10,
+    "thickness_mm": 4.0,
+    "burning_sides": 2,
+    "spread_rate_mm_s": [
+      0.0373,
+      0.03
+    ],
+    "burn_duration_s": 1830.0,
+    "diagnostics": [
+      "Two cameras; flame-front tracking"
+    ],
+    "notes": [
+      "O₂ was recorded at the start and end of the run, not per airflow plateau."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "M11",
+    "material": "Clear cast PMMA",
+    "geometry": "flat slab",
+    "direction": "opposed",
+    "airflow_cms": [
+      21.0,
+      15.0,
+      13.0
+    ],
+    "airflow_basis": "plateaus",
+    "oxygen_vol_pct": [
+      20.0,
+      18.5
+    ],
+    "oxygen_basis": "start_end",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 5.1, p. 57, M11; setup §5.1",
+    "width_cm": 1.2,
+    "length_cm": 10,
+    "thickness_mm": 5.0,
+    "burning_sides": 2,
+    "spread_rate_mm_s": [
+      0.048,
+      0.028,
+      0.022
+    ],
+    "burn_duration_s": 1710.0,
+    "diagnostics": [
+      "Two cameras; flame-front tracking"
+    ],
+    "notes": [
+      "O₂ was recorded at the start and end of the run, not per airflow plateau."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "M12",
+    "material": "Clear cast PMMA",
+    "geometry": "flat slab",
+    "direction": "opposed",
+    "airflow_cms": [
+      12.0,
+      10.0
+    ],
+    "airflow_basis": "plateaus",
+    "oxygen_vol_pct": [
+      21.7,
+      20.4
+    ],
+    "oxygen_basis": "start_end",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 5.1, p. 57, M12; setup §5.1",
+    "width_cm": 2.2,
+    "length_cm": 10,
+    "thickness_mm": 2.0,
+    "burning_sides": 2,
+    "spread_rate_mm_s": null,
+    "burn_duration_s": 972.0,
+    "diagnostics": [
+      "Two cameras; flame-front tracking"
+    ],
+    "notes": [
+      "O₂ was recorded at the start and end of the run, not per airflow plateau.",
+      "The report did not track the spread rate."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "M13",
+    "material": "Clear cast PMMA",
+    "geometry": "flat slab",
+    "direction": "opposed",
+    "airflow_cms": [
+      6.0,
+      5.0,
+      4.0
+    ],
+    "airflow_basis": "plateaus",
+    "oxygen_vol_pct": [
+      20.8,
+      19.0
+    ],
+    "oxygen_basis": "start_end",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 5.1, p. 57, M13; setup §5.1",
+    "width_cm": 2.2,
+    "length_cm": 10,
+    "thickness_mm": 4.0,
+    "burning_sides": 2,
+    "spread_rate_mm_s": [
+      0.047,
+      0.035,
+      0.033
+    ],
+    "burn_duration_s": 1230.0,
+    "diagnostics": [
+      "Two cameras; flame-front tracking"
+    ],
+    "notes": [
+      "O₂ was recorded at the start and end of the run, not per airflow plateau."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "M14",
+    "material": "Clear cast PMMA",
+    "geometry": "flat slab",
+    "direction": "opposed",
+    "airflow_cms": [
+      15.0,
+      14.0,
+      10.0
+    ],
+    "airflow_basis": "plateaus",
+    "oxygen_vol_pct": [
+      22.2,
+      21.6
+    ],
+    "oxygen_basis": "start_end",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 5.1, p. 57, M14; setup §5.1",
+    "width_cm": 2.2,
+    "length_cm": 10,
+    "thickness_mm": 2.0,
+    "burning_sides": 1,
+    "spread_rate_mm_s": [
+      0.0624,
+      0.055,
+      0.0353
+    ],
+    "burn_duration_s": 924.0,
+    "diagnostics": [
+      "Two cameras; flame-front tracking"
+    ],
+    "notes": [
+      "O₂ was recorded at the start and end of the run, not per airflow plateau."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "M15",
+    "material": "Clear cast PMMA",
+    "geometry": "flat slab",
+    "direction": "opposed",
+    "airflow_cms": [
+      20.0
+    ],
+    "airflow_basis": "constant",
+    "oxygen_vol_pct": [
+      21.0,
+      20.0
+    ],
+    "oxygen_basis": "start_end",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 5.1, p. 57, M15; setup §5.1",
+    "width_cm": 2.2,
+    "length_cm": 10,
+    "thickness_mm": 4.0,
+    "burning_sides": 1,
+    "spread_rate_mm_s": [
+      0.045
+    ],
+    "burn_duration_s": 1320.0,
+    "diagnostics": [
+      "Two cameras; flame-front tracking"
+    ],
+    "notes": [
+      "O₂ was recorded at the start and end of the run, not per airflow plateau."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "M16",
+    "material": "Clear cast PMMA",
+    "geometry": "flat slab",
+    "direction": "opposed",
+    "airflow_cms": [
+      5.0,
+      3.0,
+      2.0
+    ],
+    "airflow_basis": "plateaus",
+    "oxygen_vol_pct": [
+      19.2,
+      18.7
+    ],
+    "oxygen_basis": "start_end",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 5.1, p. 57, M16; setup §5.1",
+    "width_cm": 2.2,
+    "length_cm": 10,
+    "thickness_mm": 1.0,
+    "burning_sides": 2,
+    "spread_rate_mm_s": [
+      0.144,
+      0.1309,
+      0.1062
+    ],
+    "burn_duration_s": 504.0,
+    "diagnostics": [
+      "Two cameras; flame-front tracking"
+    ],
+    "notes": [
+      "O₂ was recorded at the start and end of the run, not per airflow plateau."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "M17",
+    "material": "Clear cast PMMA",
+    "geometry": "flat slab",
+    "direction": "opposed",
+    "airflow_cms": [
+      5.0,
+      4.0,
+      3.0
+    ],
+    "airflow_basis": "plateaus",
+    "oxygen_vol_pct": [
+      18.8,
+      17.1
+    ],
+    "oxygen_basis": "start_end",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 5.1, p. 57, M17; setup §5.1",
+    "width_cm": 2.2,
+    "length_cm": 10,
+    "thickness_mm": 2.0,
+    "burning_sides": 2,
+    "spread_rate_mm_s": [
+      0.053,
+      0.042,
+      0.026
+    ],
+    "burn_duration_s": 1842.0,
+    "diagnostics": [
+      "Two cameras; flame-front tracking"
+    ],
+    "notes": [
+      "O₂ was recorded at the start and end of the run, not per airflow plateau."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "M18",
+    "material": "Clear cast PMMA",
+    "geometry": "flat slab",
+    "direction": "opposed",
+    "airflow_cms": [
+      10.0,
+      8.0
+    ],
+    "airflow_basis": "plateaus",
+    "oxygen_vol_pct": [
+      17.9,
+      16.8
+    ],
+    "oxygen_basis": "start_end",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 5.1, p. 57, M18; setup §5.1",
+    "width_cm": 2.2,
+    "length_cm": 10,
+    "thickness_mm": 3.0,
+    "burning_sides": 2,
+    "spread_rate_mm_s": [
+      0.026,
+      0.013
+    ],
+    "burn_duration_s": 1530.0,
+    "diagnostics": [
+      "Two cameras; flame-front tracking"
+    ],
+    "notes": [
+      "O₂ was recorded at the start and end of the run, not per airflow plateau."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "M19",
+    "material": "Clear cast PMMA",
+    "geometry": "flat slab",
+    "direction": "opposed",
+    "airflow_cms": [
+      10.0,
+      6.0
+    ],
+    "airflow_basis": "plateaus",
+    "oxygen_vol_pct": [
+      19.0,
+      17.4
+    ],
+    "oxygen_basis": "start_end",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 5.1, p. 57, M19; setup §5.1",
+    "width_cm": 2.2,
+    "length_cm": 10,
+    "thickness_mm": 4.0,
+    "burning_sides": 2,
+    "spread_rate_mm_s": [
+      0.027,
+      0.0159
+    ],
+    "burn_duration_s": 1542.0,
+    "diagnostics": [
+      "Two cameras; flame-front tracking"
+    ],
+    "notes": [
+      "O₂ was recorded at the start and end of the run, not per airflow plateau."
+    ]
+  },
+  {
+    "campaign": "BASS-II",
+    "run_id": "M20",
+    "material": "Clear cast PMMA",
+    "geometry": "flat slab",
+    "direction": "opposed",
+    "airflow_cms": [
+      10.0
+    ],
+    "airflow_basis": "constant",
+    "oxygen_vol_pct": [
+      18.0,
+      17.4
+    ],
+    "oxygen_basis": "start_end",
+    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+    "locator": "Table 5.1, p. 57, M20; setup §5.1",
+    "width_cm": 2.2,
+    "length_cm": 10,
+    "thickness_mm": 5.0,
+    "burning_sides": 2,
+    "spread_rate_mm_s": [
+      0.012
+    ],
+    "burn_duration_s": 990.0,
+    "diagnostics": [
+      "Two cameras; flame-front tracking"
+    ],
+    "notes": [
+      "O₂ was recorded at the start and end of the run, not per airflow plateau."
+    ]
+  }
+]

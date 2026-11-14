@@ -1,0 +1,401 @@
+[
+  {
+    "campaign": "Saffire I",
+    "run_id": "I-1",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat specimen",
+    "direction": "concurrent",
+    "airflow_cms": [
+      20
+    ],
+    "airflow_basis": "constant",
+    "oxygen_vol_pct": [
+      21.7,
+      21.5
+    ],
+    "oxygen_basis": "start_end",
+    "source_url": "https://ntrs.nasa.gov/citations/20180005168",
+    "locator": "Table 1, slides 30–31, I-1",
+    "width_cm": 40.6,
+    "thickness_mm": 0.37,
+    "length_cm": 94,
+    "burn_duration_s": 420,
+    "spread_rate_mm_s": [
+      1.8
+    ],
+    "outcome": null,
+    "notes": [],
+    "supplementary_url": null,
+    "diagnostics": [
+      "Video imaging and flame-front tracking"
+    ]
+  },
+  {
+    "campaign": "Saffire I",
+    "run_id": "I-2",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat specimen",
+    "direction": "opposed",
+    "airflow_cms": [
+      20
+    ],
+    "airflow_basis": "constant",
+    "oxygen_vol_pct": [
+      21.5
+    ],
+    "oxygen_basis": "approximate",
+    "source_url": "https://ntrs.nasa.gov/citations/20180005168",
+    "locator": "Table 1, slides 30–31, I-2",
+    "width_cm": 40.6,
+    "thickness_mm": 0.37,
+    "length_cm": 10,
+    "burn_duration_s": 70,
+    "spread_rate_mm_s": [
+      1.3
+    ],
+    "outcome": null,
+    "notes": [
+      "The listed length is approximate and refers to residual fabric after the concurrent burn."
+    ],
+    "supplementary_url": null,
+    "diagnostics": [
+      "Video imaging and flame-front tracking"
+    ]
+  },
+  {
+    "campaign": "Saffire II",
+    "run_id": "II-1",
+    "material": "Silicone",
+    "geometry": "flat specimen",
+    "direction": "concurrent",
+    "airflow_cms": [
+      20
+    ],
+    "airflow_basis": "constant",
+    "oxygen_vol_pct": [
+      22.1
+    ],
+    "oxygen_basis": "approximate",
+    "source_url": "https://ntrs.nasa.gov/citations/20180005168",
+    "locator": "Table 1, slides 30–31, II-1",
+    "width_cm": 5,
+    "thickness_mm": 0.27,
+    "length_cm": 29,
+    "burn_duration_s": null,
+    "spread_rate_mm_s": null,
+    "outcome": "no_propagation",
+    "notes": [
+      "Qualitative outcome cross-checked against NASA NTRS 20180004258, slide 18."
+    ],
+    "supplementary_url": "https://ntrs.nasa.gov/citations/20180004258",
+    "diagnostics": [
+      "Video imaging"
+    ]
+  },
+  {
+    "campaign": "Saffire II",
+    "run_id": "II-2",
+    "material": "Silicone",
+    "geometry": "flat specimen",
+    "direction": "concurrent",
+    "airflow_cms": [
+      20
+    ],
+    "airflow_basis": "constant",
+    "oxygen_vol_pct": [
+      22.1
+    ],
+    "oxygen_basis": "approximate",
+    "source_url": "https://ntrs.nasa.gov/citations/20180005168",
+    "locator": "Table 1, slides 30–31, II-2",
+    "width_cm": 5,
+    "thickness_mm": 0.61,
+    "length_cm": 29,
+    "burn_duration_s": null,
+    "spread_rate_mm_s": null,
+    "outcome": "no_propagation",
+    "notes": [
+      "Qualitative outcome cross-checked against NASA NTRS 20180004258, slide 18."
+    ],
+    "supplementary_url": "https://ntrs.nasa.gov/citations/20180004258",
+    "diagnostics": [
+      "Video imaging"
+    ]
+  },
+  {
+    "campaign": "Saffire II",
+    "run_id": "II-3",
+    "material": "Silicone",
+    "geometry": "flat specimen",
+    "direction": "concurrent",
+    "airflow_cms": [
+      20
+    ],
+    "airflow_basis": "constant",
+    "oxygen_vol_pct": [
+      22.1
+    ],
+    "oxygen_basis": "approximate",
+    "source_url": "https://ntrs.nasa.gov/citations/20180005168",
+    "locator": "Table 1, slides 30–31, II-3",
+    "width_cm": 5,
+    "thickness_mm": 1.03,
+    "length_cm": 29,
+    "burn_duration_s": null,
+    "spread_rate_mm_s": null,
+    "outcome": "no_propagation",
+    "notes": [
+      "Qualitative outcome cross-checked against NASA NTRS 20180004258, slide 18."
+    ],
+    "supplementary_url": "https://ntrs.nasa.gov/citations/20180004258",
+    "diagnostics": [
+      "Video imaging"
+    ]
+  },
+  {
+    "campaign": "Saffire II",
+    "run_id": "II-4",
+    "material": "Silicone",
+    "geometry": "flat specimen",
+    "direction": "opposed",
+    "airflow_cms": [
+      20
+    ],
+    "airflow_basis": "constant",
+    "oxygen_vol_pct": [
+      22.1
+    ],
+    "oxygen_basis": "approximate",
+    "source_url": "https://ntrs.nasa.gov/citations/20180005168",
+    "locator": "Table 1, slides 30–31, II-4",
+    "width_cm": 5,
+    "thickness_mm": 0.37,
+    "length_cm": 29,
+    "burn_duration_s": null,
+    "spread_rate_mm_s": null,
+    "outcome": "no_propagation",
+    "notes": [
+      "Qualitative outcome cross-checked against NASA NTRS 20180004258, slide 18."
+    ],
+    "supplementary_url": "https://ntrs.nasa.gov/citations/20180004258",
+    "diagnostics": [
+      "Video imaging"
+    ]
+  },
+  {
+    "campaign": "Saffire II",
+    "run_id": "II-5",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat specimen",
+    "direction": "concurrent",
+    "airflow_cms": [
+      20
+    ],
+    "airflow_basis": "constant",
+    "oxygen_vol_pct": [
+      22.1
+    ],
+    "oxygen_basis": "approximate",
+    "source_url": "https://ntrs.nasa.gov/citations/20180005168",
+    "locator": "Table 1, slides 30–31, II-5",
+    "width_cm": 5,
+    "thickness_mm": 0.37,
+    "length_cm": 29,
+    "burn_duration_s": 145,
+    "spread_rate_mm_s": [
+      2.1
+    ],
+    "outcome": "burned_to_end",
+    "notes": [
+      "Qualitative outcome cross-checked against NASA NTRS 20180004258, slide 18."
+    ],
+    "supplementary_url": "https://ntrs.nasa.gov/citations/20180004258",
+    "diagnostics": [
+      "Video imaging and flame-front tracking"
+    ]
+  },
+  {
+    "campaign": "Saffire II",
+    "run_id": "II-6",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat specimen",
+    "direction": "concurrent",
+    "airflow_cms": [
+      25
+    ],
+    "airflow_basis": "constant",
+    "oxygen_vol_pct": [
+      22.1
+    ],
+    "oxygen_basis": "approximate",
+    "source_url": "https://ntrs.nasa.gov/citations/20180005168",
+    "locator": "Table 1, slides 30–31, II-6",
+    "width_cm": 5,
+    "thickness_mm": 0.37,
+    "length_cm": 29,
+    "burn_duration_s": 115,
+    "spread_rate_mm_s": [
+      2.6
+    ],
+    "outcome": "burned_to_end",
+    "notes": [
+      "Qualitative outcome cross-checked against NASA NTRS 20180004258, slide 18."
+    ],
+    "supplementary_url": "https://ntrs.nasa.gov/citations/20180004258",
+    "diagnostics": [
+      "Video imaging and flame-front tracking"
+    ]
+  },
+  {
+    "campaign": "Saffire II",
+    "run_id": "II-7",
+    "material": "PMMA / Nomex",
+    "geometry": "two sections: PMMA (5 cm long, 0.85 mm thick) and Nomex (24 cm long, 0.37 mm thick)",
+    "direction": "concurrent",
+    "airflow_cms": [
+      20
+    ],
+    "airflow_basis": "constant",
+    "oxygen_vol_pct": [
+      22.1
+    ],
+    "oxygen_basis": "approximate",
+    "source_url": "https://ntrs.nasa.gov/citations/20180005168",
+    "locator": "Table 1, slides 30–31, II-7",
+    "width_cm": 5,
+    "thickness_mm": null,
+    "length_cm": null,
+    "burn_duration_s": 140,
+    "spread_rate_mm_s": null,
+    "outcome": "no_spread_into_nomex",
+    "notes": [
+      "Qualitative outcome cross-checked against NASA NTRS 20180004258, slide 18."
+    ],
+    "supplementary_url": "https://ntrs.nasa.gov/citations/20180004258",
+    "diagnostics": [
+      "Video imaging"
+    ]
+  },
+  {
+    "campaign": "Saffire II",
+    "run_id": "II-8",
+    "material": "PMMA",
+    "geometry": "structured PMMA; see figure referenced in Table 1",
+    "direction": "concurrent",
+    "airflow_cms": [
+      20
+    ],
+    "airflow_basis": "constant",
+    "oxygen_vol_pct": [
+      22.1,
+      22.0
+    ],
+    "oxygen_basis": "start_end",
+    "source_url": "https://ntrs.nasa.gov/citations/20180005168",
+    "locator": "Table 1, slides 30–31, II-8",
+    "width_cm": 5,
+    "thickness_mm": null,
+    "length_cm": 29,
+    "burn_duration_s": 600,
+    "spread_rate_mm_s": null,
+    "outcome": null,
+    "notes": [],
+    "supplementary_url": null,
+    "diagnostics": [
+      "Video imaging"
+    ]
+  },
+  {
+    "campaign": "Saffire II",
+    "run_id": "II-9",
+    "material": "PMMA",
+    "geometry": "flat specimen",
+    "direction": "concurrent",
+    "airflow_cms": [
+      20
+    ],
+    "airflow_basis": "constant",
+    "oxygen_vol_pct": [
+      22.0,
+      21.9
+    ],
+    "oxygen_basis": "start_end",
+    "source_url": "https://ntrs.nasa.gov/citations/20180005168",
+    "locator": "Table 1, slides 30–31, II-9",
+    "width_cm": 5,
+    "thickness_mm": 10,
+    "length_cm": 29,
+    "burn_duration_s": 900,
+    "spread_rate_mm_s": null,
+    "outcome": null,
+    "notes": [],
+    "supplementary_url": null,
+    "diagnostics": [
+      "Video imaging"
+    ]
+  },
+  {
+    "campaign": "Saffire III",
+    "run_id": "III-1",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat specimen",
+    "direction": "concurrent",
+    "airflow_cms": [
+      25
+    ],
+    "airflow_basis": "constant",
+    "oxygen_vol_pct": [
+      21.2,
+      21.0
+    ],
+    "oxygen_basis": "start_end",
+    "source_url": "https://ntrs.nasa.gov/citations/20180005168",
+    "locator": "Table 1, slides 30–31, III-1",
+    "width_cm": 40.6,
+    "thickness_mm": 0.37,
+    "length_cm": 94,
+    "burn_duration_s": 300,
+    "spread_rate_mm_s": [
+      2.3
+    ],
+    "outcome": null,
+    "notes": [],
+    "supplementary_url": null,
+    "diagnostics": [
+      "Video imaging and flame-front tracking"
+    ]
+  },
+  {
+    "campaign": "Saffire III",
+    "run_id": "III-2",
+    "material": "SIBAL (cotton/fiberglass)",
+    "geometry": "flat specimen",
+    "direction": "opposed",
+    "airflow_cms": [
+      25
+    ],
+    "airflow_basis": "constant",
+    "oxygen_vol_pct": [
+      21.2,
+      21.0
+    ],
+    "oxygen_basis": "start_end",
+    "source_url": "https://ntrs.nasa.gov/citations/20180005168",
+    "locator": "Table 1, slides 30–31, III-2",
+    "width_cm": 40.6,
+    "thickness_mm": 0.37,
+    "length_cm": 10,
+    "burn_duration_s": 60,
+    "spread_rate_mm_s": [
+      0.98
+    ],
+    "outcome": null,
+    "notes": [
+      "Table 1 reports an approximate specimen length."
+    ],
+    "supplementary_url": null,
+    "diagnostics": [
+      "Video imaging and flame-front tracking"
+    ]
+  }
+]
