@@ -196,7 +196,12 @@ export function isArrayOf<T>(validate: Validator<T>): Validator<T[]> {
 }
 
 export function isScenarioStudy(value: unknown): value is ScenarioStudy {
-  return isRecord(value) && isId(value.study_id) && typeof value.title === "string" &&
+  if (!isRecord(value)) return false
+  const validOptionalNumber = (field: unknown) =>
+    field === undefined || (typeof field === "number" && Number.isFinite(field) && field >= 0)
+  const validOptionalStringArray = (field: unknown) =>
+    field === undefined || (Array.isArray(field) && field.every((item) => typeof item === "string"))
+  return isId(value.study_id) && typeof value.title === "string" &&
     typeof value.score === "number" && value.score >= 0 && value.score <= 100 &&
     ["material", "facility", "fuel"].every((key) => isNullableString(value[key])) &&
     ["matched", "outside", "unknown"].every((key) => {
@@ -207,7 +212,14 @@ export function isScenarioStudy(value: unknown): value is ScenarioStudy {
     ["o2_pct", "pressure_kpa", "flow_cms", "gravity_g"].every((key) => {
       const range = value[key]
       return range === null || isNumericRange(range)
-    })
+    }) &&
+    (value.ranking_version === undefined || value.ranking_version === "range-coverage-v1") &&
+    (value.score_basis === undefined || value.score_basis === "independent_catalog_ranges") &&
+    validOptionalNumber(value.reported_parameter_count) &&
+    validOptionalNumber(value.source_count) &&
+    validOptionalNumber(value.run_count) &&
+    validOptionalStringArray(value.jointly_reported_run_ids) &&
+    validOptionalStringArray(value.limitations)
 }
 
 export function isExperimentRun(value: unknown): value is ExperimentRun {
@@ -226,7 +238,19 @@ export function isExperimentRun(value: unknown): value is ExperimentRun {
     ["fixed", "start_end", "approximate"].some((basis) => basis === value.oxygen_basis) &&
     numberList(value.airflow_cms) && numberList(value.oxygen_vol_pct) &&
     (value.spread_rate_mm_s === null || numberList(value.spread_rate_mm_s)) &&
-    ["width_cm", "length_cm", "thickness_mm", "pressure_atm", "burn_duration_s"].every((key) => {
+    (value.burning_rate_constant_mm2_s === null ||
+      (numberList(value.burning_rate_constant_mm2_s) && (value.burning_rate_constant_mm2_s as unknown[]).length === 1)) &&
+    (value.campaign === "FLEX-1"
+      ? value.spread_rate_mm_s === null && value.thickness_mm === null
+      : value.burning_rate_constant_mm2_s === null && value.initial_droplet_diameter_mm === null) &&
+    (value.oxygen_vol_pct as number[]).every((n) => n <= 100) &&
+    (value.oxygen_vol_pct as number[]).length === (value.oxygen_basis === "start_end" ? 2 : 1) &&
+    (value.airflow_basis === "constant" ? (value.airflow_cms as number[]).length === 1
+      : value.airflow_basis === "start_end" ? (value.airflow_cms as number[]).length === 2
+      : (value.airflow_cms as number[]).length >= 2) &&
+    (value.spread_rate_mm_s === null || (value.airflow_basis !== "start_end" &&
+      (value.spread_rate_mm_s as number[]).length === (value.airflow_cms as number[]).length)) &&
+    ["width_cm", "length_cm", "thickness_mm", "initial_droplet_diameter_mm", "pressure_atm", "burn_duration_s"].every((key) => {
       const member = value[key]
       return member === null || (typeof member === "number" && Number.isFinite(member) && member > 0)
     }) &&

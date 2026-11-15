@@ -390,3 +390,16 @@ Dataset x_label/y_label/series/provenance сохранять в `datasets.data` 
 
 
 `GET /api/v1/studies/{study_id}/runs` returns curated flight test rows for the study. A known study without run data returns an empty list. Airflow and oxygen arrays retain publication order. Only `constant` or `plateaus` airflow can be paired by index with `spread_rate_mm_s`. A missing rate is null. Each row includes the source URL and table locator.
+
+## Scientific contract update
+
+`GET /api/v1/studies/{id}/runs`: FLEX-1 now reports
+`initial_droplet_diameter_mm` and `burning_rate_constant_mm2_s`; its
+`thickness_mm` and `spread_rate_mm_s` are null. Other campaigns use null for
+the two droplet fields. Never combine K (mm²/s) with flame speed (mm/s).
+
+`POST /api/v1/rank`: additive fields `ranking_version`, `score_basis`,
+`reported_parameter_count`, `source_count`, `run_count`,
+`jointly_reported_run_ids` and `limitations` expose the evidence basis. The
+score formula is unchanged; these metadata do not establish safety or confidence.
+See `docs/QUALITY_AND_DEPLOYMENT.md` for migration and evaluation details.

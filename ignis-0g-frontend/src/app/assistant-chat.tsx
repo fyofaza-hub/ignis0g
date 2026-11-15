@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState, type FormEvent } from "react"
 import { ArrowUpRight, Bot, ChevronRight, Reset, Send, Sparkles } from "@/components/ui/icons"
 import { ApiError, api } from "@/api/client"
-import type { ChatMessage, ChatResponse, Citation, Scenario, StudySummary } from "@/domain/types"
+import { localizeCategory } from "@/domain/knowledge"
+import type { ChatMessage, ChatResponse, Scenario, StudySummary } from "@/domain/types"
 import { useLocale, type Locale } from "@/i18n"
+import { CitationInspector, CitationList, RichCitedText } from "./citation-view"
 
 interface Exchange {
   question: string
@@ -15,20 +17,25 @@ export function useStudyChat(study: StudySummary | undefined, scenario?: Scenari
   const [scope, setScope] = useState<"study" | "global">(study ? "study" : "global")
   const [historyByScope, setHistoryByScope] = useState<Record<string, Exchange[]>>({})
   const [pending, setPending] = useState(false)
+  const prevStudyIdRef = useRef<string | undefined>(study?.id)
 
-  const suffix = (scenario ? `:${JSON.stringify(scenario)}` : "") + `:${locale}`
-  const activeKey = (scope === "study" && study ? `study:${study.id}` : "global") + suffix
+  const activeKey = scope === "study" && study ? `study:${study.id}` : "global"
   const exchanges = historyByScope[activeKey] ?? []
 
   useEffect(() => {
-    if (!study && scope === "study") setScope("global")
+    if (!study) {
+      if (scope === "study") setScope("global")
+    } else if (prevStudyIdRef.current !== study.id) {
+      setScope("study")
+    }
+    prevStudyIdRef.current = study?.id
   }, [study, scope])
 
   async function send(question: string) {
     const text = question.trim()
     if (!text || pending) return
     const targetScope = scope === "study" && study ? "study" : "global"
-    const key = (targetScope === "study" && study ? `study:${study.id}` : "global") + suffix
+    const key = targetScope === "study" && study ? `study:${study.id}` : "global"
     const prior = historyByScope[key] ?? []
 
     const chatHistory: ChatMessage[] = []
@@ -109,47 +116,6 @@ export function useStudyChat(study: StudySummary | undefined, scenario?: Scenari
   }
 }
 
-function RichCitedText({
-  text,
-  citations,
-  onClickCitation,
-  locale,
-}: {
-  text: string
-  citations: Citation[]
-  onClickCitation: (index: number) => void
-  locale: Locale
-}) {
-  const parts = text.split(/(\[\d+\])/g)
-  return (
-    <p className="chat-answer-text">
-      {parts.map((part, idx) => {
-        const m = /^\[(\d+)\]$/.exec(part)
-        if (m) {
-          const num = Number(m[1])
-          const cite = citations[num - 1]
-          return (
-            <button
-              key={idx}
-              type="button"
-              className="inline-citation-badge"
-              title={
-                cite
-                  ? `${cite.title}${cite.locator ? ` · ${cite.locator}` : ""}`
-                  : locale === "ru" ? `Источник [${num}]` : `Source [${num}]`
-              }
-              onClick={() => onClickCitation(num - 1)}
-            >
-              [{num}]
-            </button>
-          )
-        }
-        return <span key={idx}>{part}</span>
-      })}
-    </p>
-  )
-}
-
 const RAG_PROGRESS_STAGES: Record<Locale, string[]> = {
   en: [
     "Stage 1/3: Retrieving vector chunks from NASA PSI (pgvector)…",
@@ -175,49 +141,15 @@ function PendingRagStage({ locale }: { locale: Locale }) {
   return <p className="muted">{stages[stage]}</p>
 }
 
-function CitationList({
-  citations,
-  activeIndex,
-  onToggleIndex,
-  locale,
-}: {
-  citations: Citation[]
-  activeIndex: number | null
-  onToggleIndex: (idx: number) => void
-  locale: Locale
-}) {
-  if (!citations.length) return null
-  return (
-    <div className="chat-citations">
-      {citations.map((c, idx) => (
-        <details
-          key={`${c.chunk_id}-${idx}`}
-          open={activeIndex === idx}
-          onToggle={(e) => {
-            if ((e.currentTarget as HTMLDetailsElement).open) onToggleIndex(idx)
-          }}
-        >
-          <summary>
-            [{idx + 1}] {c.title}
-            {c.locator ? ` · ${c.locator}` : ""}
-          </summary>
-          <p>{c.excerpt}</p>
-          <a href={c.url} target="_blank" rel="noreferrer">
-            {locale === "ru" ? "Открыть источник" : "Open source"} <ArrowUpRight size={13} />
-          </a>
-        </details>
-      ))}
-    </div>
-  )
-}
-
 export function AssistantChat({
   chat,
+  studies = [],
   onOpenPage,
   onCollapse,
   onSelectStudy,
 }: {
   chat: ReturnType<typeof useStudyChat>
+  studies?: StudySummary[]
   onOpenPage?: () => void
   onCollapse?: () => void
   onSelectStudy?: (id: string) => void
@@ -228,6 +160,7 @@ export function AssistantChat({
   const log = useRef<HTMLDivElement>(null)
   const input = useRef<HTMLTextAreaElement>(null)
   const { scope, setScope, study, scenario, exchanges, pending, send, clear } = chat
+  const studyShortTitle = study ? study.title.split(" (")[0] : ""
 
   useEffect(() => {
     if (log.current) log.current.scrollTop = log.current.scrollHeight
@@ -282,7 +215,7 @@ export function AssistantChat({
             <h2>{locale === "ru" ? "ИИ-ассистент по исследованиям" : "AI Research Assistant"}</h2>
             <span>
               {scope === "study" && study
-                ? study.category
+                ? `${studyShortTitle} · ${localizeCategory(study.category, locale)}`
                 : locale === "ru" ? "Весь каталог NASA PSI" : "Full NASA PSI Catalog"}
             </span>
           </div>
@@ -369,47 +302,70 @@ export function AssistantChat({
                 </div>
               )}
 
-              {response && (
-                <div className="chat-answer-block">
-                  {response.status === "insufficient_evidence" && (
-                    <span className="chat-status-tag">
-                      {locale === "ru" ? "Недостаточно данных в источниках" : "Insufficient evidence in primary sources"}
-                    </span>
-                  )}
-                  <RichCitedText
-                    text={response.answer}
-                    citations={response.citations}
-                    onClickCitation={(citeIdx) => setOpenCitationKey(`${index}:${citeIdx}`)}
-                    locale={locale}
-                  />
-                  {response.related_study_ids.length > 0 && onSelectStudy && (
-                    <div className="chat-related-pills">
-                      {response.related_study_ids.map((id) => (
-                        <button key={id} type="button" className="inline-study-pill" onClick={() => onSelectStudy(id)}>
-                          {id} <ArrowUpRight size={12} />
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                  <CitationList
-                    citations={response.citations}
-                    activeIndex={
-                      openCitationKey?.startsWith(`${index}:`)
-                        ? Number(openCitationKey.split(":")[1])
-                        : null
-                    }
-                    onToggleIndex={(citeIdx) => setOpenCitationKey(`${index}:${citeIdx}`)}
-                    locale={locale}
-                  />
-                  {response.status === "answered" && response.citations.length > 0 && (
-                    <p className="muted" style={{ fontSize: "0.78rem", marginTop: "0.45rem" }}>
-                      {locale === "ru"
-                        ? "Проверка ссылок подтверждает привязку [n] к фрагментам отчётов; сверяйте конкретные числа и пересчёты с раскрытой выдержкой источника."
-                        : "Citations link [n] markers to retrieved NASA excerpts; verify specific numerical values and unit conversions against the expanded excerpt."}
-                    </p>
-                  )}
-                </div>
-              )}
+              {response && (() => {
+                const activeIndex =
+                  openCitationKey?.startsWith(`${index}:`)
+                    ? Number(openCitationKey.split(":")[1])
+                    : null
+                const activeCitation =
+                  activeIndex !== null && Number.isInteger(activeIndex)
+                    ? response.citations[activeIndex]
+                    : undefined
+                const toggleCitation = (citeIdx: number) => {
+                  const key = `${index}:${citeIdx}`
+                  setOpenCitationKey((prev) => (prev === key ? null : key))
+                }
+                return (
+                  <div className="chat-answer-block">
+                    {response.status === "insufficient_evidence" && (
+                      <span className="chat-status-tag">
+                        {locale === "ru" ? "Недостаточно данных в источниках" : "Insufficient evidence in primary sources"}
+                      </span>
+                    )}
+                    <RichCitedText
+                      text={response.answer}
+                      citations={response.citations}
+                      activeIndex={activeIndex}
+                      onClickCitation={toggleCitation}
+                      locale={locale}
+                    />
+                    {activeCitation && activeIndex !== null && (
+                      <CitationInspector
+                        citation={activeCitation}
+                        index={activeIndex}
+                        onClose={() => setOpenCitationKey(null)}
+                        locale={locale}
+                      />
+                    )}
+                    {response.related_study_ids.length > 0 && onSelectStudy && (
+                      <div className="chat-related-pills">
+                        {response.related_study_ids.map((id) => {
+                          const found = studies.find((s) => s.id === id)
+                          const label = found ? found.title.split(" (")[0] : id
+                          return (
+                            <button key={id} type="button" className="inline-study-pill" onClick={() => onSelectStudy(id)}>
+                              {label} <ArrowUpRight size={12} />
+                            </button>
+                          )
+                        })}
+                      </div>
+                    )}
+                    <CitationList
+                      citations={response.citations}
+                      activeIndex={activeIndex}
+                      onToggleIndex={toggleCitation}
+                      locale={locale}
+                    />
+                    {response.status === "answered" && response.citations.length > 0 && (
+                      <p className="muted" style={{ fontSize: "0.78rem", marginTop: "0.45rem" }}>
+                        {locale === "ru"
+                          ? "Нажмите на маркер [n], чтобы сразу открыть фрагмент источника, страницу/таблицу и ссылку NASA."
+                          : "Click any [n] marker to immediately inspect the source excerpt, page/table locator, and NASA link."}
+                      </p>
+                    )}
+                  </div>
+                )
+              })()}
             </div>
           ))}
         </div>
@@ -451,23 +407,28 @@ export function AssistantChat({
             }}
           />
           <div className="chat-composer-footer">
-            <div className="composer-scope-pills" role="group" aria-label={locale === "ru" ? "Область поиска" : "Search scope"}>
-              <button
-                type="button"
-                disabled={!study}
-                aria-pressed={scope === "study"}
-                onClick={() => setScope("study")}
-              >
-                <Sparkles size={12} /> {study ? study.category : locale === "ru" ? "Исследование" : "Current Study"}
-              </button>
-              <button
-                type="button"
-                aria-pressed={scope === "global"}
-                onClick={() => setScope("global")}
-              >
-                {locale === "ru" ? "Весь каталог" : "Full Catalog"}
-              </button>
-            </div>
+            {study ? (
+              <div className="composer-scope-pills" role="group" aria-label={locale === "ru" ? "Область поиска" : "Search scope"}>
+                <button
+                  type="button"
+                  aria-pressed={scope === "study"}
+                  onClick={() => setScope("study")}
+                >
+                  <Sparkles size={12} /> {studyShortTitle}
+                </button>
+                <button
+                  type="button"
+                  aria-pressed={scope === "global"}
+                  onClick={() => setScope("global")}
+                >
+                  {locale === "ru" ? "Весь каталог" : "Full Catalog"}
+                </button>
+              </div>
+            ) : (
+              <span className="composer-scope-badge">
+                {locale === "ru" ? "Поиск по всему каталогу" : "Searching full catalog"}
+              </span>
+            )}
             <button
               type="submit"
               className="composer-send-btn"

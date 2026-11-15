@@ -2,6 +2,8 @@
 import math
 
 from app.schemas.scenario import Scenario, ScenarioStudy
+from app.schemas.experiment_run import ExperimentRun
+from pydantic import ValidationError
 
 
 def reported_range(value):
@@ -36,7 +38,34 @@ def rank_study(row, source_urls: list[str], scenario: Scenario) -> ScenarioStudy
             matched.append(key)
         else:
             outside.append(key)
+    runs = []
+    for raw in data.get("experiment_runs", []):
+        try:
+            runs.append(ExperimentRun.model_validate(raw))
+        except ValidationError:
+            continue  # Legacy malformed records cannot establish joint coverage.
+    joint = []
+    for run in runs:
+        # Only fixed, jointly reported conditions count. Endpoint ranges are not interpolated.
+        if (scenario.gravity_g == 0 and run.oxygen_basis == "fixed"
+                and run.airflow_basis == "constant" and run.pressure_atm is not None
+                and math.isclose(run.oxygen_vol_pct[0], scenario.o2_pct, rel_tol=0, abs_tol=1e-8)
+                and math.isclose(run.airflow_cms[0], scenario.flow_cms, rel_tol=0, abs_tol=1e-8)
+                and math.isclose(run.pressure_atm * 101.325, scenario.pressure_kpa, rel_tol=0, abs_tol=1e-6)):
+            joint.append(f"{run.campaign}/{run.run_id}")
+    limitations = ["range_matches_do_not_predict_fire_risk"]
+    if not joint:
+        limitations.append("joint_conditions_not_established")
+    if unknown:
+        limitations.append("missing_reported_parameters")
+    if scenario.gravity_g > 0 and data.get("gravity_g") == [0, 0]:
+        limitations.append("microgravity_results_do_not_validate_partial_or_earth_gravity")
+    if not source_urls:
+        limitations.append("no_source_links")
     return ScenarioStudy(
+        reported_parameter_count=len(ranges) - len(unknown),
+        source_count=len(set(source_urls)), run_count=len(runs),
+        jointly_reported_run_ids=joint, limitations=limitations,
         study_id=row.slug, title=row.title, **ranges, fuel=fuel,
         material=data.get("fuel_material") if isinstance(data.get("fuel_material"), str) else None,
         facility=data.get("facility") if isinstance(data.get("facility"), str) else None,

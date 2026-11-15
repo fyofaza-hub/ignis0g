@@ -10,8 +10,15 @@ const Page = isExplorer
   ? lazy(() => import("@/app/explorer"))
   : lazy(() => import("@/landing/landing").then(({ Landing }) => ({ default: Landing })))
 
-document.documentElement.lang = getLocale()
-document.title = isExplorer ? "IGNIS 0G — Explorer" : "IGNIS 0G — Microgravity Research Explorer"
+const initialLocale = getLocale()
+document.documentElement.lang = initialLocale
+document.title = isExplorer
+  ? initialLocale === "ru"
+    ? "IGNIS 0G — каталог исследований"
+    : "IGNIS 0G — Explorer"
+  : initialLocale === "ru"
+    ? "IGNIS 0G — огонь в невесомости"
+    : "IGNIS 0G — Microgravity Research Explorer"
 
 class PageBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
   state = { failed: false }

@@ -233,6 +233,13 @@ export interface ScenarioStudy {
   outside: string[]
   unknown: string[]
   score: number
+  ranking_version?: "range-coverage-v1"
+  score_basis?: "independent_catalog_ranges"
+  reported_parameter_count?: number
+  source_count?: number
+  run_count?: number
+  jointly_reported_run_ids?: string[]
+  limitations?: string[]
 }
 
 
@@ -256,6 +263,8 @@ export interface ExperimentRun {
   width_cm: number | null
   length_cm: number | null
   thickness_mm: number | null
+  initial_droplet_diameter_mm: number | null
+  burning_rate_constant_mm2_s: number[] | null
   burning_sides: 1 | 2 | null
   direction: "concurrent" | "opposed" | "quiescent"
   airflow_cms: number[]

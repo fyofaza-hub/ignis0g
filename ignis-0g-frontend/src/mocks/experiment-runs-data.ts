@@ -34,7 +34,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 7.1, p. 96, GMT45-T1; setup §7.1.3",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -70,7 +72,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 7.1, p. 96, GMT45-T2; setup §7.1.3",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -105,7 +109,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 7.1, p. 96, GMT45-T4; setup §7.1.3",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -140,7 +146,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 7.1, p. 96, GMT45-T15; setup §7.1.3",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -175,7 +183,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 7.1, p. 96, GMT100-T5; setup §7.1.3",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -210,7 +220,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 7.1, p. 96, GMT100-T6; setup §7.1.3",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -245,7 +257,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 7.1, p. 96, GMT100-T13; setup §7.1.3",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -280,7 +294,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 7.1, p. 96, GMT100-T16; setup §7.1.3",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -312,7 +328,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "notes": [],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 7.1, p. 96, GMT175-T9; setup §7.1.3",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -344,7 +362,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "notes": [],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 7.1, p. 96, GMT175-T10; setup §7.1.3",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -379,7 +399,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 7.1, p. 96, GMT175-T18; setup §7.1.3",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -411,7 +433,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "notes": [],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 7.1, p. 96, GMT178-T11; setup §7.1.3",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -443,7 +467,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "notes": [],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 7.1, p. 96, GMT178-T12; setup §7.1.3",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -478,7 +504,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 7.1, p. 96, GMT178-T14; setup §7.1.3",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -513,7 +541,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 7.1, p. 96, GMT178-T17; setup §7.1.3",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -545,7 +575,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "notes": [],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 7.1, p. 96, GMT190-T19; setup §7.1.3",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -580,7 +612,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 7.1, p. 96, GMT190-T20; setup §7.1.3",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -615,7 +649,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 7.1, p. 96, GMT190-T21; setup §7.1.3",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -650,7 +686,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 7.1, p. 96, GMT190-T22; setup §7.1.3",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -684,7 +722,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 7.1, p. 96, GMT190-T23; setup §7.1.3",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -718,7 +758,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 7.1, p. 96, GMT190-T24; setup §7.1.3",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -754,7 +796,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 7.1, p. 96, GMT216-T25; setup §7.1.3",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -790,7 +834,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 7.1, p. 96, GMT216-T26; setup §7.1.3",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -826,7 +872,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 7.1, p. 96, GMT216-T27; setup §7.1.3",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -860,7 +908,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 7.1, p. 96, GMT216-T28a; setup §7.1.3",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -894,7 +944,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 7.1, p. 96, GMT216-T28b; setup §7.1.3",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -930,7 +982,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 7.1, p. 96, GMT216-T29; setup §7.1.3",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -966,7 +1020,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 5.1, p. 57, M1; setup §5.1",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -1004,7 +1060,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 5.1, p. 57, M2; setup §5.1",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -1042,7 +1100,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 5.1, p. 57, M3; setup §5.1",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -1080,7 +1140,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 5.1, p. 57, M4; setup §5.1",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -1116,7 +1178,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 5.1, p. 57, M5; setup §5.1",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -1152,7 +1216,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 5.1, p. 57, M6; setup §5.1",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -1194,7 +1260,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 5.1, p. 57, M7; setup §5.1",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -1234,7 +1302,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 5.1, p. 57, M8; setup §5.1",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -1270,7 +1340,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 5.1, p. 57, M9; setup §5.1",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -1308,7 +1380,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 5.1, p. 57, M10; setup §5.1",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -1348,7 +1422,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 5.1, p. 57, M11; setup §5.1",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -1384,7 +1460,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 5.1, p. 57, M12; setup §5.1",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -1424,7 +1502,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 5.1, p. 57, M13; setup §5.1",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -1464,7 +1544,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 5.1, p. 57, M14; setup §5.1",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -1500,7 +1582,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 5.1, p. 57, M15; setup §5.1",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -1540,7 +1624,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 5.1, p. 57, M16; setup §5.1",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -1580,7 +1666,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 5.1, p. 57, M17; setup §5.1",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -1618,7 +1706,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 5.1, p. 57, M18; setup §5.1",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -1656,7 +1746,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 5.1, p. 57, M19; setup §5.1",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "BASS-II",
@@ -1692,7 +1784,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20210011385",
       "locator": "Table 5.1, p. 57, M20; setup §5.1",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     }
   ],
   "flex-1": [
@@ -1704,7 +1798,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 1.69,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -1716,9 +1810,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.997,
-      "spread_rate_mm_s": [
-        0.52
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 4.3,
       "outcome": "disruption",
       "diagnostics": [],
@@ -1729,7 +1821,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 20 (PDF p. 26), FLEX–001",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 1.69,
+      "burning_rate_constant_mm2_s": [
+        0.52
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -1739,7 +1835,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 1.86,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -1751,9 +1847,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0026,
-      "spread_rate_mm_s": [
-        0.6
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 5.0,
       "outcome": "extinction",
       "diagnostics": [],
@@ -1764,7 +1858,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 20 (PDF p. 26), FLEX–002",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 1.86,
+      "burning_rate_constant_mm2_s": [
+        0.6
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -1774,7 +1872,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 1.61,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -1786,9 +1884,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0055,
-      "spread_rate_mm_s": [
-        0.58
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 3.2,
       "outcome": "extinction",
       "diagnostics": [],
@@ -1799,7 +1895,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 20 (PDF p. 26), FLEX–003",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 1.61,
+      "burning_rate_constant_mm2_s": [
+        0.58
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -1809,7 +1909,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.06,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -1821,9 +1921,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0,
-      "spread_rate_mm_s": [
-        0.6
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 7.64,
       "outcome": "extinction",
       "diagnostics": [],
@@ -1834,7 +1932,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 20 (PDF p. 26), FLEX–004",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.06,
+      "burning_rate_constant_mm2_s": [
+        0.6
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -1844,7 +1946,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 1.92,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -1856,9 +1958,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0,
-      "spread_rate_mm_s": [
-        0.48
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 6.34,
       "outcome": "extinction",
       "diagnostics": [],
@@ -1869,7 +1969,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 20 (PDF p. 26), FLEX–005",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 1.92,
+      "burning_rate_constant_mm2_s": [
+        0.48
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -1879,7 +1983,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.54,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -1891,9 +1995,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0,
-      "spread_rate_mm_s": [
-        0.51
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 9.6,
       "outcome": "extinction",
       "diagnostics": [],
@@ -1904,7 +2006,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 20 (PDF p. 26), FLEX–006",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.54,
+      "burning_rate_constant_mm2_s": [
+        0.51
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -1914,7 +2020,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 1.87,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -1926,9 +2032,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0017,
-      "spread_rate_mm_s": [
-        0.67
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 5.3,
       "outcome": "disruption",
       "diagnostics": [],
@@ -1939,7 +2043,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 20 (PDF p. 26), FLEX–007",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 1.87,
+      "burning_rate_constant_mm2_s": [
+        0.67
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -1949,7 +2057,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.95,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -1961,9 +2069,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0032,
-      "spread_rate_mm_s": [
-        0.79
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 14.8,
       "outcome": "disruption",
       "diagnostics": [],
@@ -1974,7 +2080,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 20 (PDF p. 26), FLEX–008",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.95,
+      "burning_rate_constant_mm2_s": [
+        0.79
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -2007,7 +2117,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 20 (PDF p. 26), FLEX–009",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "FLEX-1",
@@ -2017,7 +2129,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.86,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -2029,9 +2141,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 3.0522,
-      "spread_rate_mm_s": [
-        0.37
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 13.6,
       "outcome": "extinction",
       "diagnostics": [],
@@ -2042,7 +2152,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 20 (PDF p. 26), FLEX–010",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.86,
+      "burning_rate_constant_mm2_s": [
+        0.37
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -2052,7 +2166,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.03,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -2064,9 +2178,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 3.0511,
-      "spread_rate_mm_s": [
-        0.4
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 16.5,
       "outcome": "extinction",
       "diagnostics": [],
@@ -2077,7 +2189,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 20 (PDF p. 26), FLEX–011",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.03,
+      "burning_rate_constant_mm2_s": [
+        0.4
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -2087,7 +2203,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.74,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -2110,7 +2226,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 20 (PDF p. 26), FLEX–012",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.74,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "FLEX-1",
@@ -2120,7 +2238,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.59,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -2132,9 +2250,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 2.7292,
-      "spread_rate_mm_s": [
-        0.49
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 10.8,
       "outcome": "extinction",
       "diagnostics": [],
@@ -2145,7 +2261,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 20 (PDF p. 26), FLEX–013",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.59,
+      "burning_rate_constant_mm2_s": [
+        0.49
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -2155,7 +2275,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.7,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -2178,7 +2298,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 20 (PDF p. 26), FLEX–014",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.7,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "FLEX-1",
@@ -2188,7 +2310,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 4.42,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -2211,7 +2333,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 20 (PDF p. 26), FLEX–015",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 4.42,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "FLEX-1",
@@ -2221,7 +2345,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 1.66,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -2233,9 +2357,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 2.7264,
-      "spread_rate_mm_s": [
-        0.53
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 3.4,
       "outcome": "extinction",
       "diagnostics": [],
@@ -2246,7 +2368,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 20 (PDF p. 26), FLEX–016",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 1.66,
+      "burning_rate_constant_mm2_s": [
+        0.53
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -2256,7 +2382,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.67,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -2279,7 +2405,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 20 (PDF p. 26), FLEX–017",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.67,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "FLEX-1",
@@ -2289,7 +2417,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.74,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -2301,9 +2429,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 2.0445,
-      "spread_rate_mm_s": [
-        0.61
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 8.1,
       "outcome": "extinction",
       "diagnostics": [],
@@ -2314,7 +2440,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 20 (PDF p. 26), FLEX–018",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.74,
+      "burning_rate_constant_mm2_s": [
+        0.61
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -2324,7 +2454,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.39,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -2336,9 +2466,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7093,
-      "spread_rate_mm_s": [
-        0.9
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 4.2,
       "outcome": "disruption",
       "diagnostics": [],
@@ -2349,7 +2477,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 20 (PDF p. 26), FLEX–019",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.39,
+      "burning_rate_constant_mm2_s": [
+        0.9
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -2359,7 +2491,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.4,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -2371,9 +2503,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7099,
-      "spread_rate_mm_s": [
-        0.53
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 17.4,
       "outcome": "completion",
       "diagnostics": [],
@@ -2384,7 +2514,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 20 (PDF p. 26), FLEX–020",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.4,
+      "burning_rate_constant_mm2_s": [
+        0.53
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -2394,7 +2528,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.49,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -2406,9 +2540,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7113,
-      "spread_rate_mm_s": [
-        0.66
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 17.8,
       "outcome": "disruption",
       "diagnostics": [],
@@ -2419,7 +2551,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 20 (PDF p. 26), FLEX–021",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.49,
+      "burning_rate_constant_mm2_s": [
+        0.66
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -2429,7 +2565,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.5,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -2441,9 +2577,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7112,
-      "spread_rate_mm_s": [
-        0.65
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 18.2,
       "outcome": "disruption",
       "diagnostics": [],
@@ -2454,7 +2588,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 20 (PDF p. 26), FLEX–022",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.5,
+      "burning_rate_constant_mm2_s": [
+        0.65
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -2464,7 +2602,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.01,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -2476,9 +2614,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7129,
-      "spread_rate_mm_s": [
-        0.73
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 13.1,
       "outcome": "disruption",
       "diagnostics": [],
@@ -2489,7 +2625,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 20 (PDF p. 26), FLEX–023",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.01,
+      "burning_rate_constant_mm2_s": [
+        0.73
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -2522,7 +2662,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 20 (PDF p. 26), FLEX–024",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "FLEX-1",
@@ -2532,7 +2674,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.6,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -2544,9 +2686,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.707,
-      "spread_rate_mm_s": [
-        0.65
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 10.3,
       "outcome": "completion",
       "diagnostics": [],
@@ -2557,7 +2697,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 20 (PDF p. 26), FLEX–025",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.6,
+      "burning_rate_constant_mm2_s": [
+        0.65
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -2567,7 +2711,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.63,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -2579,9 +2723,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7084,
-      "spread_rate_mm_s": [
-        0.62
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 22.2,
       "outcome": "disruption",
       "diagnostics": [],
@@ -2592,7 +2734,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 20 (PDF p. 26), FLEX–026",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.63,
+      "burning_rate_constant_mm2_s": [
+        0.62
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -2602,7 +2748,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.87,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -2614,9 +2760,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7114,
-      "spread_rate_mm_s": [
-        0.64
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 23.8,
       "outcome": "disruption",
       "diagnostics": [],
@@ -2627,7 +2771,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 20 (PDF p. 26), FLEX–027",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.87,
+      "burning_rate_constant_mm2_s": [
+        0.64
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -2637,7 +2785,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.36,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -2649,9 +2797,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7101,
-      "spread_rate_mm_s": [
-        0.64
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 17.3,
       "outcome": "disruption",
       "diagnostics": [],
@@ -2662,7 +2808,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 20 (PDF p. 26), FLEX–028",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.36,
+      "burning_rate_constant_mm2_s": [
+        0.64
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -2672,7 +2822,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.57,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -2684,9 +2834,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0091,
-      "spread_rate_mm_s": [
-        0.74
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 10.4,
       "outcome": "completion",
       "diagnostics": [],
@@ -2697,7 +2845,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 20 (PDF p. 26), FLEX–029",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.57,
+      "burning_rate_constant_mm2_s": [
+        0.74
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -2707,7 +2859,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.26,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -2719,9 +2871,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0121,
-      "spread_rate_mm_s": [
-        0.59
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 15.6,
       "outcome": "extinction",
       "diagnostics": [],
@@ -2732,7 +2882,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 20 (PDF p. 26), FLEX–030",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.26,
+      "burning_rate_constant_mm2_s": [
+        0.59
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -2742,7 +2896,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.39,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -2754,9 +2908,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0138,
-      "spread_rate_mm_s": [
-        0.85
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 18.4,
       "outcome": "disruption",
       "diagnostics": [],
@@ -2767,7 +2919,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 20 (PDF p. 26), FLEX–031",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.39,
+      "burning_rate_constant_mm2_s": [
+        0.85
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -2777,7 +2933,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.07,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -2789,9 +2945,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0145,
-      "spread_rate_mm_s": [
-        0.68
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 14.0,
       "outcome": "completion",
       "diagnostics": [],
@@ -2802,7 +2956,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–032",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.07,
+      "burning_rate_constant_mm2_s": [
+        0.68
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -2812,7 +2970,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.62,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -2824,9 +2982,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0059,
-      "spread_rate_mm_s": [
-        0.48
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 11.4,
       "outcome": "extinction",
       "diagnostics": [],
@@ -2837,7 +2993,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–033",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.62,
+      "burning_rate_constant_mm2_s": [
+        0.48
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -2847,7 +3007,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.89,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -2859,9 +3019,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0101,
-      "spread_rate_mm_s": [
-        0.44
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 27.3,
       "outcome": "extinction",
       "diagnostics": [],
@@ -2872,7 +3030,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–034",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.89,
+      "burning_rate_constant_mm2_s": [
+        0.44
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -2882,7 +3044,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.85,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -2894,9 +3056,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0107,
-      "spread_rate_mm_s": [
-        0.43
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 8.9,
       "outcome": "extinction",
       "diagnostics": [],
@@ -2907,7 +3067,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–035",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.85,
+      "burning_rate_constant_mm2_s": [
+        0.43
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -2917,7 +3081,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.4,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -2929,9 +3093,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7092,
-      "spread_rate_mm_s": [
-        0.45
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 7.1,
       "outcome": "extinction",
       "diagnostics": [],
@@ -2942,7 +3104,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–036",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.4,
+      "burning_rate_constant_mm2_s": [
+        0.45
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -2952,7 +3118,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.31,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -2964,9 +3130,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.703,
-      "spread_rate_mm_s": [
-        0.72
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 10.7,
       "outcome": "disruption",
       "diagnostics": [],
@@ -2977,7 +3141,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–037",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.31,
+      "burning_rate_constant_mm2_s": [
+        0.72
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -2987,7 +3155,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.59,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -2999,9 +3167,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7032,
-      "spread_rate_mm_s": [
-        0.71
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 15.3,
       "outcome": "disruption",
       "diagnostics": [],
@@ -3012,7 +3178,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–038",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.59,
+      "burning_rate_constant_mm2_s": [
+        0.71
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -3022,7 +3192,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.91,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -3034,9 +3204,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7038,
-      "spread_rate_mm_s": [
-        0.8
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 9.9,
       "outcome": "disruption",
       "diagnostics": [],
@@ -3047,7 +3215,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–039",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.91,
+      "burning_rate_constant_mm2_s": [
+        0.8
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -3057,7 +3229,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.77,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -3069,9 +3241,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7041,
-      "spread_rate_mm_s": [
-        0.62
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 19.2,
       "outcome": "disruption",
       "diagnostics": [],
@@ -3082,7 +3252,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–040",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.77,
+      "burning_rate_constant_mm2_s": [
+        0.62
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -3092,7 +3266,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.35,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -3104,9 +3278,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.703,
-      "spread_rate_mm_s": [
-        0.65
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 14.1,
       "outcome": "disruption",
       "diagnostics": [],
@@ -3117,7 +3289,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–041",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.35,
+      "burning_rate_constant_mm2_s": [
+        0.65
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -3127,7 +3303,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.92,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -3139,9 +3315,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7039,
-      "spread_rate_mm_s": [
-        0.58
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 11.3,
       "outcome": "disruption",
       "diagnostics": [],
@@ -3152,7 +3326,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–042",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.92,
+      "burning_rate_constant_mm2_s": [
+        0.58
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -3162,7 +3340,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.97,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -3174,9 +3352,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7038,
-      "spread_rate_mm_s": [
-        0.78
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 11.4,
       "outcome": "disruption",
       "diagnostics": [],
@@ -3187,7 +3363,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–043",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.97,
+      "burning_rate_constant_mm2_s": [
+        0.78
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -3197,7 +3377,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.49,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -3209,9 +3389,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0089,
-      "spread_rate_mm_s": [
-        0.63
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 16.6,
       "outcome": "disruption",
       "diagnostics": [],
@@ -3222,7 +3400,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–044",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.49,
+      "burning_rate_constant_mm2_s": [
+        0.63
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -3232,7 +3414,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.42,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -3244,9 +3426,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0109,
-      "spread_rate_mm_s": [
-        0.73
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 6.6,
       "outcome": "extinction",
       "diagnostics": [],
@@ -3257,7 +3437,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–045",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.42,
+      "burning_rate_constant_mm2_s": [
+        0.73
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -3267,7 +3451,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.78,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -3279,9 +3463,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0125,
-      "spread_rate_mm_s": [
-        0.54
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 13.1,
       "outcome": "disruption",
       "diagnostics": [],
@@ -3292,7 +3474,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–046",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.78,
+      "burning_rate_constant_mm2_s": [
+        0.54
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -3302,7 +3488,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.36,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -3314,9 +3500,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0133,
-      "spread_rate_mm_s": [
-        0.5
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 17.1,
       "outcome": "completion",
       "diagnostics": [],
@@ -3327,7 +3511,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–047",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.36,
+      "burning_rate_constant_mm2_s": [
+        0.5
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -3337,7 +3525,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.66,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -3349,9 +3537,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0114,
-      "spread_rate_mm_s": [
-        0.27
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 23.5,
       "outcome": "disruption",
       "diagnostics": [],
@@ -3362,7 +3548,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–048",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.66,
+      "burning_rate_constant_mm2_s": [
+        0.27
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -3372,7 +3562,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.46,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -3384,9 +3574,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0064,
-      "spread_rate_mm_s": [
-        0.59
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 8.6,
       "outcome": "extinction",
       "diagnostics": [],
@@ -3397,7 +3585,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–049",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.46,
+      "burning_rate_constant_mm2_s": [
+        0.59
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -3407,7 +3599,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.57,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -3419,9 +3611,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0133,
-      "spread_rate_mm_s": [
-        0.52
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 8.4,
       "outcome": "extinction",
       "diagnostics": [],
@@ -3432,7 +3622,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–050",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.57,
+      "burning_rate_constant_mm2_s": [
+        0.52
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -3442,7 +3636,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.41,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -3454,9 +3648,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.015,
-      "spread_rate_mm_s": [
-        0.65
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 8.2,
       "outcome": "completion",
       "diagnostics": [],
@@ -3467,7 +3659,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–051",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.41,
+      "burning_rate_constant_mm2_s": [
+        0.65
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -3477,7 +3673,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.53,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -3489,9 +3685,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0146,
-      "spread_rate_mm_s": [
-        0.7
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 18.3,
       "outcome": "disruption",
       "diagnostics": [],
@@ -3502,7 +3696,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–052",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.53,
+      "burning_rate_constant_mm2_s": [
+        0.7
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -3535,7 +3733,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–053",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "FLEX-1",
@@ -3545,7 +3745,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.56,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -3557,9 +3757,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7124,
-      "spread_rate_mm_s": [
-        0.41
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 29.0,
       "outcome": "extinction",
       "diagnostics": [],
@@ -3570,7 +3768,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–054",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.56,
+      "burning_rate_constant_mm2_s": [
+        0.41
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -3580,7 +3782,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.37,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -3592,9 +3794,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7139,
-      "spread_rate_mm_s": [
-        0.46
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 20.5,
       "outcome": "disruption",
       "diagnostics": [],
@@ -3605,7 +3805,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–055",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.37,
+      "burning_rate_constant_mm2_s": [
+        0.46
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -3615,7 +3819,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.56,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -3627,9 +3831,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7159,
-      "spread_rate_mm_s": [
-        0.44
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 7.9,
       "outcome": "completion",
       "diagnostics": [],
@@ -3640,7 +3842,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–056",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.56,
+      "burning_rate_constant_mm2_s": [
+        0.44
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -3650,7 +3856,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.1,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -3662,9 +3868,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7163,
-      "spread_rate_mm_s": [
-        0.54
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 6.8,
       "outcome": "extinction",
       "diagnostics": [],
@@ -3675,7 +3879,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–057",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.1,
+      "burning_rate_constant_mm2_s": [
+        0.54
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -3685,7 +3893,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.69,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -3697,9 +3905,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0175,
-      "spread_rate_mm_s": [
-        0.42
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 29.1,
       "outcome": "extinction",
       "diagnostics": [],
@@ -3710,7 +3916,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–058",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.69,
+      "burning_rate_constant_mm2_s": [
+        0.42
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -3720,7 +3930,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.93,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -3732,9 +3942,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0121,
-      "spread_rate_mm_s": [
-        0.43
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 17.7,
       "outcome": "extinction",
       "diagnostics": [],
@@ -3745,7 +3953,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–059",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.93,
+      "burning_rate_constant_mm2_s": [
+        0.43
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -3755,7 +3967,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.43,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -3767,9 +3979,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.018,
-      "spread_rate_mm_s": [
-        0.45
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 23.2,
       "outcome": "extinction",
       "diagnostics": [],
@@ -3780,7 +3990,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–060",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.43,
+      "burning_rate_constant_mm2_s": [
+        0.45
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -3790,7 +4004,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.68,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -3802,9 +4016,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0186,
-      "spread_rate_mm_s": [
-        0.41
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 25.7,
       "outcome": "extinction",
       "diagnostics": [],
@@ -3815,7 +4027,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–061",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.68,
+      "burning_rate_constant_mm2_s": [
+        0.41
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -3825,7 +4041,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.43,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -3837,9 +4053,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0024,
-      "spread_rate_mm_s": [
-        0.39
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 4.8,
       "outcome": "extinction",
       "diagnostics": [],
@@ -3850,7 +4064,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–062",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.43,
+      "burning_rate_constant_mm2_s": [
+        0.39
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -3860,7 +4078,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.15,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -3872,9 +4090,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.01,
-      "spread_rate_mm_s": [
-        0.51
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 9.6,
       "outcome": "completion",
       "diagnostics": [],
@@ -3885,7 +4101,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–063",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.15,
+      "burning_rate_constant_mm2_s": [
+        0.51
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -3895,7 +4115,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.69,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -3907,9 +4127,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0061,
-      "spread_rate_mm_s": [
-        0.6
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 5.5,
       "outcome": "extinction",
       "diagnostics": [],
@@ -3920,7 +4138,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–064",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.69,
+      "burning_rate_constant_mm2_s": [
+        0.6
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -3930,7 +4152,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.37,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -3942,9 +4164,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0078,
-      "spread_rate_mm_s": [
-        0.4
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 24.3,
       "outcome": "extinction",
       "diagnostics": [],
@@ -3955,7 +4175,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 21 (PDF p. 27), FLEX–065",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.37,
+      "burning_rate_constant_mm2_s": [
+        0.4
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -3965,7 +4189,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.52,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -3977,9 +4201,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0089,
-      "spread_rate_mm_s": [
-        0.38
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 12.9,
       "outcome": "extinction",
       "diagnostics": [],
@@ -3990,7 +4212,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–066",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.52,
+      "burning_rate_constant_mm2_s": [
+        0.38
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -4000,7 +4226,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.97,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -4012,9 +4238,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0101,
-      "spread_rate_mm_s": [
-        0.36
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 14.4,
       "outcome": "extinction",
       "diagnostics": [],
@@ -4025,7 +4249,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–067",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.97,
+      "burning_rate_constant_mm2_s": [
+        0.36
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -4035,7 +4263,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.38,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -4047,9 +4275,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0116,
-      "spread_rate_mm_s": [
-        0.39
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 10.7,
       "outcome": "extinction",
       "diagnostics": [],
@@ -4060,7 +4286,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–068",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.38,
+      "burning_rate_constant_mm2_s": [
+        0.39
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -4070,7 +4300,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 1.1,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -4082,9 +4312,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0093,
-      "spread_rate_mm_s": [
-        0.94
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 1.3,
       "outcome": "completion",
       "diagnostics": [],
@@ -4095,7 +4323,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–069",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 1.1,
+      "burning_rate_constant_mm2_s": [
+        0.94
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -4105,7 +4337,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 4.67,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -4117,9 +4349,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0013,
-      "spread_rate_mm_s": [
-        0.41
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 1.6,
       "outcome": "extinction",
       "diagnostics": [],
@@ -4130,7 +4360,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–070",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 4.67,
+      "burning_rate_constant_mm2_s": [
+        0.41
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -4140,7 +4374,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.25,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -4152,9 +4386,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0109,
-      "spread_rate_mm_s": [
-        0.4
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 8.4,
       "outcome": "extinction",
       "diagnostics": [],
@@ -4165,7 +4397,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–071",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.25,
+      "burning_rate_constant_mm2_s": [
+        0.4
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -4175,7 +4411,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 1.13,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -4187,9 +4423,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0068,
-      "spread_rate_mm_s": [
-        0.52
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 2.5,
       "outcome": "completion",
       "diagnostics": [],
@@ -4200,7 +4434,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–072",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 1.13,
+      "burning_rate_constant_mm2_s": [
+        0.52
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -4210,7 +4448,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 4.64,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -4222,9 +4460,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0013,
-      "spread_rate_mm_s": [
-        0.56
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 1.5,
       "outcome": "extinction",
       "diagnostics": [],
@@ -4235,7 +4471,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–073",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 4.64,
+      "burning_rate_constant_mm2_s": [
+        0.56
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -4245,7 +4485,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 1.33,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -4257,9 +4497,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0078,
-      "spread_rate_mm_s": [
-        0.77
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 2.3,
       "outcome": "completion",
       "diagnostics": [],
@@ -4270,7 +4508,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–074",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 1.33,
+      "burning_rate_constant_mm2_s": [
+        0.77
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -4280,7 +4522,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.54,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -4292,9 +4534,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0142,
-      "spread_rate_mm_s": [
-        0.37
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 9.1,
       "outcome": "extinction",
       "diagnostics": [],
@@ -4305,7 +4545,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–075",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.54,
+      "burning_rate_constant_mm2_s": [
+        0.37
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -4315,7 +4559,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.21,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -4327,9 +4571,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0125,
-      "spread_rate_mm_s": [
-        0.37
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 8.9,
       "outcome": "extinction",
       "diagnostics": [],
@@ -4340,7 +4582,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–076",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.21,
+      "burning_rate_constant_mm2_s": [
+        0.37
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -4350,7 +4596,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.33,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -4362,9 +4608,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0111,
-      "spread_rate_mm_s": [
-        0.34
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 8.5,
       "outcome": "extinction",
       "diagnostics": [],
@@ -4375,7 +4619,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–077",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.33,
+      "burning_rate_constant_mm2_s": [
+        0.34
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -4385,7 +4633,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.66,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -4397,9 +4645,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0079,
-      "spread_rate_mm_s": [
-        0.35
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 12.9,
       "outcome": "extinction",
       "diagnostics": [],
@@ -4410,7 +4656,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–078",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.66,
+      "burning_rate_constant_mm2_s": [
+        0.35
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -4420,7 +4670,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.92,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -4432,9 +4682,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0107,
-      "spread_rate_mm_s": [
-        0.25
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 1.5,
       "outcome": "extinction",
       "diagnostics": [],
@@ -4445,7 +4693,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–079",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.92,
+      "burning_rate_constant_mm2_s": [
+        0.25
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -4478,7 +4730,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–080",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "FLEX-1",
@@ -4511,7 +4765,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–081",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "FLEX-1",
@@ -4521,7 +4777,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.84,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -4533,9 +4789,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0061,
-      "spread_rate_mm_s": [
-        0.35
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 7.5,
       "outcome": "extinction",
       "diagnostics": [],
@@ -4546,7 +4800,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–082",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.84,
+      "burning_rate_constant_mm2_s": [
+        0.35
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -4579,7 +4837,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–083",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "FLEX-1",
@@ -4589,7 +4849,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.35,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -4601,9 +4861,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0095,
-      "spread_rate_mm_s": [
-        0.35
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 10.8,
       "outcome": "extinction",
       "diagnostics": [],
@@ -4614,7 +4872,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–084",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.35,
+      "burning_rate_constant_mm2_s": [
+        0.35
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -4624,7 +4886,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.4,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -4636,9 +4898,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0147,
-      "spread_rate_mm_s": [
-        0.35
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 9.3,
       "outcome": "extinction",
       "diagnostics": [],
@@ -4649,7 +4909,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–085",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.4,
+      "burning_rate_constant_mm2_s": [
+        0.35
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -4659,7 +4923,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.07,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -4671,9 +4935,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0132,
-      "spread_rate_mm_s": [
-        0.35
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 9.0,
       "outcome": "extinction",
       "diagnostics": [],
@@ -4684,7 +4946,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–086",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.07,
+      "burning_rate_constant_mm2_s": [
+        0.35
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -4694,7 +4960,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.64,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -4706,9 +4972,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0147,
-      "spread_rate_mm_s": [
-        0.38
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 9.3,
       "outcome": "extinction",
       "diagnostics": [],
@@ -4719,7 +4983,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–087",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.64,
+      "burning_rate_constant_mm2_s": [
+        0.38
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -4729,7 +4997,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.01,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -4741,9 +5009,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7072,
-      "spread_rate_mm_s": [
-        0.53
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 14.8,
       "outcome": "disruption",
       "diagnostics": [],
@@ -4754,7 +5020,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–088",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.01,
+      "burning_rate_constant_mm2_s": [
+        0.53
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -4764,7 +5034,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.7,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -4776,9 +5046,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7071,
-      "spread_rate_mm_s": [
-        0.51
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 24.0,
       "outcome": "disruption",
       "diagnostics": [],
@@ -4789,7 +5057,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–089",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.7,
+      "burning_rate_constant_mm2_s": [
+        0.51
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -4799,7 +5071,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.62,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -4811,9 +5083,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7095,
-      "spread_rate_mm_s": [
-        0.53
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 20.1,
       "outcome": "disruption",
       "diagnostics": [],
@@ -4824,7 +5094,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–090",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.62,
+      "burning_rate_constant_mm2_s": [
+        0.53
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -4834,7 +5108,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.51,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -4846,9 +5120,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7083,
-      "spread_rate_mm_s": [
-        0.51
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 18.0,
       "outcome": "disruption",
       "diagnostics": [],
@@ -4859,7 +5131,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–091",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.51,
+      "burning_rate_constant_mm2_s": [
+        0.51
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -4869,7 +5145,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.41,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -4881,9 +5157,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7057,
-      "spread_rate_mm_s": [
-        0.55
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 21.7,
       "outcome": "disruption",
       "diagnostics": [],
@@ -4894,7 +5168,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–092",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.41,
+      "burning_rate_constant_mm2_s": [
+        0.55
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -4904,7 +5182,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.48,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -4916,9 +5194,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.707,
-      "spread_rate_mm_s": [
-        0.71
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 8.3,
       "outcome": "disruption",
       "diagnostics": [],
@@ -4929,7 +5205,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–093",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.48,
+      "burning_rate_constant_mm2_s": [
+        0.71
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -4939,7 +5219,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.53,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -4951,9 +5231,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7021,
-      "spread_rate_mm_s": [
-        0.51
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 10.1,
       "outcome": "extinction",
       "diagnostics": [],
@@ -4964,7 +5242,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–094",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.53,
+      "burning_rate_constant_mm2_s": [
+        0.51
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -4974,7 +5256,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.6,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -4986,9 +5268,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7032,
-      "spread_rate_mm_s": [
-        0.58
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 8.0,
       "outcome": "extinction",
       "diagnostics": [],
@@ -4999,7 +5279,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–095",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.6,
+      "burning_rate_constant_mm2_s": [
+        0.58
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -5032,7 +5316,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–096",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "FLEX-1",
@@ -5042,7 +5328,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 4.25,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -5054,9 +5340,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7029,
-      "spread_rate_mm_s": [
-        0.45
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 26.5,
       "outcome": "completion",
       "diagnostics": [],
@@ -5067,7 +5351,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–097",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 4.25,
+      "burning_rate_constant_mm2_s": [
+        0.45
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -5077,7 +5365,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.64,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -5089,9 +5377,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7067,
-      "spread_rate_mm_s": [
-        0.47
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 22.9,
       "outcome": "extinction",
       "diagnostics": [],
@@ -5102,7 +5388,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–098",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.64,
+      "burning_rate_constant_mm2_s": [
+        0.47
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -5112,7 +5402,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 4.28,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -5124,9 +5414,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7039,
-      "spread_rate_mm_s": [
-        0.42
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 33.0,
       "outcome": "extinction",
       "diagnostics": [],
@@ -5137,7 +5425,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–099",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 4.28,
+      "burning_rate_constant_mm2_s": [
+        0.42
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -5147,7 +5439,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 4.14,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -5159,9 +5451,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7062,
-      "spread_rate_mm_s": [
-        0.34
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 6.1,
       "outcome": "extinction",
       "diagnostics": [],
@@ -5172,7 +5462,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 22 (PDF p. 28), FLEX–100",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 4.14,
+      "burning_rate_constant_mm2_s": [
+        0.34
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -5182,7 +5476,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.88,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -5194,9 +5488,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7088,
-      "spread_rate_mm_s": [
-        0.5
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 6.5,
       "outcome": "extinction",
       "diagnostics": [],
@@ -5207,7 +5499,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–101",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.88,
+      "burning_rate_constant_mm2_s": [
+        0.5
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -5217,7 +5513,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.57,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -5229,9 +5525,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7029,
-      "spread_rate_mm_s": [
-        0.33
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 4.2,
       "outcome": "extinction",
       "diagnostics": [],
@@ -5242,7 +5536,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–102",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.57,
+      "burning_rate_constant_mm2_s": [
+        0.33
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -5252,7 +5550,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 4.0,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -5264,9 +5562,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.703,
-      "spread_rate_mm_s": [
-        0.35
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 3.2,
       "outcome": "extinction",
       "diagnostics": [],
@@ -5277,7 +5573,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–103",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 4.0,
+      "burning_rate_constant_mm2_s": [
+        0.35
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -5287,7 +5587,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.6,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -5299,9 +5599,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7028,
-      "spread_rate_mm_s": [
-        0.49
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 23.2,
       "outcome": "extinction",
       "diagnostics": [],
@@ -5312,7 +5610,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–104",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.6,
+      "burning_rate_constant_mm2_s": [
+        0.49
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -5322,7 +5624,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 4.17,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -5334,9 +5636,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7034,
-      "spread_rate_mm_s": [
-        0.47
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 30.7,
       "outcome": "disruption",
       "diagnostics": [],
@@ -5347,7 +5647,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–105",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 4.17,
+      "burning_rate_constant_mm2_s": [
+        0.47
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -5357,7 +5661,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.08,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -5369,9 +5673,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7083,
-      "spread_rate_mm_s": [
-        0.51
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 14.1,
       "outcome": "disruption",
       "diagnostics": [],
@@ -5382,7 +5684,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–106",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.08,
+      "burning_rate_constant_mm2_s": [
+        0.51
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -5392,7 +5698,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.18,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -5404,9 +5710,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7039,
-      "spread_rate_mm_s": [
-        0.52
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 15.1,
       "outcome": "disruption",
       "diagnostics": [],
@@ -5417,7 +5721,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–107",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.18,
+      "burning_rate_constant_mm2_s": [
+        0.52
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -5427,7 +5735,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.75,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -5439,9 +5747,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7083,
-      "spread_rate_mm_s": [
-        0.47
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 24.3,
       "outcome": "completion",
       "diagnostics": [],
@@ -5452,7 +5758,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–108",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.75,
+      "burning_rate_constant_mm2_s": [
+        0.47
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -5462,7 +5772,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.56,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -5474,9 +5784,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7059,
-      "spread_rate_mm_s": [
-        0.42
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": null,
       "outcome": "extinction",
       "diagnostics": [],
@@ -5487,7 +5795,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–109",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.56,
+      "burning_rate_constant_mm2_s": [
+        0.42
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -5497,7 +5809,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.83,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -5509,9 +5821,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7066,
-      "spread_rate_mm_s": [
-        0.45
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 13.0,
       "outcome": "extinction",
       "diagnostics": [],
@@ -5522,7 +5832,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–110",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.83,
+      "burning_rate_constant_mm2_s": [
+        0.45
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -5532,7 +5846,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.37,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -5544,9 +5858,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7064,
-      "spread_rate_mm_s": [
-        0.45
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 16.4,
       "outcome": "completion",
       "diagnostics": [],
@@ -5557,7 +5869,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–111",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.37,
+      "burning_rate_constant_mm2_s": [
+        0.45
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -5567,7 +5883,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.99,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -5579,9 +5895,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.6983,
-      "spread_rate_mm_s": [
-        0.43
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 25.2,
       "outcome": "completion",
       "diagnostics": [],
@@ -5592,7 +5906,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–112",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.99,
+      "burning_rate_constant_mm2_s": [
+        0.43
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -5602,7 +5920,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 4.2,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -5614,9 +5932,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7034,
-      "spread_rate_mm_s": [
-        0.49
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 18.2,
       "outcome": "extinction",
       "diagnostics": [],
@@ -5627,7 +5943,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–113",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 4.2,
+      "burning_rate_constant_mm2_s": [
+        0.49
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -5637,7 +5957,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.23,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -5649,9 +5969,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": null,
-      "spread_rate_mm_s": [
-        0.42
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 18.9,
       "outcome": "extinction",
       "diagnostics": [],
@@ -5662,7 +5980,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–114",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.23,
+      "burning_rate_constant_mm2_s": [
+        0.42
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -5672,7 +5994,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.97,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -5684,9 +6006,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.705,
-      "spread_rate_mm_s": [
-        0.41
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 22.9,
       "outcome": "extinction",
       "diagnostics": [],
@@ -5697,7 +6017,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–115",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.97,
+      "burning_rate_constant_mm2_s": [
+        0.41
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -5707,7 +6031,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.16,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -5719,9 +6043,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7057,
-      "spread_rate_mm_s": [
-        0.46
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 16.9,
       "outcome": "extinction",
       "diagnostics": [],
@@ -5732,7 +6054,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–116",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.16,
+      "burning_rate_constant_mm2_s": [
+        0.46
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -5742,7 +6068,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.84,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -5754,9 +6080,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.6988,
-      "spread_rate_mm_s": [
-        0.25
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 2.4,
       "outcome": "extinction",
       "diagnostics": [],
@@ -5767,7 +6091,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–117",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.84,
+      "burning_rate_constant_mm2_s": [
+        0.25
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -5777,7 +6105,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.03,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -5789,9 +6117,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7011,
-      "spread_rate_mm_s": [
-        0.38
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 2.5,
       "outcome": "extinction",
       "diagnostics": [],
@@ -5802,7 +6128,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–118",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.03,
+      "burning_rate_constant_mm2_s": [
+        0.38
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -5812,7 +6142,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.6,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -5824,9 +6154,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7008,
-      "spread_rate_mm_s": [
-        0.37
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 1.3,
       "outcome": "extinction",
       "diagnostics": [],
@@ -5837,7 +6165,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–119",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.6,
+      "burning_rate_constant_mm2_s": [
+        0.37
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -5847,7 +6179,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.45,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -5859,9 +6191,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7007,
-      "spread_rate_mm_s": [
-        0.38
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 1.43,
       "outcome": "extinction",
       "diagnostics": [],
@@ -5872,7 +6202,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–120",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.45,
+      "burning_rate_constant_mm2_s": [
+        0.38
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -5882,7 +6216,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 4.25,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -5894,9 +6228,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.6925,
-      "spread_rate_mm_s": [
-        0.34
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 8.0,
       "outcome": "extinction",
       "diagnostics": [],
@@ -5907,7 +6239,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–121",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 4.25,
+      "burning_rate_constant_mm2_s": [
+        0.34
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -5917,7 +6253,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.46,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -5929,9 +6265,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.6989,
-      "spread_rate_mm_s": [
-        0.41
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 13.9,
       "outcome": "extinction",
       "diagnostics": [],
@@ -5942,7 +6276,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–122",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.46,
+      "burning_rate_constant_mm2_s": [
+        0.41
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -5952,7 +6290,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 4.13,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -5964,9 +6302,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7,
-      "spread_rate_mm_s": [
-        0.35
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 8.7,
       "outcome": "extinction",
       "diagnostics": [],
@@ -5977,7 +6313,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–123",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 4.13,
+      "burning_rate_constant_mm2_s": [
+        0.35
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -5987,7 +6327,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.87,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -5999,9 +6339,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7005,
-      "spread_rate_mm_s": [
-        0.3
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 2.4,
       "outcome": "extinction",
       "diagnostics": [],
@@ -6012,7 +6350,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–124",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.87,
+      "burning_rate_constant_mm2_s": [
+        0.3
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -6022,7 +6364,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.63,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -6034,9 +6376,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7068,
-      "spread_rate_mm_s": [
-        0.35
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 5.7,
       "outcome": "extinction",
       "diagnostics": [],
@@ -6047,7 +6387,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–125",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.63,
+      "burning_rate_constant_mm2_s": [
+        0.35
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -6057,7 +6401,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.8,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -6069,9 +6413,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7054,
-      "spread_rate_mm_s": [
-        0.4
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 11.7,
       "outcome": "extinction",
       "diagnostics": [],
@@ -6082,7 +6424,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–126",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.8,
+      "burning_rate_constant_mm2_s": [
+        0.4
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -6092,7 +6438,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.22,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -6104,9 +6450,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7062,
-      "spread_rate_mm_s": [
-        0.38
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 11.0,
       "outcome": "extinction",
       "diagnostics": [],
@@ -6117,7 +6461,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–127",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.22,
+      "burning_rate_constant_mm2_s": [
+        0.38
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -6127,7 +6475,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.91,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -6139,9 +6487,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.707,
-      "spread_rate_mm_s": [
-        0.39
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 11.5,
       "outcome": "extinction",
       "diagnostics": [],
@@ -6152,7 +6498,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–128",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.91,
+      "burning_rate_constant_mm2_s": [
+        0.39
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -6162,7 +6512,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.33,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -6174,9 +6524,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7055,
-      "spread_rate_mm_s": [
-        0.33
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 0.55,
       "outcome": "extinction",
       "diagnostics": [],
@@ -6187,7 +6535,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–129",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.33,
+      "burning_rate_constant_mm2_s": [
+        0.33
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -6197,7 +6549,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.91,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -6209,9 +6561,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7068,
-      "spread_rate_mm_s": [
-        0.05
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 0.6,
       "outcome": "extinction",
       "diagnostics": [],
@@ -6222,7 +6572,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–130",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.91,
+      "burning_rate_constant_mm2_s": [
+        0.05
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -6232,7 +6586,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 1.72,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -6244,9 +6598,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0051,
-      "spread_rate_mm_s": [
-        0.61
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 4.9,
       "outcome": "disruption",
       "diagnostics": [],
@@ -6257,7 +6609,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–131",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 1.72,
+      "burning_rate_constant_mm2_s": [
+        0.61
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -6267,7 +6623,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.63,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -6279,9 +6635,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0068,
-      "spread_rate_mm_s": [
-        0.6
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 12.4,
       "outcome": "disruption",
       "diagnostics": [],
@@ -6292,7 +6646,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–132",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.63,
+      "burning_rate_constant_mm2_s": [
+        0.6
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -6302,7 +6660,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.25,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -6314,9 +6672,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0088,
-      "spread_rate_mm_s": [
-        0.56
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 19.0,
       "outcome": "disruption",
       "diagnostics": [],
@@ -6327,7 +6683,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–133",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.25,
+      "burning_rate_constant_mm2_s": [
+        0.56
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -6337,7 +6697,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.66,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -6349,9 +6709,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0095,
-      "spread_rate_mm_s": [
-        0.56
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 9.2,
       "outcome": "extinction",
       "diagnostics": [],
@@ -6362,7 +6720,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–134",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.66,
+      "burning_rate_constant_mm2_s": [
+        0.56
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -6372,7 +6734,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.78,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -6384,9 +6746,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0108,
-      "spread_rate_mm_s": [
-        0.59
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 10.8,
       "outcome": "completion",
       "diagnostics": [],
@@ -6397,7 +6757,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 23 (PDF p. 29), FLEX–135",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.78,
+      "burning_rate_constant_mm2_s": [
+        0.59
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -6407,7 +6771,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.08,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -6419,9 +6783,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0107,
-      "spread_rate_mm_s": [
-        0.51
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 17.0,
       "outcome": "completion",
       "diagnostics": [],
@@ -6432,7 +6794,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–136",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.08,
+      "burning_rate_constant_mm2_s": [
+        0.51
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -6442,7 +6808,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.13,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -6454,9 +6820,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0108,
-      "spread_rate_mm_s": [
-        0.55
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 17.5,
       "outcome": "disruption",
       "diagnostics": [],
@@ -6467,7 +6831,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–137",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.13,
+      "burning_rate_constant_mm2_s": [
+        0.55
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -6500,7 +6868,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–138",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "FLEX-1",
@@ -6510,7 +6880,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 1.75,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -6522,9 +6892,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0105,
-      "spread_rate_mm_s": [
-        0.63
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 5.4,
       "outcome": "disruption",
       "diagnostics": [],
@@ -6535,7 +6903,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–139",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 1.75,
+      "burning_rate_constant_mm2_s": [
+        0.63
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -6545,7 +6917,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.98,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -6557,9 +6929,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.702,
-      "spread_rate_mm_s": [
-        0.2
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 1.3,
       "outcome": "extinction",
       "diagnostics": [],
@@ -6570,7 +6940,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–140",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.98,
+      "burning_rate_constant_mm2_s": [
+        0.2
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -6580,7 +6954,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.86,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -6592,9 +6966,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7028,
-      "spread_rate_mm_s": [
-        0.3
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 2.3,
       "outcome": "extinction",
       "diagnostics": [],
@@ -6605,7 +6977,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–141",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.86,
+      "burning_rate_constant_mm2_s": [
+        0.3
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -6615,7 +6991,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 1.86,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -6627,9 +7003,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7033,
-      "spread_rate_mm_s": [
-        0.39
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 3.4,
       "outcome": "extinction",
       "diagnostics": [],
@@ -6640,7 +7014,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–142",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 1.86,
+      "burning_rate_constant_mm2_s": [
+        0.39
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -6650,7 +7028,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.25,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -6662,9 +7040,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7036,
-      "spread_rate_mm_s": [
-        0.36
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 2.7,
       "outcome": "extinction",
       "diagnostics": [],
@@ -6675,7 +7051,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–143",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.25,
+      "burning_rate_constant_mm2_s": [
+        0.36
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -6685,7 +7065,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.53,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -6697,9 +7077,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0025,
-      "spread_rate_mm_s": [
-        0.45
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 23.8,
       "outcome": "extinction",
       "diagnostics": [],
@@ -6710,7 +7088,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–144",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.53,
+      "burning_rate_constant_mm2_s": [
+        0.45
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -6720,7 +7102,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.33,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -6732,9 +7114,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0046,
-      "spread_rate_mm_s": [
-        0.45
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 20.0,
       "outcome": "extinction",
       "diagnostics": [],
@@ -6745,7 +7125,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–145",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.33,
+      "burning_rate_constant_mm2_s": [
+        0.45
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -6755,7 +7139,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 4.35,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -6767,9 +7151,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0072,
-      "spread_rate_mm_s": [
-        0.41
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 39.2,
       "outcome": "extinction",
       "diagnostics": [],
@@ -6780,7 +7162,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–146",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 4.35,
+      "burning_rate_constant_mm2_s": [
+        0.41
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -6790,7 +7176,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.02,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -6802,9 +7188,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7049,
-      "spread_rate_mm_s": [
-        0.4
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 7.8,
       "outcome": "extinction",
       "diagnostics": [],
@@ -6815,7 +7199,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–147",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.02,
+      "burning_rate_constant_mm2_s": [
+        0.4
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -6825,7 +7213,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.58,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -6837,9 +7225,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0058,
-      "spread_rate_mm_s": [
-        0.54
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 11.8,
       "outcome": "disruption",
       "diagnostics": [],
@@ -6850,7 +7236,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–148",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.58,
+      "burning_rate_constant_mm2_s": [
+        0.54
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -6860,7 +7250,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.21,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -6872,9 +7262,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0082,
-      "spread_rate_mm_s": [
-        0.53
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 8.9,
       "outcome": "disruption",
       "diagnostics": [],
@@ -6885,7 +7273,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–149",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.21,
+      "burning_rate_constant_mm2_s": [
+        0.53
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -6895,7 +7287,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.18,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -6907,9 +7299,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.01,
-      "spread_rate_mm_s": [
-        0.46
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 8.0,
       "outcome": "extinction",
       "diagnostics": [],
@@ -6920,7 +7310,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–150",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.18,
+      "burning_rate_constant_mm2_s": [
+        0.46
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -6930,7 +7324,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.86,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -6942,9 +7336,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0033,
-      "spread_rate_mm_s": [
-        0.36
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 31.3,
       "outcome": "completion",
       "diagnostics": [],
@@ -6955,7 +7347,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–151",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.86,
+      "burning_rate_constant_mm2_s": [
+        0.36
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -6965,7 +7361,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.33,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -6977,9 +7373,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0066,
-      "spread_rate_mm_s": [
-        0.43
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 23.2,
       "outcome": "extinction",
       "diagnostics": [],
@@ -6990,7 +7384,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–152",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.33,
+      "burning_rate_constant_mm2_s": [
+        0.43
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -7000,7 +7398,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.78,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -7012,9 +7410,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0074,
-      "spread_rate_mm_s": [
-        0.42
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 15.7,
       "outcome": "extinction",
       "diagnostics": [],
@@ -7025,7 +7421,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–153",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.78,
+      "burning_rate_constant_mm2_s": [
+        0.42
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -7035,7 +7435,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.7,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -7047,9 +7447,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.003,
-      "spread_rate_mm_s": [
-        0.34
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 2.2,
       "outcome": "extinction",
       "diagnostics": [],
@@ -7060,7 +7458,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–154",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.7,
+      "burning_rate_constant_mm2_s": [
+        0.34
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -7070,7 +7472,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.73,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -7082,9 +7484,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0064,
-      "spread_rate_mm_s": [
-        0.39
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 2.7,
       "outcome": "extinction",
       "diagnostics": [],
@@ -7095,7 +7495,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–155",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.73,
+      "burning_rate_constant_mm2_s": [
+        0.39
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -7105,7 +7509,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 1.34,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -7117,9 +7521,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0075,
-      "spread_rate_mm_s": [
-        0.48
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 3.2,
       "outcome": "completion",
       "diagnostics": [],
@@ -7130,7 +7532,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–157",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 1.34,
+      "burning_rate_constant_mm2_s": [
+        0.48
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -7140,7 +7546,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 4.24,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -7152,9 +7558,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0028,
-      "spread_rate_mm_s": [
-        0.3
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 7.6,
       "outcome": "extinction",
       "diagnostics": [],
@@ -7165,7 +7569,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–158",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 4.24,
+      "burning_rate_constant_mm2_s": [
+        0.3
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -7175,7 +7583,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.7,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -7187,9 +7595,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0058,
-      "spread_rate_mm_s": [
-        0.37
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 10.1,
       "outcome": "extinction",
       "diagnostics": [],
@@ -7200,7 +7606,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–159",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.7,
+      "burning_rate_constant_mm2_s": [
+        0.37
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -7210,7 +7620,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.71,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -7222,9 +7632,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0072,
-      "spread_rate_mm_s": [
-        0.38
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 14.9,
       "outcome": "extinction",
       "diagnostics": [],
@@ -7235,7 +7643,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–160",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.71,
+      "burning_rate_constant_mm2_s": [
+        0.38
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -7245,7 +7657,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.77,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -7257,9 +7669,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.01,
-      "spread_rate_mm_s": [
-        0.38
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 14.8,
       "outcome": "extinction",
       "diagnostics": [],
@@ -7270,7 +7680,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–161",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.77,
+      "burning_rate_constant_mm2_s": [
+        0.38
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -7280,7 +7694,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.72,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -7292,9 +7706,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0043,
-      "spread_rate_mm_s": [
-        0.28
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 6.0,
       "outcome": "extinction",
       "diagnostics": [],
@@ -7305,7 +7717,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–162",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.72,
+      "burning_rate_constant_mm2_s": [
+        0.28
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -7315,7 +7731,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.05,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -7327,9 +7743,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0058,
-      "spread_rate_mm_s": [
-        0.37
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 8.5,
       "outcome": "extinction",
       "diagnostics": [],
@@ -7340,7 +7754,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–163",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.05,
+      "burning_rate_constant_mm2_s": [
+        0.37
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -7350,7 +7768,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.59,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -7362,9 +7780,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0078,
-      "spread_rate_mm_s": [
-        0.37
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 11.6,
       "outcome": "extinction",
       "diagnostics": [],
@@ -7375,7 +7791,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–164",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.59,
+      "burning_rate_constant_mm2_s": [
+        0.37
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -7385,7 +7805,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.59,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -7397,9 +7817,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.008,
-      "spread_rate_mm_s": [
-        0.42
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 8.9,
       "outcome": "extinction",
       "diagnostics": [],
@@ -7410,7 +7828,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–165",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.59,
+      "burning_rate_constant_mm2_s": [
+        0.42
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -7420,7 +7842,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 1.96,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -7432,9 +7854,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0071,
-      "spread_rate_mm_s": [
-        0.54
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 3.9,
       "outcome": "extinction",
       "diagnostics": [],
@@ -7445,7 +7865,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–166",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 1.96,
+      "burning_rate_constant_mm2_s": [
+        0.54
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -7455,7 +7879,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.22,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -7467,9 +7891,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0011,
-      "spread_rate_mm_s": [
-        0.28
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 3.4,
       "outcome": "extinction",
       "diagnostics": [],
@@ -7480,7 +7902,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–167",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.22,
+      "burning_rate_constant_mm2_s": [
+        0.28
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -7490,7 +7916,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.32,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -7502,9 +7928,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0021,
-      "spread_rate_mm_s": [
-        0.37
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 5.9,
       "outcome": "extinction",
       "diagnostics": [],
@@ -7515,7 +7939,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–168",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.32,
+      "burning_rate_constant_mm2_s": [
+        0.37
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -7525,7 +7953,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.03,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -7537,9 +7965,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0045,
-      "spread_rate_mm_s": [
-        0.48
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 15.6,
       "outcome": "disruption",
       "diagnostics": [],
@@ -7550,7 +7976,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–169",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.03,
+      "burning_rate_constant_mm2_s": [
+        0.48
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -7560,7 +7990,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.05,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -7572,9 +8002,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.008,
-      "spread_rate_mm_s": [
-        0.51
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 16.7,
       "outcome": "extinction",
       "diagnostics": [],
@@ -7585,7 +8013,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–170",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.05,
+      "burning_rate_constant_mm2_s": [
+        0.51
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -7595,7 +8027,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.53,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -7607,9 +8039,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0088,
-      "spread_rate_mm_s": [
-        0.46
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 23.6,
       "outcome": "extinction",
       "diagnostics": [],
@@ -7620,7 +8050,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 24 (PDF p. 30), FLEX–171",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.53,
+      "burning_rate_constant_mm2_s": [
+        0.46
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -7630,7 +8064,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.74,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -7642,9 +8076,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9999,
-      "spread_rate_mm_s": [
-        0.35
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 2.8,
       "outcome": "extinction",
       "diagnostics": [],
@@ -7655,7 +8087,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–172",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.74,
+      "burning_rate_constant_mm2_s": [
+        0.35
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -7665,7 +8101,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.4,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -7677,9 +8113,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0026,
-      "spread_rate_mm_s": [
-        0.46
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 4.4,
       "outcome": "extinction",
       "diagnostics": [],
@@ -7690,7 +8124,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–173",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.4,
+      "burning_rate_constant_mm2_s": [
+        0.46
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -7700,7 +8138,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 1.35,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -7712,9 +8150,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0028,
-      "spread_rate_mm_s": [
-        0.5
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 3.6,
       "outcome": "disruption",
       "diagnostics": [],
@@ -7725,7 +8161,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–174",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 1.35,
+      "burning_rate_constant_mm2_s": [
+        0.5
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -7735,7 +8175,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.5,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -7747,9 +8187,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.6996,
-      "spread_rate_mm_s": [
-        0.56
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 11.2,
       "outcome": "disruption",
       "diagnostics": [],
@@ -7760,7 +8198,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–175",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.5,
+      "burning_rate_constant_mm2_s": [
+        0.56
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -7770,7 +8212,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.88,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -7782,9 +8224,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7001,
-      "spread_rate_mm_s": [
-        0.55
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 15.6,
       "outcome": "disruption",
       "diagnostics": [],
@@ -7795,7 +8235,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–176",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.88,
+      "burning_rate_constant_mm2_s": [
+        0.55
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -7805,7 +8249,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 4.53,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -7817,9 +8261,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7064,
-      "spread_rate_mm_s": [
-        0.46
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 38.2,
       "outcome": "extinction",
       "diagnostics": [],
@@ -7830,7 +8272,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–177",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 4.53,
+      "burning_rate_constant_mm2_s": [
+        0.46
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -7840,7 +8286,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.02,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -7852,9 +8298,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7066,
-      "spread_rate_mm_s": [
-        0.52
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 14.5,
       "outcome": "extinction",
       "diagnostics": [],
@@ -7865,7 +8309,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–178",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.02,
+      "burning_rate_constant_mm2_s": [
+        0.52
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -7875,7 +8323,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.32,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -7887,9 +8335,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7021,
-      "spread_rate_mm_s": [
-        0.5
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 8.9,
       "outcome": "extinction",
       "diagnostics": [],
@@ -7900,7 +8346,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–179",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.32,
+      "burning_rate_constant_mm2_s": [
+        0.5
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -7910,7 +8360,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.07,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -7922,9 +8372,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7032,
-      "spread_rate_mm_s": [
-        0.57
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 7.5,
       "outcome": "disruption",
       "diagnostics": [],
@@ -7935,7 +8383,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–180",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.07,
+      "burning_rate_constant_mm2_s": [
+        0.57
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -7945,7 +8397,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.4,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -7957,9 +8409,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9979,
-      "spread_rate_mm_s": [
-        0.41
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 4.5,
       "outcome": "extinction",
       "diagnostics": [],
@@ -7970,7 +8420,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–181",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.4,
+      "burning_rate_constant_mm2_s": [
+        0.41
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -7980,7 +8434,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.48,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -7992,9 +8446,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9988,
-      "spread_rate_mm_s": [
-        0.49
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 7.0,
       "outcome": "extinction",
       "diagnostics": [],
@@ -8005,7 +8457,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–182",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.48,
+      "burning_rate_constant_mm2_s": [
+        0.49
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -8015,7 +8471,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 1.64,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -8027,9 +8483,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9987,
-      "spread_rate_mm_s": [
-        0.54
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 5.1,
       "outcome": "disruption",
       "diagnostics": [],
@@ -8040,7 +8494,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–183",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 1.64,
+      "burning_rate_constant_mm2_s": [
+        0.54
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -8050,7 +8508,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.72,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -8062,9 +8520,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7032,
-      "spread_rate_mm_s": [
-        0.53
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 26.2,
       "outcome": "extinction",
       "diagnostics": [],
@@ -8075,7 +8531,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–184",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.72,
+      "burning_rate_constant_mm2_s": [
+        0.53
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -8085,7 +8545,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.42,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -8097,9 +8557,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7041,
-      "spread_rate_mm_s": [
-        0.51
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 15.8,
       "outcome": "extinction",
       "diagnostics": [],
@@ -8110,7 +8568,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–185",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.42,
+      "burning_rate_constant_mm2_s": [
+        0.51
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -8120,7 +8582,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.8,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -8132,9 +8594,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7042,
-      "spread_rate_mm_s": [
-        0.51
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 12.7,
       "outcome": "extinction",
       "diagnostics": [],
@@ -8145,7 +8605,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–186",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.8,
+      "burning_rate_constant_mm2_s": [
+        0.51
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -8155,7 +8619,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.47,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -8167,9 +8631,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7055,
-      "spread_rate_mm_s": [
-        0.52
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 9.2,
       "outcome": "extinction",
       "diagnostics": [],
@@ -8180,7 +8642,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–187",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.47,
+      "burning_rate_constant_mm2_s": [
+        0.52
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -8190,7 +8656,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.38,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -8202,9 +8668,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9974,
-      "spread_rate_mm_s": [
-        0.47
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 21.8,
       "outcome": "extinction",
       "diagnostics": [],
@@ -8215,7 +8679,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–188",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.38,
+      "burning_rate_constant_mm2_s": [
+        0.47
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -8225,7 +8693,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.47,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -8237,9 +8705,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9975,
-      "spread_rate_mm_s": [
-        0.46
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 11.0,
       "outcome": "extinction",
       "diagnostics": [],
@@ -8250,7 +8716,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–189",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.47,
+      "burning_rate_constant_mm2_s": [
+        0.46
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -8260,7 +8730,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.77,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -8272,9 +8742,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0016,
-      "spread_rate_mm_s": [
-        0.42
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 30.5,
       "outcome": "extinction",
       "diagnostics": [],
@@ -8285,7 +8753,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–190",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.77,
+      "burning_rate_constant_mm2_s": [
+        0.42
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -8295,7 +8767,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.74,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -8307,9 +8779,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0061,
-      "spread_rate_mm_s": [
-        0.5
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 14.0,
       "outcome": "extinction",
       "diagnostics": [],
@@ -8320,7 +8790,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–191",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.74,
+      "burning_rate_constant_mm2_s": [
+        0.5
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -8330,7 +8804,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 1.76,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -8342,9 +8816,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.007,
-      "spread_rate_mm_s": [
-        0.46
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 5.5,
       "outcome": "extinction",
       "diagnostics": [],
@@ -8355,7 +8827,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–192",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 1.76,
+      "burning_rate_constant_mm2_s": [
+        0.46
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -8365,7 +8841,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.46,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -8377,9 +8853,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9993,
-      "spread_rate_mm_s": [
-        0.39
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 21.8,
       "outcome": "extinction",
       "diagnostics": [],
@@ -8390,7 +8864,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–193",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.46,
+      "burning_rate_constant_mm2_s": [
+        0.39
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -8400,7 +8878,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.77,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -8412,9 +8890,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9988,
-      "spread_rate_mm_s": [
-        0.4
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 15.6,
       "outcome": "extinction",
       "diagnostics": [],
@@ -8425,7 +8901,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–194",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.77,
+      "burning_rate_constant_mm2_s": [
+        0.4
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -8435,7 +8915,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.76,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -8447,9 +8927,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9895,
-      "spread_rate_mm_s": [
-        0.29
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 1.6,
       "outcome": "extinction",
       "diagnostics": [],
@@ -8460,7 +8938,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–195",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.76,
+      "burning_rate_constant_mm2_s": [
+        0.29
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -8470,7 +8952,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.9,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -8482,9 +8964,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9901,
-      "spread_rate_mm_s": [
-        0.36
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 1.9,
       "outcome": "extinction",
       "diagnostics": [],
@@ -8495,7 +8975,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–196",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.9,
+      "burning_rate_constant_mm2_s": [
+        0.36
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -8505,7 +8989,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.06,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -8517,9 +9001,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9979,
-      "spread_rate_mm_s": [
-        0.52
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 8.9,
       "outcome": "extinction",
       "diagnostics": [],
@@ -8530,7 +9012,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–197",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.06,
+      "burning_rate_constant_mm2_s": [
+        0.52
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -8540,7 +9026,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.04,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -8552,9 +9038,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9997,
-      "spread_rate_mm_s": [
-        0.49
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 8.1,
       "outcome": "extinction",
       "diagnostics": [],
@@ -8565,7 +9049,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–198",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.04,
+      "burning_rate_constant_mm2_s": [
+        0.49
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -8575,7 +9063,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.12,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -8587,9 +9075,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0001,
-      "spread_rate_mm_s": [
-        0.53
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 8.7,
       "outcome": "disruption",
       "diagnostics": [],
@@ -8600,7 +9086,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–199",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.12,
+      "burning_rate_constant_mm2_s": [
+        0.53
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -8610,7 +9100,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.37,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -8622,9 +9112,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9921,
-      "spread_rate_mm_s": [
-        0.49
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 21.0,
       "outcome": "extinction",
       "diagnostics": [],
@@ -8635,7 +9123,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–200",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.37,
+      "burning_rate_constant_mm2_s": [
+        0.49
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -8645,7 +9137,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.57,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -8657,9 +9149,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9949,
-      "spread_rate_mm_s": [
-        0.47
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 11.7,
       "outcome": "extinction",
       "diagnostics": [],
@@ -8670,7 +9160,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–201",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.57,
+      "burning_rate_constant_mm2_s": [
+        0.47
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -8680,7 +9174,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.4,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -8692,9 +9186,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9959,
-      "spread_rate_mm_s": [
-        0.48
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 10.2,
       "outcome": "extinction",
       "diagnostics": [],
@@ -8705,7 +9197,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–202",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.4,
+      "burning_rate_constant_mm2_s": [
+        0.48
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -8715,7 +9211,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.3,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -8727,9 +9223,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0003,
-      "spread_rate_mm_s": [
-        0.47
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 19.5,
       "outcome": "extinction",
       "diagnostics": [],
@@ -8740,7 +9234,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–203",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.3,
+      "burning_rate_constant_mm2_s": [
+        0.47
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -8750,7 +9248,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.75,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -8762,9 +9260,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0021,
-      "spread_rate_mm_s": [
-        0.52
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 12.8,
       "outcome": "extinction",
       "diagnostics": [],
@@ -8775,7 +9271,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–204",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.75,
+      "burning_rate_constant_mm2_s": [
+        0.52
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -8785,7 +9285,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.56,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -8797,9 +9297,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9954,
-      "spread_rate_mm_s": [
-        0.43
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 23.9,
       "outcome": "disruption",
       "diagnostics": [],
@@ -8810,7 +9308,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 25 (PDF p. 31), FLEX–206",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.56,
+      "burning_rate_constant_mm2_s": [
+        0.43
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -8820,7 +9322,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.58,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -8832,9 +9334,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9964,
-      "spread_rate_mm_s": [
-        0.42
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 24.0,
       "outcome": "disruption",
       "diagnostics": [],
@@ -8845,7 +9345,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–207",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.58,
+      "burning_rate_constant_mm2_s": [
+        0.42
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -8855,7 +9359,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.96,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -8867,9 +9371,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0003,
-      "spread_rate_mm_s": [
-        0.5
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 17.1,
       "outcome": "disruption",
       "diagnostics": [],
@@ -8880,7 +9382,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–208",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.96,
+      "burning_rate_constant_mm2_s": [
+        0.5
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -8890,7 +9396,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.72,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -8902,9 +9408,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0036,
-      "spread_rate_mm_s": [
-        0.54
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 11.5,
       "outcome": "completion",
       "diagnostics": [],
@@ -8915,7 +9419,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–209",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.72,
+      "burning_rate_constant_mm2_s": [
+        0.54
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -8925,7 +9433,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.92,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -8937,9 +9445,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0038,
-      "spread_rate_mm_s": [
-        0.69
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 12.8,
       "outcome": "completion",
       "diagnostics": [],
@@ -8950,7 +9456,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–210",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.92,
+      "burning_rate_constant_mm2_s": [
+        0.69
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -8960,7 +9470,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.34,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -8972,9 +9482,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9997,
-      "spread_rate_mm_s": [
-        0.34
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 3.4,
       "outcome": "extinction",
       "diagnostics": [],
@@ -8985,7 +9493,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–211",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.34,
+      "burning_rate_constant_mm2_s": [
+        0.34
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -9018,7 +9530,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–212",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "FLEX-1",
@@ -9028,7 +9542,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.52,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -9040,9 +9554,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9999,
-      "spread_rate_mm_s": [
-        0.42
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 4.5,
       "outcome": "extinction",
       "diagnostics": [],
@@ -9053,7 +9565,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–214",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.52,
+      "burning_rate_constant_mm2_s": [
+        0.42
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -9063,7 +9579,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.55,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -9075,9 +9591,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0053,
-      "spread_rate_mm_s": [
-        0.37
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 3.4,
       "outcome": "extinction",
       "diagnostics": [],
@@ -9088,7 +9602,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–215",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.55,
+      "burning_rate_constant_mm2_s": [
+        0.37
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -9098,7 +9616,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 1.77,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -9110,9 +9628,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0082,
-      "spread_rate_mm_s": [
-        0.47
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 6.7,
       "outcome": "completion",
       "diagnostics": [],
@@ -9123,7 +9639,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–216",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 1.77,
+      "burning_rate_constant_mm2_s": [
+        0.47
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -9133,7 +9653,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 4.16,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -9145,9 +9665,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9997,
-      "spread_rate_mm_s": [
-        0.24
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 1.6,
       "outcome": "extinction",
       "diagnostics": [],
@@ -9158,7 +9676,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–217",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 4.16,
+      "burning_rate_constant_mm2_s": [
+        0.24
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -9168,7 +9690,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 1.83,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -9180,9 +9702,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9999,
-      "spread_rate_mm_s": [
-        0.39
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 3.8,
       "outcome": "extinction",
       "diagnostics": [],
@@ -9193,7 +9713,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–218",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 1.83,
+      "burning_rate_constant_mm2_s": [
+        0.39
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -9203,7 +9727,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.5,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -9215,9 +9739,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9968,
-      "spread_rate_mm_s": [
-        0.3
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 26.0,
       "outcome": "extinction",
       "diagnostics": [],
@@ -9228,7 +9750,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–219",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.5,
+      "burning_rate_constant_mm2_s": [
+        0.3
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -9238,7 +9764,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.67,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -9250,9 +9776,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9978,
-      "spread_rate_mm_s": [
-        0.38
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 15.6,
       "outcome": "extinction",
       "diagnostics": [],
@@ -9263,7 +9787,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–220",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.67,
+      "burning_rate_constant_mm2_s": [
+        0.38
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -9273,7 +9801,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.46,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -9285,9 +9813,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9992,
-      "spread_rate_mm_s": [
-        0.36
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 9.5,
       "outcome": "extinction",
       "diagnostics": [],
@@ -9298,7 +9824,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–221",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.46,
+      "burning_rate_constant_mm2_s": [
+        0.36
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -9308,7 +9838,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.75,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -9320,9 +9850,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0008,
-      "spread_rate_mm_s": [
-        0.35
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 16.3,
       "outcome": "extinction",
       "diagnostics": [],
@@ -9333,7 +9861,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–222",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.75,
+      "burning_rate_constant_mm2_s": [
+        0.35
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -9343,7 +9875,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.6,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -9355,9 +9887,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0021,
-      "spread_rate_mm_s": [
-        0.36
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 6.9,
       "outcome": "extinction",
       "diagnostics": [],
@@ -9368,7 +9898,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–223",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.6,
+      "burning_rate_constant_mm2_s": [
+        0.36
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -9378,7 +9912,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 1.94,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -9390,9 +9924,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0025,
-      "spread_rate_mm_s": [
-        0.35
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 7.8,
       "outcome": "extinction",
       "diagnostics": [],
@@ -9403,7 +9935,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–224",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 1.94,
+      "burning_rate_constant_mm2_s": [
+        0.35
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -9413,7 +9949,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 1.84,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -9425,9 +9961,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0049,
-      "spread_rate_mm_s": [
-        0.38
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 6.0,
       "outcome": "extinction",
       "diagnostics": [],
@@ -9438,7 +9972,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–225",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 1.84,
+      "burning_rate_constant_mm2_s": [
+        0.38
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -9448,7 +9986,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.91,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -9460,9 +9998,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9989,
-      "spread_rate_mm_s": [
-        0.51
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 14.4,
       "outcome": "extinction",
       "diagnostics": [],
@@ -9473,7 +10009,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–226",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.91,
+      "burning_rate_constant_mm2_s": [
+        0.51
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -9507,7 +10047,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–227",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "FLEX-1",
@@ -9517,7 +10059,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.25,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -9529,9 +10071,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9938,
-      "spread_rate_mm_s": [
-        0.57
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 9.0,
       "outcome": "completion",
       "diagnostics": [],
@@ -9543,7 +10083,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–229",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.25,
+      "burning_rate_constant_mm2_s": [
+        0.57
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -9553,7 +10097,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.3,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -9565,9 +10109,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9954,
-      "spread_rate_mm_s": [
-        0.58
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 9.8,
       "outcome": "disruption",
       "diagnostics": [],
@@ -9578,7 +10120,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–230",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.3,
+      "burning_rate_constant_mm2_s": [
+        0.58
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -9588,7 +10134,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.78,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -9600,9 +10146,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9913,
-      "spread_rate_mm_s": [
-        0.57
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 12.5,
       "outcome": "extinction",
       "diagnostics": [],
@@ -9613,7 +10157,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–231",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.78,
+      "burning_rate_constant_mm2_s": [
+        0.57
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -9623,7 +10171,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.79,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -9635,9 +10183,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9989,
-      "spread_rate_mm_s": [
-        0.51
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 12.5,
       "outcome": "extinction",
       "diagnostics": [],
@@ -9648,7 +10194,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–232",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.79,
+      "burning_rate_constant_mm2_s": [
+        0.51
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -9658,7 +10208,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.95,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -9670,9 +10220,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0004,
-      "spread_rate_mm_s": [
-        0.53
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 11.7,
       "outcome": "extinction",
       "diagnostics": [],
@@ -9683,7 +10231,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–233",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.95,
+      "burning_rate_constant_mm2_s": [
+        0.53
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -9693,7 +10245,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.32,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -9705,9 +10257,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0097,
-      "spread_rate_mm_s": [
-        0.52
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 17.5,
       "outcome": "extinction",
       "diagnostics": [],
@@ -9718,7 +10268,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–234",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.32,
+      "burning_rate_constant_mm2_s": [
+        0.52
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -9728,7 +10282,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.39,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -9740,9 +10294,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0107,
-      "spread_rate_mm_s": [
-        0.57
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 10.6,
       "outcome": "disruption",
       "diagnostics": [],
@@ -9753,7 +10305,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–235",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.39,
+      "burning_rate_constant_mm2_s": [
+        0.57
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -9763,7 +10319,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.65,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -9775,9 +10331,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0121,
-      "spread_rate_mm_s": [
-        0.57
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 9.6,
       "outcome": "extinction",
       "diagnostics": [],
@@ -9788,7 +10342,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–236",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.65,
+      "burning_rate_constant_mm2_s": [
+        0.57
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -9798,7 +10356,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.59,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -9810,9 +10368,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9984,
-      "spread_rate_mm_s": [
-        0.54
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 12.0,
       "outcome": "disruption",
       "diagnostics": [],
@@ -9823,7 +10379,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–237",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.59,
+      "burning_rate_constant_mm2_s": [
+        0.54
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -9833,7 +10393,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.52,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -9845,9 +10405,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0049,
-      "spread_rate_mm_s": [
-        0.41
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 4.1,
       "outcome": "extinction",
       "diagnostics": [],
@@ -9858,7 +10416,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–238",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.52,
+      "burning_rate_constant_mm2_s": [
+        0.41
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -9868,7 +10430,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.3,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -9880,9 +10442,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0078,
-      "spread_rate_mm_s": [
-        0.49
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 9.1,
       "outcome": "completion",
       "diagnostics": [],
@@ -9893,7 +10453,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–239",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.3,
+      "burning_rate_constant_mm2_s": [
+        0.49
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -9903,7 +10467,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.27,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -9915,9 +10479,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0086,
-      "spread_rate_mm_s": [
-        0.51
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 8.6,
       "outcome": "completion",
       "diagnostics": [],
@@ -9928,7 +10490,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–240",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.27,
+      "burning_rate_constant_mm2_s": [
+        0.51
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -9938,7 +10504,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.85,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -9950,9 +10516,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9991,
-      "spread_rate_mm_s": [
-        0.46
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 3.2,
       "outcome": "extinction",
       "diagnostics": [],
@@ -9963,7 +10527,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 26 (PDF p. 32), FLEX–241",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.85,
+      "burning_rate_constant_mm2_s": [
+        0.46
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -9973,7 +10541,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.12,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -9985,9 +10553,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9991,
-      "spread_rate_mm_s": [
-        0.59
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 4.5,
       "outcome": "extinction",
       "diagnostics": [],
@@ -9998,7 +10564,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–242",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.12,
+      "burning_rate_constant_mm2_s": [
+        0.59
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -10031,7 +10601,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–243",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "FLEX-1",
@@ -10041,7 +10613,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 1.61,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -10053,9 +10625,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9997,
-      "spread_rate_mm_s": [
-        0.91
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 2.7,
       "outcome": "completion",
       "diagnostics": [],
@@ -10066,7 +10636,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–244",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 1.61,
+      "burning_rate_constant_mm2_s": [
+        0.91
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -10076,7 +10650,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.99,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -10088,9 +10662,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9924,
-      "spread_rate_mm_s": [
-        0.49
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 9.1,
       "outcome": "extinction",
       "diagnostics": [],
@@ -10101,7 +10673,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–245",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.99,
+      "burning_rate_constant_mm2_s": [
+        0.49
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -10111,7 +10687,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.9,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -10123,9 +10699,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9961,
-      "spread_rate_mm_s": [
-        0.51
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 13.1,
       "outcome": "extinction",
       "diagnostics": [],
@@ -10136,7 +10710,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–246",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.9,
+      "burning_rate_constant_mm2_s": [
+        0.51
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -10146,7 +10724,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.4,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -10158,9 +10736,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9999,
-      "spread_rate_mm_s": [
-        0.51
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 7.9,
       "outcome": "extinction",
       "diagnostics": [],
@@ -10171,7 +10747,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–247",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.4,
+      "burning_rate_constant_mm2_s": [
+        0.51
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -10204,7 +10784,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–248",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "FLEX-1",
@@ -10214,7 +10796,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 1.49,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -10226,9 +10808,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9972,
-      "spread_rate_mm_s": [
-        0.6
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 2.9,
       "outcome": "extinction",
       "diagnostics": [],
@@ -10239,7 +10819,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–249",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 1.49,
+      "burning_rate_constant_mm2_s": [
+        0.6
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -10249,7 +10833,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.67,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -10261,9 +10845,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9942,
-      "spread_rate_mm_s": [
-        0.43
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 3.6,
       "outcome": "extinction",
       "diagnostics": [],
@@ -10274,7 +10856,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–250",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.67,
+      "burning_rate_constant_mm2_s": [
+        0.43
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -10284,7 +10870,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.52,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -10296,9 +10882,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9957,
-      "spread_rate_mm_s": [
-        0.56
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 4.0,
       "outcome": "extinction",
       "diagnostics": [],
@@ -10309,7 +10893,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–251",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.52,
+      "burning_rate_constant_mm2_s": [
+        0.56
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -10319,7 +10907,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.44,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -10331,9 +10919,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9989,
-      "spread_rate_mm_s": [
-        0.56
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 1.5,
       "outcome": "extinction",
       "diagnostics": [],
@@ -10344,7 +10930,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–252",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.44,
+      "burning_rate_constant_mm2_s": [
+        0.56
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -10354,7 +10944,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 1.88,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -10366,9 +10956,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.9997,
-      "spread_rate_mm_s": [
-        0.58
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 1.0,
       "outcome": "extinction",
       "diagnostics": [],
@@ -10379,7 +10967,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–253",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 1.88,
+      "burning_rate_constant_mm2_s": [
+        0.58
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -10389,7 +10981,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.56,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -10401,9 +10993,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0046,
-      "spread_rate_mm_s": [
-        0.51
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 0.3,
       "outcome": "extinction",
       "diagnostics": [],
@@ -10414,7 +11004,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–254",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.56,
+      "burning_rate_constant_mm2_s": [
+        0.51
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -10424,7 +11018,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.78,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -10436,9 +11030,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7026,
-      "spread_rate_mm_s": [
-        0.72
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 12.2,
       "outcome": "extinction",
       "diagnostics": [],
@@ -10449,7 +11041,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–255",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.78,
+      "burning_rate_constant_mm2_s": [
+        0.72
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -10459,7 +11055,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.8,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -10471,9 +11067,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7003,
-      "spread_rate_mm_s": [
-        0.71
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 11.4,
       "outcome": "completion",
       "diagnostics": [],
@@ -10484,7 +11078,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–256",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.8,
+      "burning_rate_constant_mm2_s": [
+        0.71
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -10494,7 +11092,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.82,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -10506,9 +11104,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.703,
-      "spread_rate_mm_s": [
-        0.62
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 11.2,
       "outcome": "extinction",
       "diagnostics": [],
@@ -10519,7 +11115,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–257",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.82,
+      "burning_rate_constant_mm2_s": [
+        0.62
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -10529,7 +11129,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.79,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -10541,9 +11141,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7034,
-      "spread_rate_mm_s": [
-        0.7
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 8.1,
       "outcome": "disruption",
       "diagnostics": [],
@@ -10554,7 +11152,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–258",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.79,
+      "burning_rate_constant_mm2_s": [
+        0.7
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -10564,7 +11166,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.45,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -10576,9 +11178,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.6996,
-      "spread_rate_mm_s": [
-        0.6
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 8.3,
       "outcome": "extinction",
       "diagnostics": [],
@@ -10589,7 +11189,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–259",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.45,
+      "burning_rate_constant_mm2_s": [
+        0.6
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -10599,7 +11203,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.61,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -10611,9 +11215,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.6997,
-      "spread_rate_mm_s": [
-        0.73
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 6.3,
       "outcome": "disruption",
       "diagnostics": [],
@@ -10624,7 +11226,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–260",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.61,
+      "burning_rate_constant_mm2_s": [
+        0.73
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -10634,7 +11240,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.22,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -10646,9 +11252,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.6999,
-      "spread_rate_mm_s": [
-        0.56
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 10.4,
       "outcome": "extinction",
       "diagnostics": [],
@@ -10659,7 +11263,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–261",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.22,
+      "burning_rate_constant_mm2_s": [
+        0.56
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -10669,7 +11277,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.25,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -10681,9 +11289,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.6989,
-      "spread_rate_mm_s": [
-        0.65
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 12.1,
       "outcome": "extinction",
       "diagnostics": [],
@@ -10694,7 +11300,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–262",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.25,
+      "burning_rate_constant_mm2_s": [
+        0.65
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -10704,7 +11314,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.67,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -10716,9 +11326,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.6989,
-      "spread_rate_mm_s": [
-        0.7
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 7.6,
       "outcome": "extinction",
       "diagnostics": [],
@@ -10729,7 +11337,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–263",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.67,
+      "burning_rate_constant_mm2_s": [
+        0.7
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -10739,7 +11351,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.23,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -10751,9 +11363,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.6968,
-      "spread_rate_mm_s": [
-        0.67
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 7.5,
       "outcome": "extinction",
       "diagnostics": [],
@@ -10764,7 +11374,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–264",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.23,
+      "burning_rate_constant_mm2_s": [
+        0.67
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -10774,7 +11388,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.86,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -10786,9 +11400,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.6961,
-      "spread_rate_mm_s": [
-        0.7
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 11.0,
       "outcome": "extinction",
       "diagnostics": [],
@@ -10799,7 +11411,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–265",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.86,
+      "burning_rate_constant_mm2_s": [
+        0.7
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -10809,7 +11425,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.69,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -10821,9 +11437,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7007,
-      "spread_rate_mm_s": [
-        0.61
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 4.3,
       "outcome": "extinction",
       "diagnostics": [],
@@ -10834,7 +11448,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–266",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.69,
+      "burning_rate_constant_mm2_s": [
+        0.61
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -10844,7 +11462,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.08,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -10856,9 +11474,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7,
-      "spread_rate_mm_s": [
-        0.67
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 5.4,
       "outcome": "extinction",
       "diagnostics": [],
@@ -10869,7 +11485,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–267",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.08,
+      "burning_rate_constant_mm2_s": [
+        0.67
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -10879,7 +11499,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.87,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -10891,9 +11511,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.6942,
-      "spread_rate_mm_s": [
-        0.6
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 17.4,
       "outcome": "extinction",
       "diagnostics": [],
@@ -10904,7 +11522,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–268",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.87,
+      "burning_rate_constant_mm2_s": [
+        0.6
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -10914,7 +11536,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.95,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -10926,9 +11548,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.6946,
-      "spread_rate_mm_s": [
-        0.63
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 10.6,
       "outcome": "extinction",
       "diagnostics": [],
@@ -10939,7 +11559,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–269",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.95,
+      "burning_rate_constant_mm2_s": [
+        0.63
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -10949,7 +11573,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.5,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -10961,9 +11585,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7005,
-      "spread_rate_mm_s": [
-        0.59
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 7.8,
       "outcome": "extinction",
       "diagnostics": [],
@@ -10974,7 +11596,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–270",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.5,
+      "burning_rate_constant_mm2_s": [
+        0.59
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -10984,7 +11610,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.7,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -10996,9 +11622,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7012,
-      "spread_rate_mm_s": [
-        0.63
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 5.9,
       "outcome": "extinction",
       "diagnostics": [],
@@ -11009,7 +11633,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–271",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.7,
+      "burning_rate_constant_mm2_s": [
+        0.63
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -11019,7 +11647,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 1.84,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -11031,9 +11659,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7016,
-      "spread_rate_mm_s": [
-        0.62
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 2.3,
       "outcome": "extinction",
       "diagnostics": [],
@@ -11044,7 +11670,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–272",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 1.84,
+      "burning_rate_constant_mm2_s": [
+        0.62
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -11054,7 +11684,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.27,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -11066,9 +11696,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.6947,
-      "spread_rate_mm_s": [
-        0.71
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 3.5,
       "outcome": "extinction",
       "diagnostics": [],
@@ -11079,7 +11707,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–273",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.27,
+      "burning_rate_constant_mm2_s": [
+        0.71
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -11089,7 +11721,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 1.86,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -11101,9 +11733,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.6978,
-      "spread_rate_mm_s": [
-        0.77
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 3.5,
       "outcome": "extinction",
       "diagnostics": [],
@@ -11114,7 +11744,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–274",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 1.86,
+      "burning_rate_constant_mm2_s": [
+        0.77
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -11124,7 +11758,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.22,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -11136,9 +11770,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7003,
-      "spread_rate_mm_s": [
-        0.76
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 1.9,
       "outcome": "extinction",
       "diagnostics": [],
@@ -11149,7 +11781,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 27 (PDF p. 33), FLEX–275",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.22,
+      "burning_rate_constant_mm2_s": [
+        0.76
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -11159,7 +11795,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 1.61,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -11171,9 +11807,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.7007,
-      "spread_rate_mm_s": [
-        1.06
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 1.4,
       "outcome": "completion",
       "diagnostics": [],
@@ -11184,7 +11818,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 28 (PDF p. 34), FLEX–276",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 1.61,
+      "burning_rate_constant_mm2_s": [
+        1.06
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -11194,7 +11832,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.79,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -11206,9 +11844,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.6979,
-      "spread_rate_mm_s": [
-        0.63
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 4.0,
       "outcome": "extinction",
       "diagnostics": [],
@@ -11219,7 +11855,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 28 (PDF p. 34), FLEX–277",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.79,
+      "burning_rate_constant_mm2_s": [
+        0.63
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -11229,7 +11869,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.68,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -11241,9 +11881,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 0.6993,
-      "spread_rate_mm_s": [
-        0.66
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 2.9,
       "outcome": "extinction",
       "diagnostics": [],
@@ -11254,7 +11892,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 28 (PDF p. 34), FLEX–278",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.68,
+      "burning_rate_constant_mm2_s": [
+        0.66
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -11264,7 +11906,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 3.54,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -11276,9 +11918,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0062,
-      "spread_rate_mm_s": [
-        0.55
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 7.6,
       "outcome": "extinction",
       "diagnostics": [],
@@ -11289,7 +11929,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 28 (PDF p. 34), FLEX–279",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 3.54,
+      "burning_rate_constant_mm2_s": [
+        0.55
+      ]
     },
     {
       "campaign": "FLEX-1",
@@ -11299,7 +11943,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "geometry": "Isolated droplet",
       "width_cm": null,
       "length_cm": null,
-      "thickness_mm": 2.82,
+      "thickness_mm": null,
       "burning_sides": null,
       "direction": "quiescent",
       "airflow_cms": [
@@ -11311,9 +11955,7 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "oxygen_basis": "fixed",
       "pressure_atm": 1.0082,
-      "spread_rate_mm_s": [
-        0.65
-      ],
+      "spread_rate_mm_s": null,
       "burn_duration_s": 11.7,
       "outcome": "extinction",
       "diagnostics": [],
@@ -11324,7 +11966,11 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20150023456",
       "locator": "Table IX, p. 28 (PDF p. 34), FLEX–280",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": 2.82,
+      "burning_rate_constant_mm2_s": [
+        0.65
+      ]
     }
   ],
   "saffire-i-iii": [
@@ -11360,7 +12006,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "notes": [],
       "source_url": "https://ntrs.nasa.gov/citations/20180005168",
       "locator": "Table 1, slides 30–31, I-1",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "Saffire I",
@@ -11395,7 +12043,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20180005168",
       "locator": "Table 1, slides 30–31, I-2",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "Saffire II",
@@ -11428,7 +12078,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20180005168",
       "locator": "Table 1, slides 30–31, II-1",
-      "supplementary_url": "https://ntrs.nasa.gov/citations/20180004258"
+      "supplementary_url": "https://ntrs.nasa.gov/citations/20180004258",
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "Saffire II",
@@ -11461,7 +12113,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20180005168",
       "locator": "Table 1, slides 30–31, II-2",
-      "supplementary_url": "https://ntrs.nasa.gov/citations/20180004258"
+      "supplementary_url": "https://ntrs.nasa.gov/citations/20180004258",
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "Saffire II",
@@ -11494,7 +12148,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20180005168",
       "locator": "Table 1, slides 30–31, II-3",
-      "supplementary_url": "https://ntrs.nasa.gov/citations/20180004258"
+      "supplementary_url": "https://ntrs.nasa.gov/citations/20180004258",
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "Saffire II",
@@ -11527,7 +12183,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20180005168",
       "locator": "Table 1, slides 30–31, II-4",
-      "supplementary_url": "https://ntrs.nasa.gov/citations/20180004258"
+      "supplementary_url": "https://ntrs.nasa.gov/citations/20180004258",
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "Saffire II",
@@ -11562,7 +12220,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20180005168",
       "locator": "Table 1, slides 30–31, II-5",
-      "supplementary_url": "https://ntrs.nasa.gov/citations/20180004258"
+      "supplementary_url": "https://ntrs.nasa.gov/citations/20180004258",
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "Saffire II",
@@ -11597,7 +12257,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20180005168",
       "locator": "Table 1, slides 30–31, II-6",
-      "supplementary_url": "https://ntrs.nasa.gov/citations/20180004258"
+      "supplementary_url": "https://ntrs.nasa.gov/citations/20180004258",
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "Saffire II",
@@ -11630,7 +12292,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20180005168",
       "locator": "Table 1, slides 30–31, II-7",
-      "supplementary_url": "https://ntrs.nasa.gov/citations/20180004258"
+      "supplementary_url": "https://ntrs.nasa.gov/citations/20180004258",
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "Saffire II",
@@ -11662,7 +12326,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "notes": [],
       "source_url": "https://ntrs.nasa.gov/citations/20180005168",
       "locator": "Table 1, slides 30–31, II-8",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "Saffire II",
@@ -11694,7 +12360,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "notes": [],
       "source_url": "https://ntrs.nasa.gov/citations/20180005168",
       "locator": "Table 1, slides 30–31, II-9",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "Saffire III",
@@ -11728,7 +12396,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       "notes": [],
       "source_url": "https://ntrs.nasa.gov/citations/20180005168",
       "locator": "Table 1, slides 30–31, III-1",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     },
     {
       "campaign": "Saffire III",
@@ -11764,7 +12434,9 @@ export const mockExperimentRuns: Record<string, ExperimentRun[]> = {
       ],
       "source_url": "https://ntrs.nasa.gov/citations/20180005168",
       "locator": "Table 1, slides 30–31, III-2",
-      "supplementary_url": null
+      "supplementary_url": null,
+      "initial_droplet_diameter_mm": null,
+      "burning_rate_constant_mm2_s": null
     }
   ]
 }

@@ -1,10 +1,17 @@
 import { useEffect, useRef, useState, useSyncExternalStore } from "react"
 import { Tabs } from "radix-ui"
 import { useQuery } from "@tanstack/react-query"
+import { Button } from "@/components/ui/button"
 import { ArrowRight, Bot, Menu, Search, X } from "@/components/ui/icons"
 import { studyQueries } from "@/api/queries"
 import { SCENARIO_PRESETS, type MissionScenarioId } from "@/domain/knowledge"
 import type { Scenario, StudySummary } from "@/domain/types"
+import {
+  buildExplorerSearchParams,
+  parseExplorerUrl,
+  type CompareDiffFilter,
+  type EnvAxisMode,
+} from "@/domain/url-state"
 import { LanguageSwitch, useLocale } from "@/i18n"
 import { AssistantChat, useStudyChat } from "./assistant-chat"
 import { CompareView } from "./compare-view"
@@ -27,17 +34,6 @@ function subscribeToLayout(callback: () => void) {
     mobileCatalog.removeEventListener("change", callback)
     inspectorDrawer.removeEventListener("change", callback)
   }
-}
-
-function initialSectionFromUrl(): Section {
-  const params = new URLSearchParams(window.location.search)
-  const view = params.get("view")
-  const sec = params.get("section")
-  if (view === "assistant" || view === "nexus" || sec === "assistant") return "ИИ-ассистент"
-  if (sec === "compare") return "Сравнение и установки"
-  if (sec === "environments") return "Среды обитания"
-  if (sec === "studies" || params.has("study")) return "Исследования"
-  return "Дашборд и рейтинг"
 }
 
 function QuickSearchDialog({
@@ -132,61 +128,121 @@ export function App() {
   const query = useQuery(studyQueries.list({ limit: 100, offset: 0 }, locale))
   const studies = query.data?.items ?? []
 
-  const [selectedId, setSelectedId] = useState<string | undefined>(
-    () => new URLSearchParams(window.location.search).get("study") ?? undefined,
-  )
-  const [section, setSection] = useState<Section>(initialSectionFromUrl)
-  const [studyMode, setStudyMode] = useState<"directory" | "detail">(() =>
-    new URLSearchParams(window.location.search).has("study") ? "detail" : "directory",
-  )
-  const [view, setView] = useState<View>(() => {
-    const tab = new URLSearchParams(window.location.search).get("tab") ?? ""
-    return isStudyView(tab) ? tab : "overview"
-  })
-  const [scenario, setScenario] = useState<MissionScenarioId | null>("iss-cabin")
-  const [conditions, setConditions] = useState<Scenario>(SCENARIO_PRESETS["iss-cabin"])
+  const initialUrlRef = useRef<ReturnType<typeof parseExplorerUrl> | null>(null)
+  if (!initialUrlRef.current) {
+    initialUrlRef.current = parseExplorerUrl(window.location.search)
+  }
+  const init = initialUrlRef.current
+  const explicitLangRef = useRef(init.locale !== undefined)
+
+  const [selectedId, setSelectedId] = useState<string | undefined>(() => init.studyId ?? undefined)
+  const [section, setSection] = useState<Section>(() => init.section)
+  const [studyMode, setStudyMode] = useState<"directory" | "detail">(() => init.studyMode)
+  const [view, setView] = useState<View>(() => init.tab)
+  const [scenario, setScenario] = useState<MissionScenarioId | null>(() => init.preset)
+  const [conditions, setConditions] = useState<Scenario>(() => init.conditions)
 
   function applyScenario(id: MissionScenarioId) {
     setScenario(id)
     setConditions(SCENARIO_PRESETS[id])
   }
-  const [compareIds, setCompareIds] = useState<string[]>(() => {
-    const raw = new URLSearchParams(window.location.search).get("compare")
-    return raw ? [...new Set(raw.split(",").filter(Boolean))].slice(0, 4) : []
-  })
+  const [compareIds, setCompareIds] = useState<string[]>(() => init.compareIds)
+  const [dirQuery, setDirQuery] = useState<string>(() => init.dirQuery)
+  const [dirPillar, setDirPillar] = useState<string>(() => init.dirPillar)
+  const [dirSavedOnly, setDirSavedOnly] = useState<boolean>(() => init.dirSavedOnly)
+  const [envAxis, setEnvAxis] = useState<EnvAxisMode>(() => init.envAxis)
+  const [envAllRuns, setEnvAllRuns] = useState<boolean>(() => init.envAllRuns)
+  const [compareDiff, setCompareDiff] = useState<CompareDiffFilter>(() => init.compareDiff)
+  const [compareFocus, setCompareFocus] = useState<string>(() => init.compareFocus)
+  const [runsCampaign, setRunsCampaign] = useState<string>(() => init.runsCampaign)
+  const [runsQuery, setRunsQuery] = useState<string>(() => init.runsQuery)
+  const [runsSelected, setRunsSelected] = useState<string[]>(() => init.runsSelected)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [inspectorOpen, setInspectorOpen] = useState(false)
-  const [inspectorExpanded, setInspectorExpanded] = useState(true)
+  const [inspectorExpanded, setInspectorExpanded] = useState(false)
+  const [compareNotice, setCompareNotice] = useState<string | null>(null)
+  const previousSectionRef = useRef<Section>("Дашборд и рейтинг")
+
+  useEffect(() => {
+    if (locale === "ru") explicitLangRef.current = true
+  }, [locale])
+
+  useEffect(() => {
+    if (section !== "ИИ-ассистент") previousSectionRef.current = section
+  }, [section])
+
+  useEffect(() => {
+    if (!compareNotice) return
+    const timer = window.setTimeout(() => setCompareNotice(null), 4500)
+    return () => window.clearTimeout(timer)
+  }, [compareNotice])
 
   const assistantPage = section === "ИИ-ассистент"
   const study = studies.find(({ id }) => id === selectedId) ?? studies[0]
+  const effectiveStudyId = study?.id ?? selectedId ?? null
   const chat = useStudyChat(
     studyMode === "detail" && section === "Исследования" ? study : undefined,
     section === "Исследования" ? undefined : conditions,
   )
 
   useEffect(() => {
-    const params = new URLSearchParams()
-    if (section === "Исследования") {
-      if (studyMode === "detail" && study) {
-        params.set("study", study.id)
-        if (view !== "overview") params.set("tab", view)
-      } else {
-        params.set("section", "studies")
-      }
-    } else if (section === "Сравнение и установки") {
-      params.set("section", "compare")
-      if (compareIds.length >= 2) params.set("compare", compareIds.join(","))
-    } else if (section === "Среды обитания") {
-      params.set("section", "environments")
-    } else if (section === "ИИ-ассистент") {
-      params.set("section", "assistant")
+    if (section === "Сравнение и установки" && window.location.hash === "#experiment-runs") {
+      return
     }
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" })
+    document.documentElement.scrollTop = 0
+    document.body.scrollTop = 0
+  }, [section, studyMode, selectedId, view])
+
+  useEffect(() => {
+    const params = buildExplorerSearchParams({
+      section,
+      studyMode,
+      studyId: effectiveStudyId,
+      tab: view,
+      preset: scenario,
+      conditions,
+      compareIds,
+      dirQuery,
+      dirPillar,
+      dirSavedOnly,
+      envAxis,
+      envAllRuns,
+      compareDiff,
+      compareFocus,
+      runsCampaign,
+      runsQuery,
+      runsSelected,
+      locale: explicitLangRef.current || locale === "ru" ? locale : undefined,
+    })
     const qs = params.toString()
     const nextUrl = qs ? `${window.location.pathname}?${qs}` : window.location.pathname
     const hash = section === "Сравнение и установки" && window.location.hash === "#experiment-runs" ? window.location.hash : ""
     window.history.replaceState(null, "", nextUrl + hash)
-  }, [section, studyMode, study, view, compareIds])
+  }, [
+    section,
+    studyMode,
+    effectiveStudyId,
+    view,
+    scenario,
+    conditions,
+    compareIds,
+    dirQuery,
+    dirPillar,
+    dirSavedOnly,
+    envAxis,
+    envAllRuns,
+    compareDiff,
+    compareFocus,
+    runsCampaign,
+    runsQuery,
+    runsSelected,
+    locale,
+  ])
+
+  useEffect(() => {
+    document.title = locale === "ru" ? "IGNIS 0G — каталог исследований" : "IGNIS 0G — Explorer"
+  }, [locale])
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
@@ -216,11 +272,23 @@ export function App() {
   }
 
   function toggleCompare(id: string) {
-    setCompareIds((prev) => {
-      if (prev.includes(id)) return prev.filter((item) => item !== id)
-      if (prev.length >= 4) return [...prev.slice(1), id]
-      return [...prev, id]
-    })
+    if (compareIds.includes(id)) {
+      setCompareIds((prev) => prev.filter((item) => item !== id))
+      return
+    }
+    if (compareIds.length >= 4) {
+      const removedId = compareIds[0]
+      const removedTitle = studies.find((s) => s.id === removedId)?.title.split(" (")[0] ?? removedId
+      const addedTitle = studies.find((s) => s.id === id)?.title.split(" (")[0] ?? id
+      setCompareIds((prev) => (prev.length >= 4 ? [...prev.slice(1), id] : [...prev, id]))
+      setCompareNotice(
+        ru
+          ? `Максимум 4 исследования в сравнении: «${removedTitle}» заменено на «${addedTitle}»`
+          : `Limit 4 studies in comparison: replaced “${removedTitle}” with “${addedTitle}”`,
+      )
+      return
+    }
+    setCompareIds((prev) => [...prev, id])
   }
 
   return (
@@ -290,6 +358,9 @@ export function App() {
               section={section}
               compareCount={compareIds.length}
               onSection={(next) => {
+                if (next === "Сравнение и установки" && window.location.hash === "#experiment-runs") {
+                  window.history.replaceState(null, "", window.location.pathname + window.location.search)
+                }
                 setSection(next)
                 if (next === "Исследования") setStudyMode("directory")
                 setSidebarOpen(false)
@@ -300,6 +371,20 @@ export function App() {
           </WorkspacePane>
 
           <main id="research-main" className="main-panel" tabIndex={-1}>
+            {compareNotice && (
+              <div className="compare-toast" role="status" aria-live="polite">
+                <span>{compareNotice}</span>
+                <button
+                  type="button"
+                  className="icon-button"
+                  aria-label={ru ? "Закрыть уведомление" : "Dismiss notification"}
+                  onClick={() => setCompareNotice(null)}
+                >
+                  <X size={15} />
+                </button>
+              </div>
+            )}
+
             {!assistantPage && !inspectorIsDrawer && !inspectorExpanded && (
               <button
                 type="button"
@@ -350,16 +435,26 @@ export function App() {
                     compareIds={compareIds}
                     onToggleCompare={toggleCompare}
                     onSelectStudy={selectStudy}
+                    filterState={{
+                      query: dirQuery,
+                      onQueryChange: setDirQuery,
+                      pillar: dirPillar,
+                      onPillarChange: setDirPillar,
+                      savedOnly: dirSavedOnly,
+                      onSavedOnlyChange: setDirSavedOnly,
+                    }}
                   />
                 )}
 
                 {section === "Исследования" && studyMode === "detail" && study && (
                   <StudyPanel
                     studySummary={study}
+                    studies={studies}
                     isCompared={compareIds.includes(study.id)}
                     onToggleCompare={() => toggleCompare(study.id)}
                     onSelectStudy={selectStudy}
                     onBackToCatalog={openStudiesDirectory}
+                    currentView={view}
                     onView={setView}
                   />
                 )}
@@ -376,6 +471,18 @@ export function App() {
                     compareIds={compareIds}
                     onSetCompareIds={setCompareIds}
                     onSelectStudy={selectStudy}
+                    diffFilter={compareDiff}
+                    onDiffFilterChange={setCompareDiff}
+                    focus={compareFocus}
+                    onFocusChange={setCompareFocus}
+                    runsFilterState={{
+                      campaign: runsCampaign,
+                      onCampaignChange: setRunsCampaign,
+                      search: runsQuery,
+                      onSearchChange: setRunsQuery,
+                      selected: runsSelected,
+                      onSelectedChange: setRunsSelected,
+                    }}
                   />
                 )}
 
@@ -387,17 +494,36 @@ export function App() {
                       setConditions(next)
                     }}
                     onPreset={applyScenario}
-                    onAsk={() => setSection("ИИ-ассистент")}
+                    onAsk={() => {
+                      if (inspectorIsDrawer) setInspectorOpen(true)
+                      else setInspectorExpanded(true)
+                    }}
                     onSelectStudy={selectStudy}
                     compareIds={compareIds}
                     onToggleCompare={toggleCompare}
+                    viewState={{
+                      axisMode: envAxis,
+                      onAxisModeChange: setEnvAxis,
+                      showAllRuns: envAllRuns,
+                      onShowAllRunsChange: setEnvAllRuns,
+                    }}
                   />
                 )}
 
                 {assistantPage && (
                   <div className="section-view">
-                    <h1>{ru ? "ИИ-ассистент по исследованиям" : "AI Research Assistant"}</h1>
-                    <AssistantChat chat={chat} onSelectStudy={selectStudy} />
+                    <div className="assistant-page-head">
+                      <h1>{ru ? "ИИ-ассистент по исследованиям" : "AI Research Assistant"}</h1>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setSection(previousSectionRef.current)}
+                      >
+                        {ru ? "← Назад" : "← Back"}
+                      </Button>
+                    </div>
+                    <AssistantChat chat={chat} studies={studies} onSelectStudy={selectStudy} />
                   </div>
                 )}
               </>
@@ -416,6 +542,7 @@ export function App() {
             >
               <AssistantChat
                 chat={chat}
+                studies={studies}
                 onOpenPage={() => {
                   setSection("ИИ-ассистент")
                   setInspectorOpen(false)

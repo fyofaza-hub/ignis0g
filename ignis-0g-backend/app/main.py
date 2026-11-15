@@ -22,6 +22,7 @@ from app.schemas.assistant import ChatRequest, ChatResponse
 from app.schemas.study import StudyDetail, StudyList, CatalogFilters, Dataset
 
 from app.core.database import lifespan, session_factory
+from app.core.rate_limit import client_identity
 from app.repositories import catalog as repository
 from sqlalchemy import text
 from sqlalchemy.exc import SQLAlchemyError
@@ -50,13 +51,10 @@ async def request_id(request: Request, call_next):
             for key in list(rate_windows):
                 if now - rate_windows[key][0] >= 60:
                     del rate_windows[key]
-            forwarded = (
-                request.headers.get('cf-connecting-ip')
-                or request.headers.get('x-real-ip')
-                or request.headers.get('x-forwarded-for', '').split(',')[0]
-            ).strip()
-            client = forwarded or (request.client.host if request.client else 'unknown')
+            client = client_identity(request)
             limit = int(os.getenv('ASSISTANT_RATE_LIMIT', '5'))
+            if client not in rate_windows and len(rate_windows) >= 10000:
+                raise HTTPException(429, ('RATE_LIMITED', 'Request capacity exceeded'), headers={'Retry-After': '60'})
             start, count = rate_windows.get(client, (now, 0))
             if count >= limit:
                 raise HTTPException(429, ('RATE_LIMITED','Request limit exceeded'), headers={'Retry-After':str(max(1,int(60-(now-start))))})
@@ -69,7 +67,7 @@ async def request_id(request: Request, call_next):
     except (SQLAlchemyError, OSError, TimeoutError):
         response = error(request, 503, 'DATABASE_UNAVAILABLE', 'Database unavailable')
     except Exception:
-        logging.getLogger(__name__).error('Unhandled request error request_id=%s', request.state.request_id)
+        logging.getLogger(__name__).exception('Unhandled request error request_id=%s', request.state.request_id)
         response = error(request,500,'INTERNAL_ERROR','Internal server error')
     response.headers['X-Request-ID'] = request.state.request_id
     if request.headers.get('origin') in os.getenv('CORS_ORIGINS','http://localhost:5173,http://127.0.0.1:5173').split(','):

@@ -786,3 +786,119 @@ export const HARDWARE_RACKS: HardwareRackGroup[] = HARDWARE_RACKS_BILINGUAL.map(
 export function getHardwareRacks(locale: Locale = "en"): HardwareRackGroup[] {
   return HARDWARE_RACKS_BILINGUAL.map((x) => (locale === "ru" ? x.ru : x.en))
 }
+
+const PILLAR_LABELS_RU: Record<string, string> = {
+  All: "Все",
+  Prevention: "Предотвращение",
+  Detection: "Обнаружение",
+  Suppression: "Тушение",
+  Fundamental: "Фундаментальная физика",
+  Reference: "Нормативы",
+  Spray: "Распыление",
+}
+
+export function localizePillar(tag: string, locale: Locale = "en"): string {
+  if (locale !== "ru") return tag
+  return tag
+    .split("/")
+    .map((part) => {
+      const trimmed = part.trim()
+      return PILLAR_LABELS_RU[trimmed] ?? trimmed
+    })
+    .join(" / ")
+}
+
+export function localizeCategory(category: string, locale: Locale = "en"): string {
+  if (locale !== "ru") return category
+  if (category === "Reference") return "Нормативы"
+  return category
+}
+
+const FLOW_REGIME_LABELS_EN: Record<string, string> = {
+  quiescent: "Quiescent (still air)",
+  opposed_flow: "Opposed flow",
+  "coflow; opposed": "Coflow & opposed flow",
+  "opposed; concurrent": "Opposed & concurrent flow",
+  spherical_flow: "Spherical radial flow",
+  coflow_jet: "Coflow laminar jet",
+  "quiescent / spherical / coflow": "Quiescent / spherical / coflow",
+  forced_duct: "Forced duct flow",
+  low_flow: "Low forced flow",
+  buoyancy_1g: "Buoyant convection (1g)",
+  hvac_low_flow: "HVAC low ventilation flow",
+}
+
+const FLOW_REGIME_LABELS_RU: Record<string, string> = {
+  quiescent: "Штиль (без потока)",
+  opposed_flow: "Встречный поток (противоток)",
+  "coflow; opposed": "Спутный и встречный поток",
+  "opposed; concurrent": "Встречный и спутный поток",
+  spherical_flow: "Сферический поток",
+  coflow_jet: "Спутная газовая струя",
+  "quiescent / spherical / coflow": "Штиль / сферический / спутный",
+  forced_duct: "Принудительный поток в канале",
+  low_flow: "Слабый принудительный поток",
+  buoyancy_1g: "Естественная конвекция (1g)",
+  hvac_low_flow: "Вентиляция HVAC (слабый поток)",
+}
+
+export function localizeFlowRegime(regime: string, locale: Locale = "en"): string {
+  const key = regime.trim()
+  if (locale === "ru") return FLOW_REGIME_LABELS_RU[key] ?? key.replaceAll("_", " ")
+  return FLOW_REGIME_LABELS_EN[key] ?? key.replaceAll("_", " ")
+}
+
+const PROVENANCE_LABELS_RU: Record<string, string> = {
+  reported: "опубликовано в отчёте",
+  digitized: "оцифровано с графика",
+  derived: "расчётная величина",
+}
+
+const PROVENANCE_LABELS_EN: Record<string, string> = {
+  reported: "reported in primary source",
+  digitized: "digitized from figure",
+  derived: "derived",
+}
+
+export function localizeProvenance(provenance: string, locale: Locale = "en"): string {
+  if (locale === "ru") return PROVENANCE_LABELS_RU[provenance] ?? provenance
+  return PROVENANCE_LABELS_EN[provenance] ?? provenance
+}
+
+const SAVED_PREFIX = "ignis-saved-study-"
+export const SAVED_STUDIES_EVENT = "ignis-bookmarks-changed"
+
+export function isStudySaved(studyId: string): boolean {
+  try {
+    return window.localStorage.getItem(`${SAVED_PREFIX}${studyId}`) === "true"
+  } catch {
+    return false
+  }
+}
+
+export function getSavedStudyIds(): string[] {
+  try {
+    const ids: string[] = []
+    for (let i = 0; i < window.localStorage.length; i++) {
+      const k = window.localStorage.key(i)
+      if (k && k.startsWith(SAVED_PREFIX) && window.localStorage.getItem(k) === "true") {
+        ids.push(k.slice(SAVED_PREFIX.length))
+      }
+    }
+    return ids
+  } catch {
+    return []
+  }
+}
+
+export function toggleSavedStudy(studyId: string): boolean {
+  const next = !isStudySaved(studyId)
+  try {
+    if (next) window.localStorage.setItem(`${SAVED_PREFIX}${studyId}`, "true")
+    else window.localStorage.removeItem(`${SAVED_PREFIX}${studyId}`)
+    window.dispatchEvent(new Event(SAVED_STUDIES_EVENT))
+  } catch {
+    // Ignore storage errors in restricted browsing modes.
+  }
+  return next
+}

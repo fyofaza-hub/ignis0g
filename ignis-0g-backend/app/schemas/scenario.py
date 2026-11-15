@@ -38,7 +38,14 @@ class ScenarioStudy(BaseModel):
     matched: list[str]
     outside: list[str]
     unknown: list[str]
-    score: int
+    score: int = Field(ge=0, le=100)
+    ranking_version: Literal["range-coverage-v1"] = "range-coverage-v1"
+    score_basis: Literal["independent_catalog_ranges"] = "independent_catalog_ranges"
+    reported_parameter_count: int = Field(default=0, ge=0, le=4)
+    source_count: int = Field(default=0, ge=0)
+    run_count: int = Field(default=0, ge=0)
+    jointly_reported_run_ids: list[str] = Field(default_factory=list)
+    limitations: list[str] = Field(default_factory=list)
 
 
 class ModelingRun(BaseModel):

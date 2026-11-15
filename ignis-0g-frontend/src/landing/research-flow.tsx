@@ -9,8 +9,8 @@ import "@xyflow/react/dist/style.css"
 export const studyUrl = (id: string) => `/explorer?study=${encodeURIComponent(id)}`
 
 const groups = [
-  { labelEn: "All experiments", labelRu: "Все эксперименты", ids: research.map(({ id }) => id) },
-  { labelEn: "Liquid & gas", labelRu: "Жидкие и газовые", ids: ["flex-1", "acme-bre"] },
+  { labelEn: "All experiments", labelRu: "Все", ids: research.map(({ id }) => id) },
+  { labelEn: "Liquid & gas", labelRu: "Жидкость и газ", ids: ["flex-1", "acme-bre"] },
   { labelEn: "Solid & smoke", labelRu: "Твёрдые и дым", ids: ["bass-bass-ii-bass-m", "saffire-i-iii", "sofie-mist", "same-same-r"] },
 ]
 
@@ -20,7 +20,7 @@ function getNodes(locale: Locale): FlowNode[] {
   return [
     { id: "experiment", type: "research", position: { x: 50, y: 0 }, data: { title: locale === "ru" ? "эксперимент" : "experiment", kind: "experiment" } },
     { id: "fuel", type: "research", position: { x: 0, y: 125 }, data: { title: locale === "ru" ? "тип топлива" : "fuel type", kind: "fuel" } },
-    { id: "scale", type: "research", position: { x: 40, y: 280 }, data: { title: locale === "ru" ? "масштаб" : "preview scale", kind: "scale" } },
+    { id: "scale", type: "research", position: { x: 40, y: 280 }, data: { title: locale === "ru" ? "размер превью" : "preview scale", kind: "scale" } },
     { id: "preview", type: "research", position: { x: 390, y: 50 }, data: { title: locale === "ru" ? "предпросмотр" : "research preview", kind: "preview" } },
   ]
 }

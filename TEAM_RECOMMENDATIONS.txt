@@ -1,0 +1,124 @@
+IGNIS 0G — ЧЕКЛИСТ ДОРАБОТОК ДЛЯ КОМАНДЫ (до уровня 95–100 / 100)
+====================================================================
+
+Сейчас проект уже в рабочем состоянии, но до идеального состояния не хватает
+нескольких конкретных доработок по данным, фронтенду и бэкенду. Ниже — задачи
+по ролям и приоритетам.
+
+
+1. НАУКА И ДАННЫЕ (Data / Research — самый большой прирост качества)
+--------------------------------------------------------------------
+Сейчас интерфейс для выводов, числовых серий и связей уже написан в
+`ignis-0g-frontend/src/app/study-panel.tsx` и `study-evidence.tsx`, однако
+в текущей базе данных таблицы `datasets`, `findings` и `relations` пустые
+(по 0 записей). Причина: импортер `ignis-0g-backend/scripts/import_nasa_kb.py`
+загружает только карточки исследований, источники и прогоны, но не передаёт
+эти три блока (хотя схемы в `ignis-0g-backend/app/schemas/ingestion.py` для
+них уже готовы).
+
+Что нужно сделать:
+- Заполнить `findings` и `datasets` реальными данными из NASA-отчётов:
+  добавить структурированные выводы (`findings`) и табличные числовые ряды
+  (`datasets`), чтобы заработали графики и экспорт CSV/JSON в карточках.
+- Наполнить `relations` между программами:
+  описать подтверждённые научные связки между исследованиями (например,
+  FLEX-1 -> FLEX-2, BASS -> BASS-II -> SoFIE), чтобы во вкладке связей не
+  показывалась заглушка «No verified cross-study relations».
+  ВАЖНО: не откатывать базу целиком на старый базовый дамп
+  `database-snapshots/ignis-20261114-185736.dump` вслепую — любую запись оттуда
+  обязательно сверять с первоисточниками из `00_index/sources_registry.json`,
+  чтобы случайно не вернуть синтетические данные.
+- Расширить калибровку в симуляторе сред (`ignis-0g-frontend/src/app/environments-view.tsx`):
+  сейчас U-кривая честно привязана к одной опорной точке PMMA O13a
+  (13.6% O2, 0g, 101.3 кПа). Если добавить отдельные подтверждённые точки/кривые
+  для SIBAL и Nomex при выборе материала, научная ценность заметно вырастет.
+
+
+2. FRONTEND И ПРОИЗВОДИТЕЛЬНОСТЬ
+---------------------------------
+- Оптимизировать 4 тяжёлых GIF в `nasa-combustion-media-collection/nasa-research-media/`:
+  * `01_FLEX_Flame_Extinguishment/flex_cool_flame_extinction_iss.gif` — 4.3M
+  * `06_Saffire_Spacecraft_Fire/saffire_v_cygnus_large_scale_fire.gif` — 2.5M
+  * `04_ACME_Advanced_Combustion/acme_microgravity_flame_experiment.gif` — 1.4M
+  * `05_SoFIE_Solid_Fuel_Ignition/sofie_gel_flame_spin_extinction.gif` — 1.4M
+  Конвертация их в WebM или animated WebP (плюс `loading="lazy"`) сильно
+  ускорит открытие карточек на мобильном интернете.
+- Убрать моки из прод-бандла:
+  в `ignis-0g-frontend/src/api/queries.ts` (строка 10) массив `mockExperimentRuns`
+  импортируется статически, из-за чего даже при `VITE_USE_MOCKS=false` в
+  прод-сборку попадает чанк ~260.6K (`experiment-runs-data`). Стоит перевести
+  его на динамический `import()` только при включённых моках.
+- Проверить адаптивность с телефона:
+  пройтись со смартфона по таблицам прогонов, графикам в `study-evidence.tsx`,
+  сравнению исследований и чату ИИ — убедиться, что вёрстка не разъезжается.
+
+
+3. BACKEND И ИИ-АССИСТЕНТ
+-------------------------
+- Прогнать живую приёмку ИИ и расширить набор проверок:
+  в `ignis-0g-backend/scripts/evaluate_assistant.py` уже есть готовый скрипт
+  проверки качества ответов на `evals/questions.json`. Стоит добавить туда
+  сложные вопросы уровня жюри и вопросы-ловушки вне базы знаний, чтобы убедиться,
+  что ИИ честно возвращает `insufficient_evidence`, а не придумывает факты.
+- Добавить стриминг (SSE) или индикатор этапов в чате:
+  сейчас запросы к `/api/v1/assistant/chat` и `/api/v1/assistant/compare` ждут
+  полного завершения LLM/reranker в тишине — поэтапный статус («поиск по
+  источникам -> генерация ответа») или стриминг заметно улучшат UX.
+- Учесть rate-limit при одновременной работе группы людей с одного Wi-Fi:
+  сейчас в `ignis-0g-frontend/nginx.conf` стоит `rate=30r/m` на IP (`CF-Connecting-IP`),
+  в `ignis-0g-backend/.env.example` — `ASSISTANT_RATE_LIMIT=30`, а дефолт в
+  `ignis-0g-backend/app/main.py` (строка 55) — `5`. Если несколько человек из
+  жюри будут тестировать ИИ одновременно из одной аудитории с общим внешним IP,
+  они могут упереться в лимит — к защите его стоит временно поднять (например,
+  до 90-120/мин), а затем вернуть обратно.
+
+
+4. КАК КОМАНДЕ РАЗВЕРНУТЬ ПОСЛЕ `git clone` И НЕ СЛОМАТЬ ПРОД-СЕРВЕР
+-------------------------------------------------------------------
+А) Локальный старт после клонирования репозитория:
+- Склонировать репо и перейти в корень:
+  git clone https://github.com/fyofaza-hub/ignis0g.git && cd ignis0g
+- Настроить переменные бэкенда (НИКОГДА не коммитить `.env` в Git!):
+  cp ignis-0g-backend/.env.example ignis-0g-backend/.env
+  Вписать туда свой локальный POSTGRES_PASSWORD и рабочие ключи
+  LLM_API_KEY / EMBEDDING_API_KEY / RERANKER_API_KEY (передать через личку,
+  не через репозиторий).
+- Поднять локальную БД + миграции + API (из папки `ignis-0g-backend/`):
+  docker compose up -d --wait db
+  docker compose up -d --build --wait api
+- Если локальная база пустая — загрузить знания NASA, медиа и индексы:
+  docker compose exec -T api python -m scripts.import_nasa_kb /nasa-fire-safety-kb
+  docker compose run --rm -T \
+    -v "$(cd .. && pwd)/nasa-combustion-media-collection:/nasa-collection:ro" \
+    api python -m scripts.import_nasa_collection \
+    --collection /nasa-collection --public-base-url "http://127.0.0.1:8080"
+  docker compose exec -T api python -m scripts.index_sources
+- Запустить фронтенд локально (из папки `ignis-0g-frontend/`):
+  npm install && npm run dev
+  (для работы без живого API/БД можно запускать: VITE_USE_MOCKS=true npm run dev)
+
+Б) Обязательные правила, чтобы правки без проблем встали на боевой сервер:
+- Никакого хардкода `localhost` / `127.0.0.1` / LAN-IP во фронте и медиа-URL:
+  в проде `compose.yaml` собирает фронт с `VITE_API_BASE_URL=/api/v1` и
+  `VITE_USE_MOCKS=false`. Все API-вызовы должны идти через относительный
+  `/api/v1`, а ссылки на медиа генерирует `import_nasa_collection --public-base-url`.
+- Не менять сетевые порты, `network_mode: host`, `proxy_pass` в
+  `ignis-0g-frontend/nginx.conf` и настройки `TRUSTED_PROXY_CIDRS` без
+  согласования с тем, кто держит сервер (никогда не ставить `0.0.0.0/0` в
+  `TRUSTED_PROXY_CIDRS`).
+- Новые переменные в `.env` добавлять с безопасным значением по умолчанию:
+  если кто-то добавляет новую настройку, её нужно сразу прописать с дефолтом
+  в `ignis-0g-backend/.env.example`, `ignis-0g-backend/compose.yaml` и
+  `ignis-0g-backend/app/ai/settings.py`, иначе сервер после `git pull` может не
+  подняться.
+- Любые правки таблиц БД — только через Alembic-миграции:
+  не менять структуру PostgreSQL руками локально — генерировать ревизию в
+  `ignis-0g-backend/migrations/versions/` и проверять совместимость со старыми
+  данными (подробнее см. `ignis-0g-backend/docs/QUALITY_AND_DEPLOYMENT.md`).
+- Правки в `nasa-fire-safety-kb/` или `nasa-combustion-media-collection/`:
+  обязательно помечать в PR/коммите, что после обновления кода на сервере
+  нужно заново прогнать `import_nasa_kb`, `import_nasa_collection` (с прод-URL)
+  и `index_sources`. И не восстанавливать старые дампы поверх уже живой БД.
+- Обязательная проверка перед пушем в `main` / PR:
+  * Фронт (`ignis-0g-frontend/`): `npm test` и `npm run build`
+  * Бэкенд (`ignis-0g-backend/`): `pytest`

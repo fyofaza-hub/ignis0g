@@ -1,8 +1,11 @@
 import { useEffect, useRef, useState } from "react"
 import { ArrowRight, BookOpen, FlaskConical, Menu, Network, Search, X } from "@/components/ui/icons"
+import { api, useMocks } from "@/api/client"
 import flame from "@/assets/flex-flame.webp"
+import type { StudySummary } from "@/domain/types"
 import { LanguageSwitch, useLocale, type Locale } from "@/i18n"
 import { catalogEntry, getResearch, topics } from "@/mocks/catalog"
+import { getMockStudies } from "@/mocks/data"
 import { ResearchFlow, WorkflowFlow, studyUrl } from "./research-flow"
 import "./landing.css"
 
@@ -16,18 +19,18 @@ const summaries: Record<Locale, Record<string, string>> = {
     "same-same-r": "How microgravity smoke particle size distribution affects spacecraft fire detection.",
   },
   ru: {
-    "flex-1": "Как капли жидкого топлива горят, образуют холодное пламя и гаснут в микрогравитации.",
-    "bass-bass-ii-bass-m": "Как скорость воздушного потока влияет на горение и затухание твёрдых материалов и тканей.",
-    "saffire-i-iii": "Как распространяется пожар на борту полномасштабного грузового корабля Cygnus.",
-    "acme-bre": "Как газовая пористая горелка моделирует горючесть конденсированных топлив в неподвижной атмосфере.",
-    "sofie-mist": "Как пониженное давление и повышенная концентрация кислорода влияют на воспламенение твёрдых тел.",
-    "same-same-r": "Как распределение размеров частиц дыма в микрогравитации влияет на работу датчиков пожара.",
+    "flex-1": "Как капли жидкого топлива горят, образуют холодное пламя и гаснут в невесомости.",
+    "bass-bass-ii-bass-m": "Как поток воздуха влияет на горение и тушение твёрдых материалов.",
+    "saffire-i-iii": "Как огонь распространяется внутри полномасштабного грузового корабля Cygnus.",
+    "acme-bre": "Как газовая горелка моделирует воспламеняемость материалов без потока воздуха.",
+    "sofie-mist": "Как пониженное давление и концентрация кислорода влияют на воспламенение твёрдого топлива.",
+    "same-same-r": "Как размер частиц дыма в невесомости влияет на обнаружение пожара в космосе.",
   },
 }
 
-function Brand() {
+function Brand({ locale }: { locale: Locale }) {
   return (
-    <a className="landing-brand" href="/" aria-label="IGNIS 0G home">
+    <a className="landing-brand" href="/" aria-label={locale === "ru" ? "IGNIS 0G — главная" : "IGNIS 0G home"}>
       <img src="/ignis-logo.png" alt="" width={28} height={28} style={{ borderRadius: 6 }} />
       <span>
         <span style={{ color: "#000000" }}>IGNIS</span>{" "}
@@ -39,9 +42,32 @@ function Brand() {
 
 function ExperimentSearch({ dialog, locale }: { dialog: { current: HTMLDialogElement | null }; locale: Locale }) {
   const [query, setQuery] = useState("")
-  const list = getResearch(locale)
-  const matches = list.filter(({ id, title }) =>
-    `${catalogEntry(id)?.code} ${title} ${summaries[locale][id]}`.toLowerCase().includes(query.trim().toLowerCase()))
+  const [liveStudies, setLiveStudies] = useState<StudySummary[]>([])
+
+  useEffect(() => {
+    if (useMocks) return
+    const controller = new AbortController()
+    api
+      .listStudies({ limit: 100, offset: 0 }, controller.signal)
+      .then((result) => setLiveStudies(result.items))
+      .catch(() => {
+        if (!controller.signal.aborted) setLiveStudies([])
+      })
+    return () => controller.abort()
+  }, [])
+
+  const localStudies = getMockStudies(locale)
+  const merged = new Map(localStudies.map((study) => [study.id, study]))
+  for (const study of liveStudies) {
+    if (!merged.has(study.id)) merged.set(study.id, study)
+  }
+  const list = Array.from(merged.values())
+  const q = query.trim().toLowerCase()
+  const matches = list.filter((study) =>
+    `${study.id} ${catalogEntry(study.id)?.code ?? ""} ${study.category} ${study.title} ${study.description} ${study.tags.join(" ")} ${summaries[locale][study.id] ?? ""}`
+      .toLowerCase()
+      .includes(q),
+  )
   return (
     <dialog
       ref={dialog}
@@ -77,10 +103,10 @@ function ExperimentSearch({ dialog, locale }: { dialog: { current: HTMLDialogEle
           />
         </label>
         <ul>
-          {matches.map(({ id, title }) => (
+          {matches.map(({ id, title, category }) => (
             <li key={id}>
               <a href={studyUrl(id)}>
-                <strong>{catalogEntry(id)?.code}</strong>
+                <strong>{catalogEntry(id)?.code ?? category}</strong>
                 <span>{title}</span>
                 <ArrowRight size={17} />
               </a>
@@ -102,11 +128,16 @@ export function Landing() {
   const featured = researchList.find(({ id }) => id === featuredId) ?? researchList[0]
 
   const navigation = [
-    { href: "#start", label: locale === "ru" ? "Быстрый старт" : "Quickstart" },
-    { href: "#workflow", label: locale === "ru" ? "Процесс" : "Workflow" },
+    { href: "#start", label: locale === "ru" ? "С чего начать" : "Quickstart" },
+    { href: "#workflow", label: locale === "ru" ? "Как пользоваться" : "Workflow" },
     { href: "#catalog", label: locale === "ru" ? "Эксперименты" : "Experiments" },
     { href: "#about", label: locale === "ru" ? "О проекте" : "About" },
   ]
+
+  useEffect(() => {
+    document.title =
+      locale === "ru" ? "IGNIS 0G — огонь в невесомости" : "IGNIS 0G — Microgravity Research Explorer"
+  }, [locale])
 
   useEffect(() => {
     function searchShortcut(event: KeyboardEvent) {
@@ -122,11 +153,11 @@ export function Landing() {
   return (
     <div className="landing">
       <a className="landing-skip" href="#landing-main">
-        {locale === "ru" ? "Перейти к содержимому" : "Skip to content"}
+        {locale === "ru" ? "К содержимому" : "Skip to content"}
       </a>
       <header className="landing-header">
         <div className="landing-container landing-header-inner">
-          <Brand />
+          <Brand locale={locale} />
           <nav className="landing-desktop-nav" aria-label={locale === "ru" ? "Основная навигация" : "Main navigation"}>
             {navigation.map(({ href, label }) => (
               <a key={href} href={href}>
@@ -181,7 +212,7 @@ export function Landing() {
               <h1 id="landing-title">
                 {locale === "ru" ? (
                   <>
-                    Исследуйте огонь в<br /> <em>микрогравитации</em>
+                    Огонь в<br /> <em>невесомости</em>
                   </>
                 ) : (
                   <>
@@ -191,15 +222,15 @@ export function Landing() {
               </h1>
               <p>
                 {locale === "ru"
-                  ? "Изучайте, как пламя формируется, распространяется и гаснет по результатам космических экспериментов NASA."
+                  ? "Исследуйте, как в космосе горят материалы, появляется дым и гаснет пламя. В каждом эксперименте собраны результаты и ссылки на источники NASA."
                   : "Discover how flames take shape, spread, and go out through NASA experiments in space."}
               </p>
               <div className="landing-actions">
                 <a className="landing-button" href="/explorer">
                   <Network size={19} /> {locale === "ru" ? "Открыть Explorer" : "Open Explorer"}
                 </a>
-                <a className="landing-button landing-outline" href="#catalog">
-                  <FlaskConical size={19} /> {locale === "ru" ? "Каталог экспериментов" : "Browse experiments"}
+                <a className="landing-button landing-outline" href="/explorer?section=studies">
+                  <FlaskConical size={19} /> {locale === "ru" ? "Смотреть исследования" : "Browse studies"}
                 </a>
               </div>
             </div>
@@ -236,10 +267,10 @@ export function Landing() {
 
         <section id="start" className="landing-container">
           <div className="landing-dark landing-quickstart">
-            <h2>{locale === "ru" ? "Быстрый старт в IGNIS 0G" : "Getting started with IGNIS 0G"}</h2>
+            <h2>{locale === "ru" ? "С чего начать в IGNIS 0G" : "Getting started with IGNIS 0G"}</h2>
             <p>
               {locale === "ru"
-                ? "Выберите эксперимент, чтобы открыть его обзор, выводы и источники."
+                ? "Выберите эксперимент. На его странице можно посмотреть условия, результаты и первоисточники."
                 : "Pick an experiment to open its overview, findings, and sources."}
             </p>
             <div className="landing-terminal">
@@ -252,37 +283,37 @@ export function Landing() {
                 {locale === "ru" ? "Открыть" : "Open"} <strong>FLEX-1</strong> <ArrowRight size={17} />
               </a>
             </div>
-            <a href="/explorer" className="landing-dark-footer">
-              {locale === "ru" ? "Перейти в рабочее пространство" : "Open the research workspace"} <ArrowRight size={17} />
+            <a href="/explorer?section=studies" className="landing-dark-footer">
+              {locale === "ru" ? "Посмотреть все исследования" : "Browse all studies"} <ArrowRight size={17} />
             </a>
           </div>
         </section>
 
-        <section className="landing-container landing-workflow" id="workflow" aria-label={locale === "ru" ? "Процесс исследования" : "Research workflow"}>
+        <section className="landing-container landing-workflow" id="workflow" aria-label={locale === "ru" ? "Как пользоваться каталогом" : "Research workflow"}>
           <article className="landing-feature">
             <div>
-              <h2>{locale === "ru" ? "Начните с вопроса" : "Start with a question"}</h2>
+              <h2>{locale === "ru" ? "Найдите эксперимент" : "Start with a question"}</h2>
               <p>
                 {locale === "ru"
-                  ? "Найдите эксперимент по названию или акрониму, либо отфильтруйте исследования по направлению."
+                  ? "Ищите по названию, сокращению или теме исследования."
                   : "Search for an experiment by name or acronym, or narrow your search by topic."}
               </p>
               <button type="button" className="landing-button" onClick={() => dialog.current?.showModal()}>
-                {locale === "ru" ? "Поиск экспериментов" : "Search experiments"}
+                {locale === "ru" ? "Найти эксперимент" : "Search experiments"}
               </button>
             </div>
             <WorkflowFlow />
           </article>
           <article className="landing-feature landing-feature-reverse">
             <div>
-              <h2>{locale === "ru" ? "Изучите доказательства" : "Read the evidence"}</h2>
+              <h2>{locale === "ru" ? "Изучите результаты" : "Read the evidence"}</h2>
               <p>
                 {locale === "ru"
-                  ? "Проверьте условия испытаний, экспериментальные выводы и опубликованные отчёты NASA."
+                  ? "Посмотрите, что проверяли исследователи, к каким выводам пришли и где опубликованы данные NASA."
                   : "Review what a study tested, what it found, and where the results were published."}
               </p>
               <a className="landing-button" href={studyUrl("flex-1")}>
-                {locale === "ru" ? "Изучить FLEX-1" : "Explore FLEX-1"}
+                {locale === "ru" ? "Открыть FLEX-1" : "Explore FLEX-1"}
               </a>
             </div>
             <figure className="landing-feature-image">
@@ -290,24 +321,24 @@ export function Landing() {
                 src={flame}
                 alt={
                   locale === "ru"
-                    ? "Иллюстрация сферического голубого пламени вокруг капли топлива"
+                    ? "Иллюстрация синего сферического пламени вокруг капли топлива"
                     : "Illustration of a spherical blue flame surrounding a fuel droplet"
                 }
                 loading="lazy"
               />
-              <figcaption>{locale === "ru" ? "FLEX · Сферическое пламя" : "FLEX · Flame illustration"}</figcaption>
+              <figcaption>{locale === "ru" ? "FLEX · иллюстрация пламени" : "FLEX · Flame illustration"}</figcaption>
             </figure>
           </article>
           <article className="landing-feature">
             <div>
-              <h2>{locale === "ru" ? "Проследите связи" : "Follow the connections"}</h2>
+              <h2>{locale === "ru" ? "Сравните условия" : "Compare environments"}</h2>
               <p>
                 {locale === "ru"
-                  ? "Посмотрите, как эксперименты связаны между собой через общие условия атмосферы и выводы."
-                  : "See how experiments relate to one another through shared conditions and findings."}
+                  ? "Узнайте, как концентрация кислорода, давление и тип топлива влияют на результаты разных экспериментов."
+                  : "See how oxygen concentration, cabin pressure, airflow, and fuel type shift experimental regimes across studies."}
               </p>
-              <a className="landing-button" href="/explorer?view=assistant">
-                {locale === "ru" ? "Спросить ИИ-ассистента" : "Ask the assistant"}
+              <a className="landing-button" href="/explorer?section=environments">
+                {locale === "ru" ? "Посмотреть условия среды" : "Explore O₂ regimes"}
               </a>
             </div>
             <WorkflowFlow overview />
@@ -334,10 +365,10 @@ export function Landing() {
               <div>
                 <p>
                   {locale === "ru"
-                    ? "От горения одиночной капли топлива до полномасштабного пожара на борту грузового корабля — каждый эксперимент отвечает на свой вопрос."
+                    ? "От горения одной капли топлива до пожара на грузовом корабле — каждый эксперимент отвечает на свой вопрос."
                     : "From burning a single fuel droplet to tracking fire aboard a cargo spacecraft, each experiment answers a different question."}
                 </p>
-                <a className="landing-button landing-button-white" href="/explorer">
+                <a className="landing-button landing-button-white" href="/explorer?section=studies">
                   {locale === "ru" ? "Открыть каталог" : "Open catalog"}
                 </a>
               </div>
@@ -387,10 +418,10 @@ export function Landing() {
         </section>
 
         <section className="landing-container landing-about" id="about">
-          <h2>{locale === "ru" ? "О платформе IGNIS 0G" : "About IGNIS 0G"}</h2>
+          <h2>{locale === "ru" ? "О проекте IGNIS 0G" : "About IGNIS 0G"}</h2>
           <p>
             {locale === "ru"
-              ? "IGNIS 0G — исследовательское рабочее пространство для анализа горения в микрогравитации и проверки выводов по первоисточникам NASA."
+              ? "IGNIS 0G — каталог исследований горения в невесомости. Он помогает проследить выводы экспериментов до опубликованных источников NASA."
               : "IGNIS 0G is a research workspace for exploring combustion in microgravity and tracing findings back to their sources."}
           </p>
           <a href="/explorer">
@@ -402,10 +433,10 @@ export function Landing() {
       <footer className="landing-footer">
         <div className="landing-container">
           <div>
-            <Brand />
+            <Brand locale={locale} />
             <p>
               {locale === "ru"
-                ? "Исследование горения и пожарной безопасности в микрогравитации."
+                ? "Исследование горения и пожарной безопасности в невесомости."
                 : "Explore combustion research in microgravity."}
             </p>
           </div>

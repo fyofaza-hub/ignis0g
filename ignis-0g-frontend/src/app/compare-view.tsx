@@ -4,13 +4,15 @@ import { ApiError, api } from "@/api/client"
 import { studyQueries } from "@/api/queries"
 import { AlertTriangle, Cpu, GitCompare, Sparkles, X } from "@/components/ui/icons"
 import { Button } from "@/components/ui/button"
-import { getHardwareRacks } from "@/domain/knowledge"
+import { getHardwareRacks, localizeCategory, localizePillar } from "@/domain/knowledge"
 import type { CompareResponse, StudySummary } from "@/domain/types"
+import type { CompareDiffFilter } from "@/domain/url-state"
 import { useLocale, type Locale } from "@/i18n"
 
-import { ExperimentRuns } from "./experiment-runs"
+import { CitationInspector, CitationList, RichCitedText } from "./citation-view"
+import { ExperimentRuns, type RunsFilterState } from "./experiment-runs"
 
-type DiffFilter = "all" | "diff" | "same"
+type DiffFilter = CompareDiffFilter
 
 function formatRange(range: unknown, unit: string, naLabel: string) {
   if (!Array.isArray(range) || !range.length) return naLabel
@@ -42,18 +44,34 @@ export function CompareView({
   compareIds,
   onSetCompareIds,
   onSelectStudy,
+  diffFilter: controlledDiffFilter,
+  onDiffFilterChange,
+  focus: controlledFocus,
+  onFocusChange,
+  runsFilterState,
 }: {
   studies: StudySummary[]
   compareIds: string[]
   onSetCompareIds: (ids: string[]) => void
   onSelectStudy: (id: string) => void
+  diffFilter?: DiffFilter
+  onDiffFilterChange?: (next: DiffFilter) => void
+  focus?: string
+  onFocusChange?: (next: string) => void
+  runsFilterState?: RunsFilterState
 }) {
   const locale = useLocale()
   const [aiResult, setAiResult] = useState<CompareResponse | null>(null)
   const [aiError, setAiError] = useState<string | null>(null)
   const [aiPending, setAiPending] = useState(false)
-  const [focus, setFocus] = useState("")
-  const [diffFilter, setDiffFilter] = useState<DiffFilter>("all")
+  const [activeCiteIndex, setActiveCiteIndex] = useState<number | null>(null)
+  const [localFocus, setLocalFocus] = useState("")
+  const [localDiffFilter, setLocalDiffFilter] = useState<DiffFilter>("all")
+
+  const focus = controlledFocus ?? localFocus
+  const setFocus = onFocusChange ?? setLocalFocus
+  const diffFilter = controlledDiffFilter ?? localDiffFilter
+  const setDiffFilter = onDiffFilterChange ?? setLocalDiffFilter
 
   const availableIds = new Set(studies.map((study) => study.id))
   const selectedIds = compareIds.filter((id) => availableIds.has(id)).slice(0, 4)
@@ -71,17 +89,18 @@ export function CompareView({
   const diffRows = useMemo(() => {
     const rawRows = [
       {
-        label: locale === "ru" ? "Программа / Pillar" : "Program / Pillar",
+        label: locale === "ru" ? "Программа и направление" : "Program / Pillar",
         cells: effectiveIds.map((id) => {
           const s = studies.find((item) => item.id === id)
+          const localizedTags = s ? s.tags.map((t) => localizePillar(t, locale)).join(", ") : ""
           return {
-            display: s ? `${s.category} · ${s.tags.join(", ")}` : naLabel,
+            display: s ? `${localizeCategory(s.category, locale)} · ${localizedTags}` : naLabel,
             key: s ? `${s.category}|${[...s.tags].sort().join(",")}` : naLabel,
           }
         }),
       },
       {
-        label: locale === "ru" ? "Установка (Facility)" : "Facility / Rack",
+        label: locale === "ru" ? "Установка" : "Facility / Rack",
         cells: effectiveIds.map((_, idx) => {
           const facility = detailQueries[idx]?.data?.conditions.facility ?? naLabel
           return {
@@ -192,6 +211,7 @@ export function CompareView({
     if (effectiveIds.length < 2 || aiPending) return
     setAiPending(true)
     setAiError(null)
+    setActiveCiteIndex(null)
     try {
       const res = await api.compareStudies({
         study_ids: effectiveIds,
@@ -223,8 +243,6 @@ export function CompareView({
         </p>
       </div>
 
-      <ExperimentRuns availableStudyIds={studies.map((study) => study.id)} />
-
       <section className="panel panel-padding">
         <div className="panel-head-row">
           <h2>
@@ -239,6 +257,18 @@ export function CompareView({
             </Button>
           )}
         </div>
+
+        {selectedIds.length < 2 && (
+          <p className="compare-autofill-notice" role="status">
+            {selectedIds.length === 0
+              ? locale === "ru"
+                ? "Вы не выбрали исследования — показана демонстрационная пара из каталога. Выберите любые 2–4 исследования ниже."
+                : "No studies selected — showing a representative example pair. Pick any 2–4 studies below."
+              : locale === "ru"
+                ? "Выбрано 1 исследование — второе добавлено из каталога как пример. Замените его любым исследованием ниже."
+                : "1 study selected — a second catalog example is shown alongside it. Pick any study below to customize."}
+          </p>
+        )}
 
         <div className="compare-selectors">
           {effectiveIds.map((id, idx) => (
@@ -378,62 +408,92 @@ export function CompareView({
 
         {aiError && <p className="query-failure">{aiError}</p>}
 
-        {aiResult && (
-          <div className="compare-ai-result">
-            <h3>{aiResult.summary}</h3>
-            <div className="compare-ai-cols">
-              <div>
-                <h4>{locale === "ru" ? "Сходства" : "Similarities"}</h4>
-                <ul>
-                  {aiResult.similarities.length ? (
-                    aiResult.similarities.map((item, i) => <li key={i}>{item.text}</li>)
-                  ) : (
-                    <li className="muted">{locale === "ru" ? "Не выявлено" : "None identified"}</li>
-                  )}
-                </ul>
-              </div>
-              <div>
-                <h4>{locale === "ru" ? "Различия" : "Differences"}</h4>
-                <ul>
-                  {aiResult.differences.length ? (
-                    aiResult.differences.map((item, i) => <li key={i}>{item.text}</li>)
-                  ) : (
-                    <li className="muted">{locale === "ru" ? "Не выявлено" : "None identified"}</li>
-                  )}
-                </ul>
-              </div>
-            </div>
-            {aiResult.limitations.length > 0 && (
-              <p className="muted">
-                <strong>{locale === "ru" ? "Ограничения сопоставимости:" : "Comparability limitations:"}</strong>{" "}
-                {aiResult.limitations.join(" ")}
-              </p>
-            )}
-            {aiResult.citations.length > 0 && (
-              <>
-                <div className="chat-citations">
-                  {aiResult.citations.map((c, idx) => (
-                    <details key={`${c.chunk_id}-${idx}`}>
-                      <summary>
-                        [{idx + 1}] {c.title}
-                        {c.locator ? ` · ${c.locator}` : ""}
-                      </summary>
-                      <p>{c.excerpt}</p>
-                      <a href={c.url} target="_blank" rel="noreferrer">
-                        {locale === "ru" ? "Открыть источник" : "Open source"}
-                      </a>
-                    </details>
-                  ))}
+        {aiResult && (() => {
+          const toggleCite = (idx: number) =>
+            setActiveCiteIndex((prev) => (prev === idx ? null : idx))
+          const activeCitation =
+            activeCiteIndex !== null ? aiResult.citations[activeCiteIndex] : undefined
+          return (
+            <div className="compare-ai-result">
+              <h3>{aiResult.summary}</h3>
+              <div className="compare-ai-cols">
+                <div>
+                  <h4>{locale === "ru" ? "Сходства" : "Similarities"}</h4>
+                  <ul>
+                    {aiResult.similarities.length ? (
+                      aiResult.similarities.map((item, i) => (
+                        <li key={i}>
+                          <RichCitedText
+                            as="span"
+                            className="compare-cite-text"
+                            text={item.text}
+                            citations={aiResult.citations}
+                            activeIndex={activeCiteIndex}
+                            onClickCitation={toggleCite}
+                            locale={locale}
+                          />
+                        </li>
+                      ))
+                    ) : (
+                      <li className="muted">{locale === "ru" ? "Не выявлено" : "None identified"}</li>
+                    )}
+                  </ul>
                 </div>
-                <p className="muted" style={{ fontSize: "0.8rem", marginTop: "0.5rem" }}>
-                  {locale === "ru"
-                    ? "Ссылки [n] привязывают пункты сравнения к индексированным фрагментам; перед инженерными выводами сверяйте конкретные числа с раскрытыми выдержками."
-                    : "Markers [n] link claims to retrieved excerpts; confirm exact numerical values against the expanded source excerpts before drawing engineering conclusions."}
+                <div>
+                  <h4>{locale === "ru" ? "Различия" : "Differences"}</h4>
+                  <ul>
+                    {aiResult.differences.length ? (
+                      aiResult.differences.map((item, i) => (
+                        <li key={i}>
+                          <RichCitedText
+                            as="span"
+                            className="compare-cite-text"
+                            text={item.text}
+                            citations={aiResult.citations}
+                            activeIndex={activeCiteIndex}
+                            onClickCitation={toggleCite}
+                            locale={locale}
+                          />
+                        </li>
+                      ))
+                    ) : (
+                      <li className="muted">{locale === "ru" ? "Не выявлено" : "None identified"}</li>
+                    )}
+                  </ul>
+                </div>
+              </div>
+              {activeCitation && activeCiteIndex !== null && (
+                <CitationInspector
+                  citation={activeCitation}
+                  index={activeCiteIndex}
+                  onClose={() => setActiveCiteIndex(null)}
+                  locale={locale}
+                />
+              )}
+              {aiResult.limitations.length > 0 && (
+                <p className="muted">
+                  <strong>{locale === "ru" ? "Ограничения сопоставимости:" : "Comparability limitations:"}</strong>{" "}
+                  {aiResult.limitations.join(" ")}
                 </p>
-              </>
-            )}
-          </div>
-        )}
+              )}
+              {aiResult.citations.length > 0 && (
+                <>
+                  <CitationList
+                    citations={aiResult.citations}
+                    activeIndex={activeCiteIndex}
+                    onToggleIndex={toggleCite}
+                    locale={locale}
+                  />
+                  <p className="muted" style={{ fontSize: "0.8rem", marginTop: "0.5rem" }}>
+                    {locale === "ru"
+                      ? "Нажмите на маркер [n], чтобы сразу увидеть фрагмент отчёта, страницу/таблицу и ссылку NASA."
+                      : "Click any [n] marker to inspect the report excerpt, page/table locator, and NASA link."}
+                  </p>
+                </>
+              )}
+            </div>
+          )
+        })()}
       </section>
 
       <section className="panel panel-padding">
@@ -464,6 +524,8 @@ export function CompareView({
           ))}
         </div>
       </section>
+
+      <ExperimentRuns availableStudyIds={studies.map((study) => study.id)} filterState={runsFilterState} />
 
       <section className="panel panel-padding partial-gravity-note">
         <h2>

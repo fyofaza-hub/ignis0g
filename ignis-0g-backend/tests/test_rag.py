@@ -416,7 +416,7 @@ def test_compare_validation_requires_citations_and_honors_russian_locale():
 
     grounded = validate_comparison({
         "status": "answered",
-        "summary": "Сравнение",
+        "summary": "Сравнение [2][1]",
         "similarities": [{"text": "Оба эксперимента проводились в микрогравитации [2], [1].", "citation_indices": [2, 1]}],
         "differences": [],
         "limitations": [],

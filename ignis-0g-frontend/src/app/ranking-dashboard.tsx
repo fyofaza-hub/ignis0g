@@ -5,7 +5,7 @@ import "@xyflow/react/dist/style.css"
 import { studyQueries } from "@/api/queries"
 import { GitCompare, Network, SlidersHorizontal } from "@/components/ui/icons"
 import { Button } from "@/components/ui/button"
-import { getMissionScenarios, type MissionScenarioId } from "@/domain/knowledge"
+import { getMissionScenarios, localizePillar, type MissionScenarioId } from "@/domain/knowledge"
 import type { Scenario } from "@/domain/types"
 import { useLocale } from "@/i18n"
 import { ScenarioResults } from "./scenario-results"
@@ -117,16 +117,22 @@ export function RankingDashboard({
 
   return (
     <div className="section-view">
-      <section className="panel panel-padding">
-        <div className="dashboard-hero" style={{ marginBottom: 8 }}>
-          <div>
-            <h1>
-              {ru
-                ? "Каталог и ранжирование исследований NASA PSI"
-                : "NASA PSI Combustion Research Catalog & Scenario Ranking"}
+      <section className="panel panel-padding dashboard-intro-panel" aria-labelledby="dashboard-intro-title">
+        <div className="dashboard-hero">
+          <div className="dashboard-intro-copy">
+            <span className="eyebrow-tag">
+              {ru ? "Каталог пожарной безопасности NASA PSI" : "NASA PSI Combustion Research Catalog"}
+            </span>
+            <h1 id="dashboard-intro-title" className="dashboard-intro-title">
+              {ru ? "Как ведёт себя огонь в космосе?" : "How does fire behave in space?"}
             </h1>
-            <p className="muted">
-              {ru ? "Текущий профиль:" : "Active target profile:"}{" "}
+            <p className="dashboard-intro-lead">
+              {ru
+                ? "IGNIS 0G собирает эксперименты NASA о горении, дыме и тушении в невесомости. Выберите профиль условий ниже или откройте исследование с первоисточниками."
+                : "IGNIS 0G brings together NASA microgravity experiments on combustion, smoke, and extinguishment. Choose a mission profile below or inspect any study with primary sources."}
+            </p>
+            <p className="muted dashboard-profile-line">
+              {ru ? "Активный профиль:" : "Active target profile:"}{" "}
               <strong>{conditions.o2_pct}% O₂</strong> ·{" "}
               <strong>
                 {conditions.pressure_kpa} {ru ? "кПа" : "kPa"}
@@ -136,14 +142,26 @@ export function RankingDashboard({
                 {conditions.flow_cms} {ru ? "см/с" : "cm/s"}
               </strong>{" "}
               · {ru ? "гравитация" : "gravity"} <strong>{conditions.gravity_g} g</strong>
+              {conditions.fuel && (
+                <>
+                  {" "}· {ru ? "топливо" : "fuel"}{" "}
+                  <strong>{conditions.fuel}</strong>
+                </>
+              )}
+              {conditions.pillar && (
+                <>
+                  {" "}· {ru ? "направление" : "pillar"}{" "}
+                  <strong>{localizePillar(conditions.pillar, locale)}</strong>
+                </>
+              )}
             </p>
           </div>
           <div className="ranking-card-actions">
-            <Button variant="outline" size="sm" onClick={onOpenEnvironments}>
-              <SlidersHorizontal size={14} /> {ru ? "2D-симулятор и среды O₂" : "2D Simulator & O₂ Regimes"}
+            <Button variant="default" size="sm" onClick={onOpenAllStudies}>
+              {ru ? "Смотреть исследования" : "Browse Studies"}
             </Button>
-            <Button variant="outline" size="sm" onClick={onOpenAllStudies}>
-              {ru ? "Все исследования" : "All Studies"}
+            <Button variant="outline" size="sm" onClick={onOpenEnvironments}>
+              <SlidersHorizontal size={14} /> {ru ? "Выбрать условия среды" : "2D Simulator & O₂"}
             </Button>
             {compareIds.length >= 2 && (
               <Button size="sm" onClick={onOpenCompare}>

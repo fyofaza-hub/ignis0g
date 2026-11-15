@@ -74,3 +74,12 @@ After the import, open Explorer → Comparison to compare up to four individual 
 - `ignis-0g-backend/` — FastAPI API, PostgreSQL migrations, and data import/indexing tools.
 - `nasa-combustion-media-collection/` — research pages and associated NASA media.
 - `compose.yaml` — starts the frontend and connects it to the existing API.
+
+## Quality checks and deployment update
+
+Scientific units, ranking provenance, assistant validation and deployment checks
+are documented in [QUALITY_AND_DEPLOYMENT.md](ignis-0g-backend/docs/QUALITY_AND_DEPLOYMENT.md).
+The root `.github/workflows/quality.yml` checks both projects. Run `npm test` and
+`npm run build` in `ignis-0g-frontend/`; run `python -m pytest -q` in the backend
+against a migrated test database. Production uses the live API unless mocks are
+explicitly enabled. Apply the new migration before deploying the matching frontend.

@@ -91,6 +91,13 @@ class Study(Input):
     def keys(self):
         for collection, key in [('sources','source_key'),('findings','finding_key'),('datasets','dataset_key'),('media','media_key')]:
             unique([getattr(x,key) for x in getattr(self,collection)], key)
+        from app.schemas.experiment_run import ExperimentRun
+        if "experiment_runs" in self.conditions:
+            if not isinstance(self.conditions["experiment_runs"], list):
+                raise ValueError("experiment_runs must be an array")
+            runs = [ExperimentRun.model_validate(row) for row in self.conditions["experiment_runs"]]
+            unique([(row.campaign, row.run_id) for row in runs], "experiment run")
+            self.conditions = {**self.conditions, "experiment_runs": [row.model_dump(mode="json") for row in runs]}
         return self
 
 class Evidence(Input):

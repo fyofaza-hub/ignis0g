@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { experimentRecords, recordsCsv } from "@/domain/experiment-export"
 import { useQueries } from "@tanstack/react-query"
 import { studyQueries } from "@/api/queries"
 import { Button } from "@/components/ui/button"
@@ -56,9 +57,10 @@ function oxygen(run: ExperimentRun) {
 }
 
 function rates(run: ExperimentRun, locale: Locale) {
-  if (!run.spread_rate_mm_s) return null
+  const values = run.burning_rate_constant_mm2_s ?? run.spread_rate_mm_s
+  if (!values) return null
   const rateUnit = run.campaign === "FLEX-1" ? (locale === "ru" ? "мм²/с" : "mm²/s") : locale === "ru" ? "мм/с" : "mm/s"
-  return run.spread_rate_mm_s
+  return values
     .map((rate, index) =>
       locale === "ru"
         ? `${rate} ${rateUnit} при ${run.airflow_cms[index]} см/с`
@@ -75,7 +77,7 @@ function getRows(locale: Locale): { label: string; get: (run: ExperimentRun) => 
       { label: "Геометрия", get: (r) => r.geometry },
       { label: "Ширина / диаметр, см", get: (r) => r.width_cm },
       { label: "Длина, см", get: (r) => r.length_cm },
-      { label: "Толщина / d₀, мм", get: (r) => r.thickness_mm },
+      { label: "Толщина / d₀, мм", get: (r) => r.initial_droplet_diameter_mm ?? r.thickness_mm },
       { label: "Горящих сторон", get: (r) => r.burning_sides },
       { label: "Гравитация", get: () => "Микрогравитация" },
       { label: "Направление распространения", get: (r) => (r.direction === "quiescent" ? "Штиль (без потока)" : r.direction === "concurrent" ? "По потоку / сопутств." : "Против потока") },
@@ -94,7 +96,7 @@ function getRows(locale: Locale): { label: string; get: (run: ExperimentRun) => 
     { label: "Geometry", get: (r) => r.geometry },
     { label: "Width / diameter, cm", get: (r) => r.width_cm },
     { label: "Length, cm", get: (r) => r.length_cm },
-    { label: "Thickness / d₀, mm", get: (r) => r.thickness_mm },
+    { label: "Thickness / d₀, mm", get: (r) => r.initial_droplet_diameter_mm ?? r.thickness_mm },
     { label: "Burning sides", get: (r) => r.burning_sides },
     { label: "Gravity", get: () => "Microgravity" },
     { label: "Spread direction", get: (r) => (r.direction === "quiescent" ? "Quiescent" : r.direction === "concurrent" ? "Concurrent" : "Opposed") },
@@ -111,25 +113,12 @@ function getRows(locale: Locale): { label: string; get: (run: ExperimentRun) => 
 
 function exportRuns(runs: ExperimentRun[], format: "csv" | "json") {
   const filename = `ignis-experiment-runs.${format}`
-  const records = runs.map((run) => ({
-    campaign: run.campaign, run_id: run.run_id, gravity_regime: run.gravity_regime,
-    material: run.material, geometry: run.geometry, width_cm: run.width_cm, length_cm: run.length_cm,
-    thickness_mm: run.thickness_mm, burning_sides: run.burning_sides, direction: run.direction,
-    airflow_cms: run.airflow_cms, airflow_basis: run.airflow_basis, oxygen_vol_pct: run.oxygen_vol_pct,
-    oxygen_basis: run.oxygen_basis, pressure_atm: run.pressure_atm, spread_rate_mm_s: run.spread_rate_mm_s,
-    burn_duration_s: run.burn_duration_s, outcome: run.outcome, diagnostics: run.diagnostics, notes: run.notes,
-    source_url: run.source_url, locator: run.locator, supplementary_url: run.supplementary_url,
-  }))
+  const records = experimentRecords(runs)
   if (format === "json") {
     downloadFile(filename, JSON.stringify(records, null, 2), "application/json")
     return
   }
-  const data = [Object.keys(records[0]), ...records.map(Object.values)]
-  const csv = data.map((row) => row.map((cell) => {
-    const raw = Array.isArray(cell) ? JSON.stringify(cell) : String(cell ?? "")
-    const safe = /^[\s]*[=+@-]|^[\t\r\n]/.test(raw) ? "'" + raw : raw
-    return '"' + safe.replaceAll('"', '""') + '"'
-  }).join(",")).join("\r\n")
+  const csv = recordsCsv(records)
   downloadFile(filename, csv, "text/csv;charset=utf-8")
 }
 
@@ -140,12 +129,35 @@ function RunSource({ run, locale }: { run: ExperimentRun; locale: Locale }) {
   </>
 }
 
-export function ExperimentRuns({ availableStudyIds }: { availableStudyIds: string[] }) {
+export interface RunsFilterState {
+  campaign: string
+  onCampaignChange: (next: string) => void
+  search: string
+  onSearchChange: (next: string) => void
+  selected: string[]
+  onSelectedChange: (next: string[]) => void
+}
+
+export function ExperimentRuns({
+  availableStudyIds,
+  filterState,
+}: {
+  availableStudyIds: string[]
+  filterState?: RunsFilterState
+}) {
   const locale = useLocale()
   const queries = useQueries({ queries: studyIds.filter((id) => availableStudyIds.includes(id)).map(studyQueries.runs) })
-  const [campaign, setCampaign] = useState("")
-  const [search, setSearch] = useState("")
-  const [selected, setSelected] = useState<string[]>([])
+  const [localCampaign, setLocalCampaign] = useState("")
+  const [localSearch, setLocalSearch] = useState("")
+  const [localSelected, setLocalSelected] = useState<string[]>([])
+
+  const campaign = filterState?.campaign ?? localCampaign
+  const setCampaign = filterState?.onCampaignChange ?? setLocalCampaign
+  const search = filterState?.search ?? localSearch
+  const setSearch = filterState?.onSearchChange ?? setLocalSearch
+  const selected = filterState?.selected ?? localSelected
+  const setSelected = filterState?.onSelectedChange ?? setLocalSelected
+
   const studies = queries.flatMap((query) => query.data ?? [])
   const selection = selected.flatMap((id) => studies.find((run) => key(run) === id) ?? [])
   const query = search.trim().toLowerCase()
@@ -160,7 +172,12 @@ export function ExperimentRuns({ availableStudyIds }: { availableStudyIds: strin
   }, [])
 
   function toggle(id: string) {
-    setSelected((prev) => prev.includes(id) ? prev.filter((item) => item !== id) : prev.length < 4 ? [...prev, id] : prev)
+    const next = selected.includes(id)
+      ? selected.filter((item) => item !== id)
+      : selected.length < 4
+        ? [...selected, id]
+        : selected
+    setSelected(next)
   }
 
   return (

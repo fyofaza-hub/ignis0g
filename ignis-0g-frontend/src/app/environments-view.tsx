@@ -22,10 +22,18 @@ import {
   type PsiTestRunPoint,
 } from "@/domain/knowledge"
 import type { ExperimentRun, Scenario } from "@/domain/types"
+import type { EnvAxisMode } from "@/domain/url-state"
 import { useLocale } from "@/i18n"
 import { ScenarioResults } from "./scenario-results"
 
-type ChartAxisMode = "flow-o2" | "pressure-o2"
+type ChartAxisMode = EnvAxisMode
+
+export interface EnvironmentsViewFilterState {
+  axisMode: ChartAxisMode
+  onAxisModeChange: (next: ChartAxisMode) => void
+  showAllRuns: boolean
+  onShowAllRunsChange: (next: boolean) => void
+}
 
 const DIGITIZED_RUN_STUDY_IDS = ["bass-bass-ii-bass-m", "saffire-i-iii", "flex-1"] as const
 
@@ -138,6 +146,7 @@ export function EnvironmentsView({
   onSelectStudy,
   compareIds,
   onToggleCompare,
+  viewState,
 }: {
   scenario: Scenario
   onChange: (scenario: Scenario) => void
@@ -146,11 +155,16 @@ export function EnvironmentsView({
   onSelectStudy: (id: string) => void
   compareIds: string[]
   onToggleCompare: (id: string) => void
+  viewState?: EnvironmentsViewFilterState
 }) {
   const locale = useLocale()
   const ru = locale === "ru"
-  const [axisMode, setAxisMode] = useState<ChartAxisMode>("flow-o2")
-  const [showAllRuns, setShowAllRuns] = useState(false)
+  const [localAxisMode, setLocalAxisMode] = useState<ChartAxisMode>("flow-o2")
+  const [localShowAllRuns, setLocalShowAllRuns] = useState(false)
+  const axisMode = viewState?.axisMode ?? localAxisMode
+  const setAxisMode = viewState?.onAxisModeChange ?? setLocalAxisMode
+  const showAllRuns = viewState?.showAllRuns ?? localShowAllRuns
+  const setShowAllRuns = viewState?.onShowAllRunsChange ?? setLocalShowAllRuns
   const [selectedRunId, setSelectedRunId] = useState<string>("bass-run-gmt45-t4")
   const [hoveredRunId, setHoveredRunId] = useState<string | null>(null)
 
@@ -208,11 +222,11 @@ export function EnvironmentsView({
 
   let riskState: "safe" | "caution" | "danger" = "caution"
   let riskTitle = ru
-    ? "Пограничный режим (вблизи эталонной U-кривой BASS-II)"
-    : "Marginal Regime (Near BASS-II SIBAL Reference Curve)"
+    ? "Пограничный режим (вблизи схематической U-кривой BASS-II)"
+    : "Marginal Regime (Near Schematic BASS-II U-Curve)"
   let riskDetail = ru
-    ? `Текущий O₂ (${o2Pct}%) близок к эталонному порогу SIBAL (0g, 101.3 кПа: ~${effectiveLoi}% O₂ при обдуве ${flowCms} см/с).`
-    : `Current O₂ (${o2Pct}%) is near the SIBAL reference boundary (0g, 101.3 kPa: ~${effectiveLoi}% O₂ at ${flowCms} cm/s).`
+    ? `Текущий O₂ (${o2Pct}%) близок к схематическому ориентиру BASS-II (~${effectiveLoi}% O₂ при обдуве ${flowCms} см/с; якорь 13.6% по стержню PMMA O13a при 0g, 101.3 кПа).`
+    : `Current O₂ (${o2Pct}%) sits near the schematic BASS-II U-curve guide (~${effectiveLoi}% O₂ at ${flowCms} cm/s; anchored to 13.6% on PMMA rod O13a at 0g, 101.3 kPa).`
 
   if (o2Pct >= 28 || ppO2Kpa >= 23) {
     riskState = "danger"
@@ -225,27 +239,27 @@ export function EnvironmentsView({
   } else if (!refLoc.isCalibrated) {
     riskState = "caution"
     riskTitle = ru
-      ? "Вне области калибровки U-кривой BASS-II (101.3 кПа, 0g, тонкие твёрдые ткани)"
-      : "Outside BASS-II U-Curve Calibration (101.3 kPa, 0g, thin solids)"
+      ? "Вне области применимости U-кривой BASS-II (101.3 кПа, 0g, твёрдые)"
+      : "Outside Schematic BASS-II U-Curve Scope (101.3 kPa, 0g, solids)"
     riskDetail = ru
-      ? `Опубликованная граница SIBAL (~${effectiveLoi}% O₂ при ${flowCms} см/с) измерена только для тонкой ткани SIBAL в 0g и 1 атм. Для выбранных параметров (${pressureKpa} кПа, ${gravityG.toFixed(2)}g) пересчёт LOI без эмпирических испытаний не производится.`
-      : `The published SIBAL curve (~${effectiveLoi}% O₂ at ${flowCms} cm/s) is calibrated only for thin SIBAL fabric at 0g and 1 atm. No uncalibrated pressure or partial-gravity LOI extrapolation is applied for (${pressureKpa} kPa, ${gravityG.toFixed(2)}g).`
+      ? `Схематический ориентир U-кривой (~${effectiveLoi}% O₂ при ${flowCms} см/с; минимум 13.6% по PMMA O13a) относится только к твёрдым материалам в 0g и 101.3 кПа. Для (${pressureKpa} кПа, ${gravityG.toFixed(2)}g) пересчёт LOI без эмпирических прогонов не выполняется.`
+      : `The schematic U-curve guide (~${effectiveLoi}% O₂ at ${flowCms} cm/s; 13.6% minimum anchored to PMMA O13a) applies only to solids at 0g and 101.3 kPa. No uncalibrated pressure or partial-gravity LOI extrapolation is applied for (${pressureKpa} kPa, ${gravityG.toFixed(2)}g).`
   } else if (o2Pct < effectiveLoi - 0.5) {
     riskState = "safe"
     riskTitle = ru
-      ? "Ниже эталонной границы SIBAL BASS-II (зона затухания при 0g, 1 атм)"
-      : "Below BASS-II SIBAL Reference Limit (0g, 1 atm Quench Zone)"
+      ? "Ниже схематического ориентира BASS-II (PMMA O13a, 0g, 1 атм)"
+      : "Below Schematic BASS-II Guide (PMMA O13a Anchor, 0g, 1 atm)"
     riskDetail = ru
-      ? `Концентрация O₂ (${o2Pct}%) ниже эталона горючести ткани SIBAL (~${effectiveLoi}% O₂ при ${flowCms} см/с, 0g, 101.3 кПа). Для других материалов и толщин (напр., PMMA до 13.6% O₂) проверяйте отдельные прогоны.`
-      : `O₂ (${o2Pct}%) falls below the thin SIBAL fabric reference boundary (~${effectiveLoi}% O₂ at ${flowCms} cm/s, 0g, 101.3 kPa). Check individual runs for thicker materials such as PMMA (down to 13.6% O₂).`
+      ? `O₂ (${o2Pct}%) ниже схематического ориентира затухания для стержня PMMA O13a (~${effectiveLoi}% O₂ при ${flowCms} см/с, 0g, 101.3 кПа; плоская ткань SIBAL в Table 7.1 гасла выше — при 16.9–18.7% O₂). Для других геометрий и топлив сверяйтесь с отдельными прогонами.`
+      : `O₂ (${o2Pct}%) is below the schematic PMMA rod (O13a) anchor (~${effectiveLoi}% O₂ at ${flowCms} cm/s, 0g, 101.3 kPa; flat SIBAL fabric in Table 7.1 quenched higher at 16.9–18.7% O₂). Check individual runs for other geometries and fuels.`
   } else if (flowCms >= 2 && flowCms <= 15) {
     riskState = "danger"
     riskTitle = ru
-      ? "Зона минимума U-кривой BASS-II (слабый обдув 2–15 см/с)"
+      ? "Зона минимума схематической U-кривой BASS-II (слабый обдув 2–15 см/с)"
       : "BASS-II U-Curve Trough (Low Forced Flow 2–15 cm/s)"
     riskDetail = ru
-      ? `При обдуве ${flowCms} см/с в 0g отсутствует плавучий унос тепла, а эталонный порог SIBAL минимален (~${effectiveLoi}% O₂).`
-      : `At ${flowCms} cm/s in 0g, buoyant cooling is absent and the thin-fabric SIBAL reference boundary drops to ~${effectiveLoi}% O₂.`
+      ? `При обдуве ${flowCms} см/с в 0g отсутствует плавучий унос тепла, а схематический порог по PMMA O13a опускается до ~${effectiveLoi}% O₂ (плоская ткань SIBAL гасла при 16.9–18.7% O₂).`
+      : `At ${flowCms} cm/s in 0g, buoyant cooling is absent and the schematic PMMA (O13a) anchor drops to ~${effectiveLoi}% O₂ (flat SIBAL fabric quenched at 16.9–18.7% O₂).`
   }
 
   const svgW = 680
@@ -333,7 +347,7 @@ export function EnvironmentsView({
               aria-pressed={showAllRuns}
               className={`regime-tab-btn ${showAllRuns ? "active" : ""}`}
               disabled={!digitizedRuns.length}
-              onClick={() => setShowAllRuns((v) => !v)}
+              onClick={() => setShowAllRuns(!showAllRuns)}
             >
               {showAllRuns
                 ? ru ? `Все прогоны (${digitizedRuns.length})` : `All Runs (${digitizedRuns.length})`
@@ -371,7 +385,7 @@ export function EnvironmentsView({
                 <span>{ru ? "Кислород O₂" : "Oxygen O₂"}</span>
                 <strong>
                   {refLoc.isCalibrated
-                    ? `${o2Pct}% (${ru ? "SIBAL ref" : "SIBAL ref"} ~${effectiveLoi}%)`
+                    ? `${o2Pct}% (${ru ? "ориентир PMMA" : "PMMA guide"} ~${effectiveLoi}%)`
                     : `${o2Pct}% O₂`}
                 </strong>
               </div>
@@ -452,205 +466,232 @@ export function EnvironmentsView({
           </div>
 
           <div className="envelope-chart-wrap">
-            <svg
-              viewBox={`0 0 ${svgW} ${svgH}`}
-              className="envelope-svg"
-              role="img"
-              aria-label={ru ? "Двумерная карта режимов горения NASA PSI" : "NASA PSI 2D Combustion Regime Map"}
-            >
-              {[15, 20, 25, 30, 35, 40, 45].map((o2Val) => {
-                const y = o2ToY(o2Val)
-                return (
-                  <g key={o2Val}>
-                    <line x1={padL} y1={y} x2={svgW - padR} y2={y} stroke="rgba(255,255,255,0.06)" strokeDasharray="3 3" />
-                    <text x={padL - 8} y={y + 4} textAnchor="end" fill="#8f8b87" fontSize="10">
-                      {o2Val}%
-                    </text>
-                  </g>
-                )
-              })}
-
-              {axisMode === "flow-o2" ? (
-                <>
-                  {[0, 10, 20, 30, 40, 50].map((fVal) => {
-                    const x = flowToX(fVal)
-                    return (
-                      <g key={fVal}>
-                        <line x1={x} y1={padT} x2={x} y2={svgH - padB} stroke="rgba(255,255,255,0.06)" strokeDasharray="3 3" />
-                        <text x={x} y={svgH - 22} textAnchor="middle" fill="#8f8b87" fontSize="10">
-                          {fVal}
-                        </text>
-                      </g>
-                    )
-                  })}
-                  <text x={padL + plotW / 2} y={svgH - 6} textAnchor="middle" fill="#b3aba3" fontSize="10.5">
-                    {ru
-                      ? "Скорость обдува (см/с) · ориентирная U-кривая NASA BASS-II"
-                      : "Forced Airflow Velocity (cm/s) · Schematic NASA BASS-II Ref"}
-                  </text>
-
-                  <polygon
-                    points={uCurveFillStr}
-                    fill={refLoc.isCalibrated ? "rgba(232, 93, 74, 0.1)" : "rgba(232, 93, 74, 0.04)"}
-                  />
-                  <polyline
-                    points={uCurvePointsStr}
-                    fill="none"
-                    stroke="#ff9e64"
-                    strokeWidth="2.2"
-                    strokeDasharray={refLoc.isCalibrated ? undefined : "6 4"}
-                    strokeOpacity={refLoc.isCalibrated ? 1 : 0.45}
-                  />
-
-                  <text x={svgW - padR - 8} y={padT + 14} textAnchor="end" fill="#ff9e8e" fontSize="10" fontWeight="600">
-                    {ru ? "Устойчивое горение" : "Sustained Flame Spread"}
-                  </text>
-                  <text x={svgW - padR - 8} y={svgH - padB - 8} textAnchor="end" fill="#63e2b7" fontSize="10">
-                    {refLoc.isCalibrated
-                      ? ru
-                        ? `Ориентир затухания BASS-II (<${effectiveLoi}% O₂)`
-                        : `BASS-II Schematic Ref (<${effectiveLoi}% O₂)`
-                      : ru
-                        ? "Ориентир BASS-II (только 0g, 101.3 кПа)"
-                        : "BASS-II schematic ref (0g, 101.3 kPa only)"}
-                  </text>
-                </>
-              ) : (
-                <>
-                  {(pressMax === 320 ? [50, 101, 150, 200, 250, 300] : [30, 50, 70, 90, 110]).map((pKpa) => {
-                    const x = pressToX(pKpa)
-                    return (
-                      <g key={pKpa}>
-                        <line x1={x} y1={padT} x2={x} y2={svgH - padB} stroke="rgba(255,255,255,0.06)" strokeDasharray="3 3" />
-                        <text x={x} y={svgH - 22} textAnchor="middle" fill="#8f8b87" fontSize="10">
-                          {pKpa}
-                        </text>
-                      </g>
-                    )
-                  })}
-                  <text x={padL + plotW / 2} y={svgH - 6} textAnchor="middle" fill="#b3aba3" fontSize="10.5">
-                    {ru
-                      ? "Давление отсека (кПа) · Конверт норм NASA SEA"
-                      : "Cabin Pressure (kPa) · NASA SEA Exploration Envelope"}
-                  </text>
-
-                  <polygon
-                    points={`${pressToX(25)},${o2ToY(46)} ${pressToX(125)},${o2ToY(46)} ${pressToX(125)},${o2ToY(21)} ${pressToX(56.5)},${o2ToY(34)} ${pressToX(25)},${o2ToY(36)}`}
-                    fill="rgba(232, 93, 74, 0.12)"
-                    stroke="rgba(232, 93, 74, 0.45)"
-                    strokeDasharray="5 3"
-                  />
-                  <rect
-                    x={pressToX(52)}
-                    y={o2ToY(36)}
-                    width={Math.max(4, pressToX(64) - pressToX(52))}
-                    height={o2ToY(30) - o2ToY(36)}
-                    rx="5"
-                    fill="rgba(255, 170, 76, 0.16)"
-                    stroke="#ffaa4c"
-                  />
-                  <text x={pressToX(58)} y={o2ToY(36) - 5} textAnchor="middle" fill="#ffbe73" fontSize="10" fontWeight="600">
-                    {ru ? "Луна SEA (34% O₂)" : "Lunar SEA (34% O₂)"}
-                  </text>
-                </>
-              )}
-
-              <text
-                x={14}
-                y={padT + plotH / 2}
-                textAnchor="middle"
-                fill="#b3aba3"
-                fontSize="10.5"
-                transform={`rotate(-90 14 ${padT + plotH / 2})`}
+            <div className="envelope-chart-scroll">
+              <svg
+                viewBox={`0 0 ${svgW} ${svgH}`}
+                className="envelope-svg"
+                role="img"
+                aria-label={ru ? "Двумерная карта режимов горения NASA PSI" : "NASA PSI 2D Combustion Regime Map"}
               >
-                O₂ (%)
-              </text>
-
-              {plottedRuns.length === 0 && (
-                <text
-                  x={padL + plotW / 2}
-                  y={padT + plotH / 2 - 4}
-                  textAnchor="middle"
-                  fill="#b3aba3"
-                  fontSize="11.5"
-                >
-                  {filteredRuns.length === 0
-                    ? ru
-                      ? "Для выбранной фазы топлива нет подтверждённых табличных прогонов"
-                      : "No primary-table test runs available for this fuel phase yet"
-                    : ru
-                      ? "У отфильтрованных прогонов давление в первичном отчёте не указано"
-                      : "No chamber pressure values reported for the filtered test runs"}
-                </text>
-              )}
-
-              {plottedRuns.map((run) => {
-                const cx =
-                  axisMode === "flow-o2" ? flowToX(run.flowCms) : pressToX(run.pressureKpa!)
-                const cy = o2ToY(run.o2Pct)
-                const isSelected = activeRun?.id === run.id
-                const color = REGIME_COLORS[run.regime]
-                return (
-                  <g
-                    key={run.id}
-                    className="psi-run-dot"
-                    onClick={() => setSelectedRunId(run.id)}
-                    onMouseEnter={() => setHoveredRunId(run.id)}
-                    onMouseLeave={() => setHoveredRunId(null)}
-                    style={{ cursor: "pointer" }}
-                  >
-                    {isSelected && (
-                      <circle cx={cx} cy={cy} r="10" fill="none" stroke="#fff" strokeWidth="1.5" strokeDasharray="2 2" />
-                    )}
-                    <circle
-                      cx={cx}
-                      cy={cy}
-                      r={isSelected ? "6" : "4.2"}
-                      fill={color}
-                      stroke="#141210"
-                      strokeWidth="1.5"
-                    />
-                    {isSelected && (
-                      <text
-                        x={cx > svgW - 140 ? cx - 9 : cx + 9}
-                        y={cy + 4}
-                        textAnchor={cx > svgW - 140 ? "end" : "start"}
-                        fill="#fff"
-                        fontSize="10.5"
-                        fontWeight="700"
-                      >
-                        {run.runCode}
+                {[15, 20, 25, 30, 35, 40, 45].map((o2Val) => {
+                  const y = o2ToY(o2Val)
+                  return (
+                    <g key={o2Val}>
+                      <line x1={padL} y1={y} x2={svgW - padR} y2={y} stroke="rgba(255,255,255,0.08)" strokeDasharray="3 3" />
+                      <text x={padL - 8} y={y + 4} textAnchor="end" fill="#b8becb" fontSize="11">
+                        {o2Val}%
                       </text>
-                    )}
-                  </g>
-                )
-              })}
+                    </g>
+                  )
+                })}
 
-              <line x1={userX} y1={padT} x2={userX} y2={svgH - padB} stroke="rgba(255,158,100,0.45)" strokeDasharray="3 3" />
-              <line x1={padL} y1={userY} x2={svgW - padR} y2={userY} stroke="rgba(255,158,100,0.45)" strokeDasharray="3 3" />
-              <circle cx={userX} cy={userY} r="11" fill="rgba(255, 158, 100, 0.22)" />
-              <circle cx={userX} cy={userY} r="5.5" fill="#ff9e64" stroke="#181412" strokeWidth="2" />
-              <rect
-                x={Math.min(svgW - 155, Math.max(padL + 4, userX + 8))}
-                y={Math.max(padT + 2, userY - 24)}
-                width="138"
-                height="20"
-                rx="5"
-                fill="#ff9e64"
-              />
-              <text
-                x={Math.min(svgW - 155, Math.max(padL + 4, userX + 8)) + 69}
-                y={Math.max(padT + 2, userY - 24) + 13.5}
-                textAnchor="middle"
-                fill="#181210"
-                fontSize="10"
-                fontWeight="700"
-              >
-                {axisMode === "flow-o2"
-                  ? `${flowCms} ${ru ? "см/с" : "cm/s"} · ${o2Pct}% O₂`
-                  : `${pressureKpa} ${ru ? "кПа" : "kPa"} · ${o2Pct}% O₂`}
-              </text>
-            </svg>
+                {axisMode === "flow-o2" ? (
+                  <>
+                    {[0, 10, 20, 30, 40, 50].map((fVal) => {
+                      const x = flowToX(fVal)
+                      return (
+                        <g key={fVal}>
+                          <line x1={x} y1={padT} x2={x} y2={svgH - padB} stroke="rgba(255,255,255,0.08)" strokeDasharray="3 3" />
+                          <text x={x} y={svgH - 22} textAnchor="middle" fill="#b8becb" fontSize="11">
+                            {fVal}
+                          </text>
+                        </g>
+                      )
+                    })}
+                    <text x={padL + plotW / 2} y={svgH - 5} textAnchor="middle" fill="#cfd5e2" fontSize="11.5">
+                      {ru
+                        ? "Скорость обдува (см/с) · ориентирная U-кривая NASA BASS-II"
+                        : "Forced Airflow Velocity (cm/s) · Schematic NASA BASS-II Ref"}
+                    </text>
+
+                    <polygon
+                      points={uCurveFillStr}
+                      fill={refLoc.isCalibrated ? "rgba(232, 93, 74, 0.1)" : "rgba(232, 93, 74, 0.04)"}
+                    />
+                    <polyline
+                      points={uCurvePointsStr}
+                      fill="none"
+                      stroke="#ff9e64"
+                      strokeWidth="2.4"
+                      strokeDasharray={refLoc.isCalibrated ? undefined : "6 4"}
+                      strokeOpacity={refLoc.isCalibrated ? 1 : 0.45}
+                    />
+
+                    <text x={svgW - padR - 8} y={padT + 14} textAnchor="end" fill="#ff9e8e" fontSize="11" fontWeight="600">
+                      {ru ? "Устойчивое горение" : "Sustained Flame Spread"}
+                    </text>
+                    <text x={svgW - padR - 8} y={svgH - padB - 8} textAnchor="end" fill="#63e2b7" fontSize="11">
+                      {refLoc.isCalibrated
+                        ? ru
+                          ? `Ориентир затухания BASS-II (<${effectiveLoi}% O₂)`
+                          : `BASS-II Schematic Ref (<${effectiveLoi}% O₂)`
+                        : ru
+                          ? "Ориентир BASS-II (только 0g, 101.3 кПа)"
+                          : "BASS-II schematic ref (0g, 101.3 kPa only)"}
+                    </text>
+                  </>
+                ) : (
+                  <>
+                    {(pressMax === 320 ? [50, 101, 150, 200, 250, 300] : [30, 50, 70, 90, 110]).map((pKpa) => {
+                      const x = pressToX(pKpa)
+                      return (
+                        <g key={pKpa}>
+                          <line x1={x} y1={padT} x2={x} y2={svgH - padB} stroke="rgba(255,255,255,0.08)" strokeDasharray="3 3" />
+                          <text x={x} y={svgH - 22} textAnchor="middle" fill="#b8becb" fontSize="11">
+                            {pKpa}
+                          </text>
+                        </g>
+                      )
+                    })}
+                    <text x={padL + plotW / 2} y={svgH - 5} textAnchor="middle" fill="#cfd5e2" fontSize="11.5">
+                      {ru
+                        ? "Давление отсека (кПа) · Конверт норм NASA SEA"
+                        : "Cabin Pressure (kPa) · NASA SEA Exploration Envelope"}
+                    </text>
+
+                    <polygon
+                      points={`${pressToX(25)},${o2ToY(46)} ${pressToX(125)},${o2ToY(46)} ${pressToX(125)},${o2ToY(21)} ${pressToX(56.5)},${o2ToY(34)} ${pressToX(25)},${o2ToY(36)}`}
+                      fill="rgba(232, 93, 74, 0.12)"
+                      stroke="rgba(232, 93, 74, 0.45)"
+                      strokeDasharray="5 3"
+                    />
+                    <rect
+                      x={pressToX(52)}
+                      y={o2ToY(36)}
+                      width={Math.max(4, pressToX(64) - pressToX(52))}
+                      height={o2ToY(30) - o2ToY(36)}
+                      rx="5"
+                      fill="rgba(255, 170, 76, 0.16)"
+                      stroke="#ffaa4c"
+                    />
+                    <text x={pressToX(58)} y={o2ToY(36) - 6} textAnchor="middle" fill="#ffbe73" fontSize="11" fontWeight="600">
+                      {ru ? "Луна SEA (34% O₂)" : "Lunar SEA (34% O₂)"}
+                    </text>
+                  </>
+                )}
+
+                <text
+                  x={15}
+                  y={padT + plotH / 2}
+                  textAnchor="middle"
+                  fill="#cfd5e2"
+                  fontSize="11.5"
+                  transform={`rotate(-90 15 ${padT + plotH / 2})`}
+                >
+                  O₂ (%)
+                </text>
+
+                {plottedRuns.length === 0 && (
+                  <text
+                    x={padL + plotW / 2}
+                    y={padT + plotH / 2 - 4}
+                    textAnchor="middle"
+                    fill="#cfd5e2"
+                    fontSize="12"
+                  >
+                    {filteredRuns.length === 0
+                      ? ru
+                        ? "Для выбранной фазы топлива нет подтверждённых табличных прогонов"
+                        : "No primary-table test runs available for this fuel phase yet"
+                      : ru
+                        ? "У отфильтрованных прогонов давление в первичном отчёте не указано"
+                        : "No chamber pressure values reported for the filtered test runs"}
+                  </text>
+                )}
+
+                {plottedRuns.map((run) => {
+                  const cx =
+                    axisMode === "flow-o2" ? flowToX(run.flowCms) : pressToX(run.pressureKpa!)
+                  const cy = o2ToY(run.o2Pct)
+                  const isSelected = activeRun?.id === run.id
+                  const color = REGIME_COLORS[run.regime]
+                  return (
+                    <g
+                      key={run.id}
+                      className="psi-run-dot"
+                      onClick={() => setSelectedRunId(run.id)}
+                      onMouseEnter={() => setHoveredRunId(run.id)}
+                      onMouseLeave={() => setHoveredRunId(null)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      {isSelected && (
+                        <circle cx={cx} cy={cy} r="11" fill="none" stroke="#fff" strokeWidth="1.6" strokeDasharray="2 2" />
+                      )}
+                      <circle
+                        cx={cx}
+                        cy={cy}
+                        r={isSelected ? "6.8" : "5"}
+                        fill={color}
+                        stroke="#141210"
+                        strokeWidth="1.5"
+                      />
+                      {isSelected && (
+                        <text
+                          x={cx > svgW - 150 ? cx - 11 : cx + 11}
+                          y={cy + 4}
+                          textAnchor={cx > svgW - 150 ? "end" : "start"}
+                          fill="#fff"
+                          fontSize="11.5"
+                          fontWeight="700"
+                        >
+                          {run.runCode}
+                        </text>
+                      )}
+                    </g>
+                  )
+                })}
+
+                <line x1={userX} y1={padT} x2={userX} y2={svgH - padB} stroke="rgba(255,158,100,0.45)" strokeDasharray="3 3" />
+                <line x1={padL} y1={userY} x2={svgW - padR} y2={userY} stroke="rgba(255,158,100,0.45)" strokeDasharray="3 3" />
+                <circle cx={userX} cy={userY} r="11" fill="rgba(255, 158, 100, 0.22)" />
+                <circle cx={userX} cy={userY} r="5.5" fill="#ff9e64" stroke="#181412" strokeWidth="2" />
+                <rect
+                  x={Math.min(svgW - 165, Math.max(padL + 4, userX + 8))}
+                  y={Math.max(padT + 2, userY - 26)}
+                  width="148"
+                  height="22"
+                  rx="5"
+                  fill="#ff9e64"
+                />
+                <text
+                  x={Math.min(svgW - 165, Math.max(padL + 4, userX + 8)) + 74}
+                  y={Math.max(padT + 2, userY - 26) + 14.5}
+                  textAnchor="middle"
+                  fill="#181210"
+                  fontSize="11"
+                  fontWeight="700"
+                >
+                  {axisMode === "flow-o2"
+                    ? `${flowCms} ${ru ? "см/с" : "cm/s"} · ${o2Pct}% O₂`
+                    : `${pressureKpa} ${ru ? "кПа" : "kPa"} · ${o2Pct}% O₂`}
+                </text>
+              </svg>
+            </div>
+
+            {plottedRuns.length > 0 && (
+              <div className="mobile-run-cards" role="list" aria-label={ru ? "Точки испытаний NASA PSI" : "NASA PSI test runs"}>
+                {plottedRuns.slice(0, 12).map((run) => {
+                  const isSelected = activeRun?.id === run.id
+                  return (
+                    <button
+                      key={run.id}
+                      type="button"
+                      className={`mobile-run-card ${isSelected ? "active" : ""}`}
+                      onClick={() => setSelectedRunId(run.id)}
+                    >
+                      <div className="mobile-run-card-top">
+                        <i style={{ background: REGIME_COLORS[run.regime] }} />
+                        <strong>{run.runCode}</strong>
+                        <span>{run.o2Pct}% O₂</span>
+                      </div>
+                      <small>
+                        {run.flowCms} {ru ? "см/с" : "cm/s"} · {ru ? run.fuelLabelRu : run.fuelLabel}
+                      </small>
+                    </button>
+                  )
+                })}
+              </div>
+            )}
 
             {omittedNoPressureCount > 0 && (
               <p className="muted" style={{ fontSize: "0.8rem", margin: "0.45rem 0 0" }}>

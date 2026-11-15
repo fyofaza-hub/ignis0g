@@ -19,6 +19,7 @@ import {
   ShieldCheck,
 } from "@/components/ui/icons"
 import { Button } from "@/components/ui/button"
+import { isStudySaved, localizeCategory, localizeFlowRegime, localizePillar, toggleSavedStudy } from "@/domain/knowledge"
 import flame from "@/assets/flex-flame.webp"
 import type { Finding, StudyConditions, StudyDetail, StudySummary } from "@/domain/types"
 import { useLocale, type Locale } from "@/i18n"
@@ -110,30 +111,31 @@ function StudyActions({
   isCompared,
   onToggleCompare,
   locale,
+  currentView,
 }: {
   study: StudySummary
   isCompared: boolean
   onToggleCompare: () => void
   locale: Locale
+  currentView?: View
 }) {
-  const storageKey = `ignis-saved-study-${study.id}`
-  const [saved, setSaved] = useState(() => localStorage.getItem(storageKey) === "true")
+  const [saved, setSaved] = useState(() => isStudySaved(study.id))
   const [notice, setNotice] = useState("")
 
   function toggleSaved() {
-    if (saved) localStorage.removeItem(storageKey)
-    else localStorage.setItem(storageKey, "true")
-    setSaved(!saved)
+    const next = toggleSavedStudy(study.id)
+    setSaved(next)
     setNotice(
-      saved
-        ? locale === "ru" ? "Удалено из закладок" : "Removed from bookmarks"
-        : locale === "ru" ? "Сохранено в закладках" : "Saved to bookmarks",
+      next
+        ? locale === "ru" ? "Сохранено в закладках" : "Saved to bookmarks"
+        : locale === "ru" ? "Удалено из закладок" : "Removed from bookmarks",
     )
   }
 
   async function share() {
     const url = new URL("/explorer", window.location.origin)
     url.searchParams.set("study", study.id)
+    if (currentView && currentView !== "overview") url.searchParams.set("tab", currentView)
     try {
       await navigator.clipboard.writeText(url.href)
       setNotice(locale === "ru" ? "Ссылка скопирована" : "Link copied")
@@ -254,20 +256,32 @@ function ExperimentSchematic({
 
 export function StudyPanel({
   studySummary,
+  studies = [],
   isCompared,
   onToggleCompare,
   onSelectStudy,
   onBackToCatalog,
   onView,
+  currentView,
 }: {
   studySummary: StudySummary
+  studies?: StudySummary[]
   isCompared: boolean
   onToggleCompare: () => void
   onSelectStudy: (id: string) => void
   onBackToCatalog: () => void
   onView: (view: View) => void
+  currentView?: View
 }) {
   const locale = useLocale()
+  const [selectedDatasetId, setSelectedDatasetId] = useState("")
+  const [selectedSeriesId, setSelectedSeriesId] = useState("")
+  const [prevStudyId, setPrevStudyId] = useState(studySummary.id)
+  if (studySummary.id !== prevStudyId) {
+    setPrevStudyId(studySummary.id)
+    setSelectedDatasetId("")
+    setSelectedSeriesId("")
+  }
   const [detailQuery, relationsQuery] = useQueries({
     queries: [studyQueries.detail(studySummary.id, locale), studyQueries.relations(studySummary.id, locale)],
   })
@@ -282,20 +296,32 @@ export function StudyPanel({
     ? conditions.diluents.join(", ")
     : undefined
 
+  const localizedTags = studySummary.tags.map((t) => localizePillar(t, locale))
+  const flowRegime =
+    typeof conditions.flow_regime === "string"
+      ? localizeFlowRegime(conditions.flow_regime, locale)
+      : undefined
+  const loiText =
+    conditions.loi_pct != null
+      ? locale === "ru" && String(conditions.loi_pct) === "< 1g"
+        ? "ниже, чем при 1g"
+        : String(conditions.loi_pct)
+      : undefined
+
   const parameters: [string, string | undefined][] = [
-    [locale === "ru" ? "Программа" : "Program", studySummary.category],
-    [locale === "ru" ? "Направление (Pillar)" : "Safety Pillar", studySummary.tags.join(", ") || undefined],
-    [locale === "ru" ? "Установка (Facility)" : "Facility / Rack", conditions.facility],
+    [locale === "ru" ? "Программа" : "Program", localizeCategory(studySummary.category, locale)],
+    [locale === "ru" ? "Направление" : "Safety Pillar", localizedTags.join(", ") || undefined],
+    [locale === "ru" ? "Установка" : "Facility / Rack", conditions.facility],
     [locale === "ru" ? "Топливо / образец" : "Fuel / Sample", conditions.fuel_material],
     [locale === "ru" ? "Размер образца" : "Sample Dimensions", conditions.sample_size_mm],
-    [locale === "ru" ? "Режим потока" : "Flow Regime", typeof conditions.flow_regime === "string" ? conditions.flow_regime : undefined],
+    [locale === "ru" ? "Режим потока" : "Flow Regime", flowRegime],
     [locale === "ru" ? "Концентрация O₂" : "O₂ Concentration", o2Text],
     [locale === "ru" ? "Давление" : "Pressure", pText],
     [locale === "ru" ? "Скорость потока" : "Airflow Velocity", flowText],
     [locale === "ru" ? "Разбавители" : "Diluents", diluents],
     [locale === "ru" ? "O₂ в потоке горелки (макс.)" : "Burner O₂ (max)", conditions.burner_o2_max_pct == null ? undefined : `${conditions.burner_o2_max_pct}%`],
-    ["LOI", conditions.loi_pct != null ? String(conditions.loi_pct) : undefined],
-    [locale === "ru" ? "Руководитель (PI)" : "Principal Investigator (PI)", conditions.principal_investigators],
+    [locale === "ru" ? "Предельный O₂ (LOI)" : "LOI", loiText],
+    [locale === "ru" ? "Научный руководитель" : "Principal Investigator (PI)", conditions.principal_investigators],
   ]
 
   return (
@@ -306,9 +332,9 @@ export function StudyPanel({
             {locale === "ru" ? "Все исследования" : "All Studies"}
           </button>
           <ChevronRight size={13} />
-          <span>{studySummary.category}</span>
+          <span>{localizeCategory(studySummary.category, locale)}</span>
           <ChevronRight size={13} />
-          <span>{studySummary.id}</span>
+          <span>{studySummary.title.split(" (")[0]}</span>
         </div>
 
         <div className="study-title-row">
@@ -319,13 +345,14 @@ export function StudyPanel({
             isCompared={isCompared}
             onToggleCompare={onToggleCompare}
             locale={locale}
+            currentView={currentView}
           />
         </div>
         <p>{detail?.description ?? studySummary.description}</p>
         <ul className="study-topics" aria-label={locale === "ru" ? "Темы и направления" : "Topics and safety pillars"}>
-          <li className="topic-program">{studySummary.category}</li>
+          <li className="topic-program">{localizeCategory(studySummary.category, locale)}</li>
           {studySummary.tags.map((tag) => (
-            <li key={tag}>{tag}</li>
+            <li key={tag}>{localizePillar(tag, locale)}</li>
           ))}
         </ul>
 
@@ -406,11 +433,24 @@ export function StudyPanel({
       </Tabs.Content>
 
       <Tabs.Content value="measurements" className="study-content">
-        <StudyMeasurements studyId={studySummary.id} />
+        <StudyMeasurements
+          studyId={studySummary.id}
+          selectedDatasetId={selectedDatasetId}
+          onSelectDatasetId={setSelectedDatasetId}
+          selectedSeriesId={selectedSeriesId}
+          onSelectSeriesId={setSelectedSeriesId}
+        />
       </Tabs.Content>
 
       <Tabs.Content value="visualization" className="study-content">
-        <StudyMeasurements studyId={studySummary.id} chart />
+        <StudyMeasurements
+          studyId={studySummary.id}
+          chart
+          selectedDatasetId={selectedDatasetId}
+          onSelectDatasetId={setSelectedDatasetId}
+          selectedSeriesId={selectedSeriesId}
+          onSelectSeriesId={setSelectedSeriesId}
+        />
         <StudyVideo studyId={studySummary.id} media={detail?.media ?? []} />
         <StudyNexusGraph studyId={studySummary.id} onSelectStudy={onSelectStudy} />
       </Tabs.Content>
@@ -449,12 +489,13 @@ export function StudyPanel({
             <ul className="relation-cards">
               {relationsQuery.data.map((rel) => {
                 const otherId = rel.from_study_id === studySummary.id ? rel.to_study_id : rel.from_study_id
+                const otherTitle = studies.find((s) => s.id === otherId)?.title.split(" (")[0] ?? otherId
                 return (
                   <li key={rel.id} className="relation-card">
                     <div className="relation-card-head">
                       <span className="relation-badge">{relationLabels[locale][rel.relation_type] ?? rel.relation_type}</span>
                       <button type="button" className="chip-btn" onClick={() => onSelectStudy(otherId)}>
-                        {otherId} <ChevronRight size={13} />
+                        {otherTitle} <ChevronRight size={13} />
                       </button>
                     </div>
                     <p>{rel.explanation}</p>
@@ -475,6 +516,10 @@ export function StudyPanel({
       <Tabs.Content value="safety" className="study-content">
         <StudySafety
           implications={detail?.safety_implications ?? []}
+          studyId={studySummary.id}
+          relations={relationsQuery.data ?? []}
+          studies={studies}
+          onSelectStudy={onSelectStudy}
         />
       </Tabs.Content>
     </>

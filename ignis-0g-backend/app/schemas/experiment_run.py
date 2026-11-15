@@ -23,6 +23,8 @@ class ExperimentRun(BaseModel):
     width_cm: Positive | None = None
     length_cm: Positive | None = None
     thickness_mm: Positive | None = None
+    initial_droplet_diameter_mm: Positive | None = None
+    burning_rate_constant_mm2_s: list[Nonnegative] | None = Field(default=None, min_length=1)
     burning_sides: Literal[1, 2] | None = None
     direction: Literal["concurrent", "opposed", "quiescent"]
     airflow_cms: list[Nonnegative] = Field(min_length=1)
@@ -43,8 +45,28 @@ class ExperimentRun(BaseModel):
     locator: str = Field(min_length=1)
     supplementary_url: HttpUrl | None = None
 
+    @model_validator(mode="before")
+    @classmethod
+    def upgrade_legacy_flex(cls, value):
+        # Compatibility for existing snapshots; all output uses dimensionally correct keys.
+        if isinstance(value, dict) and value.get("campaign") == "FLEX-1":
+            value = dict(value)
+            for old, new in (("thickness_mm", "initial_droplet_diameter_mm"),
+                             ("spread_rate_mm_s", "burning_rate_constant_mm2_s")):
+                if value.get(old) is not None:
+                    if value.get(new) is not None and value[new] != value[old]:
+                        raise ValueError(f"Conflicting legacy and canonical values: {new}")
+                    value[new], value[old] = value[old], None
+        return value
+
     @model_validator(mode="after")
     def check_observation_alignment(self):
+        if self.campaign != "FLEX-1" and (
+            self.initial_droplet_diameter_mm is not None or self.burning_rate_constant_mm2_s is not None
+        ):
+            raise ValueError("Droplet measurements require FLEX-1")
+        if self.burning_rate_constant_mm2_s is not None and len(self.burning_rate_constant_mm2_s) != 1:
+            raise ValueError("A droplet run reports one burning rate constant")
         count = len(self.airflow_cms)
         if (self.airflow_basis == "constant" and count != 1
                 or self.airflow_basis == "start_end" and count != 2

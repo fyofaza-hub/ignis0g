@@ -19,7 +19,7 @@ class Study(Base):
     tags: Mapped[list] = mapped_column(ARRAY(Text), nullable=False, server_default=text("'{}'::text[]"))
     conditions: Mapped[dict] = mapped_column(JSONB, nullable=False, server_default=text("'{}'::jsonb"))
     thumbnail_url: Mapped[str | None] = mapped_column(Text)
-    __table_args__ = (Index('ix_studies_tags_gin', 'tags', postgresql_using='gin'),)
+    __table_args__ = (Index('ix_studies_tags_gin', 'tags', postgresql_using='gin'), CheckConstraint("jsonb_typeof(conditions) = 'object'", name='ck_studies_conditions_object'))
 
 class Source(Base):
     __tablename__ = 'sources'

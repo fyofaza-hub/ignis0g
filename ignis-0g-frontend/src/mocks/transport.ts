@@ -98,7 +98,7 @@ function handleChat(body: ChatRequest): ChatResponse {
       title: src.title,
       url: src.url,
       excerpt: detail.findings[0]?.evidence ?? detail.description,
-      locator: detail.findings[0]?.locator ?? null,
+      locator: detail.findings[0]?.locator ?? detail.datasets[0]?.locator ?? null,
     }
     const o2 = meta?.conditions.o2_pct
     const p = meta?.conditions.pressure_kpa
@@ -184,8 +184,8 @@ function handleChat(body: ChatRequest): ChatResponse {
       source_id: src.id,
       title: src.title,
       url: src.url,
-      excerpt: study.description,
-      locator: det.findings[0]?.locator ?? null,
+      excerpt: det.findings[0]?.evidence || study.description,
+      locator: det.findings[0]?.locator ?? det.datasets[0]?.locator ?? null,
     }
   })
 
@@ -235,8 +235,8 @@ function handleCompare(body: CompareRequest): CompareResponse {
     source_id: d.sources[0].id,
     title: d.sources[0].title,
     url: d.sources[0].url,
-    excerpt: d.description,
-    locator: d.findings[0]?.locator ?? null,
+    excerpt: d.findings[0]?.evidence || d.description,
+    locator: d.findings[0]?.locator ?? d.datasets[0]?.locator ?? null,
   }))
 
   const similarities: CompareItem[] = []
@@ -391,6 +391,29 @@ export async function mockFetch(
         const group = scenario[key] >= range[0] && scenario[key] <= range[1] ? matched : outside
         group.push(key)
       }
+      const sourceUrls = [...new Set(detail?.sources.map((source) => source.url) ?? [])]
+      const runs = mockExperimentRuns[study.id] ?? []
+      const joint = runs
+        .filter(
+          (run) =>
+            scenario.gravity_g === 0 &&
+            run.oxygen_basis === "fixed" &&
+            run.airflow_basis === "constant" &&
+            run.pressure_atm !== null &&
+            Math.abs(run.oxygen_vol_pct[0] - scenario.o2_pct) <= 1e-8 &&
+            Math.abs(run.airflow_cms[0] - scenario.flow_cms) <= 1e-8 &&
+            Math.abs(run.pressure_atm * 101.325 - scenario.pressure_kpa) <= 1e-6,
+        )
+        .map((run) => `${run.campaign}/${run.run_id}`)
+
+      const limitations = ["range_matches_do_not_predict_fire_risk"]
+      if (!joint.length) limitations.push("joint_conditions_not_established")
+      if (unknown.length) limitations.push("missing_reported_parameters")
+      if (scenario.gravity_g > 0 && ranges.gravity_g?.[0] === 0 && ranges.gravity_g?.[1] === 0) {
+        limitations.push("microgravity_results_do_not_validate_partial_or_earth_gravity")
+      }
+      if (!sourceUrls.length) limitations.push("no_source_links")
+
       ranked.push({
         study_id: study.id,
         title: study.title,
@@ -401,8 +424,15 @@ export async function mockFetch(
         fuel,
         material: meta?.fuelMaterial ?? null,
         facility: meta?.facility ?? null,
-        source_urls: [...new Set(detail?.sources.map((source) => source.url) ?? [])],
+        source_urls: sourceUrls,
         score: 25 * matched.length,
+        ranking_version: "range-coverage-v1",
+        score_basis: "independent_catalog_ranges",
+        reported_parameter_count: keys.length - unknown.length,
+        source_count: sourceUrls.length,
+        run_count: runs.length,
+        jointly_reported_run_ids: joint,
+        limitations,
       })
     }
     return Response.json(

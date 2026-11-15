@@ -12,7 +12,8 @@ import {
   ShieldCheck,
 } from "@/components/ui/icons"
 import { Button } from "@/components/ui/button"
-import type { Dataset, Media, ModelingRun, SafetyImplication } from "@/domain/types"
+import { localizeProvenance } from "@/domain/knowledge"
+import type { Dataset, Media, ModelingRun, Relation, SafetyImplication, StudySummary } from "@/domain/types"
 import { useLocale, type Locale } from "@/i18n"
 import { QueryFailure, QueryLoading } from "./query-feedback"
 
@@ -88,12 +89,31 @@ export function ModelingRuns({ runs }: { runs: ModelingRun[] }) {
   )
 }
 
-export function StudyMeasurements({ studyId, chart = false }: { studyId: string; chart?: boolean }) {
+export function StudyMeasurements({
+  studyId,
+  chart = false,
+  selectedDatasetId: controlledDatasetId,
+  onSelectDatasetId,
+  selectedSeriesId: controlledSeriesId,
+  onSelectSeriesId,
+}: {
+  studyId: string
+  chart?: boolean
+  selectedDatasetId?: string
+  onSelectDatasetId?: (id: string) => void
+  selectedSeriesId?: string
+  onSelectSeriesId?: (id: string) => void
+}) {
   const locale = useLocale()
   const format = locale === "ru" ? formatRu : formatEn
   const query = useQuery(studyQueries.datasets(studyId, locale))
-  const [selectedDatasetId, setSelectedDatasetId] = useState<string>("")
-  const [selectedSeriesId, setSelectedSeriesId] = useState<string>("")
+  const [localDatasetId, setLocalDatasetId] = useState<string>("")
+  const [localSeriesId, setLocalSeriesId] = useState<string>("")
+
+  const selectedDatasetId = controlledDatasetId ?? localDatasetId
+  const selectedSeriesId = controlledSeriesId ?? localSeriesId
+  const setSelectedDatasetId = onSelectDatasetId ?? setLocalDatasetId
+  const setSelectedSeriesId = onSelectSeriesId ?? setLocalSeriesId
 
   const datasets = query.data ?? []
   const dataset = datasets.find((d) => d.id === selectedDatasetId) ?? datasets[0]
@@ -147,7 +167,8 @@ export function StudyMeasurements({ studyId, chart = false }: { studyId: string;
       ) : (
         <>
           <p className="muted">
-            {dataset.title} · {locale === "ru" ? "Происхождение:" : "Provenance:"} <strong>{dataset.provenance}</strong>
+            {dataset.title} · {locale === "ru" ? "Происхождение:" : "Provenance:"}{" "}
+            <strong>{localizeProvenance(dataset.provenance, locale)}</strong>
             {dataset.locator ? ` · ${dataset.locator}` : ""}
           </p>
           {dataset.notes && <p className="muted">{dataset.notes}</p>}
@@ -287,9 +308,9 @@ export function StudyNexusGraph({
           position: { x: 240, y: 150 },
           data: { label: n.label },
           style: {
-            background: "#fff0f7",
-            borderColor: "#d60060",
-            color: "#8f0042",
+            background: "#2b1e16",
+            borderColor: "#f5a16e",
+            color: "#fafafa",
             fontWeight: 600,
             borderRadius: 12,
             padding: 8,
@@ -307,8 +328,9 @@ export function StudyNexusGraph({
         },
         data: { label: n.label },
         style: {
-          background: "#ffffff",
-          borderColor: "#d8dde6",
+          background: "#1b1d25",
+          borderColor: "#3a3f4d",
+          color: "#ededed",
           borderRadius: 12,
           padding: 8,
           width: 175,
@@ -322,7 +344,9 @@ export function StudyNexusGraph({
       target: e.target,
       label: relationLabels[locale][e.type] ?? e.type,
       animated: e.type === "supports" || e.type === "complements",
-      style: { stroke: e.type === "contradicts" ? "#ad1834" : "#818a9a" },
+      labelStyle: { fill: "#c2c7d4", fontSize: 11 },
+      labelBgStyle: { fill: "#15171e", fillOpacity: 0.92 },
+      style: { stroke: e.type === "contradicts" ? "#ff7a6b" : "#7c8599" },
     }))
     return { nodes: flowNodes, edges: flowEdges }
   }, [graphQuery.data, studyId, locale])
@@ -375,8 +399,56 @@ export function StudyNexusGraph({
   )
 }
 
-export function StudySafety({ implications }: { implications: SafetyImplication[] }) {
+export function StudySafety({
+  implications,
+  studyId,
+  relations = [],
+  studies = [],
+  onSelectStudy,
+}: {
+  implications: SafetyImplication[]
+  studyId?: string
+  relations?: Relation[]
+  studies?: StudySummary[]
+  onSelectStudy?: (id: string) => void
+}) {
   const locale = useLocale()
+  const relatedPeers = relations
+    .map((rel) => {
+      const peerId = rel.from_study_id === studyId ? rel.to_study_id : rel.from_study_id
+      const peer = studies.find((s) => s.id === peerId)
+      return {
+        id: peerId,
+        title: peer ? peer.title : peerId,
+        explanation: rel.explanation,
+      }
+    })
+    .filter((item, idx, arr) => item.id !== studyId && arr.findIndex((x) => x.id === item.id) === idx)
+
+  const fallbackTech = [
+    {
+      match: ["same-same-r", "daft"],
+      url: "https://ntrs.nasa.gov/citations/20070031686",
+      label: "SAME & DAFT",
+      descRu: "исследуют частицы дыма и фоновые аэрозоли для разработки датчиков.",
+      descEn: "investigate smoke particle size distributions and background aerosols for spacecraft detector design.",
+    },
+    {
+      match: ["flex-1", "flex"],
+      url: "https://psi.nasa.gov/physci/repo/data/investigations/PSI-69",
+      label: "FLEX",
+      descRu: "изучает подавление пламени капель газами, включая CO₂ и He.",
+      descEn: "studies droplet flame suppression using gaseous agents including CO₂ and He.",
+    },
+    {
+      match: [],
+      url: "https://ntrs.nasa.gov/citations/20100001376",
+      label: locale === "ru" ? "Разработка водяного тумана для МКС" : "ISS Water Mist Portable Fire Extinguisher",
+      descRu: "— технология тушения для замкнутых космических и наземных отсеков.",
+      descEn: "— spacecraft fire-suppression technology transferable to enclosed compartments.",
+    },
+  ].filter((item) => !studyId || !item.match.includes(studyId))
+
   return (
     <section className="panel panel-padding">
       <h2>
@@ -394,28 +466,29 @@ export function StudySafety({ implications }: { implications: SafetyImplication[
             : "No standalone fire-safety implications are listed for this card yet. Open the primary sources or query the AI Assistant."}
         </p>
       )}
-      <h3>{locale === "ru" ? "Связанные технологии и исследования" : "Related Technologies & Investigations"}</h3>
+      <h3>{locale === "ru" ? "Связанные исследования и технологии" : "Related Investigations & Technologies"}</h3>
       <ul className="safety-list">
-        <li>
-          <a href="https://ntrs.nasa.gov/citations/20070031686" target="_blank" rel="noreferrer">SAME & DAFT</a>{" "}
-          {locale === "ru"
-            ? "исследуют частицы дыма и фоновые аэрозоли для разработки датчиков."
-            : "investigate smoke particle size distributions and background aerosols for spacecraft detector design."}
-        </li>
-        <li>
-          <a href="https://psi.nasa.gov/physci/repo/data/investigations/PSI-69" target="_blank" rel="noreferrer">FLEX</a>{" "}
-          {locale === "ru"
-            ? "изучает подавление пламени капель газами, включая CO₂ и He."
-            : "studies droplet flame suppression using gaseous agents including CO₂ and He."}
-        </li>
-        <li>
-          <a href="https://ntrs.nasa.gov/citations/20100001376" target="_blank" rel="noreferrer">
-            {locale === "ru" ? "Разработка водяного тумана для МКС" : "ISS Water Mist Portable Fire Extinguisher"}
-          </a>{" "}
-          {locale === "ru"
-            ? "— отдельная технология, которую можно рассмотреть для замкнутых помещений на Земле."
-            : "— spacecraft fire-suppression technology transferable to enclosed terrestrial compartments."}
-        </li>
+        {relatedPeers.map((peer) => (
+          <li key={peer.id}>
+            {onSelectStudy ? (
+              <button type="button" className="compare-study-link" onClick={() => onSelectStudy(peer.id)}>
+                {peer.title}
+              </button>
+            ) : (
+              <strong>{peer.title}</strong>
+            )}
+            {" — "}
+            {peer.explanation}
+          </li>
+        ))}
+        {fallbackTech.map((tech) => (
+          <li key={tech.url}>
+            <a href={tech.url} target="_blank" rel="noreferrer">
+              {tech.label}
+            </a>{" "}
+            {locale === "ru" ? tech.descRu : tech.descEn}
+          </li>
+        ))}
       </ul>
     </section>
   )

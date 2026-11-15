@@ -64,7 +64,7 @@ interface ApiClient {
 
 const rawBase = (import.meta.env.VITE_API_BASE_URL || "/api/v1").replace(/\/+$/, "")
 const apiBaseUrl = rawBase === "/api" ? "/api/v1" : rawBase
-export const useMocks = import.meta.env.VITE_USE_MOCKS !== "false"
+export const useMocks = import.meta.env.VITE_USE_MOCKS === "true"
 
 async function request<T>(
   path: string,
