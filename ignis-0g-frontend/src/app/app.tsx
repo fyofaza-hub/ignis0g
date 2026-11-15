@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useSyncExternalStore } from "react"
+import { useEffect, useRef, useState, useSyncExternalStore, type CSSProperties } from "react"
 import { Tabs } from "radix-ui"
 import { useQuery } from "@tanstack/react-query"
 import { Button } from "@/components/ui/button"
@@ -160,6 +160,7 @@ export function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [inspectorOpen, setInspectorOpen] = useState(false)
   const [inspectorExpanded, setInspectorExpanded] = useState(false)
+  const [inspectorWidth, setInspectorWidth] = useState<number | null>(null)
   const [compareNotice, setCompareNotice] = useState<string | null>(null)
   const previousSectionRef = useRef<Section>("Дашборд и рейтинг")
 
@@ -343,7 +344,7 @@ export function App() {
 
         <QuickSearchDialog dialog={searchDialog} studies={studies} onSelectStudy={selectStudy} />
 
-        <div className="workspace-grid" data-inspector={!assistantPage && inspectorExpanded}>
+        <div className="workspace-grid" data-inspector={!assistantPage && inspectorExpanded} style={inspectorWidth === null ? undefined : { "--chat-width": `${inspectorWidth}px` } as CSSProperties}>
           <WorkspacePane
             id="catalog-dialog"
             label={ru ? "Навигация" : "Navigation"}
@@ -539,6 +540,8 @@ export function App() {
               expanded={inspectorExpanded}
               drawer={inspectorOpen}
               onClose={() => setInspectorOpen(false)}
+              resizeWidth={inspectorWidth}
+              onResize={setInspectorWidth}
             >
               <AssistantChat
                 chat={chat}

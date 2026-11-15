@@ -10,6 +10,8 @@ export function WorkspacePane({
   expanded,
   drawer,
   onClose,
+  resizeWidth,
+  onResize,
   children,
 }: {
   id: string
@@ -19,11 +21,21 @@ export function WorkspacePane({
   expanded: boolean
   drawer: boolean
   onClose: () => void
+  resizeWidth?: number | null
+  onResize?: (width: number) => void
   children: ReactNode
 }) {
   const ref = useRef<HTMLDialogElement>(null)
   const locale = useLocale()
   const ru = locale === "ru"
+
+  function resize(clientX: number) {
+    const right = ref.current?.getBoundingClientRect().right ?? window.innerWidth
+    const max = window.innerWidth <= breakpoint
+      ? window.innerWidth * 0.94
+      : window.innerWidth - 550
+    onResize?.(Math.round(Math.max(300, Math.min(max, right - clientX))))
+  }
 
   useEffect(() => {
     const query = window.matchMedia(`(max-width: ${breakpoint}px)`)
@@ -62,6 +74,32 @@ export function WorkspacePane({
         if (event.target === event.currentTarget && event.currentTarget.matches(":modal")) onClose()
       }}
     >
+      {onResize && (
+        <div
+          className="pane-resize-handle"
+          role="separator"
+          aria-orientation="vertical"
+          aria-label={ru ? "Изменить ширину чата" : "Resize chat"}
+          aria-valuemin={300}
+          aria-valuemax={Math.max(300, Math.floor(window.innerWidth <= breakpoint ? window.innerWidth * 0.94 : window.innerWidth - 550))}
+          aria-valuenow={resizeWidth ?? Math.round(Math.min(window.innerWidth * 0.32, 500))}
+          tabIndex={0}
+          onPointerDown={(event) => {
+            if (event.button !== 0) return
+            event.preventDefault()
+            event.currentTarget.setPointerCapture(event.pointerId)
+          }}
+          onPointerMove={(event) => {
+            if (event.currentTarget.hasPointerCapture(event.pointerId)) resize(event.clientX)
+          }}
+          onKeyDown={(event) => {
+            if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return
+            event.preventDefault()
+            const rect = ref.current?.getBoundingClientRect()
+            if (rect) resize(rect.left + (event.key === "ArrowLeft" ? -20 : 20))
+          }}
+        />
+      )}
       <div className="pane-drawer-heading">
         <strong>{label}</strong>
         <button
