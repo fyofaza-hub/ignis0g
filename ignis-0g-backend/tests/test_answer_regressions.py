@@ -347,7 +347,7 @@ def test_english_prompts_avoid_cyrillic_and_set_explicit_response_language():
     assert json.loads(cmp_ru_msgs[1]["content"])["response_language"] == "Russian"
 
 
-def test_english_requests_retry_if_model_replies_in_russian():
+def test_chat_and_comparison_do_not_translate_wrong_language_output():
     from app.schemas.assistant import CompareRequest
 
     class Repository:
@@ -388,10 +388,9 @@ def test_english_requests_retry_if_model_replies_in_russian():
         chat_res = await RagService(MockEmbedding(), None, chat_llm, RagSettings(), Repository()).ask(
             ChatRequest(message="What did FLEX-1 observe?")
         )
-        assert len(chat_llm.messages) == 2
-        assert chat_res.status == "answered"
-        assert "FLEX-1 observed steady cool flames" in chat_res.answer
-        assert chat_res.suggested_questions == ["What fuels sustained the cool flame?"]
+        assert len(chat_llm.messages) == 1
+        assert chat_res.status == "insufficient_evidence"
+        assert not chat_res.citations
 
         cmp_llm = MockLLM([
             {
@@ -412,10 +411,9 @@ def test_english_requests_retry_if_model_replies_in_russian():
         cmp_res = await RagService(MockEmbedding(), None, cmp_llm, RagSettings(), CompareRepo()).compare(
             CompareRequest(study_ids=["flex-1", "acme-bre"], focus="Compare extinction regimes", locale="ru")
         )
-        assert len(cmp_llm.messages) == 2
-        assert cmp_res.status == "answered"
-        assert "FLEX-1 and ACME BRE" in cmp_res.summary
-        assert cmp_res.similarities[0].text.startswith("Both ran in microgravity")
+        assert len(cmp_llm.messages) == 1
+        assert cmp_res.status == "insufficient_evidence"
+        assert not cmp_res.citations
 
     asyncio.run(run())
 

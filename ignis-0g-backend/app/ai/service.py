@@ -1,15 +1,17 @@
 import asyncio
-import json
 import logging
 import re
 from time import monotonic
 from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, ValidationError
+from pydantic_core import from_json
 
 from app.ai.embeddings import vector_parameter
 from app.ai.ingestion import index_revision
+from app.ai.language import notice_language
 from app.ai.prompts import (
+    ResponseLanguage,
     build_compare_messages,
     build_messages,
     chat_response_language,
@@ -17,7 +19,9 @@ from app.ai.prompts import (
     repair_answer_messages,
     rewrite_messages,
 )
-from app.ai.providers import EmbeddingProvider, LLMProvider, ProviderUnavailable, RerankerProvider
+from app.ai.providers import (
+    EmbeddingProvider, LLMProvider, ProviderUnavailable, RerankerProvider, StreamingLLMProvider, TextDelta,
+)
 from app.ai.retrieval import Evidence, PgVectorRepository, named_studies, section_pattern
 from app.ai.settings import RagSettings, settings_from_env
 from app.ai.wiring import configured_providers
@@ -52,11 +56,11 @@ class GroundedComparison(BaseModel):
 def insufficient_evidence(
     question: str = "", *, suggestions: list[str] | None = None,
 ) -> ChatResponse:
-    russian = not question or bool(re.search(r"[А-Яа-яЁё]", question))
-    message = (
-        "В доступных источниках пока нет сведений, на которые можно опереться для ответа."
-        if russian else "I couldn’t find enough evidence in the available sources to answer this question."
-    )
+    message = {
+        "ru": "В доступных источниках пока нет сведений, на которые можно опереться для ответа.",
+        "kk": "Қолжетімді дереккөздерде бұл сұраққа жауап беруге жеткілікті мәлімет жоқ.",
+        "en": "I couldn’t find enough evidence in the available sources to answer this question.",
+    }[notice_language(question)]
     return ChatResponse(
         status="insufficient_evidence",
         answer=message,
@@ -71,11 +75,11 @@ def invalid_answer(question: str, reason: str) -> ChatResponse:
     # from missing scientific evidence in the user-facing message.
     logger.warning("rag stage=validation outcome=%s", reason)
     response = insufficient_evidence(question)
-    response.answer = (
-        "Не удалось проверить формат ответа и ссылки на источники. Повторите запрос."
-        if not question or re.search(r"[А-Яа-яЁё]", question)
-        else "Could not verify the answer format and source references. Please try again."
-    )
+    response.answer = {
+        "ru": "Не удалось проверить формат ответа и ссылки на источники. Повторите запрос.",
+        "kk": "Жауаптың пішімін және дереккөздерге сілтемелерді тексеру мүмкін болмады. Қайта сұрап көріңіз.",
+        "en": "Could not verify the answer format and source references. Please try again.",
+    }[notice_language(question)]
     return response
 
 
@@ -99,11 +103,11 @@ def insufficient_evidence_compare(
     focus: str | None = None,
     locale: Literal["en", "ru"] | None = None,
 ) -> CompareResponse:
-    russian = compare_response_language(focus, locale) == "Russian"
-    summary = (
-        "В проиндексированных источниках недостаточно данных для прямого ИИ-сравнения выбранных экспериментов."
-        if russian else "Insufficient indexed evidence to compare the selected experiments."
-    )
+    summary = {
+        "Russian": "В проиндексированных источниках недостаточно данных для прямого ИИ-сравнения выбранных экспериментов.",
+        "Kazakh": "Таңдалған тәжірибелерді салыстыруға индекстелген дереккөздерде мәлімет жеткіліксіз.",
+        "English": "Insufficient indexed evidence to compare the selected experiments.",
+    }[compare_response_language(focus, locale)]
     return CompareResponse(
         status="insufficient_evidence",
         summary=summary,
@@ -128,7 +132,7 @@ class RagService:
         self.settings = settings
         self.repository = repository
 
-    async def ask(self, request: ChatRequest) -> ChatResponse:
+    async def ask(self, request: ChatRequest, *, on_delta: TextDelta | None = None) -> ChatResponse:
         started = monotonic()
         revision = index_revision(self.embedding, self.settings)
         if not await self.repository.has_chunks(request, revision):
@@ -184,12 +188,14 @@ class RagService:
         )
         logger.info("rag stage=generation context_count=%d", len(context))
         target_language = chat_response_language(request.message, request.history)
-        messages = build_messages(request, context)
-        raw = await self._generate_in_expected_language(
-            messages,
-            target_language=target_language,
-            fields=("answer", "suggested_questions"),
-        )
+        streaming = on_delta is not None and isinstance(self.llm, StreamingLLMProvider)
+        messages = build_messages(request, context, streaming=streaming)
+        if on_delta is not None and isinstance(self.llm, StreamingLLMProvider):
+            raw = await self.llm.generate_stream(messages, answer_deltas(on_delta))
+        else:
+            raw = await self.llm.generate(messages)
+        if target_language == "English" and _response_has_unexpected_cyrillic(raw, ("answer",)):
+            return invalid_answer(request.message, "unexpected_response_language")
         result, reason = _validate_answer_detail(raw, context, request.message)
         if reason in _REPAIRABLE_REASONS and isinstance(raw, dict):
             result = await self._repair_invalid_answer(
@@ -206,7 +212,7 @@ class RagService:
         question: str,
         fallback_result: ChatResponse,
         reason: str,
-        target_language: Literal["English", "Russian"],
+        target_language: ResponseLanguage,
         *,
         started: float | None = None,
     ) -> ChatResponse:
@@ -248,36 +254,6 @@ class RagService:
             current_reason = next_reason
             current_fallback = repaired_result
         return current_fallback
-
-    async def _generate_in_expected_language(
-        self,
-        messages: list[dict[str, str]],
-        *,
-        target_language: Literal["English", "Russian"],
-        fields: tuple[str, ...],
-    ) -> object:
-        raw = await self.llm.generate(messages)
-        if target_language == "English" and _response_has_unexpected_cyrillic(raw, fields):
-            logger.info("rag stage=language_retry target=English")
-            retry_messages = [
-                *messages,
-                {"role": "assistant", "content": json.dumps(raw, ensure_ascii=False)},
-                {
-                    "role": "user",
-                    "content": (
-                        "Rewrite the exact same JSON response strictly in English. "
-                        "Keep the exact same scientific facts, citation numbers [n], and JSON schema, "
-                        "and remove all Cyrillic/Russian text."
-                    ),
-                },
-            ]
-            try:
-                retried = await self.llm.generate(retry_messages)
-            except ProviderUnavailable:
-                return raw
-            if isinstance(retried, dict):
-                return retried
-        return raw
 
     async def compare(self, request: CompareRequest) -> CompareResponse:
         started = monotonic()
@@ -341,23 +317,50 @@ class RagService:
         context = select_context(
             interleaved, context_limit, question=f"{' '.join(request.study_ids)} {query}", diversify=True,
         )
-        raw = await self._generate_in_expected_language(
-            build_compare_messages(request, context),
-            target_language=compare_response_language(request.focus, request.locale),
-            fields=("summary", "similarities", "differences", "limitations"),
-        )
+        raw = await self.llm.generate(build_compare_messages(request, context))
+        if compare_response_language(request.focus, request.locale) == "English" and _response_has_unexpected_cyrillic(
+            raw, ("summary", "similarities", "differences", "limitations"),
+        ):
+            return insufficient_evidence_compare(request.focus, request.locale)
         result = validate_comparison(raw, context, request.focus, request.locale)
         logger.info("rag compare outcome=%s citations=%d elapsed_ms=%d", result.status, len(result.citations), (monotonic() - started) * 1000)
         return result
 
 
-async def ask(request: ChatRequest) -> ChatResponse:
+def answer_deltas(emit: TextDelta) -> TextDelta:
+    """Extract only the user-facing text from incomplete JSON."""
+    buffer = ""
+    previous = ""
+
+    async def feed(fragment: str) -> None:
+        nonlocal buffer, previous
+        buffer += fragment
+        value = buffer.lstrip()
+        if value.startswith("```json"):
+            value = value[7:].lstrip()
+        try:
+            partial = from_json(value, allow_partial="trailing-strings")
+        except ValueError:
+            return
+        if not isinstance(partial, dict) or partial.get("status") != "answered":
+            return
+        answer = partial.get("answer")
+        if isinstance(answer, str) and answer.startswith(previous) and answer != previous:
+            await emit(answer[len(previous):])
+            previous = answer
+
+    return feed
+
+
+async def ask(request: ChatRequest, *, on_delta: TextDelta | None = None) -> ChatResponse:
     if request.study_id is None:
         message = request.message.casefold().rstrip(".!?…").rstrip()
         if message in {"привет", "здравствуй", "здравствуйте", "доброе утро", "добрый день", "добрый вечер"}:
             greeting = "Привет! Чем помочь? Можно спросить об экспериментах NASA или горении в микрогравитации."
         elif message in {"hi", "hello", "hey", "good morning", "good afternoon", "good evening"}:
             greeting = "Hello! How can I help? Ask me about NASA experiments or combustion in microgravity."
+        elif message in {"сәлем", "сәлеметсіз бе", "қайырлы таң", "қайырлы күн", "қайырлы кеш"}:
+            greeting = "Сәлем! Қалай көмектесе аламын? NASA тәжірибелері немесе микрогравитациядағы жану туралы сұрай аласыз."
         else:
             greeting = None
 
@@ -372,7 +375,7 @@ async def ask(request: ChatRequest) -> ChatResponse:
 
     settings = settings_from_env()
     async with configured_providers(settings) as (embedding, reranker, llm):
-        return await RagService(embedding, reranker, llm, settings, PgVectorRepository()).ask(request)
+        return await RagService(embedding, reranker, llm, settings, PgVectorRepository()).ask(request, on_delta=on_delta)
 
 
 async def compare(request: CompareRequest) -> CompareResponse:
@@ -525,11 +528,11 @@ def _validate_answer_detail(raw: object, evidence: list[Evidence], question: str
     if result.basis == "general_knowledge":
         if not answer or indices or markers or re.search(r"<(?:/?[A-Za-z]|!--)", answer):
             return invalid_answer(question, "ungrounded_general_answer"), "ungrounded_general_answer"
-        label = (
-            "Общие знания — пояснение вне загруженных исследований."
-            if not question or re.search(r"[А-Яа-яЁё]", question)
-            else "General knowledge — explanation outside the uploaded studies."
-        )
+        label = {
+            "ru": "Общие знания — пояснение вне загруженных исследований.",
+            "kk": "Жалпы мәлімет — бұл түсіндірме жүктелген зерттеулерге негізделмеген.",
+            "en": "General knowledge — explanation outside the uploaded studies.",
+        }[notice_language(question)]
         return (
             ChatResponse(
                 status="answered",
