@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState } from "react"
-import { ArrowRight, BookOpen, FlaskConical, Menu, Network, Search, X } from "@/components/ui/icons"
+import { ArrowRight, Menu, Network, Search, X } from "@/components/ui/icons"
 import { api } from "@/api/client"
-import flame from "@/assets/flex-flame.webp"
 import type { StudySummary } from "@/domain/types"
 import { LanguageSwitch, useLocale, type Locale } from "@/i18n"
-import { catalogEntry, getResearch, topics } from "@/mocks/catalog"
-import { ResearchFlow, WorkflowFlow, studyUrl } from "./research-flow"
+import { catalogEntry, getResearch } from "@/mocks/catalog"
+import { studyUrl } from "./research-flow"
 import "./landing.css"
 
 const summaries: Record<Locale, Record<string, string>> = {
@@ -32,7 +31,7 @@ function Brand({ locale }: { locale: Locale }) {
     <a className="landing-brand" href="/" aria-label={locale === "ru" ? "IGNIS 0G — главная" : "IGNIS 0G home"}>
       <img src="/ignis-logo.png" alt="" width={28} height={28} style={{ borderRadius: 6 }} />
       <span>
-        <span style={{ color: "#000000" }}>IGNIS</span>{" "}
+        <span style={{ color: "#ededed" }}>IGNIS</span>{" "}
         <span style={{ color: "var(--brand)" }}>0G</span>
       </span>
     </a>
@@ -116,15 +115,13 @@ export function Landing() {
   const locale = useLocale()
   const dialog = useRef<HTMLDialogElement>(null)
   const [menuOpen, setMenuOpen] = useState(false)
-  const [featuredId, setFeaturedId] = useState("flex-1")
   const researchList = getResearch(locale)
-  const featured = researchList.find(({ id }) => id === featuredId) ?? researchList[0]
 
   const navigation = [
-    { href: "#start", label: locale === "ru" ? "С чего начать" : "Quickstart" },
+    { href: "#start", label: locale === "ru" ? "О проекте" : "Overview" },
     { href: "#workflow", label: locale === "ru" ? "Как пользоваться" : "Workflow" },
     { href: "#catalog", label: locale === "ru" ? "Эксперименты" : "Experiments" },
-    { href: "#about", label: locale === "ru" ? "О проекте" : "About" },
+    
   ]
 
   useEffect(() => {
@@ -198,228 +195,62 @@ export function Landing() {
       </header>
       <ExperimentSearch dialog={dialog} locale={locale} />
 
-      <main id="landing-main">
-        <section className="landing-hero" aria-labelledby="landing-title">
-          <div className="landing-container landing-hero-inner">
-            <div className="landing-pitch">
-              <h1 id="landing-title">
-                {locale === "ru" ? (
-                  <>
-                    Огонь в<br /> <em>невесомости</em>
-                  </>
-                ) : (
-                  <>
-                    Explore fire in<br /> <em>microgravity</em>
-                  </>
-                )}
-              </h1>
-              <p>
-                {locale === "ru"
-                  ? "Исследуйте, как в космосе горят материалы, появляется дым и гаснет пламя. В каждом эксперименте собраны результаты и ссылки на источники NASA."
-                  : "Discover how flames take shape, spread, and go out through NASA experiments in space."}
-              </p>
-              <div className="landing-actions">
-                <a className="landing-button" href="/explorer">
-                  <Network size={19} /> {locale === "ru" ? "Открыть Explorer" : "Open Explorer"}
-                </a>
-                <a className="landing-button landing-outline" href="/explorer?section=studies">
-                  <FlaskConical size={19} /> {locale === "ru" ? "Смотреть исследования" : "Browse studies"}
-                </a>
-              </div>
-            </div>
-            <ResearchFlow />
+      <main id="landing-main" className="landing-container landing-simple">
+        <section className="simple-hero" id="start">
+          <p className="simple-eyebrow">NASA SPACE APPS CHALLENGE · FLAME IN FREEFALL</p>
+          <h1>{locale === "ru" ? <>Огонь в<br /><em>невесомости</em></> : <>Fire in<br /><em>microgravity</em></>}</h1>
+          <p className="simple-intro">{locale === "ru"
+            ? "Исследования NASA о горении, дыме и тушении в космосе — в одном пространстве для поиска и сравнения."
+            : "NASA research on combustion, smoke, and extinguishment in space, brought together for exploration and comparison."}</p>
+          <div className="landing-actions">
+            <a className="landing-button" href="/explorer">{locale === "ru" ? "Открыть Explorer" : "Open Explorer"} <ArrowRight size={18} /></a>
+            <a className="simple-link" href="#workflow">{locale === "ru" ? "Как это работает" : "How it works"} <ArrowRight size={17} /></a>
           </div>
         </section>
 
-        <section className="landing-container landing-stats" aria-label={locale === "ru" ? "Обзор каталога" : "Catalog overview"}>
-          <dl>
-            <div>
-              <dt>{locale === "ru" ? "Избранные эксперименты" : "Featured experiments"}</dt>
-              <dd>{researchList.length}</dd>
-            </div>
-            <div>
-              <dt>{locale === "ru" ? "Направления" : "Research topics"}</dt>
-              <dd>{topics.length}</dd>
-            </div>
-            <div>
-              <dt>{locale === "ru" ? "Программа" : "Research program"}</dt>
-              <dd>NASA</dd>
-            </div>
-          </dl>
-          <div>
-            <p>
-              {locale === "ru"
-                ? "IGNIS 0G объединяет эксперименты по горению в космосе, их результаты и первоисточники NASA."
-                : "IGNIS 0G brings together experiments on fire in space, their findings, and the sources behind them."}
-            </p>
-            <a className="landing-button landing-outline" href="#catalog">
-              <BookOpen size={18} /> {locale === "ru" ? "Смотреть каталог" : "View catalog"}
-            </a>
+        <section id="workflow" className="simple-section">
+          <div className="simple-section-heading">
+            <p className="simple-eyebrow">{locale === "ru" ? "ВОЗМОЖНОСТИ" : "CAPABILITIES"}</p>
+            <h2>{locale === "ru" ? "От вопроса к исследованию" : "From question to research"}</h2>
           </div>
-        </section>
-
-        <section id="start" className="landing-container">
-          <div className="landing-dark landing-quickstart">
-            <h2>{locale === "ru" ? "С чего начать в IGNIS 0G" : "Getting started with IGNIS 0G"}</h2>
-            <p>
-              {locale === "ru"
-                ? "Выберите эксперимент. На его странице можно посмотреть условия, результаты и первоисточники."
-                : "Pick an experiment to open its overview, findings, and sources."}
-            </p>
-            <div className="landing-terminal">
-              <div className="landing-terminal-dots" aria-hidden="true">
-                <i />
-                <i />
-                <i />
-              </div>
-              <a href={studyUrl("flex-1")}>
-                {locale === "ru" ? "Открыть" : "Open"} <strong>FLEX-1</strong> <ArrowRight size={17} />
-              </a>
-            </div>
-            <a href="/explorer?section=studies" className="landing-dark-footer">
-              {locale === "ru" ? "Посмотреть все исследования" : "Browse all studies"} <ArrowRight size={17} />
-            </a>
+          <div className="simple-features">
+            <article>
+              <h3>{locale === "ru" ? "Найдите эксперимент" : "Find an experiment"}</h3>
+              <p>{locale === "ru" ? "Ищите исследования по названию или теме и изучайте их условия, результаты и источники." : "Search studies by name or topic and explore their conditions, findings, and sources."}</p>
+              <button className="simple-link" type="button" onClick={() => dialog.current?.showModal()}>{locale === "ru" ? "Поиск экспериментов" : "Search experiments"} <ArrowRight size={16} /></button>
+            </article>
+            <article>
+              <h3>{locale === "ru" ? "Сравните условия" : "Compare conditions"}</h3>
+              <p>{locale === "ru" ? "Сопоставьте диапазоны кислорода, давления, обдува и гравитации с выбранным профилем." : "Compare published oxygen, pressure, airflow, and gravity ranges with a selected profile."}</p>
+              <a className="simple-link" href="/explorer?section=environments">{locale === "ru" ? "Условия среды" : "Explore environments"} <ArrowRight size={16} /></a>
+            </article>
+            <article>
+              <h3>{locale === "ru" ? "Изучите данные" : "Explore the data"}</h3>
+              <p>{locale === "ru" ? "Сравнивайте отдельные прогоны, переходите к первоисточникам и задавайте вопросы ИИ-ассистенту." : "Compare individual runs, follow source links, and ask the AI research assistant."}</p>
+              <a className="simple-link" href={studyUrl("bass-bass-ii-bass-m")}>{locale === "ru" ? "Открыть BASS" : "Explore BASS"} <ArrowRight size={16} /></a>
+            </article>
           </div>
+          <p className="simple-note">{locale === "ru" ? "Рейтинг показывает совпадение отдельных диапазонов. Он не подтверждает испытание всей комбинации условий и не является прогнозом пожара." : "Ranking reflects individual range matches. It does not establish that the combined conditions were tested or predict fire."}</p>
         </section>
 
-        <section className="landing-container landing-workflow" id="workflow" aria-label={locale === "ru" ? "Как пользоваться каталогом" : "Research workflow"}>
-          <article className="landing-feature">
-            <div>
-              <h2>{locale === "ru" ? "Найдите эксперимент" : "Start with a question"}</h2>
-              <p>
-                {locale === "ru"
-                  ? "Ищите по названию, сокращению или теме исследования."
-                  : "Search for an experiment by name or acronym, or narrow your search by topic."}
-              </p>
-              <button type="button" className="landing-button" onClick={() => dialog.current?.showModal()}>
-                {locale === "ru" ? "Найти эксперимент" : "Search experiments"}
-              </button>
-            </div>
-            <WorkflowFlow />
-          </article>
-          <article className="landing-feature landing-feature-reverse">
-            <div>
-              <h2>{locale === "ru" ? "Изучите результаты" : "Read the evidence"}</h2>
-              <p>
-                {locale === "ru"
-                  ? "Посмотрите, что проверяли исследователи, к каким выводам пришли и где опубликованы данные NASA."
-                  : "Review what a study tested, what it found, and where the results were published."}
-              </p>
-              <a className="landing-button" href={studyUrl("flex-1")}>
-                {locale === "ru" ? "Открыть FLEX-1" : "Explore FLEX-1"}
-              </a>
-            </div>
-            <figure className="landing-feature-image">
-              <img
-                src={flame}
-                alt={
-                  locale === "ru"
-                    ? "Иллюстрация синего сферического пламени вокруг капли топлива"
-                    : "Illustration of a spherical blue flame surrounding a fuel droplet"
-                }
-                loading="lazy"
-              />
-              <figcaption>{locale === "ru" ? "FLEX · иллюстрация пламени" : "FLEX · Flame illustration"}</figcaption>
-            </figure>
-          </article>
-          <article className="landing-feature">
-            <div>
-              <h2>{locale === "ru" ? "Сравните условия" : "Compare environments"}</h2>
-              <p>
-                {locale === "ru"
-                  ? "Узнайте, как концентрация кислорода, давление и тип топлива влияют на результаты разных экспериментов."
-                  : "See how oxygen concentration, cabin pressure, airflow, and fuel type shift experimental regimes across studies."}
-              </p>
-              <a className="landing-button" href="/explorer?section=environments">
-                {locale === "ru" ? "Посмотреть условия среды" : "Explore O₂ regimes"}
-              </a>
-            </div>
-            <WorkflowFlow overview />
-          </article>
-        </section>
-
-        <section className="landing-container" id="catalog" aria-labelledby="catalog-title">
-          <div className="landing-dark landing-showcase">
-            <div className="landing-showcase-heading">
-              <div>
-                <p>{locale === "ru" ? "Каталог экспериментов" : "Experiment catalog"}</p>
-                <h2 id="catalog-title">
-                  {locale === "ru" ? (
-                    <>
-                      Изучение огня<br />в космосе
-                    </>
-                  ) : (
-                    <>
-                      Studying fire<br />in space
-                    </>
-                  )}
-                </h2>
-              </div>
-              <div>
-                <p>
-                  {locale === "ru"
-                    ? "От горения одной капли топлива до пожара на грузовом корабле — каждый эксперимент отвечает на свой вопрос."
-                    : "From burning a single fuel droplet to tracking fire aboard a cargo spacecraft, each experiment answers a different question."}
-                </p>
-                <a className="landing-button landing-button-white" href="/explorer?section=studies">
-                  {locale === "ru" ? "Открыть каталог" : "Open catalog"}
-                </a>
-              </div>
-            </div>
-            <div className="landing-featured">
-              <div className="landing-featured-grid" aria-hidden="true">
-                <Network size={78} />
-              </div>
-              <div id="featured-experiment" aria-live="polite">
-                <strong>{catalogEntry(featured.id)?.code}</strong>
-                <h3>{featured.title}</h3>
-                <p>{summaries[locale][featured.id]}</p>
-                <a className="landing-button" href={studyUrl(featured.id)}>
-                  {locale === "ru" ? "Открыть эксперимент" : "Open experiment"} <ArrowRight size={16} />
-                </a>
-              </div>
-            </div>
-            <div className="landing-study-buttons" role="group" aria-label={locale === "ru" ? "Предпросмотр эксперимента" : "Preview an experiment"}>
-              {researchList.map(({ id }) => (
-                <button
-                  type="button"
-                  key={id}
-                  aria-pressed={id === featuredId}
-                  aria-controls="featured-experiment"
-                  onClick={() => setFeaturedId(id)}
-                >
-                  {catalogEntry(id)?.code}
-                </button>
-              ))}
-            </div>
+        <section className="simple-section" id="catalog">
+          <div className="simple-section-heading">
+            <p className="simple-eyebrow">{locale === "ru" ? "ИССЛЕДОВАНИЯ NASA" : "NASA RESEARCH"}</p>
+            <h2>{locale === "ru" ? "Избранные эксперименты" : "Featured experiments"}</h2>
+            <p>{locale === "ru" ? "От горения капель топлива до распространения огня на космическом корабле." : "From burning fuel droplets to fire spread aboard a spacecraft."}</p>
           </div>
-        </section>
-
-        <section className="landing-container landing-directory" aria-labelledby="directory-title">
-          <h2 id="directory-title">{locale === "ru" ? "Все эксперименты" : "All experiments"}</h2>
-          <ul>
+          <ul className="simple-studies">
             {researchList.map(({ id, title }) => (
               <li key={id}>
                 <a href={studyUrl(id)}>
                   <strong>{catalogEntry(id)?.code}</strong>
-                  <span>{title}</span>
-                  <ArrowRight size={17} />
+                  <span><b>{title}</b><small>{summaries[locale][id]}</small></span>
+                  <ArrowRight size={19} />
                 </a>
               </li>
             ))}
           </ul>
-        </section>
-
-        <section className="landing-container landing-about" id="about">
-          <h2>{locale === "ru" ? "О проекте IGNIS 0G" : "About IGNIS 0G"}</h2>
-          <p>
-            {locale === "ru"
-              ? "IGNIS 0G — каталог исследований горения в невесомости. Он помогает проследить выводы экспериментов до опубликованных источников NASA."
-              : "IGNIS 0G is a research workspace for exploring combustion in microgravity and tracing findings back to their sources."}
-          </p>
-          <a href="/explorer">
-            {locale === "ru" ? "Открыть Explorer" : "Open Explorer"} <ArrowRight size={16} />
-          </a>
+          <a className="simple-link simple-all" href="/explorer?section=studies">{locale === "ru" ? "Все исследования" : "All studies"} <ArrowRight size={17} /></a>
         </section>
       </main>
 
