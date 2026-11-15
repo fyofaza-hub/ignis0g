@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react"
-import { useQueries } from "@tanstack/react-query"
+import { useQueries, useQuery } from "@tanstack/react-query"
 import {
   AlertTriangle,
   ArrowRight,
@@ -21,7 +21,7 @@ import type { EnvAxisMode } from "@/domain/url-state"
 import { useLocale } from "@/i18n"
 import { ScenarioResults } from "./scenario-results"
 import { QueryFailure, QueryLoading } from "./query-feedback"
-import { useMocks } from "@/api/client"
+import { api, useMocks } from "@/api/client"
 import {
   OUTCOME_COLORS, OUTCOME_LABELS, axisFraction, chartAxis,
   filterExperimentPoints, representativePoints, scenarioEvidence, toExperimentPoints,
@@ -36,7 +36,14 @@ export interface EnvironmentsViewFilterState {
   onShowAllRunsChange: (next: boolean) => void
 }
 
-const DIGITIZED_RUN_STUDY_IDS = ["bass-bass-ii-bass-m", "saffire-i-iii", "flex-1"] as const
+const BASELINE_RANK_SCENARIO: Scenario = {
+  o2_pct: 21,
+  pressure_kpa: 101.325,
+  flow_cms: 0,
+  gravity_g: 0,
+  fuel: null,
+  pillar: null,
+}
 
 export function EnvironmentsView({
   scenario,
@@ -69,15 +76,28 @@ export function EnvironmentsView({
   const [showSchematic, setShowSchematic] = useState(false)
   const [hoveredRunId, setHoveredRunId] = useState<string | null>(null)
 
+  const rankIndexQuery = useQuery({
+    queryKey: ["studies", "digitized-runs-index"],
+    queryFn: ({ signal }) => api.rankScenario(BASELINE_RANK_SCENARIO, signal),
+    staleTime: 60_000,
+    gcTime: 60_000,
+  })
+  const digitizedStudyIds = useMemo(
+    () =>
+      (rankIndexQuery.data ?? [])
+        .filter((item) => (item.run_count ?? 0) > 0)
+        .map((item) => item.study_id),
+    [rankIndexQuery.data],
+  )
   const runQueries = useQueries({
-    queries: DIGITIZED_RUN_STUDY_IDS.map((id) => studyQueries.runs(id)),
+    queries: digitizedStudyIds.map((id) => studyQueries.runs(id)),
   })
   const digitizedRuns = useMemo(
     () =>
-      DIGITIZED_RUN_STUDY_IDS.flatMap((id, idx) =>
+      digitizedStudyIds.flatMap((id, idx) =>
         toExperimentPoints(id, runQueries[idx]?.data ?? []),
       ),
-    [runQueries],
+    [digitizedStudyIds, runQueries],
   )
 
   const o2Pct = scenario.o2_pct
@@ -92,8 +112,8 @@ export function EnvironmentsView({
   )
   const keyRuns = useMemo(() => representativePoints(allFilteredRuns), [allFilteredRuns])
   const filteredRuns = showAllRuns ? allFilteredRuns : keyRuns
-  const runsLoading = runQueries.some((query) => query.isPending)
-  const runsFailed = runQueries.some((query) => query.isError)
+  const runsLoading = rankIndexQuery.isPending || runQueries.some((query) => query.isPending)
+  const runsFailed = rankIndexQuery.isError || runQueries.some((query) => query.isError)
   const evidence = scenarioEvidence(allFilteredRuns, scenario)
 
   const plottedRuns = useMemo(() => {
@@ -504,8 +524,11 @@ export function EnvironmentsView({
             {runsLoading && <QueryLoading label={ru ? "Загрузка прогонов…" : "Loading experiment runs…"} />}
             {runsFailed && <QueryFailure
               label={ru ? "Часть прогонов не загружена; карта может быть неполной." : "Some runs could not be loaded; the map may be incomplete."}
-              fetching={runQueries.some((query) => query.isFetching)}
-              retry={() => { runQueries.forEach((query) => { if (query.isError) void query.refetch() }) }}
+              fetching={rankIndexQuery.isFetching || runQueries.some((query) => query.isFetching)}
+              retry={() => {
+                if (rankIndexQuery.isError) void rankIndexQuery.refetch()
+                runQueries.forEach((query) => { if (query.isError) void query.refetch() })
+              }}
             />}
             {showSchematic && axisMode === "flow-o2" && <p className="muted">
               {ru

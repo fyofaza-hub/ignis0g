@@ -183,7 +183,9 @@ test.describe("Ignis 0G scientific Explorer E2E workflows", () => {
     await setupApiRoutes(page)
     await page.goto("/explorer")
 
-    // 1. Open FLEX-1 study dossier from Dashboard
+    // 1. Open FLEX-1 study dossier from Dashboard (after expanding collapsed top-6 list)
+    await expect(page.locator(".ranking-card")).toHaveCount(6)
+    await page.getByRole("button", { name: /Show all \(21\)/i }).click()
     const flexCard = page.locator(".ranking-card", { hasText: "FLEX-1 (Flame Extinguishment Experiment)" })
     await flexCard.getByRole("button", { name: /^Open$/ }).click()
     await expect(page.getByRole("heading", { level: 1, name: /FLEX-1/ })).toBeVisible()
@@ -222,6 +224,10 @@ test.describe("Ignis 0G scientific Explorer E2E workflows", () => {
     await page.getByRole("navigation", { name: "Sections" }).getByRole("button", { name: "Overview" }).click()
     await page.getByRole("button", { name: "Lunar Base / Rover SEA" }).click()
     await expect(page).toHaveURL(/preset=lunar-base/)
+
+    await expect(page.locator(".ranking-card")).toHaveCount(6)
+    await page.getByRole("button", { name: /Show all \(21\)/i }).click()
+    await expect(page.locator(".ranking-card")).toHaveCount(21)
 
     const bassCard = page.locator(".ranking-card", { hasText: "BASS / BASS-II" })
     await bassCard.getByRole("button", { name: /^Compare$/ }).click()
@@ -497,5 +503,152 @@ test.describe("Ignis 0G scientific Explorer E2E workflows", () => {
     await runsLink.click()
     await expect(page).toHaveURL(/rcamp=BASS-II/)
     await expect(page.locator("#experiment-runs")).toContainText(/Showing 47 of 336 published test runs/)
+  })
+
+  test("honest pending indicator, HTTP share-link fallback, and API-driven environments run discovery", async ({ page }) => {
+    await page.addInitScript(() => {
+      Object.defineProperty(Navigator.prototype, "clipboard", { get: () => undefined, configurable: true })
+      document.execCommand = () => false
+      ;(window as unknown as { __promptedUrl?: string }).__promptedUrl = undefined
+      window.prompt = (_msg?: string, val?: string) => {
+        ;(window as unknown as { __promptedUrl?: string }).__promptedUrl = val
+        return null
+      }
+    })
+
+    await setupApiRoutes(page, async ({ apiPath, route }) => {
+      if (apiPath === "/assistant/chat") {
+        await new Promise((r) => setTimeout(r, 400))
+        await route.fulfill({
+          json: {
+            status: "answered",
+            answer: "FLEX-1 measured K values in microgravity [1].",
+            citations: [{
+              chunk_id: "00000000-0000-0000-0000-000000000011",
+              source_id: "00000000-0000-0000-0000-000000000012",
+              title: "FLEX-1 Report",
+              url: "https://ntrs.nasa.gov/citations/20150023456",
+              excerpt: "Burning rate constant K = 0.52 mm²/s",
+              locator: "Table IX",
+            }],
+            related_study_ids: ["flex-1"],
+            suggested_questions: [],
+          },
+        })
+        return true
+      }
+      if (apiPath === "/rank") {
+        await route.fulfill({
+          json: [{
+            study_id: "custom-new-study",
+            title: "Custom Dynamic Study",
+            o2_pct: [18, 25],
+            pressure_kpa: [95, 105],
+            flow_cms: [0, 15],
+            gravity_g: [0, 0],
+            matched: ["o2_pct", "pressure_kpa", "flow_cms", "gravity_g"],
+            outside: [],
+            unknown: [],
+            fuel: "solid",
+            material: "PMMA",
+            facility: "ISS",
+            source_urls: ["https://ntrs.nasa.gov/citations/20210011385"],
+            score: 100,
+            ranking_version: "range-coverage-v1",
+            score_basis: "independent_catalog_ranges",
+            reported_parameter_count: 4,
+            source_count: 1,
+            run_count: 1,
+            jointly_reported_run_ids: ["CUSTOM/R-1"],
+            limitations: [],
+          }],
+        })
+        return true
+      }
+      if (apiPath === "/studies/custom-new-study/runs") {
+        await route.fulfill({
+          json: [{
+            campaign: "BASS-II",
+            run_id: "R-1",
+            gravity_regime: "microgravity",
+            material: "PMMA",
+            geometry: "rod",
+            width_cm: null,
+            length_cm: null,
+            thickness_mm: null,
+            initial_droplet_diameter_mm: null,
+            burning_rate_constant_mm2_s: null,
+            burning_sides: null,
+            direction: "concurrent",
+            airflow_cms: [10],
+            airflow_basis: "constant",
+            oxygen_vol_pct: [21],
+            oxygen_basis: "fixed",
+            pressure_atm: 1.0,
+            spread_rate_mm_s: null,
+            burn_duration_s: null,
+            outcome: "ignited",
+            diagnostics: [],
+            notes: [],
+            source_url: "https://ntrs.nasa.gov/citations/20210011385",
+            locator: "Table 1",
+            supplementary_url: null,
+          }],
+        })
+        return true
+      }
+      return false
+    })
+
+    await page.goto("/explorer?lang=en")
+    // Card highlights verified run availability without clipboard false-positive on HTTP/LAN
+    const shareBtn = page.getByRole("button", { name: "Share link" })
+    await shareBtn.click()
+    await expect(shareBtn).toHaveText(/Share link/)
+    const promptedUrl = await page.evaluate(() => (window as unknown as { __promptedUrl?: string }).__promptedUrl)
+    expect(promptedUrl).toContain("/explorer")
+
+    // Honest neutral pending indicator without fake Stage 1/3 progress
+    await page.getByRole("button", { name: /AI Research Assistant/i }).click()
+    const inspector = page.locator("#inspector-dialog")
+    await inspector.getByLabel(/Message to assistant/i).fill("What is K?")
+    await inspector.locator('button[type="submit"]').click()
+    const status = inspector.locator('[role="status"]')
+    await expect(status).toContainText(/Querying NASA PSI sources/i)
+    await expect(status).not.toContainText(/Stage 1\/3/i)
+    await expect(inspector.locator(".inline-citation-badge", { hasText: "[1]" }).first()).toBeVisible()
+    await inspector.getByRole("button", { name: /Collapse chat/i }).click()
+
+    // Environments view dynamically discovers custom-new-study runs via /rank
+    await page.getByRole("button", { name: /O₂ Environments/i }).click()
+    await expect(page.locator(".psi-run-dot")).toHaveCount(1)
+    await expect(page.locator(".psi-run-inspector")).toContainText(/R-1/)
+  })
+
+  test("renders creative blue-flame 404 page on unknown routes with EN/RU toggle and navigation links", async ({ page }, testInfo) => {
+    await setupApiRoutes(page)
+    await page.goto("/unknown-orbital-sector")
+
+    await expect(page).toHaveTitle(/404/)
+    await expect(page.locator(".nf-code")).toHaveText("404")
+    await expect(page.locator(".nf-flame-svg")).toBeVisible()
+    await expect(page.locator(".nf-telemetry")).toContainText("/unknown-orbital-sector")
+
+    // Interactive blue-flame gravity toggle + spark burst
+    const modeBtn = page.getByRole("button", { name: /0g Mode/i })
+    await modeBtn.click()
+    await expect(page.locator(".nf-stage")).toHaveAttribute("data-gravity", "1g")
+    await page.locator(".nf-stage").click()
+    await expect(page.locator(".nf-chamber")).toContainText(/pulse #1/i)
+
+    // Switch language to Russian cleanly
+    await page.getByRole("button", { name: "RU", exact: true }).click()
+    await expect(page.getByRole("heading", { level: 1 })).toContainText(/ничего не горит/i)
+    await expect(page.getByRole("link", { name: "На главную", exact: true })).toHaveAttribute("href", "/")
+    await expect(page.getByRole("link", { name: "Открыть Explorer", exact: true })).toHaveAttribute("href", "/explorer")
+
+    await page.screenshot({ path: testInfo.outputPath("not-found-blue-flame.png"), fullPage: true })
+    await page.setViewportSize({ width: 390, height: 844 })
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true)
   })
 })

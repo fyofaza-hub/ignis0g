@@ -528,3 +528,122 @@ def test_repair_retry_recovers_from_uncited_measurement_without_leaking_cyrillic
         assert "13.6% O2" in recovered_2.answer
 
     asyncio.run(run())
+
+
+def test_experiment_run_retrieval_and_select_context_grounding():
+    from uuid import uuid4
+    from app.ai.retrieval import experiment_run_evidence
+
+    src_bass = str(uuid4())
+    src_flex = str(uuid4())
+    rows = [
+        {
+            "slug": "bass-bass-ii-bass-m",
+            "title": "BASS / BASS-II / BASS-M",
+            "sources": [{"id": src_bass, "url": "https://ntrs.nasa.gov/citations/20210011385"}],
+            "runs": [
+                {
+                    "campaign": "BASS-II",
+                    "run_id": "GMT45-T4",
+                    "material": "SIBAL (cotton/fiberglass)",
+                    "geometry": "flat fabric",
+                    "oxygen_vol_pct": [19.0],
+                    "oxygen_basis": "fixed",
+                    "pressure_atm": 1.0,
+                    "airflow_cms": [3.0, 2.0],
+                    "airflow_basis": "start_end",
+                    "direction": "opposed",
+                    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+                    "locator": "Table 7.1, p. 96, GMT45-T4; setup §7.1.3",
+                },
+                {
+                    "campaign": "BASS-II",
+                    "run_id": "M1",
+                    "material": "PMMA",
+                    "geometry": "flat slab",
+                    "oxygen_vol_pct": [21.0],
+                    "oxygen_basis": "start_end",
+                    "pressure_atm": 1.0,
+                    "airflow_cms": [5.0],
+                    "airflow_basis": "constant",
+                    "spread_rate_mm_s": [0.071],
+                    "burn_duration_s": 384.0,
+                    "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+                    "locator": "Table 5.1, p. 57, M1; setup §5.1",
+                },
+            ],
+        },
+        {
+            "slug": "flex-1",
+            "title": "FLEX-1",
+            "sources": [{"id": src_flex, "url": "https://ntrs.nasa.gov/citations/20150023456"}],
+            "runs": [
+                {
+                    "campaign": "FLEX-1",
+                    "run_id": "FLEX-001",
+                    "material": "Methanol (CH3OH)",
+                    "geometry": "Isolated droplet",
+                    "initial_droplet_diameter_mm": 1.69,
+                    "burning_rate_constant_mm2_s": [0.52],
+                    "oxygen_vol_pct": [21.0],
+                    "pressure_atm": 0.997,
+                    "airflow_cms": [0.0],
+                    "outcome": "disruption",
+                    "source_url": "https://ntrs.nasa.gov/citations/20150023456",
+                    "locator": "Table IX, p. 20 (PDF p. 26), FLEX-001",
+                },
+                {
+                    "campaign": "FLEX-1",
+                    "run_id": "FLEX-276",
+                    "material": "n-Heptane (C7H16)",
+                    "geometry": "Isolated droplet",
+                    "initial_droplet_diameter_mm": 3.5,
+                    "burning_rate_constant_mm2_s": [1.06],
+                    "oxygen_vol_pct": [21.0],
+                    "pressure_atm": 1.0,
+                    "airflow_cms": [0.0],
+                    "outcome": "extinction",
+                    "source_url": "https://ntrs.nasa.gov/citations/20150023456",
+                    "locator": "Table IX, p. 28 (PDF p. 34), FLEX-276",
+                },
+            ],
+        },
+    ]
+
+    exact = experiment_run_evidence(
+        "Compare GMT45-T4 and M1 in BASS-II | Scenario: 21% O2, 101.325 kPa",
+        rows,
+        target_slugs=["bass-bass-ii-bass-m"],
+        limit=4,
+    )
+    assert [item.kind for item in exact] == ["experiment_run_exact", "experiment_run_exact"]
+    assert "GMT45-T4" in exact[0].title and "Table 7.1, p. 96" in (exact[0].locator or "")
+    assert "M1" in exact[1].title and "0.071 mm/s" in exact[1].excerpt
+
+    flex_k = experiment_run_evidence(
+        "What burning rate constant K values and droplet diameters are reported in FLEX-1?",
+        rows,
+        target_slugs=["flex-1"],
+        limit=4,
+    )
+    assert len(flex_k) == 2
+    assert all(item.kind == "experiment_run" for item in flex_k)
+    assert any("0.52 mm²/s" in item.excerpt and "1.69 mm" in item.excerpt for item in flex_k)
+    assert any("1.06 mm²/s" in item.excerpt and "3.5 mm" in item.excerpt for item in flex_k)
+
+    # General habitat / boundary questions with appended Scenario must not spuriously inject runs.
+    assert experiment_run_evidence(
+        "Which microgravity combustion findings apply to lunar habitats (34% O2)? | Scenario: 34% O2, 56.5 kPa, 10 cm/s, 0.16g",
+        rows,
+        target_slugs=[],
+        limit=4,
+    ) == []
+
+    # select_context retains exact run evidence alongside prose chunks even when prose appears earlier.
+    prose = [passage("bass-bass-ii-bass-m", f"Prose chunk {i}", "Methods") for i in range(6)]
+    selected = select_context(prose + exact, limit=5, question="Compare GMT45-T4 and M1 in BASS-II", diversify=True)
+    assert len(selected) == 5
+    selected_titles = [item.title for item in selected]
+    assert any("GMT45-T4" in t for t in selected_titles)
+    assert any("M1" in t for t in selected_titles)
+    assert any(item.kind == "chunk" for item in selected)

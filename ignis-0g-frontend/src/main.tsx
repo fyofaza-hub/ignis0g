@@ -5,10 +5,14 @@ import "@fontsource/ibm-plex-mono/cyrillic-400.css"
 import { getLocale } from "./i18n"
 import "./index.css"
 
-const isExplorer = window.location.pathname.replace(/\/$/, "") === "/explorer"
+const route = window.location.pathname.replace(/\/+$/, "") || "/"
+const isExplorer = route === "/explorer"
+const isLanding = route === "/" || route === "/index.html"
 const Page = isExplorer
   ? lazy(() => import("@/app/explorer"))
-  : lazy(() => import("@/landing/landing").then(({ Landing }) => ({ default: Landing })))
+  : isLanding
+    ? lazy(() => import("@/landing/landing").then(({ Landing }) => ({ default: Landing })))
+    : lazy(() => import("@/app/not-found"))
 
 const initialLocale = getLocale()
 document.documentElement.lang = initialLocale
@@ -16,9 +20,13 @@ document.title = isExplorer
   ? initialLocale === "ru"
     ? "IGNIS 0G — каталог исследований"
     : "IGNIS 0G — Explorer"
-  : initialLocale === "ru"
-    ? "IGNIS 0G — огонь в невесомости"
-    : "IGNIS 0G — Microgravity Research Explorer"
+  : isLanding
+    ? initialLocale === "ru"
+      ? "IGNIS 0G — огонь в невесомости"
+      : "IGNIS 0G — Microgravity Research Explorer"
+    : initialLocale === "ru"
+      ? "404 — Сектор не найден | IGNIS 0G"
+      : "404 — Sector Not Found | IGNIS 0G"
 
 class PageBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
   state = { failed: false }

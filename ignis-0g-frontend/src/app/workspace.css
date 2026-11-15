@@ -2678,3 +2678,38 @@
 .compare-cite-text {
   display: inline;
 }
+
+.ranking-run-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ranking-run-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font: 600 11px/1.4 var(--technical-font);
+  border: 1px solid var(--border);
+  background: var(--surface-raised);
+  color: var(--muted-foreground);
+}
+
+.ranking-run-pill.exact {
+  border-color: rgba(134, 223, 187, 0.45);
+  background: rgba(19, 46, 44, 0.65);
+  color: var(--color-success);
+}
+
+.ranking-run-pill.digitized {
+  border-color: rgba(245, 161, 110, 0.4);
+  background: rgba(43, 30, 22, 0.6);
+  color: var(--combustion);
+}
+
+.ranking-expand-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 14px;
+}

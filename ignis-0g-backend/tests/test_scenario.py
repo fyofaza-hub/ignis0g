@@ -50,3 +50,99 @@ def test_catalog_scenario_and_reported_modeling_conditions(monkeypatch):
             assert case_b["source_url"].endswith("/20160012298")
 
     asyncio.run(run())
+
+
+def test_malformed_experiment_run_logs_warning_and_tiebreaker_prioritizes_verified_runs(caplog):
+    import logging
+    from types import SimpleNamespace
+    from uuid import uuid4
+    from sqlalchemy.ext.asyncio import async_sessionmaker
+    from app.core.database import engine
+    from app.models import Study
+
+    bad_row = SimpleNamespace(
+        slug="broken-run-study",
+        title="Alpha Study",
+        category="Test",
+        tags=[],
+        conditions={
+            "o2_pct": [21, 21],
+            "pressure_kpa": [101.3, 101.4],
+            "flow_cms": [0, 0],
+            "gravity_g": [0, 0],
+            "experiment_runs": [{"run_id": "BAD-1"}],  # missing required campaign, material, geometry, source_url, locator
+        },
+    )
+    caplog.set_level(logging.WARNING, logger="app.services.scenario")
+    scenario = Scenario(o2_pct=21, pressure_kpa=101.325, flow_cms=0, gravity_g=0)
+    ranked = rank_study(bad_row, [], scenario)
+    assert ranked is not None
+    assert ranked.run_count == 0
+    assert any("broken-run-study" in rec.message for rec in caplog.records)
+
+    async def run_tiebreak():
+        try:
+            async with engine.connect() as connection:
+                transaction = await connection.begin()
+                factory = async_sessionmaker(connection, expire_on_commit=False)
+                original = catalog.session_factory
+                catalog.session_factory = factory
+                try:
+                    prefix = "tiebreak-" + uuid4().hex[:8]
+                    async with factory() as session:
+                        # Alphabetically earlier unverified study vs later study with exact verified joint run
+                        unverified = Study(
+                            slug=f"{prefix}-alpha",
+                            title=f"AAA Unverified {prefix}",
+                            description="range summary only",
+                            category="Solid Materials",
+                            tags=[],
+                            conditions={
+                                "o2_pct": [18, 25],
+                                "pressure_kpa": [100, 102],
+                                "flow_cms": [0, 15],
+                                "gravity_g": [0, 0],
+                            },
+                        )
+                        verified = Study(
+                            slug=f"{prefix}-zeta",
+                            title=f"ZZZ Verified {prefix}",
+                            description="digitized run",
+                            category="Solid Materials",
+                            tags=[],
+                            conditions={
+                                "o2_pct": [18, 25],
+                                "pressure_kpa": [100, 102],
+                                "flow_cms": [0, 15],
+                                "gravity_g": [0, 0],
+                                "experiment_runs": [
+                                    {
+                                        "campaign": "BASS-II",
+                                        "run_id": "R1",
+                                        "material": "PMMA",
+                                        "geometry": "rod",
+                                        "direction": "concurrent",
+                                        "airflow_cms": [10.0],
+                                        "airflow_basis": "constant",
+                                        "oxygen_vol_pct": [21.0],
+                                        "oxygen_basis": "fixed",
+                                        "pressure_atm": 1.0,
+                                        "source_url": "https://ntrs.nasa.gov/citations/20210011385",
+                                        "locator": "Table 1",
+                                    }
+                                ],
+                            },
+                        )
+                        session.add_all([unverified, verified])
+                        await session.flush()
+
+                    results = await catalog.rank(Scenario(o2_pct=21, pressure_kpa=101.325, flow_cms=10, gravity_g=0))
+                    ours = [r.study_id for r in results if r.study_id.startswith(prefix)]
+                    assert ours == [f"{prefix}-zeta", f"{prefix}-alpha"]
+                finally:
+                    catalog.session_factory = original
+                    await transaction.rollback()
+        finally:
+            await engine.dispose()
+
+    asyncio.run(run_tiebreak())

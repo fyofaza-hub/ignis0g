@@ -80,7 +80,19 @@ async def rank(scenario: Scenario):
             result for row in rows
             if (result := rank_study(row, sorted(urls.get(row.id, ())), scenario)) is not None
         ]
-    return sorted(ranked, key=lambda result: (-result.score, len(result.outside), result.title.casefold(), result.study_id))
+    return sorted(
+        ranked,
+        key=lambda result: (
+            -result.score,
+            len(result.outside),
+            not result.jointly_reported_run_ids,
+            result.run_count == 0,
+            -result.run_count,
+            -result.source_count,
+            result.title.casefold(),
+            result.study_id,
+        ),
+    )
 
 
 async def experiment_runs(slug):

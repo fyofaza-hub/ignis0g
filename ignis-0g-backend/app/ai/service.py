@@ -394,31 +394,53 @@ def needs_rewrite(question: str) -> bool:
 def select_context(
     evidence: list[Evidence], limit: int, *, question: str = "", diversify: bool = False,
 ) -> list[Evidence]:
+    exact_runs = [item for item in evidence if getattr(item, "kind", "chunk") == "experiment_run_exact"]
+    matched_runs = [item for item in evidence if getattr(item, "kind", "chunk") == "experiment_run"]
+    chunks = [
+        item for item in evidence
+        if getattr(item, "kind", "chunk") not in {"experiment_run_exact", "experiment_run"}
+    ]
+
+    if exact_runs:
+        reserved_runs = exact_runs[: max(1, limit - 1) if chunks else limit]
+    elif matched_runs:
+        max_runs = max(2, limit - 1) if chunks and limit >= 3 else limit
+        reserved_runs = matched_runs[: min(len(matched_runs), max_runs)]
+    else:
+        reserved_runs = []
+
+    chunk_budget = max(0, limit - len(reserved_runs))
     pattern = section_pattern(question) if question else r"a^"
-    if question:
-        evidence = sorted(evidence, key=lambda item: not re.search(pattern, item.locator or "", re.I))
-    targets = named_studies(question, [item.study_slug for item in evidence]) if question else []
-    groups = [[item for item in evidence if item.study_slug == slug] for slug in targets]
+    ordered_chunks = (
+        sorted(chunks, key=lambda item: not re.search(pattern, item.locator or "", re.I))
+        if question
+        else list(chunks)
+    )
+    targets = named_studies(question, [item.study_slug for item in ordered_chunks]) if question else []
+    groups = [[item for item in ordered_chunks if item.study_slug == slug] for slug in targets]
     # Reserve context for every requested study, even after reranking. Cycle
     # through their sections so one study cannot crowd out the comparison.
     priority = [group[i] for i in range(max(map(len, groups), default=0)) for group in groups if i < len(group)]
-    selected = []
-    deferred = []
-    seen_passages = set()
+    selected_chunks = []
+    deferred_chunks = []
+    seen_passages = {(item.study_slug, " ".join(item.excerpt.casefold().split())) for item in reserved_runs}
     seen_studies = set()
-    for item in priority + evidence:
+    for item in priority + ordered_chunks:
         key = (item.study_slug, " ".join(item.excerpt.casefold().split()))
         if key in seen_passages:
             continue
         seen_passages.add(key)
         if diversify and not targets and item.study_slug in seen_studies:
-            deferred.append(item)
+            deferred_chunks.append(item)
         else:
-            selected.append(item)
+            selected_chunks.append(item)
             seen_studies.add(item.study_slug)
-        if len(selected) == limit:
+        if len(selected_chunks) == chunk_budget:
             break
-    return (selected + deferred)[:limit]
+
+    chosen_chunks = (selected_chunks + deferred_chunks)[:chunk_budget]
+    remaining_runs = [r for r in (exact_runs + matched_runs) if r not in reserved_runs]
+    return (reserved_runs + chosen_chunks + remaining_runs)[:limit]
 
 
 def suggested_questions(raw: object, current_question: str) -> list[str]:

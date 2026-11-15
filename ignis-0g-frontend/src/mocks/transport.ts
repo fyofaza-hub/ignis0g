@@ -440,6 +440,10 @@ export async function mockFetch(
         (a, b) =>
           b.score - a.score ||
           a.outside.length - b.outside.length ||
+          Number((b.jointly_reported_run_ids?.length ?? 0) > 0) - Number((a.jointly_reported_run_ids?.length ?? 0) > 0) ||
+          Number((b.run_count ?? 0) > 0) - Number((a.run_count ?? 0) > 0) ||
+          (b.run_count ?? 0) - (a.run_count ?? 0) ||
+          (b.source_count ?? 0) - (a.source_count ?? 0) ||
           a.title.localeCompare(b.title),
       ),
     )

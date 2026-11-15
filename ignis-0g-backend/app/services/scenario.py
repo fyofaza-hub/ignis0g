@@ -1,9 +1,12 @@
 """Rank catalog summaries by their marginal ranges, without predicting combustion."""
+import logging
 import math
 
 from app.schemas.scenario import Scenario, ScenarioStudy
 from app.schemas.experiment_run import ExperimentRun
 from pydantic import ValidationError
+
+logger = logging.getLogger(__name__)
 
 
 def reported_range(value):
@@ -42,7 +45,8 @@ def rank_study(row, source_urls: list[str], scenario: Scenario) -> ScenarioStudy
     for raw in data.get("experiment_runs", []):
         try:
             runs.append(ExperimentRun.model_validate(raw))
-        except ValidationError:
+        except ValidationError as exc:
+            logger.warning("Skipping malformed experiment run in study=%s: %s", getattr(row, "slug", "?"), exc)
             continue  # Legacy malformed records cannot establish joint coverage.
     joint = []
     for run in runs:

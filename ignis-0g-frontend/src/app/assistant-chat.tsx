@@ -116,29 +116,25 @@ export function useStudyChat(study: StudySummary | undefined, scenario?: Scenari
   }
 }
 
-const RAG_PROGRESS_STAGES: Record<Locale, string[]> = {
-  en: [
-    "Stage 1/3: Retrieving vector chunks from NASA PSI (pgvector)…",
-    "Stage 2/3: Neural reranking of experimental reports…",
-    "Stage 3/3: Synthesizing grounded answer and verifying [n] citations…",
-  ],
-  ru: [
-    "Этап 1/3: Поиск векторных чанков в базе NASA PSI (pgvector)…",
-    "Этап 2/3: Нейросетевой реранкинг экспериментальных отчётов…",
-    "Этап 3/3: Синтез ответа и верификация инлайн-цитат [n]…",
-  ],
-}
-
 function PendingRagStage({ locale }: { locale: Locale }) {
-  const [stage, setStage] = useState(0)
-  const stages = RAG_PROGRESS_STAGES[locale]
+  const [elapsedSeconds, setElapsedSeconds] = useState(0)
   useEffect(() => {
     const id = window.setInterval(() => {
-      setStage((s) => (s < stages.length - 1 ? s + 1 : s))
-    }, 1800)
+      setElapsedSeconds((seconds) => seconds + 1)
+    }, 1000)
     return () => window.clearInterval(id)
-  }, [stages.length])
-  return <p className="muted">{stages[stage]}</p>
+  }, [])
+  const label =
+    locale === "ru"
+      ? "Выполняем запрос к источникам NASA PSI и проверку ответа…"
+      : "Querying NASA PSI sources and verifying response…"
+  const suffix = elapsedSeconds > 0 ? (locale === "ru" ? ` (${elapsedSeconds} с)` : ` (${elapsedSeconds}s)`) : ""
+  return (
+    <p className="muted" role="status" aria-live="polite">
+      {label}
+      {suffix}
+    </p>
+  )
 }
 
 export function AssistantChat({

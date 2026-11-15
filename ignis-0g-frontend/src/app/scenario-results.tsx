@@ -51,6 +51,37 @@ function exportResults(format: "csv" | "json", scenario: Scenario, studies: Scen
   downloadFile("ignis-scenario.csv", content, "text/csv;charset=utf-8")
 }
 
+const COLLAPSED_RESULTS_LIMIT = 6
+
+export async function copyTextToClipboard(text: string): Promise<boolean> {
+  if (typeof navigator !== "undefined" && typeof navigator.clipboard?.writeText === "function") {
+    try {
+      await navigator.clipboard.writeText(text)
+      return true
+    } catch {
+      // Fall through to legacy selection copy when Clipboard API is blocked (e.g. HTTP over LAN).
+    }
+  }
+  if (typeof document !== "undefined" && typeof document.execCommand === "function" && document.body) {
+    const input = document.createElement("textarea")
+    input.value = text
+    input.setAttribute("readonly", "")
+    input.style.position = "fixed"
+    input.style.opacity = "0"
+    document.body.appendChild(input)
+    input.select()
+    input.setSelectionRange(0, text.length)
+    try {
+      return document.execCommand("copy")
+    } catch {
+      return false
+    } finally {
+      document.body.removeChild(input)
+    }
+  }
+  return false
+}
+
 export function ScenarioResults({
   scenario,
   onSelectStudy,
@@ -67,6 +98,12 @@ export function ScenarioResults({
   const [hoveredId, setHoveredId] = useState<string | null>(null)
   const [pinnedId, setPinnedId] = useState<string | null>(null)
   const [copiedLink, setCopiedLink] = useState(false)
+  const [showAll, setShowAll] = useState(false)
+  const scenarioKey = `${scenario.o2_pct}|${scenario.pressure_kpa}|${scenario.flow_cms}|${scenario.gravity_g}|${scenario.fuel ?? ""}|${scenario.pillar ?? ""}`
+
+  useEffect(() => {
+    setShowAll(false)
+  }, [scenarioKey])
 
   useEffect(() => {
     if (!pinnedId) return
@@ -92,11 +129,10 @@ export function ScenarioResults({
 
   async function copyScenarioLink() {
     const href = window.location.href
-    try {
-      await navigator.clipboard?.writeText(href)
+    if (await copyTextToClipboard(href)) {
       setCopiedLink(true)
       window.setTimeout(() => setCopiedLink(false), 1800)
-    } catch {
+    } else {
       window.prompt(ru ? "Скопируйте ссылку сценария:" : "Copy scenario link:", href)
     }
   }
@@ -122,6 +158,8 @@ export function ScenarioResults({
   }
 
   const studies = query.data
+  const hasMore = studies.length > COLLAPSED_RESULTS_LIMIT
+  const visibleStudies = hasMore && !showAll ? studies.slice(0, COLLAPSED_RESULTS_LIMIT) : studies
   const coverageNote = ru
     ? "Диапазоны проверяются по отдельности. Совпадение не подтверждает испытание всей комбинации условий. Балл равен доле совпавших параметров из четырёх."
     : "Parameter ranges are evaluated independently. A range match does not imply the combined condition was jointly tested. Score equals the share of matched parameters out of four."
@@ -147,13 +185,14 @@ export function ScenarioResults({
       <p className="muted">{coverageNote}</p>
       {!studies.length && <p>{ru ? "По выбранным фильтрам в каталоге нет исследований." : "No studies in the catalog match the selected filters."}</p>}
       <div className="ranking-grid">
-        {studies.map((study) => {
+        {visibleStudies.map((study) => {
           const isCompared = compareIds?.includes(study.study_id)
           const scoreTone = study.score >= 75 ? "good" : study.score >= 50 ? "mid" : "low"
           const isPinned = pinnedId === study.study_id
           const isBreakdownOpen = isPinned || hoveredId === study.study_id
           const jointRuns = study.jointly_reported_run_ids ?? []
           const hasJointMatch = jointRuns.length > 0
+          const runCount = study.run_count ?? 0
           const partialGravityWarning = study.limitations?.includes(
             "microgravity_results_do_not_validate_partial_or_earth_gravity",
           )
@@ -325,6 +364,23 @@ export function ScenarioResults({
                   </span>
                 )}
               </p>
+              <div className="ranking-run-strip">
+                {hasJointMatch ? (
+                  <span className="ranking-run-pill exact">
+                    {ru
+                      ? `Подтверждено прогонами: ${jointRuns.length} (из ${runCount})`
+                      : `Verified joint runs: ${jointRuns.length} (of ${runCount})`}
+                  </span>
+                ) : runCount > 0 ? (
+                  <span className="ranking-run-pill digitized">
+                    {ru ? `Оцифровано прогонов: ${runCount}` : `${runCount} digitized runs`}
+                  </span>
+                ) : (
+                  <span className="ranking-run-pill summary-only">
+                    {ru ? "Только сводный диапазон" : "Range summary only"}
+                  </span>
+                )}
+              </div>
               {study.material && (
                 <p className="ranking-material-line">
                   {study.material}
@@ -386,6 +442,19 @@ export function ScenarioResults({
           )
         })}
       </div>
+      {hasMore && (
+        <div className="ranking-expand-row">
+          <Button size="sm" variant="outline" onClick={() => setShowAll((prev) => !prev)}>
+            {showAll
+              ? ru
+                ? "Показать топ-6"
+                : "Show top 6"
+              : ru
+                ? `Показать все (${studies.length})`
+                : `Show all (${studies.length})`}
+          </Button>
+        </div>
+      )}
     </section>
   )
 }
