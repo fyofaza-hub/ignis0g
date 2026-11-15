@@ -485,4 +485,46 @@ def test_repair_retry_recovers_from_uncited_measurement_without_leaking_cyrillic
         assert not rejected.citations
         assert "verify" in rejected.answer.lower()
 
+        two_step_llm = MockLLM([
+            {
+                "status": "answered",
+                "basis": "sources",
+                "answer": (
+                    "No experiment tested 34% O2 at 56.5 kPa directly.\n\n"
+                    "BASS-II O13a burned down to 13.6% O2 [1].\n\n"
+                    "Next step: check solid samples at 34% O2 and 56.5 kPa."
+                ),
+                "citation_indices": [1],
+                "suggested_questions": [],
+            },
+            {
+                "status": "answered",
+                "basis": "sources",
+                "answer": (
+                    "No experiment tested the target lunar atmosphere directly.\n\n"
+                    "BASS-II O13a burned down to 13.6% O2 [1].\n\n"
+                    "Next step: check solid samples at 34% O2 and 56.5 kPa."
+                ),
+                "citation_indices": [1],
+                "suggested_questions": [],
+            },
+            {
+                "status": "answered",
+                "basis": "sources",
+                "answer": (
+                    "No experiment tested the target lunar atmosphere directly.\n\n"
+                    "BASS-II O13a burned down to 13.6% O2 [1].\n\n"
+                    "Next step: test solid samples under the exploration atmosphere target."
+                ),
+                "citation_indices": [1],
+                "suggested_questions": [],
+            },
+        ])
+        recovered_2 = await RagService(MockEmbedding(), None, two_step_llm, RagSettings(), Repository()).ask(
+            ChatRequest(message="Which findings apply to lunar habitats (34% O2)?")
+        )
+        assert len(two_step_llm.messages) == 3
+        assert recovered_2.status == "answered"
+        assert "13.6% O2" in recovered_2.answer
+
     asyncio.run(run())

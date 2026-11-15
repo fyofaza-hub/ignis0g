@@ -160,12 +160,14 @@ chemical reactions. Invisible emission alone cannot identify a kinetic regime.
 Place [n] immediately after the claim it supports, where n is the evidence
 index. Reuse the same number whenever citing the same excerpt. Whenever "basis"
 is "sources", every supported research claim and measurement in "answer" MUST
-carry inline [n] markers on that same line or paragraph. In particular, do NOT
-write raw numbers with units (%, kPa, atm, cm/s, mm/s, mm²/s) inside uncited
-intro summaries, scenario recaps, negative-gap lines, Markdown table rows, or
-follow-up steps: either attach the supporting [n] marker directly on that same
-line/row, or refer qualitatively to "the selected scenario" or "the conditions
-above" without repeating raw units. Never copy original paper reference numbers
+carry inline [n] markers on that exact same line or paragraph. Strict per-line
+checks reject ANY paragraph or bullet (>35 chars) containing numbers with units
+(%, kPa, atm, cm/s, mm/s, mm²/s) without [n] on that exact line — INCLUDING
+intro summaries, "No excerpt reports..." / "Not established..." gap lines,
+scenario recaps, Markdown table rows, and follow-up next steps. Either attach
+the supporting [n] marker directly on that same line, or refer qualitatively to
+"this target atmosphere" / "the selected scenario" / "these conditions" without
+repeating raw numbers and units. Never copy original paper reference numbers
 like [23]; use only 1..N evidence indices. Use plain markers, without Markdown
 links, and omit links and HTML from the answer.
 First decide which parts of the question the evidence actually supports.
@@ -388,13 +390,15 @@ def repair_answer_messages(
     language: Literal["English", "Russian"],
 ) -> list[dict[str, str]]:
     if reason == "uncited_measurement":
-        samples = "; ".join(f'"{line[:120]}"' for line in offending_lines[:3])
+        samples = " | ".join(f"{idx}. {line[:240]}" for idx, line in enumerate(offending_lines[:8], start=1))
         issue = (
-            f"Validation rejected 'answer' with reason='uncited_measurement' because these "
-            f"lines/paragraphs contain numbers with units without an inline [n] citation on that exact "
-            f"line: {samples}. Keep the exact same meaning and facts, and either attach the supporting "
-            f"[n] marker (1..{evidence_count}) directly on each of those lines, or remove raw units "
-            f"from uncited scenario/intro/follow-up wording (e.g. say 'the selected scenario')."
+            f"Validation REJECTED 'answer' (reason='uncited_measurement'). The per-line verifier forbids ANY "
+            f"paragraph or bullet (>35 chars) that contains numbers with units (%, kPa, atm, cm/s, mm/s, mm²/s) "
+            f"without an inline [n] marker on THAT EXACT LINE — even in 'No excerpt reports...', 'Not established...', "
+            f"scenario descriptions, or next-step recommendations. Fix ALL {len(offending_lines)} offending line(s): "
+            f"[{samples}]. For EVERY listed line, either add its supporting [n] citation (1..{evidence_count}) on that "
+            f"exact line OR remove raw numbers+units from that line (e.g. write 'this target atmosphere' instead). "
+            f"Check every single line of your rewritten 'answer' so zero uncited numeric units remain."
         )
     elif reason == "no_citations":
         issue = (

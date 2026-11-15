@@ -193,7 +193,7 @@ class RagService:
         result, reason = _validate_answer_detail(raw, context, request.message)
         if reason in _REPAIRABLE_REASONS and isinstance(raw, dict):
             result = await self._repair_invalid_answer(
-                messages, raw, context, request.message, result, reason, target_language,
+                messages, raw, context, request.message, result, reason, target_language, started=started,
             )
         logger.info("rag outcome=%s citations=%d elapsed_ms=%d", result.status, len(result.citations), (monotonic() - started) * 1000)
         return result
@@ -207,26 +207,47 @@ class RagService:
         fallback_result: ChatResponse,
         reason: str,
         target_language: Literal["English", "Russian"],
+        *,
+        started: float | None = None,
     ) -> ChatResponse:
-        logger.info("rag stage=validation_repair reason=%s", reason)
-        raw_answer = invalid_raw.get("answer")
-        offending = _uncited_measurement_lines(raw_answer) if reason == "uncited_measurement" and isinstance(raw_answer, str) else ()
-        repair_msgs = repair_answer_messages(
-            messages,
-            invalid_raw,
-            reason=reason,
-            offending_lines=offending,
-            evidence_count=len(evidence),
-            language=target_language,
-        )
-        try:
-            repaired = await self.llm.generate(repair_msgs)
-        except ProviderUnavailable:
-            return fallback_result
-        if target_language == "English" and _response_has_unexpected_cyrillic(repaired, ("answer", "suggested_questions")):
-            return fallback_result
-        repaired_result, repaired_reason = _validate_answer_detail(repaired, evidence, question)
-        return repaired_result if repaired_reason is None else fallback_result
+        current_raw = invalid_raw
+        current_reason: str | None = reason
+        current_fallback = fallback_result
+        for attempt in range(1, 3):
+            if started is not None and (monotonic() - started) > 22:
+                break
+            if current_reason not in _REPAIRABLE_REASONS:
+                break
+            logger.info("rag stage=validation_repair attempt=%d reason=%s", attempt, current_reason)
+            raw_answer = current_raw.get("answer")
+            offending = (
+                _uncited_measurement_lines(raw_answer)
+                if current_reason == "uncited_measurement" and isinstance(raw_answer, str)
+                else ()
+            )
+            repair_msgs = repair_answer_messages(
+                messages,
+                current_raw,
+                reason=current_reason,
+                offending_lines=offending,
+                evidence_count=len(evidence),
+                language=target_language,
+            )
+            try:
+                repaired = await self.llm.generate(repair_msgs)
+            except ProviderUnavailable:
+                return current_fallback
+            if target_language == "English" and _response_has_unexpected_cyrillic(repaired, ("answer", "suggested_questions")):
+                return current_fallback
+            repaired_result, next_reason = _validate_answer_detail(repaired, evidence, question)
+            if next_reason is None:
+                return repaired_result
+            if not isinstance(repaired, dict):
+                return current_fallback
+            current_raw = repaired
+            current_reason = next_reason
+            current_fallback = repaired_result
+        return current_fallback
 
     async def _generate_in_expected_language(
         self,
