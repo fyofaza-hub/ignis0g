@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "studies": [
+    {
+      "slug": "saffire-vi",
+      "title": "Saffire VI",
+      "category": "Saffire",
+      "description": "Заключительный полёт серии Spacecraft Fire Experiment на грузовом корабле Cygnus.",
+      "methodology": "Бортовые датчики регистрировали температуру и состав газа. Последующая работа сравнила измерения с моделью трёх событий горения.",
+      "tags": [
+        "Предотвращение",
+        "Обнаружение"
+      ],
+      "sources": [
+        {
+          "source_key": "ntrs-20240002981",
+          "title": "Preliminary Results from the Saffire VI Experiment",
+          "url": "https://ntrs.nasa.gov/citations/20240002981",
+          "source_type": "report",
+          "text_content": "## Abstract\n\nВ докладе приведены предварительные результаты одного испытания Saffire VI на орбитальном Cygnus. Проект изучал поведение огня в масштабах и геометрии, близких к реальному космическому аппарату. Охват этого отчёта ограничен одним испытанием."
+        },
+        {
+          "source_key": "ntrs-20250002675",
+          "title": "Vehicle Modeling During the Burn Events in the Saffire VI Experiments",
+          "url": "https://ntrs.nasa.gov/citations/20250002675",
+          "source_type": "report",
+          "text_content": "## Abstract\n\nВ Saffire VI испытывали тонкий образец на основе хлопка и толстые образцы термопласта. Датчики в грузовом корабле регистрировали температуру и концентрации веществ на нескольких расстояниях. Авторы построили модель переноса тепла и продуктов горения для трёх событий, задавая входные данные по измерениям на входе и выходе установки Saffire."
+        }
+      ],
+      "findings": [
+        {
+          "finding_key": "vehicle-sensor-measurements",
+          "source_key": "ntrs-20250002675",
+          "claim": "Датчики Cygnus измеряли температуру и концентрации веществ в разных точках.",
+          "evidence": "Авторы использовали бортовые измерения при сопоставлении с моделью трёх событий Saffire VI.",
+          "locator": "Abstract"
+        }
+      ]
+    },
+    {
+      "slug": "ssce",
+      "title": "Solid Surface Combustion Experiment (SSCE)",
+      "category": "SSCE",
+      "description": "Серия полётов Space Shuttle для изучения распространения пламени по поверхности твёрдого топлива в микрогравитации.",
+      "methodology": "Установка SSCE позволяла исследовать распространение пламени без навязанного потока окислителя.",
+      "tags": [
+        "Фундаментальная физика"
+      ],
+      "sources": [
+        {
+          "source_key": "ntrs-19960008387",
+          "title": "Solid surface combustion experiment flame spread in a quiescent, microgravity environment",
+          "url": "https://ntrs.nasa.gov/citations/19960008387",
+          "source_type": "report",
+          "text_content": "## Abstract\n\nВ отчёте описана серия экспериментов на восьми миссиях Space Shuttle с октября 1990 по февраль 1995 года. Целью было изучить механизмы распространения пламени вдоль поверхности твёрдого топлива в среде без вынужденного потока окислителя и с подавленной естественной конвекцией. Отчёт посвящён скорости распространения и структуре пламени."
+        },
+        {
+          "source_key": "ntrs-20050192122",
+          "title": "Solid Surface Combustion Experiment Yields Significant Observations",
+          "url": "https://ntrs.nasa.gov/citations/20050192122",
+          "source_type": "report",
+          "text_content": "## Overview\n\nNASA Lewis разработал и испытал оборудование SSCE для полётов на шаттле. Программа рассматривала распространение пламени по твёрдой поверхности как отдельный процесс, который можно исследовать в микрогравитации при подавленной конвекции."
+        }
+      ],
+      "findings": []
+    },
+    {
+      "slug": "sofie-rtdfs",
+      "title": "SoFIE — Residence Time Driven Flame Spread (RTDFS)",
+      "category": "SoFIE",
+      "description": "Исследование устойчивого и неустойчивого распространения пламени по твёрдому топливу в микрогравитации.",
+      "methodology": "NASA указывает доставку установки на МКС миссией NG‑19. Описание программы формулирует гипотезу о критической толщине топлива.",
+      "tags": [
+        "Фундаментальная физика"
+      ],
+      "sources": [
+        {
+          "source_key": "nasa-science-rtdfs",
+          "title": "Residence Time Driven Flame Spread (RTDFS)",
+          "url": "https://science.nasa.gov/biological-physical/investigations/rtdfs/",
+          "source_type": "webpage",
+          "text_content": "## Science Objectives\n\nПрограмма проверяет, при каких условиях устанавливается устойчивое распространение пламени по твёрдому топливу. Теоретическая модель предполагает существование критической толщины. В обосновании NASA выделяет тепловую инерцию и потери излучением. Это постановка задачи и теоретическое предсказание; в данном источнике нет результатов полётных прогонов.\n\n## Status\n\nУстановку доставили на МКС на миссии NG-19 в августе 2023 года."
+        }
+      ],
+      "findings": []
+    },
+    {
+      "slug": "sofie-nca",
+      "title": "SoFIE — Narrow Channel Apparatus (NCA)",
+      "category": "SoFIE",
+      "description": "Проект эксперимента по распространению пламени по плоским образцам полиметилметакрилата.",
+      "methodology": "Описание NASA задаёт встречный принудительный поток и изменение состава среды и давления в плане эксперимента.",
+      "tags": [
+        "Предотвращение"
+      ],
+      "sources": [
+        {
+          "source_key": "nasa-glenn-nca",
+          "title": "Solid Fuel Ignition and Extinction (SoFIE) — Narrow Channel Apparatus",
+          "url": "https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/combustion-science/solid-fuel-ignition-and-extinction-sofie/",
+          "source_type": "webpage",
+          "text_content": "## Narrow Channel Apparatus (NCA)\n\nNASA описывает план сравнения распространения пламени по плоским образцам PMMA при встречном потоке. Предусмотрено изменение условий среды и скорости потока для измерения скорости распространения и границ погасания. Источник описывает методику; фактические прогоны и границы погасания в карточку не перенесены."
+        }
+      ],
+      "findings": []
+    },
+    {
+      "slug": "sofie-smurf",
+      "title": "SoFIE — Spacecraft Materials Microgravity Research on Flammability (SMuRF)",
+      "category": "SoFIE",
+      "description": "Программа сопоставления наземных испытаний воспламеняемости с испытаниями в вентилируемой микрогравитации.",
+      "methodology": "NASA Glenn описывает цель поиска связи между наземной оценкой материалов и поведением топлива в условиях вентиляции космического аппарата.",
+      "tags": [
+        "Предотвращение"
+      ],
+      "sources": [
+        {
+          "source_key": "nasa-glenn-smurf",
+          "title": "Solid Fuel Ignition and Extinction (SoFIE) — SMuRF",
+          "url": "https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/combustion-science/solid-fuel-ignition-and-extinction-sofie/",
+          "source_type": "webpage",
+          "text_content": "## Spacecraft Materials Microgravity Research on Flammability (SMuRF)\n\nЦель исследования — сопоставить данные испытаний воспламеняемости при земной гравитации с данными в условиях вентилируемой микрогравитации. Материалы NASA описывают ожидаемое применение к отбору материалов для кораблей. Эта карточка описывает исследовательскую программу, опубликованных измерений из этого источника нет."
+        }
+      ],
+      "findings": []
+    }
+  ]
+}

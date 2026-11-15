@@ -23,3 +23,15 @@ nasa-fire-safety-kb/
 1. **Фильтрация по метаданным:** используйте YAML-заголовки (`--- ... ---`) в начале каждого `.md` файла или `00_index/ignis_master_db.json` для точных числовых запросов (`pressure_kpa`, `o2_pct`, `flow_cms`).
 2. **Чанкинг (Markdown Header Splitting):** разбивайте `.md` файлы по заголовкам второго уровня (`## 1.` – `## 7.`), сохраняя YAML-метаданные в каждом чанке.
 3. **Валидация ответов:** при генерации ответа LLM должна опираться на значения из таблицы/карточек и указывать `sub_experiment` и `source_id`.
+
+## Supplemental catalog and evidence
+
+Run these commands from the backend directory with its Python environment and database configuration. The catalog package adds studies, while the evidence package adds report findings and replaces generic NTRS links on existing cards. Both can be applied again to the same database.
+
+```sh
+python -m scripts.import_studies ../nasa-fire-safety-kb/nasa-catalog-expansion.json --dry-run
+python -m scripts.import_studies ../nasa-fire-safety-kb/nasa-catalog-expansion.json
+python -m scripts.import_nasa_evidence ../nasa-fire-safety-kb/nasa-catalog-evidence.json --dry-run
+python -m scripts.import_nasa_evidence ../nasa-fire-safety-kb/nasa-catalog-evidence.json
+python -m scripts.index_sources
+```
