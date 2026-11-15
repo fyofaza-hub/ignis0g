@@ -2713,3 +2713,23 @@
   justify-content: center;
   margin-top: 14px;
 }
+.chat-answer-text.markdown-content { white-space: normal; overflow-wrap: anywhere; line-height: 1.65; }
+.markdown-content > :first-child { margin-top: 0; }
+.markdown-content > :last-child { margin-bottom: 0; }
+.markdown-content p, .markdown-content ul, .markdown-content ol, .markdown-content blockquote { margin: 0 0 0.8em; }
+.markdown-content ul, .markdown-content ol { padding-left: 1.5em; }
+.markdown-content ul { list-style: disc; }
+.markdown-content ol { list-style: decimal; }
+.markdown-content li { margin: 0.25em 0; }
+.markdown-content h1, .markdown-content h2, .markdown-content h3, .markdown-content h4 { margin: 1em 0 .45em; font-size: 1em; font-weight: 700; color: var(--heading); }
+.markdown-content strong { color: var(--heading); font-weight: 700; }
+.markdown-content a { color: var(--combustion); text-decoration: underline; overflow-wrap: anywhere; }
+.markdown-content code { font-family: var(--technical-font); font-size: .9em; }
+.markdown-content pre { overflow-x: auto; padding: 10px; background: var(--background); border-radius: 6px; }
+.markdown-table-wrap { max-width: 100%; overflow-x: auto; margin: .75em 0; }
+.markdown-content table { width: 100%; border-collapse: collapse; font-size: .92em; text-align: left; }
+.markdown-content th, .markdown-content td { min-width: 110px; padding: 8px 10px; border: 1px solid var(--border); vertical-align: top; }
+.markdown-content th { background: var(--surface-raised); color: var(--heading); font-weight: 650; }
+.markdown-content hr { border: 0; border-top: 1px solid var(--border); margin: 1em 0; }
+.assistant .inline-citation-badge, .compare-ai-result .inline-citation-badge { display: inline-flex; min-height: 0; padding: 1px 6px; vertical-align: baseline; white-space: nowrap; font-size: 11px; }
+.source-excerpt { min-width: 0; overflow-wrap: anywhere; }

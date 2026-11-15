@@ -1,3 +1,7 @@
+import ReactMarkdown from "react-markdown"
+import remarkGfm from "remark-gfm"
+import { visit } from "unist-util-visit"
+import type { Root, Text, Link } from "mdast"
 import { ArrowUpRight, FileText, X } from "@/components/ui/icons"
 import type { Citation } from "@/domain/types"
 import type { Locale } from "@/i18n"
@@ -32,37 +36,67 @@ export function RichCitedText({
   as?: "p" | "span"
   className?: string
 }) {
-  const parts = text.split(/(\[\d+\])/g)
-  const Tag = as
+  function remarkCitations() {
+    return (tree: Root) => {
+      visit(tree, "text", (node, index, parent) => {
+        if (index === undefined || !parent || parent.type === "link" || parent.type === "linkReference") return
+        const parts = node.value.split(/(\[\d+\])/g)
+        if (parts.length === 1) return
+        const replacement: (Text | Link)[] = parts.filter(Boolean).map((part) => {
+          const match = /^\[(\d+)\]$/.exec(part)
+          if (!match || !citations[Number(match[1]) - 1]) return { type: "text", value: part }
+          return { type: "link", url: `#citation-${match[1]}`, children: [{ type: "text", value: part }] }
+        })
+        parent.children.splice(index, 1, ...replacement)
+        return index + replacement.length
+      })
+    }
+  }
+
+  const markdown = (
+    <ReactMarkdown
+      remarkPlugins={[remarkGfm, remarkCitations]}
+      components={{
+        a: ({ href, children }) => {
+          const match = /^#citation-(\d+)$/.exec(href ?? "")
+          if (!match) return <a href={href} target="_blank" rel="noreferrer">{children}</a>
+          const citeIdx = Number(match[1]) - 1
+          const cite = citations[citeIdx]
+          const isActive = activeIndex === citeIdx
+          return (
+            <button type="button" className={`inline-citation-badge${isActive ? " active" : ""}`}
+              aria-pressed={isActive}
+              aria-label={locale === "ru" ? `Проверить цитату [${match[1]}]: ${cite.title}` : `Verify citation [${match[1]}]: ${cite.title}`}
+              title={`${cite.title}${cite.locator ? ` · ${cite.locator}` : ""}`}
+              onClick={() => onClickCitation(citeIdx)}>
+              [{match[1]}]
+            </button>
+          )
+        },
+        table: ({ children }) => <div className="markdown-table-wrap"><table>{children}</table></div>,
+        ...(as === "span" ? { p: ({ children }: { children?: React.ReactNode }) => <>{children}</> } : {}),
+      }}
+    >{text}</ReactMarkdown>
+  )
+  return as === "span" ? <span className={className}>{markdown}</span> : <div className={`${className} markdown-content`}>{markdown}</div>
+}
+
+function normalizeExcerpt(text: string): string {
+  // Indexed excerpts can collapse a two-column Markdown table into a single line.
+  return text
+    .replace(/(\|\s*:?[-]{3,}:?\s*\|\s*:?[-]{3,}:?\s*\|)/g, "\n$1\n")
+    .replace(/\|\s+\|(?=\s*[^|\n])/g, "|\n|")
+    .replace(/(\|[^|\n]+\|[^|\n]+\|)\s+(?=\*\*|---)/g, "$1\n\n")
+}
+
+function SourceExcerpt({ text }: { text: string }) {
   return (
-    <Tag className={className}>
-      {parts.map((part, idx) => {
-        const match = /^\[(\d+)\]$/.exec(part)
-        if (!match) return <span key={idx}>{part}</span>
-        const num = Number(match[1])
-        const citeIdx = num - 1
-        const cite = citations[citeIdx]
-        if (!cite) return <span key={idx}>{part}</span>
-        const isActive = activeIndex === citeIdx
-        return (
-          <button
-            key={idx}
-            type="button"
-            className={`inline-citation-badge${isActive ? " active" : ""}`}
-            aria-pressed={isActive}
-            aria-label={
-              locale === "ru"
-                ? `Проверить цитату [${num}]: ${cite.title}`
-                : `Verify citation [${num}]: ${cite.title}`
-            }
-            title={`${cite.title}${cite.locator ? ` · ${cite.locator}` : ""}`}
-            onClick={() => onClickCitation(citeIdx)}
-          >
-            [{num}]
-          </button>
-        )
-      })}
-    </Tag>
+    <div className="markdown-content source-excerpt">
+      <ReactMarkdown remarkPlugins={[remarkGfm]} components={{
+        table: ({ children }) => <div className="markdown-table-wrap"><table>{children}</table></div>,
+        a: ({ href, children }) => <a href={href} target="_blank" rel="noreferrer">{children}</a>,
+      }}>{normalizeExcerpt(text)}</ReactMarkdown>
+    </div>
   )
 }
 
@@ -119,7 +153,7 @@ export function CitationInspector({
         <span className="citation-inspector-label">
           {ru ? "Фрагмент источника" : "Source excerpt"}
         </span>
-        <blockquote>{citation.excerpt}</blockquote>
+        <blockquote><SourceExcerpt text={citation.excerpt} /></blockquote>
       </div>
 
       <div className="citation-inspector-footer">
@@ -181,7 +215,7 @@ export function CitationList({
                 {c.locator ?? (ru ? "Не указана" : "Not specified")}
               </span>
             </div>
-            <p>{c.excerpt}</p>
+            <SourceExcerpt text={c.excerpt} />
             <a href={nasaContentUrl(c.url)} target="_blank" rel="noreferrer">
               {ru ? "Открыть источник NASA" : "Open NASA source"} ({formatSourceHost(c.url)}) <ArrowUpRight size={13} />
             </a>
