@@ -21,7 +21,7 @@
 | [flex-2j-jaxa](https://ignis-0g.space/explorer?study=flex-2j-jaxa&lang=ru) | 2 | 1 | 0 | 0 | 0 |
 | [flex-ice-ga](https://ignis-0g.space/explorer?study=flex-ice-ga&lang=ru) | 1 | 0 | 0 | 0 | 0 |
 | [iss-cabin-atmosphere](https://ignis-0g.space/explorer?study=iss-cabin-atmosphere&lang=ru) | 1 | 0 | 0 | 0 | 0 |
-| [saffire-i-iii](https://ignis-0g.space/explorer?study=saffire-i-iii&lang=ru) | 3 | 1 | 2 | 13 | 4 |
+| [saffire-i-iii](https://ignis-0g.space/explorer?study=saffire-i-iii&lang=ru) | 4 | 2 | 2 | 13 | 4 |
 | [saffire-iv-v](https://ignis-0g.space/explorer?study=saffire-iv-v&lang=ru) | 2 | 1 | 1 | 0 | 0 |
 | [saffire-vi](https://ignis-0g.space/explorer?study=saffire-vi&lang=ru) | 3 | 2 | 3 | 0 | 0 |
 | [same-same-r](https://ignis-0g.space/explorer?study=same-same-r&lang=ru) | 3 | 1 | 4 | 0 | 3 |
@@ -29,8 +29,8 @@
 | [sofie-gel](https://ignis-0g.space/explorer?study=sofie-gel&lang=ru) | 3 | 1 | 0 | 0 | 4 |
 | [sofie-mist](https://ignis-0g.space/explorer?study=sofie-mist&lang=ru) | 1 | 0 | 0 | 0 | 0 |
 | [sofie-nca](https://ignis-0g.space/explorer?study=sofie-nca&lang=ru) | 1 | 0 | 0 | 0 | 0 |
-| [sofie-rtdfs](https://ignis-0g.space/explorer?study=sofie-rtdfs&lang=ru) | 1 | 0 | 0 | 0 | 0 |
+| [sofie-rtdfs](https://ignis-0g.space/explorer?study=sofie-rtdfs&lang=ru) | 2 | 1 | 0 | 0 | 0 |
 | [sofie-smurf](https://ignis-0g.space/explorer?study=sofie-smurf&lang=ru) | 1 | 0 | 0 | 0 | 0 |
 | [spice](https://ignis-0g.space/explorer?study=spice&lang=ru) | 1 | 0 | 0 | 0 | 0 |
 | [ssce](https://ignis-0g.space/explorer?study=ssce&lang=ru) | 2 | 1 | 0 | 0 | 0 |
-| Всего | 56 | 20 | 18 | 336 | 24 |
+| Всего | 58 | 22 | 18 | 336 | 24 |
