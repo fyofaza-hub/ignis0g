@@ -5184,7 +5184,7 @@
     {
       "slug": "ssce",
       "source": {
-        "source_key": "ntrs-ssce-flight-analysis-19960008387",
+        "source_key": "ntrs-19960008387",
         "title": "Solid surface combustion experiment: flame spread in a quiescent, microgravity environment",
         "url": "https://ntrs.nasa.gov/citations/19960008387",
         "source_type": "report",
@@ -5192,7 +5192,7 @@
       },
       "finding": {
         "finding_key": "ssce-flight-materials-and-measurements",
-        "source_key": "ntrs-ssce-flight-analysis-19960008387",
+        "source_key": "ntrs-19960008387",
         "claim": "В SSCE исследовали распространение пламени по целлюлозе и PMMA в практически неподвижной среде микрогравитации.",
         "evidence": "Пять полётных экспериментов использовали тонкую фильтровальную бумагу, три — толстые образцы PMMA. Пламя снимали с двух направлений; температуры твёрдой и газовой фаз измеряли термопарами. Исследователи сравнивали измеренные скорости распространения с моделями.",
         "locator": "Abstract"
