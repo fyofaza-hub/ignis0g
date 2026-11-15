@@ -5065,6 +5065,23 @@
           ]
         }
       ]
+    },
+    {
+      "slug": "sofie-gel",
+      "source": {
+        "source_key": "nasa-taskbook-gel-2026",
+        "title": "NASA Task Book FY2026 — Flame Spread and Extinction Over Solid Materials",
+        "url": "https://taskbook.nasaprs.com/tbp/index.cfm?TASKID=AB7D53A58994730B8E16F73F5BF545F7&action=public_query_taskbook_content",
+        "source_type": "report",
+        "text_content": "## FY2026 Research Impact and FY2025 Task Progress\n\nПроект SoFIE-GEL проводился на МКС с января 2023 по март 2024 года. В отчёте исследователи указывают 54 испытания и 17 сферических образцов PMMA диаметром 4 см. Получены карта воспламеняемости для исследованных условий и данные о влиянии предварительного нагрева образца. При низкой скорости потока и низкой доле кислорода отмечено пламя конечной длины. NASA сообщает, что данные по давлению, кислороду, скорости потока, изображениям пламени и температурам загружены в центр управления полезными нагрузками NASA Glenn; отдельные численные ряды в этой карточке не приводятся."
+      },
+      "finding": {
+        "finding_key": "gel-iss-test-campaign-2026",
+        "source_key": "nasa-taskbook-gel-2026",
+        "claim": "На МКС в SoFIE‑GEL выполнено 54 испытания со сферическими образцами PMMA.",
+        "evidence": "В отчёте NASA указаны 17 образцов диаметром 4 см и исследование влияния предварительного нагрева на погасание. При некоторых условиях низкой скорости потока и низкой доли кислорода наблюдалось пламя конечной длины.",
+        "locator": "FY2025 Task Progress; FY2026 Research Impact"
+      }
     }
   ]
 }
