@@ -154,13 +154,18 @@ export function AssistantChat({
   const [draft, setDraft] = useState("")
   const [openCitationKey, setOpenCitationKey] = useState<string | null>(null)
   const log = useRef<HTMLDivElement>(null)
+  const latestQuestion = useRef<HTMLParagraphElement>(null)
   const input = useRef<HTMLTextAreaElement>(null)
   const { scope, setScope, study, scenario, exchanges, pending, send, clear } = chat
   const studyShortTitle = study ? study.title.split(" (")[0] : ""
 
   useEffect(() => {
-    if (log.current) log.current.scrollTop = log.current.scrollHeight
-  }, [exchanges.length, pending])
+    const container = log.current
+    const question = latestQuestion.current
+    if (!container || !question) return
+    const offset = question.getBoundingClientRect().top - container.getBoundingClientRect().top
+    container.scrollTop += offset
+  }, [exchanges.length])
 
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -284,7 +289,7 @@ export function AssistantChat({
         >
           {exchanges.map(({ question, response, error }, index) => (
             <div className="chat-exchange" key={index}>
-              <p className="chat-message chat-question">{question}</p>
+              <p ref={index === exchanges.length - 1 ? latestQuestion : undefined} className="chat-message chat-question">{question}</p>
 
               {!response && !error && (
                 <div className="chat-answer-block">

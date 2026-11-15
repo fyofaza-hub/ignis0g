@@ -2765,3 +2765,4 @@
 .pane-resize-handle:hover::after, .pane-resize-handle:focus-visible::after { background: var(--combustion); }
 .pane-resize-handle:focus-visible { outline: 2px solid var(--combustion); outline-offset: -2px; }
 @media (max-width: 650px) { .pane-resize-handle { display: none; } }
+.chat-body { overflow-anchor: none; }
