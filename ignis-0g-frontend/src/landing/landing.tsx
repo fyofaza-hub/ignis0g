@@ -1,7 +1,5 @@
-import { useEffect, useRef, useState } from "react"
-import { ArrowRight, Menu, Network, Search, X } from "@/components/ui/icons"
-import { api } from "@/api/client"
-import type { StudySummary } from "@/domain/types"
+import { useEffect, useState } from "react"
+import { ArrowRight, Menu, Network, X } from "@/components/ui/icons"
 import { LanguageSwitch, useLocale, type Locale } from "@/i18n"
 import { catalogEntry, getResearch } from "@/mocks/catalog"
 import { studyUrl } from "./research-flow"
@@ -38,82 +36,8 @@ function Brand({ locale }: { locale: Locale }) {
   )
 }
 
-function ExperimentSearch({ dialog, locale }: { dialog: { current: HTMLDialogElement | null }; locale: Locale }) {
-  const [query, setQuery] = useState("")
-  const [liveStudies, setLiveStudies] = useState<StudySummary[]>([])
-
-  useEffect(() => {
-    const controller = new AbortController()
-    api
-      .listStudies({ limit: 100, offset: 0 }, controller.signal)
-      .then((result) => setLiveStudies(result.items))
-      .catch(() => {
-        if (!controller.signal.aborted) setLiveStudies([])
-      })
-    return () => controller.abort()
-  }, [locale])
-
-  const list = liveStudies
-  const q = query.trim().toLowerCase()
-  const matches = list.filter((study) =>
-    `${study.id} ${catalogEntry(study.id)?.code ?? ""} ${study.category} ${study.title} ${study.description} ${study.tags.join(" ")} ${summaries[locale][study.id] ?? ""}`
-      .toLowerCase()
-      .includes(q),
-  )
-  return (
-    <dialog
-      ref={dialog}
-      className="landing-search-dialog"
-      aria-labelledby="experiment-search-title"
-      onClose={() => setQuery("")}
-      onClick={(event) => {
-        if (event.target === event.currentTarget) event.currentTarget.close()
-      }}
-    >
-      <div>
-        <div className="landing-search-heading">
-          <h2 id="experiment-search-title">{locale === "ru" ? "Поиск экспериментов" : "Search experiments"}</h2>
-          <button type="button" aria-label={locale === "ru" ? "Закрыть поиск" : "Close search"} onClick={() => dialog.current?.close()}>
-            <X size={20} />
-          </button>
-        </div>
-        <label className="landing-search-input">
-          <Search size={20} />
-          <input
-            autoFocus
-            type="search"
-            aria-label={locale === "ru" ? "Поиск по названию или теме" : "Search by name or topic"}
-            placeholder={locale === "ru" ? "Поиск по названию или теме…" : "Search by name or topic…"}
-            value={query}
-            onKeyDown={(event) => {
-              if (event.key === "Escape") {
-                event.preventDefault()
-                dialog.current?.close()
-              }
-            }}
-            onChange={(event) => setQuery(event.target.value)}
-          />
-        </label>
-        <ul>
-          {matches.map(({ id, title, category }) => (
-            <li key={id}>
-              <a href={studyUrl(id)}>
-                <strong>{catalogEntry(id)?.code ?? category}</strong>
-                <span>{title}</span>
-                <ArrowRight size={17} />
-              </a>
-            </li>
-          ))}
-        </ul>
-        {!matches.length && <p role="status">{locale === "ru" ? "Эксперименты не найдены." : "No experiments found."}</p>}
-      </div>
-    </dialog>
-  )
-}
-
 export function Landing() {
   const locale = useLocale()
-  const dialog = useRef<HTMLDialogElement>(null)
   const [menuOpen, setMenuOpen] = useState(false)
   const researchList = getResearch(locale)
 
@@ -129,16 +53,6 @@ export function Landing() {
       locale === "ru" ? "IGNIS 0G — огонь в невесомости" : "IGNIS 0G — Microgravity Research Explorer"
   }, [locale])
 
-  useEffect(() => {
-    function searchShortcut(event: KeyboardEvent) {
-      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
-        event.preventDefault()
-        if (!dialog.current?.open) dialog.current?.showModal()
-      }
-    }
-    window.addEventListener("keydown", searchShortcut)
-    return () => window.removeEventListener("keydown", searchShortcut)
-  }, [])
 
   return (
     <div className="landing">
@@ -157,16 +71,6 @@ export function Landing() {
           </nav>
           <div className="landing-header-actions">
             <LanguageSwitch />
-            <button
-              type="button"
-              className="landing-search-trigger"
-              aria-label={locale === "ru" ? "Поиск экспериментов" : "Search experiments"}
-              onClick={() => dialog.current?.showModal()}
-            >
-              <Search size={18} />
-              <span>{locale === "ru" ? "Поиск" : "Search"}</span>
-              <kbd>Ctrl K</kbd>
-            </button>
             <a className="landing-button landing-header-cta" href="/explorer">
               <Network size={17} /> {locale === "ru" ? "Открыть Explorer" : "Open Explorer"}
             </a>
@@ -193,7 +97,6 @@ export function Landing() {
           </a>
         </nav>
       </header>
-      <ExperimentSearch dialog={dialog} locale={locale} />
 
       <main id="landing-main" className="landing-container landing-simple">
         <section className="simple-hero" id="start">
@@ -217,7 +120,7 @@ export function Landing() {
             <article>
               <h3>{locale === "ru" ? "Найдите эксперимент" : "Find an experiment"}</h3>
               <p>{locale === "ru" ? "Ищите исследования по названию или теме и изучайте их условия, результаты и источники." : "Search studies by name or topic and explore their conditions, findings, and sources."}</p>
-              <button className="simple-link" type="button" onClick={() => dialog.current?.showModal()}>{locale === "ru" ? "Поиск экспериментов" : "Search experiments"} <ArrowRight size={16} /></button>
+              <a className="simple-link" href="/explorer?section=studies">{locale === "ru" ? "Открыть исследования" : "Browse studies"} <ArrowRight size={16} /></a>
             </article>
             <article>
               <h3>{locale === "ru" ? "Сравните условия" : "Compare conditions"}</h3>
