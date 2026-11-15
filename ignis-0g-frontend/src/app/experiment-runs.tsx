@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import type { ExperimentRun } from "@/domain/types"
 import { useLocale, type Locale } from "@/i18n"
 import { QueryFailure, QueryLoading } from "./query-feedback"
+import { exportSourceUrl, nasaContentUrl } from "@/lib/nasa-content"
 import { downloadFile } from "./study-evidence"
 
 const studyIds = ["bass-bass-ii-bass-m", "saffire-i-iii", "flex-1"]
@@ -113,7 +114,11 @@ function getRows(locale: Locale): { label: string; get: (run: ExperimentRun) => 
 
 function exportRuns(runs: ExperimentRun[], format: "csv" | "json") {
   const filename = `ignis-experiment-runs.${format}`
-  const records = experimentRecords(runs)
+  const records = experimentRecords(runs).map((record) => ({
+    ...record,
+    source_url: exportSourceUrl(record.source_url),
+    supplementary_url: record.supplementary_url ? exportSourceUrl(record.supplementary_url) : null,
+  }))
   if (format === "json") {
     downloadFile(filename, JSON.stringify(records, null, 2), "application/json")
     return
@@ -124,8 +129,8 @@ function exportRuns(runs: ExperimentRun[], format: "csv" | "json") {
 
 function RunSource({ run, locale }: { run: ExperimentRun; locale: Locale }) {
   return <>
-    <a href={run.source_url} target="_blank" rel="noreferrer">{run.locator}</a>
-    {run.supplementary_url && <> · <a href={run.supplementary_url} target="_blank" rel="noreferrer">{locale === "ru" ? "Наблюдение" : "Observation"}</a></>}
+    <a href={nasaContentUrl(run.source_url)} target="_blank" rel="noreferrer">{run.locator}</a>
+    {run.supplementary_url && <> · <a href={nasaContentUrl(run.supplementary_url)} target="_blank" rel="noreferrer">{locale === "ru" ? "Наблюдение" : "Observation"}</a></>}
   </>
 }
 

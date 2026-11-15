@@ -49,6 +49,91 @@ async function setupApiRoutes(page: Page, override?: ApiOverride) {
 }
 
 test.describe("Ignis 0G scientific Explorer E2E workflows", () => {
+  test("live queries preserve server content and empty collections in both locales", async ({ page }) => {
+    await setupApiRoutes(page, async ({ apiPath, method, body, route }) => {
+      const response = await mockFetch(apiPath, { method, body: body ?? undefined })
+      const data = await response.json()
+      if (apiPath.startsWith("/studies?")) {
+        for (const item of data.items) {
+          item.title = `SERVER ${item.id}`
+          item.description = "Server description"
+        }
+      } else if (apiPath === "/studies/flex-1") {
+        Object.assign(data, {
+          title: "SERVER flex-1", description: "Server description", methodology: "Server methodology",
+          conditions: { pressure_kpa: [42, 43], fuel_material: "Server material", o2_pct: null },
+          findings: [], safety_implications: [], media: [], datasets: [],
+        })
+      } else if (/\/(runs|datasets|relations)$/.test(apiPath)) {
+        await route.fulfill({ json: [] })
+        return true
+      } else if (apiPath.startsWith("/nexus/graph")) {
+        await route.fulfill({ json: { nodes: [], edges: [], truncated: false } })
+        return true
+      } else if (apiPath === "/rank") {
+        for (const item of data) { item.title = `SERVER ${item.study_id}`; item.material = "Server material" }
+      }
+      await route.fulfill({ json: data })
+      return true
+    })
+    for (const locale of ["en", "ru"]) {
+      await page.goto(`/explorer?lang=${locale}`)
+      await expect(page.locator(".ranking-card").first()).toContainText("SERVER")
+      const result = await page.evaluate(async (lang) => {
+        const modulePath = "/src/api/queries.ts"
+        const { studyQueries } = await import(modulePath)
+        const context = { signal: new AbortController().signal }
+        return Promise.all([
+          studyQueries.list({}, lang).queryFn(context),
+          studyQueries.detail("flex-1", lang).queryFn(context),
+          studyQueries.runs("flex-1").queryFn(context),
+          studyQueries.datasets("flex-1", lang).queryFn(context),
+          studyQueries.relations("flex-1", lang).queryFn(context),
+          studyQueries.graph(undefined, 1, lang).queryFn(context),
+        ])
+      }, locale)
+      expect(result[0].items.every((item: { title: string }) => item.title.startsWith("SERVER"))).toBe(true)
+      expect(result[1]).toMatchObject({
+        title: "SERVER flex-1", methodology: "Server methodology",
+        conditions: { pressure_kpa: [42, 43], fuel_material: "Server material", o2_pct: null },
+        findings: [], safety_implications: [], media: [], datasets: [],
+      })
+      expect(result[1].conditions.flow_cms).toBeUndefined()
+      expect(result.slice(2, 5)).toEqual([[], [], []])
+      expect(result[5]).toEqual({ nodes: [], edges: [], truncated: false })
+    }
+  })
+
+  test("empty live runs stay empty and map extremes are not clamped", async ({ page }, testInfo) => {
+    let empty = true
+    await setupApiRoutes(page, async ({ apiPath, route }) => {
+      if (empty && apiPath.endsWith("/runs")) {
+        await route.fulfill({ json: [] })
+        return true
+      }
+      return false
+    })
+    await page.goto("/explorer?section=environments&o2=100&p=1&flow=60&g=0.16")
+    await expect(page.locator(".envelope-status")).toContainText("Insufficient data")
+    await expect(page.locator(".psi-run-dot")).toHaveCount(0)
+    await expect(page.locator(".psi-run-inspector")).toHaveCount(0)
+    await expect(page.locator(".envelope-svg")).toContainText("100%")
+    await expect(page.locator(".envelope-status")).not.toHaveClass(/status-(safe|danger)/)
+    await page.screenshot({ path: testInfo.outputPath("environments-empty.png"), fullPage: true })
+
+    empty = false
+    await page.reload()
+    await expect(page.locator(".psi-run-dot").first()).toBeVisible()
+    await expect(page.locator(".envelope-status")).toContainText("No match for all four")
+    await page.getByRole("button", { name: "Liquid Droplets", exact: true }).click()
+    await expect(page.locator(".psi-run-inspector")).toContainText(/K=.*mm²\/s/)
+    await page.getByRole("button", { name: "Show BASS-II schematic" }).click()
+    await page.screenshot({ path: testInfo.outputPath("environments-data.png"), fullPage: true })
+    await page.setViewportSize({ width: 390, height: 844 })
+    await page.screenshot({ path: testInfo.outputPath("environments-mobile.png"), fullPage: true })
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true)
+  })
+
   test("score breakdown popover shows matched fields, missing data, and joint run verification", async ({ page }) => {
     await setupApiRoutes(page)
     await page.goto("/explorer")
@@ -84,11 +169,14 @@ test.describe("Ignis 0G scientific Explorer E2E workflows", () => {
     await expect(flexPopover).toContainText(/Verified by specific test run/i)
     await expect(flexPopover).toContainText(/FLEX-1\/FLEX-004/)
 
-    // Environments U-curve scientifically labels schematic 13.6% PMMA (O13a) anchor, never SIBAL calibration
+    // The schematic is optional and never produces a safety verdict.
     await page.goto("/explorer?section=environments&o2=12&p=101.3&flow=5&g=0")
-    await expect(page.locator(".envelope-controls")).toContainText(/PMMA guide/i)
-    await expect(page.locator(".envelope-status")).toContainText(/PMMA.*O13a/i)
-    await expect(page.locator(".envelope-status")).toContainText(/SIBAL.*16\.9/i)
+    await expect(page.locator(".envelope-status")).toContainText(/does not calculate fire risk/i)
+    await expect(page.locator(".envelope-svg polyline")).toHaveCount(0)
+    await page.getByRole("button", { name: "Show BASS-II schematic" }).click()
+    await expect(page.locator(".envelope-svg polyline")).toHaveCount(1)
+    await expect(page.locator(".envelope-chart-wrap")).toContainText(/not measurements or a calibrated boundary/i)
+
   })
 
   test("complete research workflow: open study -> inspect [1] citation -> choose conditions -> compare -> export CSV/JSON", async ({ page }, testInfo) => {
@@ -189,7 +277,7 @@ test.describe("Ignis 0G scientific Explorer E2E workflows", () => {
     await page.getByRole("button", { name: "Луна / Ровер SEA" }).click()
     await page.getByRole("button", { name: "Среды О₂" }).click()
 
-    await page.getByRole("tab", { name: /Конверт: Давление vs O₂/ }).click()
+    await page.getByRole("tab", { name: /Давление vs O₂/ }).click()
     await page.getByRole("button", { name: /Твёрдые \(ткани \/ PMMA\)/ }).click()
 
     // Add two solid-fuel studies to comparison from Environment scenario cards
@@ -208,7 +296,7 @@ test.describe("Ignis 0G scientific Explorer E2E workflows", () => {
     await page.reload()
 
     await expect(page.getByRole("heading", { level: 1, name: /Условия миссии/ })).toBeVisible()
-    await expect(page.getByRole("tab", { name: /Конверт: Давление vs O₂/ })).toHaveAttribute("aria-selected", "true")
+    await expect(page.getByRole("tab", { name: /Давление vs O₂/ })).toHaveAttribute("aria-selected", "true")
     await expect(page.getByRole("button", { name: /Твёрдые \(ткани \/ PMMA\)/ })).toHaveAttribute("aria-pressed", "true")
     await expect(page.locator(".nav-count")).toHaveText("2")
   })
@@ -332,5 +420,82 @@ test.describe("Ignis 0G scientific Explorer E2E workflows", () => {
     await searchModal.getByRole("link", { name: /FLEX-1/ }).first().click()
     await expect(page).toHaveURL(/\/explorer\?study=flex-1/)
     await expect(page.getByRole("heading", { level: 1, name: /FLEX-1/ })).toBeVisible()
+  })
+
+  test("BASS-II end-to-end flow: runs button (47), citation link, and exported ranking URLs rewrite local 8080 snapshots", async ({ page }, testInfo) => {
+    await setupApiRoutes(page, async ({ apiPath, method, body, route }) => {
+      if (apiPath === "/rank") {
+        const res = await mockFetch(apiPath, { method, body: body ?? undefined })
+        const data = await res.json()
+        for (const item of data) {
+          if (item.study_id === "bass-bass-ii-bass-m") {
+            item.source_urls = ["http://127.0.0.1:8080/nasa-content/research-pages/bass-program.md", ...item.source_urls]
+          }
+        }
+        await route.fulfill({ json: data })
+        return true
+      }
+      if (apiPath === "/assistant/chat") {
+        await route.fulfill({
+          json: {
+            status: "answered",
+            answer: "PMMA rod O13a burned down to 13.6% O2 in BASS-II [1].",
+            citations: [{
+              chunk_id: "00000000-0000-0000-0000-000000000001",
+              source_id: "00000000-0000-0000-0000-000000000002",
+              title: "BASS Program Overview",
+              url: "http://127.0.0.1:8080/nasa-content/research-pages/bass-program.md",
+              excerpt: "Cylindrical PMMA rod O13a burned down to 13.6% O2.",
+              locator: "Section 4",
+            }],
+            related_study_ids: ["bass-bass-ii-bass-m"],
+            suggested_questions: [],
+          },
+        })
+        return true
+      }
+      return false
+    })
+
+    await page.goto("/explorer?study=bass-bass-ii-bass-m&tab=measurements&lang=en")
+    const runsLink = page.getByRole("link", { name: /Open BASS-II test runs \(47\)/ })
+    await expect(runsLink).toBeVisible()
+
+    // Check AI citation rewrites local 8080 snapshot URL to relative /nasa-content/
+    await page.getByRole("button", { name: /AI Research Assistant/i }).click()
+    const inspector = page.locator("#inspector-dialog")
+    await inspector.getByLabel(/Message to assistant/i).fill("What was O13a LOI in BASS-II?")
+    await inspector.locator('button[type="submit"]').click()
+    await inspector.locator(".inline-citation-badge", { hasText: "[1]" }).first().click()
+    await expect(inspector.locator("a.citation-nasa-link")).toHaveAttribute("href", "/nasa-content/research-pages/bass-program.md")
+    await inspector.getByRole("button", { name: /Collapse chat/i }).click()
+
+    // Check Overview ranking export rewrites 127.0.0.1:8080 to current origin in JSON and CSV
+    await page.getByRole("navigation", { name: "Sections" }).getByRole("button", { name: "Overview" }).click()
+    const [jsonDl] = await Promise.all([
+      page.waitForEvent("download"),
+      page.getByRole("button", { name: /^JSON$/ }).click(),
+    ])
+    const jsonPath = testInfo.outputPath("ranking.json")
+    await jsonDl.saveAs(jsonPath)
+    const exportedJson = await fs.readFile(jsonPath, "utf8")
+    expect(exportedJson).not.toContain("127.0.0.1:8080")
+    expect(exportedJson).toContain("/nasa-content/research-pages/bass-program.md")
+
+    const [csvDl] = await Promise.all([
+      page.waitForEvent("download"),
+      page.getByRole("button", { name: /^CSV$/ }).click(),
+    ])
+    const csvPath = testInfo.outputPath("ranking.csv")
+    await csvDl.saveAs(csvPath)
+    const exportedCsv = await fs.readFile(csvPath, "utf8")
+    expect(exportedCsv).not.toContain("127.0.0.1:8080")
+    expect(exportedCsv).toMatch(/http:\/\/127\.0\.0\.1:\d+\/nasa-content\/research-pages\/bass-program\.md/)
+
+    // Follow BASS-II datasets link into filtered runs table
+    await page.goto("/explorer?study=bass-bass-ii-bass-m&tab=measurements&lang=en")
+    await runsLink.click()
+    await expect(page).toHaveURL(/rcamp=BASS-II/)
+    await expect(page.locator("#experiment-runs")).toContainText(/Showing 47 of 336 published test runs/)
   })
 })

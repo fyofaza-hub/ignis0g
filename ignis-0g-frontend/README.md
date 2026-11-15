@@ -35,4 +35,23 @@ Vite serves <http://localhost:5173> and proxies `/api` and `/health` to `127.0.0
 
 The API base URL is `/api/v1`. The client uses the backend contract documented in `../ignis-0g-backend/docs/API_SPEC.md`: studies, filters, datasets, relations, Nexus graph, assistant chat, and comparison.
 
+## Scientific data and the environment map
+
+Live queries preserve API content, units, missing values and empty collections.
+Local demo records never supplement or overwrite a live response. UI labels remain
+bilingual; research text is displayed in the language supplied by the API. The
+local catalog is used only by the explicitly enabled `VITE_USE_MOCKS=true` transport.
+
+The environment map plots loaded run records. Overview selects one record per
+study/outcome; All Runs shows the full loaded selection. Changing airflow/O₂ uses
+the last reported value for the point and lists the sequence in its details.
+Missing pressure is not inferred. Axes expand to include the selected scenario
+and plotted records. FLEX displays K in mm²/s and droplet diameter in mm;
+disruption, extinction and unknown outcomes remain distinct.
+
+The status reports evidence availability and fixed joint environmental matches,
+not fire risk or safe limits. Material and geometry remain specific to each run.
+The optional dashed BASS-II illustration is off by default; it is not a calibrated
+boundary and is never used to evaluate a scenario.
+
 `npm run typecheck` checks TypeScript types. `npm run build` creates the static site in `dist/`; `npm run preview` serves it locally.

@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState } from "react"
 import { ArrowRight, BookOpen, FlaskConical, Menu, Network, Search, X } from "@/components/ui/icons"
-import { api, useMocks } from "@/api/client"
+import { api } from "@/api/client"
 import flame from "@/assets/flex-flame.webp"
 import type { StudySummary } from "@/domain/types"
 import { LanguageSwitch, useLocale, type Locale } from "@/i18n"
 import { catalogEntry, getResearch, topics } from "@/mocks/catalog"
-import { getMockStudies } from "@/mocks/data"
 import { ResearchFlow, WorkflowFlow, studyUrl } from "./research-flow"
 import "./landing.css"
 
@@ -45,7 +44,6 @@ function ExperimentSearch({ dialog, locale }: { dialog: { current: HTMLDialogEle
   const [liveStudies, setLiveStudies] = useState<StudySummary[]>([])
 
   useEffect(() => {
-    if (useMocks) return
     const controller = new AbortController()
     api
       .listStudies({ limit: 100, offset: 0 }, controller.signal)
@@ -54,14 +52,9 @@ function ExperimentSearch({ dialog, locale }: { dialog: { current: HTMLDialogEle
         if (!controller.signal.aborted) setLiveStudies([])
       })
     return () => controller.abort()
-  }, [])
+  }, [locale])
 
-  const localStudies = getMockStudies(locale)
-  const merged = new Map(localStudies.map((study) => [study.id, study]))
-  for (const study of liveStudies) {
-    if (!merged.has(study.id)) merged.set(study.id, study)
-  }
-  const list = Array.from(merged.values())
+  const list = liveStudies
   const q = query.trim().toLowerCase()
   const matches = list.filter((study) =>
     `${study.id} ${catalogEntry(study.id)?.code ?? ""} ${study.category} ${study.title} ${study.description} ${study.tags.join(" ")} ${summaries[locale][study.id] ?? ""}`
@@ -241,7 +234,7 @@ export function Landing() {
         <section className="landing-container landing-stats" aria-label={locale === "ru" ? "Обзор каталога" : "Catalog overview"}>
           <dl>
             <div>
-              <dt>{locale === "ru" ? "Эксперименты" : "Experiments"}</dt>
+              <dt>{locale === "ru" ? "Избранные эксперименты" : "Featured experiments"}</dt>
               <dd>{researchList.length}</dd>
             </div>
             <div>

@@ -25,7 +25,8 @@ import type { Finding, StudyConditions, StudyDetail, StudySummary } from "@/doma
 import { useLocale, type Locale } from "@/i18n"
 import { QueryFailure, QueryLoading } from "./query-feedback"
 import { SourceList } from "./research-sources"
-import { ModelingRuns, StudyMeasurements, StudyNexusGraph, StudySafety, StudyVideo } from "./study-evidence"
+import { nasaContentUrl } from "@/lib/nasa-content"
+import { ModelingRuns, StudyMeasurements, StudyNexusGraph, StudySafety, StudyVideo, studyRunsTarget } from "./study-evidence"
 
 const views = [
   { id: "overview", nameEn: "Overview", nameRu: "Обзор", icon: Layers3 },
@@ -376,11 +377,14 @@ export function StudyPanel({
         <div className="overview-grid">
           <ExperimentSchematic study={studySummary} conditions={conditions} locale={locale} />
           <ModelingRuns runs={conditions.modeling_runs ?? []} />
-          {["bass-bass-ii-bass-m", "saffire-i-iii", "flex-1"].includes(studySummary.id) && (
-            <a href="?section=compare#experiment-runs">
-              {locale === "ru" ? "Открыть сравнение отдельных прогонов" : "Open individual test run comparison"}
-            </a>
-          )}
+          {(() => {
+            const runsTarget = studyRunsTarget(studySummary.id, locale)
+            return runsTarget ? (
+              <a href={runsTarget.href}>
+                {locale === "ru" ? "Открыть сравнение отдельных прогонов" : "Open individual test run comparison"}
+              </a>
+            ) : null
+          })()}
           <section className="study-block">
             <h2>
               <FlaskConical size={17} /> {locale === "ru" ? "Условия и параметры" : "Experimental Conditions & Parameters"}
@@ -501,7 +505,7 @@ export function StudyPanel({
                     <p>{rel.explanation}</p>
                     <small className="muted">
                       {locale === "ru" ? "Цитата:" : "Excerpt:"} “{rel.evidence.excerpt}”{" "}
-                      <a href={rel.source_url} target="_blank" rel="noreferrer">
+                      <a href={nasaContentUrl(rel.source_url)} target="_blank" rel="noreferrer">
                         {locale === "ru" ? "Источник" : "Source"} <ArrowUpRight size={12} />
                       </a>
                     </small>

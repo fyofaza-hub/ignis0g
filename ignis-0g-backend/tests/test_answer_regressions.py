@@ -301,3 +301,188 @@ def test_named_retrieval_recovers_a_study_outside_vector_top_k(monkeypatch):
                 await transaction.rollback()
         await engine.dispose()
     asyncio.run(run())
+
+
+def test_english_prompts_avoid_cyrillic_and_set_explicit_response_language():
+    import json
+    import re
+    from app.ai.prompts import build_compare_messages, build_messages, rewrite_messages
+    from app.schemas.assistant import CompareRequest
+
+    cyrillic = re.compile(r"[А-Яа-яЁё]")
+    ru_evidence = [passage("flex-1", "Cool flame observed at 700 K.", "4. Ключевые физические явления")]
+
+    chat_msgs = build_messages(
+        ChatRequest(
+            message="What did FLEX-1 observe?",
+            history=[{"role": "user", "content": "Расскажи про FLEX-1"}],
+        ),
+        ru_evidence,
+    )
+    assert not cyrillic.search(chat_msgs[0]["content"])
+    assert json.loads(chat_msgs[1]["content"])["response_language"] == "English"
+
+    ru_msgs = build_messages(ChatRequest(message="Что наблюдали в FLEX-1?"), ru_evidence)
+    assert json.loads(ru_msgs[1]["content"])["response_language"] == "Russian"
+
+    rewrite_msgs = rewrite_messages(
+        ChatRequest(
+            message="Compare it with BRE",
+            history=[{"role": "user", "content": "Что про FLEX-1?"}],
+        )
+    )
+    assert json.loads(rewrite_msgs[1]["content"])["query_language"] == "English"
+
+    cmp_en_msgs = build_compare_messages(
+        CompareRequest(study_ids=["flex-1", "acme-bre"], focus="Compare flame regimes", locale="ru"),
+        ru_evidence,
+    )
+    assert not cyrillic.search(cmp_en_msgs[0]["content"])
+    assert json.loads(cmp_en_msgs[1]["content"])["response_language"] == "English"
+
+    cmp_ru_msgs = build_compare_messages(
+        CompareRequest(study_ids=["flex-1", "acme-bre"], focus=None, locale="ru"),
+        ru_evidence,
+    )
+    assert json.loads(cmp_ru_msgs[1]["content"])["response_language"] == "Russian"
+
+
+def test_english_requests_retry_if_model_replies_in_russian():
+    from app.schemas.assistant import CompareRequest
+
+    class Repository:
+        async def has_chunks(self, request, revision):
+            return True
+
+        async def search(self, request, vector, revision, limit):
+            return [passage("flex-1", "Steady cool flames (~700 K) in microgravity.")]
+
+    class CompareRepo(Repository):
+        async def indexed_studies(self, study_ids, revision):
+            return set(study_ids)
+
+        async def search_comparison(self, study_ids, query, vector, revision, limit):
+            return [
+                passage("flex-1", "FLEX-1 cool flame (~700 K)."),
+                passage("acme-bre", "ACME BRE porous burner extinction."),
+            ]
+
+    async def run():
+        chat_llm = MockLLM([
+            {
+                "status": "answered",
+                "answer": "В FLEX-1 наблюдалось холодное пламя [1].",
+                "citation_indices": [1],
+                "suggested_questions": ["Какие условия были?"],
+            },
+            {
+                "status": "answered",
+                "answer": "FLEX-1 observed steady cool flames (~700 K) [1].",
+                "citation_indices": [1],
+                "suggested_questions": [
+                    "Что ещё тестировали?",
+                    "What fuels sustained the cool flame?",
+                ],
+            },
+        ])
+        chat_res = await RagService(MockEmbedding(), None, chat_llm, RagSettings(), Repository()).ask(
+            ChatRequest(message="What did FLEX-1 observe?")
+        )
+        assert len(chat_llm.messages) == 2
+        assert chat_res.status == "answered"
+        assert "FLEX-1 observed steady cool flames" in chat_res.answer
+        assert chat_res.suggested_questions == ["What fuels sustained the cool flame?"]
+
+        cmp_llm = MockLLM([
+            {
+                "status": "answered",
+                "summary": "FLEX-1 и BRE изучали затухание [1][2].",
+                "similarities": [{"text": "Оба проводились в микрогравитации [1][2].", "citation_indices": [1, 2]}],
+                "differences": [],
+                "limitations": [],
+            },
+            {
+                "status": "answered",
+                "summary": "FLEX-1 and ACME BRE studied extinction regimes [1][2].",
+                "similarities": [{"text": "Both ran in microgravity [1][2].", "citation_indices": [1, 2]}],
+                "differences": [{"text": "FLEX-1 tested droplets whereas BRE used a porous burner [1][2].", "citation_indices": [1, 2]}],
+                "limitations": ["Different fuel phases."],
+            },
+        ])
+        cmp_res = await RagService(MockEmbedding(), None, cmp_llm, RagSettings(), CompareRepo()).compare(
+            CompareRequest(study_ids=["flex-1", "acme-bre"], focus="Compare extinction regimes", locale="ru")
+        )
+        assert len(cmp_llm.messages) == 2
+        assert cmp_res.status == "answered"
+        assert "FLEX-1 and ACME BRE" in cmp_res.summary
+        assert cmp_res.similarities[0].text.startswith("Both ran in microgravity")
+
+    asyncio.run(run())
+
+
+def test_repair_retry_recovers_from_uncited_measurement_without_leaking_cyrillic():
+    class Repository:
+        async def has_chunks(self, request, revision):
+            return True
+
+        async def search(self, request, vector, revision, limit):
+            return [passage("bass-bass-ii-bass-m", "BASS-II PMMA rod O13a burned down to 13.6% O2 in 0g.")]
+
+    async def run():
+        repaired_llm = MockLLM([
+            {
+                "status": "answered",
+                "basis": "sources",
+                "answer": (
+                    "The scenario targets 34% O2 at 56.5 kPa and 0.16g gravity.\n\n"
+                    "BASS-II O13a burned down to 13.6% O2 in microgravity [1]."
+                ),
+                "citation_indices": [1],
+                "suggested_questions": [],
+            },
+            {
+                "status": "answered",
+                "basis": "sources",
+                "answer": (
+                    "The selected scenario conditions lack direct 0.16g measurements.\n\n"
+                    "BASS-II O13a burned down to 13.6% O2 in microgravity [1]."
+                ),
+                "citation_indices": [1],
+                "suggested_questions": [],
+            },
+        ])
+        res = await RagService(MockEmbedding(), None, repaired_llm, RagSettings(), Repository()).ask(
+            ChatRequest(message="What evidence exists for 34% O2 at 56.5 kPa?")
+        )
+        assert len(repaired_llm.messages) == 2
+        assert res.status == "answered"
+        assert len(res.citations) == 1
+        assert "13.6% O2" in res.answer
+
+        cyrillic_repair_llm = MockLLM([
+            {
+                "status": "answered",
+                "basis": "sources",
+                "answer": (
+                    "The selected scenario covers 34% O2 at 56.5 kPa.\n\n"
+                    "BASS-II O13a burned at 13.6% O2 [1]."
+                ),
+                "citation_indices": [1],
+                "suggested_questions": [],
+            },
+            {
+                "status": "answered",
+                "basis": "sources",
+                "answer": "В BASS-II O13a горение наблюдалось при 13.6% O2 [1].",
+                "citation_indices": [1],
+                "suggested_questions": [],
+            },
+        ])
+        rejected = await RagService(MockEmbedding(), None, cyrillic_repair_llm, RagSettings(), Repository()).ask(
+            ChatRequest(message="Compare BASS-II O13a against 34% O2")
+        )
+        assert rejected.status == "insufficient_evidence"
+        assert not rejected.citations
+        assert "verify" in rejected.answer.lower()
+
+    asyncio.run(run())

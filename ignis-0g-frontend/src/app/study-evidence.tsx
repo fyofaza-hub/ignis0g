@@ -1,3 +1,4 @@
+import { nasaContentUrl } from "@/lib/nasa-content"
 import { useMemo, useState } from "react"
 import { useQuery } from "@tanstack/react-query"
 import { Background, Controls, ReactFlow, type Edge, type Node } from "@xyflow/react"
@@ -74,7 +75,7 @@ export function ModelingRuns({ runs }: { runs: ModelingRun[] }) {
               <tr key={run.case}>
                 <td>{run.case}</td><td>{run.nozzle_inner_diameter_mm}</td><td>{run.methane_in_fuel_pct}</td>
                 <td>{run.fuel_flow_cms.join("–")}</td><td>{run.coflow_air_cms.join("–")}</td>
-                <td><a href={run.source_url} target="_blank" rel="noreferrer">{run.locator}</a></td>
+                <td><a href={nasaContentUrl(run.source_url)} target="_blank" rel="noreferrer">{run.locator}</a></td>
               </tr>
             ))}
           </tbody>
@@ -87,6 +88,21 @@ export function ModelingRuns({ runs }: { runs: ModelingRun[] }) {
       </p>
     </section>
   )
+}
+
+const STUDY_RUNS_LINKS: Record<string, { label: string; query: string }> = {
+  "bass-bass-ii-bass-m": { label: "BASS-II", query: "rcamp=BASS-II" },
+  "saffire-i-iii": { label: "Saffire", query: "rq=Saffire" },
+  "flex-1": { label: "FLEX-1", query: "rcamp=FLEX-1" },
+}
+
+export function studyRunsTarget(studyId: string, locale: Locale) {
+  const meta = STUDY_RUNS_LINKS[studyId]
+  if (!meta) return null
+  return {
+    label: meta.label,
+    href: `?section=compare&${meta.query}&lang=${locale}#experiment-runs`,
+  }
 }
 
 export function StudyMeasurements({
@@ -107,6 +123,13 @@ export function StudyMeasurements({
   const locale = useLocale()
   const format = locale === "ru" ? formatRu : formatEn
   const query = useQuery(studyQueries.datasets(studyId, locale))
+  const runsTarget = studyRunsTarget(studyId, locale)
+  const runsQuery = useQuery({
+    ...studyQueries.runs(studyId),
+    enabled: Boolean(runsTarget) && !chart,
+  })
+  const runCount = runsQuery.data?.length ?? 0
+  const showRunsLink = Boolean(runsTarget) && !chart && (runCount > 0 || !runsQuery.isSuccess)
   const [localDatasetId, setLocalDatasetId] = useState<string>("")
   const [localSeriesId, setLocalSeriesId] = useState<string>("")
 
@@ -158,9 +181,22 @@ export function StudyMeasurements({
         )}
       </div>
 
+      {showRunsLink && runsTarget && (
+        <Button asChild variant="outline" size="sm">
+          <a href={runsTarget.href}>
+            {locale === "ru"
+              ? `Открыть прогоны ${runsTarget.label}${runCount ? ` (${runCount})` : ""}`
+              : `Open ${runsTarget.label} test runs${runCount ? ` (${runCount})` : ""}`}
+          </a>
+        </Button>
+      )}
       {!dataset ? (
         <p className="muted">
-          {locale === "ru"
+          {showRunsLink && runsTarget
+            ? locale === "ru"
+              ? `Для ${runsTarget.label} нет отдельных числовых рядов. Измерения доступны в таблице прогонов.`
+              : `${runsTarget.label} has no separate numeric series. Open the test runs table to see the measurements.`
+            : locale === "ru"
             ? "Для этого исследования в базе пока нет оцифрованных числовых рядов. Вы можете изучить текстовые выводы, условия среды или запросить данные у ИИ-ассистента."
             : "No digitized numeric series are available for this study yet. You can review the findings, atmospheric conditions, or query the AI Assistant."}
         </p>
@@ -509,12 +545,12 @@ export function StudyVideo({ studyId, media }: { studyId: string; media: Media[]
           {images.map((image) => (
             <figure key={image.id} className="study-media-card">
               <a
-                href={image.url}
+                href={nasaContentUrl(image.url)}
                 target="_blank"
                 rel="noreferrer"
                 aria-label={locale === "ru" ? `Открыть изображение: ${image.caption}` : `Open image: ${image.caption}`}
               >
-                <img src={image.url} alt={image.caption} loading="lazy" />
+                <img src={nasaContentUrl(image.url)} alt={image.caption} loading="lazy" />
               </a>
               <figcaption>{image.caption}</figcaption>
             </figure>
@@ -528,7 +564,7 @@ export function StudyVideo({ studyId, media }: { studyId: string; media: Media[]
       )}
       {videos.map((v) => (
         <div key={v.id} className="media-link-row">
-          <a href={v.url} target="_blank" rel="noreferrer">
+          <a href={nasaContentUrl(v.url)} target="_blank" rel="noreferrer">
             {v.caption || (locale === "ru" ? "Видеозапись эксперимента" : "Experiment video recording")}{" "}
             <ArrowUpRight size={14} />
           </a>

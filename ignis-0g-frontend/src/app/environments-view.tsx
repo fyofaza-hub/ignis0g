@@ -5,26 +5,27 @@ import {
   ArrowRight,
   Flame,
   Rocket,
-  ShieldCheck,
   Wind,
 } from "@/components/ui/icons"
 import { Button } from "@/components/ui/button"
 import { studyQueries } from "@/api/queries"
 import {
   BASS_U_CURVE_POINTS,
-  PSI_TEST_RUNS,
   detectEvidenceGaps,
   getCrewEnvironments,
   getMissionScenarios,
-  getReferenceBassLoc,
-  type FlameRegime,
   type MissionScenarioId,
-  type PsiTestRunPoint,
 } from "@/domain/knowledge"
-import type { ExperimentRun, Scenario } from "@/domain/types"
+import type { Scenario } from "@/domain/types"
 import type { EnvAxisMode } from "@/domain/url-state"
 import { useLocale } from "@/i18n"
 import { ScenarioResults } from "./scenario-results"
+import { QueryFailure, QueryLoading } from "./query-feedback"
+import { useMocks } from "@/api/client"
+import {
+  OUTCOME_COLORS, OUTCOME_LABELS, axisFraction, chartAxis,
+  filterExperimentPoints, representativePoints, scenarioEvidence, toExperimentPoints,
+} from "@/domain/experiment-chart"
 
 type ChartAxisMode = EnvAxisMode
 
@@ -36,107 +37,6 @@ export interface EnvironmentsViewFilterState {
 }
 
 const DIGITIZED_RUN_STUDY_IDS = ["bass-bass-ii-bass-m", "saffire-i-iii", "flex-1"] as const
-
-const OUTCOME_LABELS_EN: Record<string, string> = {
-  quenched: "Quenched",
-  no_blowoff: "No blowoff observed",
-  blowoff: "Blowoff",
-  no_ignition: "No ignition",
-  one_sided_flame: "One-sided flame",
-  ignited: "Ignited",
-  no_propagation: "No propagation",
-  burned_to_end: "Burned to end of sample",
-  no_spread_into_nomex: "No spread into Nomex",
-  cool_flame: "Two-stage cool flame",
-  extinction: "Flame extinction",
-  completion: "Burned to completion",
-  disruption: "Droplet disruption",
-}
-
-const OUTCOME_LABELS_RU: Record<string, string> = {
-  quenched: "Затухание",
-  no_blowoff: "Срыва пламени не было",
-  blowoff: "Срыв пламени",
-  no_ignition: "Без воспламенения",
-  one_sided_flame: "Пламя с одной стороны",
-  ignited: "Воспламенился",
-  no_propagation: "Пламя не распространилось",
-  burned_to_end: "Образец прогорел до конца",
-  no_spread_into_nomex: "Пламя не перешло на Nomex",
-  cool_flame: "Двухстадийное холодное пламя",
-  extinction: "Затухание пламени",
-  completion: "Полное выгорание",
-  disruption: "Разрушение капли",
-}
-
-const REGIME_LABELS_EN: Record<FlameRegime, string> = {
-  flame_spread: "Sustained Flame Spread",
-  smoldering_cool: "Smoldering / Cool Flame",
-  quenched: "Extinguished / Non-Propagating",
-}
-
-const REGIME_LABELS_RU: Record<FlameRegime, string> = {
-  flame_spread: "Устойчивое горение",
-  smoldering_cool: "Тление / холодное пламя",
-  quenched: "Затухание / нет распространения",
-}
-
-const REGIME_COLORS: Record<FlameRegime, string> = {
-  flame_spread: "#ff7a6b",
-  smoldering_cool: "#ffc46b",
-  quenched: "#63e2b7",
-}
-
-function toDigitizedRunPoints(studyId: string, runs: ExperimentRun[]): PsiTestRunPoint[] {
-  return runs.map((run) => {
-    const out = run.outcome ?? ""
-    const isTerminalTransition = out === "quenched" || out === "blowoff"
-    const flow =
-      (isTerminalTransition ? run.airflow_cms[run.airflow_cms.length - 1] : run.airflow_cms[0]) ?? 0
-    const o2 = run.oxygen_vol_pct[0] ?? 21
-    const pKpa = run.pressure_atm !== null ? Number((run.pressure_atm * 101.325).toFixed(1)) : null
-    const fuelCategory: "solid" | "liquid" | "gas" = run.campaign === "FLEX-1" ? "liquid" : "solid"
-    const regime: FlameRegime =
-      out === "cool_flame"
-        ? "smoldering_cool"
-        : out === "quenched" ||
-            out === "blowoff" ||
-            out === "no_ignition" ||
-            out === "no_propagation" ||
-            out === "extinction" ||
-            out === "disruption"
-          ? "quenched"
-          : "flame_spread"
-
-    const rateEn = run.spread_rate_mm_s
-      ? `${run.campaign === "FLEX-1" ? "K=" : "spread "}${run.spread_rate_mm_s.join("→")} ${run.campaign === "FLEX-1" ? "mm²/s" : "mm/s"}`
-      : null
-    const rateRu = run.spread_rate_mm_s
-      ? `${run.campaign === "FLEX-1" ? "K=" : "скорость "}${run.spread_rate_mm_s.join("→")} ${run.campaign === "FLEX-1" ? "мм²/с" : "мм/с"}`
-      : null
-
-    const metric = OUTCOME_LABELS_EN[out] ?? rateEn ?? `Measured at ${run.airflow_cms.join("→")} cm/s`
-    const metricRu = OUTCOME_LABELS_RU[out] ?? rateRu ?? `Измерено при ${run.airflow_cms.join("→")} см/с`
-
-    return {
-      id: `${studyId}-${run.run_id}`,
-      runCode: `${run.campaign} #${run.run_id}`,
-      studyId,
-      program: run.campaign,
-      fuelCategory,
-      fuelLabel: `${run.material} (${run.geometry})`,
-      fuelLabelRu: `${run.material} (${run.geometry})`,
-      o2Pct: o2,
-      pressureKpa: pKpa,
-      flowCms: flow,
-      gravityG: 0,
-      regime,
-      metric: rateEn && OUTCOME_LABELS_EN[out] ? `${OUTCOME_LABELS_EN[out]} (${rateEn})` : metric,
-      metricRu: rateRu && OUTCOME_LABELS_RU[out] ? `${OUTCOME_LABELS_RU[out]} (${rateRu})` : metricRu,
-      citation: run.locator,
-    }
-  })
-}
 
 export function EnvironmentsView({
   scenario,
@@ -165,7 +65,8 @@ export function EnvironmentsView({
   const setAxisMode = viewState?.onAxisModeChange ?? setLocalAxisMode
   const showAllRuns = viewState?.showAllRuns ?? localShowAllRuns
   const setShowAllRuns = viewState?.onShowAllRunsChange ?? setLocalShowAllRuns
-  const [selectedRunId, setSelectedRunId] = useState<string>("bass-run-gmt45-t4")
+  const [selectedRunId, setSelectedRunId] = useState<string>("")
+  const [showSchematic, setShowSchematic] = useState(false)
   const [hoveredRunId, setHoveredRunId] = useState<string | null>(null)
 
   const runQueries = useQueries({
@@ -174,7 +75,7 @@ export function EnvironmentsView({
   const digitizedRuns = useMemo(
     () =>
       DIGITIZED_RUN_STUDY_IDS.flatMap((id, idx) =>
-        toDigitizedRunPoints(id, runQueries[idx]?.data ?? []),
+        toExperimentPoints(id, runQueries[idx]?.data ?? []),
       ),
     [runQueries],
   )
@@ -185,20 +86,19 @@ export function EnvironmentsView({
   const gravityG = scenario.gravity_g
 
   const ppO2Kpa = Number(((pressureKpa * o2Pct) / 100).toFixed(1))
-  const ppO2Psi = Number((ppO2Kpa / 6.89476).toFixed(2))
-  const refLoc = getReferenceBassLoc({ flowCms, pressureKpa, gravityG, fuel: scenario.fuel })
-  const effectiveLoi = refLoc.locO2Pct
-
-  const sourceRuns = showAllRuns && digitizedRuns.length > 0 ? digitizedRuns : PSI_TEST_RUNS
-  const filteredRuns = useMemo(() => {
-    const f = scenario.fuel
-    if (!f || f === "aerosol_pyrolysis" || f === "reference") return sourceRuns
-    return sourceRuns.filter((r) => r.fuelCategory === f)
-  }, [scenario.fuel, sourceRuns])
+  const allFilteredRuns = useMemo(
+    () => filterExperimentPoints(digitizedRuns, scenario.fuel),
+    [digitizedRuns, scenario.fuel],
+  )
+  const keyRuns = useMemo(() => representativePoints(allFilteredRuns), [allFilteredRuns])
+  const filteredRuns = showAllRuns ? allFilteredRuns : keyRuns
+  const runsLoading = runQueries.some((query) => query.isPending)
+  const runsFailed = runQueries.some((query) => query.isError)
+  const evidence = scenarioEvidence(allFilteredRuns, scenario)
 
   const plottedRuns = useMemo(() => {
     if (axisMode === "pressure-o2") {
-      return filteredRuns.filter((r): r is PsiTestRunPoint & { pressureKpa: number } => r.pressureKpa !== null)
+      return filteredRuns.filter((r) => r.pressureKpa !== null)
     }
     return filteredRuns
   }, [axisMode, filteredRuns])
@@ -220,47 +120,18 @@ export function EnvironmentsView({
     [o2Pct, pressureKpa, flowCms, gravityG, locale],
   )
 
-  let riskState: "safe" | "caution" | "danger" = "caution"
-  let riskTitle = ru
-    ? "Пограничный режим (вблизи схематической U-кривой BASS-II)"
-    : "Marginal Regime (Near Schematic BASS-II U-Curve)"
-  let riskDetail = ru
-    ? `Текущий O₂ (${o2Pct}%) близок к схематическому ориентиру BASS-II (~${effectiveLoi}% O₂ при обдуве ${flowCms} см/с; якорь 13.6% по стержню PMMA O13a при 0g, 101.3 кПа).`
-    : `Current O₂ (${o2Pct}%) sits near the schematic BASS-II U-curve guide (~${effectiveLoi}% O₂ at ${flowCms} cm/s; anchored to 13.6% on PMMA rod O13a at 0g, 101.3 kPa).`
-
-  if (o2Pct >= 28 || ppO2Kpa >= 23) {
-    riskState = "danger"
-    riskTitle = ru
-      ? "Повышенный риск SEA / EVA (высокая доля O₂ / pO₂)"
-      : "Elevated SEA / EVA Hazard (High O₂ / pO₂)"
-    riskDetail = ru
-      ? `pO₂ = ${ppO2Psi} psi (${ppO2Kpa} кПа). Повышенная концентрация кислорода усиливает воспламеняемость материалов относительно стандартного режима МКС.`
-      : `pO₂ = ${ppO2Psi} psi (${ppO2Kpa} kPa). Elevated O₂ mole fraction increases material flammability relative to nominal ISS air.`
-  } else if (!refLoc.isCalibrated) {
-    riskState = "caution"
-    riskTitle = ru
-      ? "Вне области применимости U-кривой BASS-II (101.3 кПа, 0g, твёрдые)"
-      : "Outside Schematic BASS-II U-Curve Scope (101.3 kPa, 0g, solids)"
-    riskDetail = ru
-      ? `Схематический ориентир U-кривой (~${effectiveLoi}% O₂ при ${flowCms} см/с; минимум 13.6% по PMMA O13a) относится только к твёрдым материалам в 0g и 101.3 кПа. Для (${pressureKpa} кПа, ${gravityG.toFixed(2)}g) пересчёт LOI без эмпирических прогонов не выполняется.`
-      : `The schematic U-curve guide (~${effectiveLoi}% O₂ at ${flowCms} cm/s; 13.6% minimum anchored to PMMA O13a) applies only to solids at 0g and 101.3 kPa. No uncalibrated pressure or partial-gravity LOI extrapolation is applied for (${pressureKpa} kPa, ${gravityG.toFixed(2)}g).`
-  } else if (o2Pct < effectiveLoi - 0.5) {
-    riskState = "safe"
-    riskTitle = ru
-      ? "Ниже схематического ориентира BASS-II (PMMA O13a, 0g, 1 атм)"
-      : "Below Schematic BASS-II Guide (PMMA O13a Anchor, 0g, 1 atm)"
-    riskDetail = ru
-      ? `O₂ (${o2Pct}%) ниже схематического ориентира затухания для стержня PMMA O13a (~${effectiveLoi}% O₂ при ${flowCms} см/с, 0g, 101.3 кПа; плоская ткань SIBAL в Table 7.1 гасла выше — при 16.9–18.7% O₂). Для других геометрий и топлив сверяйтесь с отдельными прогонами.`
-      : `O₂ (${o2Pct}%) is below the schematic PMMA rod (O13a) anchor (~${effectiveLoi}% O₂ at ${flowCms} cm/s, 0g, 101.3 kPa; flat SIBAL fabric in Table 7.1 quenched higher at 16.9–18.7% O₂). Check individual runs for other geometries and fuels.`
-  } else if (flowCms >= 2 && flowCms <= 15) {
-    riskState = "danger"
-    riskTitle = ru
-      ? "Зона минимума схематической U-кривой BASS-II (слабый обдув 2–15 см/с)"
-      : "BASS-II U-Curve Trough (Low Forced Flow 2–15 cm/s)"
-    riskDetail = ru
-      ? `При обдуве ${flowCms} см/с в 0g отсутствует плавучий унос тепла, а схематический порог по PMMA O13a опускается до ~${effectiveLoi}% O₂ (плоская ткань SIBAL гасла при 16.9–18.7% O₂).`
-      : `At ${flowCms} cm/s in 0g, buoyant cooling is absent and the schematic PMMA (O13a) anchor drops to ~${effectiveLoi}% O₂ (flat SIBAL fabric quenched at 16.9–18.7% O₂).`
-  }
+  const evidenceTitle = runsLoading
+    ? ru ? "Загрузка экспериментальных данных" : "Loading experimental data"
+    : runsFailed
+      ? ru ? "Данные загружены не полностью" : "Experimental data is incomplete"
+      : evidence.matched > 0
+        ? ru ? "Параметры среды встречаются в опубликованных прогонах" : "Environmental parameters found in published runs"
+        : evidence.complete > 0
+          ? ru ? "Совпадение всех четырёх параметров не найдено" : "No match for all four environmental parameters"
+          : ru ? "Недостаточно данных для сопоставления условий" : "Insufficient data to match conditions"
+  const evidenceDetail = ru
+    ? `Загружено прогонов для выбранной фазы топлива: ${evidence.total}. С фиксированными O₂, обдувом и указанным давлением: ${evidence.complete}; совпадают O₂, давление, обдув и гравитация: ${evidence.matched}. Совпадение относится только к материалу и геометрии соответствующего прогона. Карта не рассчитывает пожарный риск или безопасные пределы.`
+    : `Loaded runs for the selected fuel phase: ${evidence.total}. With fixed O₂, constant airflow and reported pressure: ${evidence.complete}; matching O₂, pressure, airflow and gravity: ${evidence.matched}. A match applies only to the material and geometry of that run. This map does not calculate fire risk or safe limits.`
 
   const svgW = 680
   const svgH = 290
@@ -271,25 +142,18 @@ export function EnvironmentsView({
   const plotW = svgW - padL - padR
   const plotH = svgH - padT - padB
 
-  const pressMax =
-    axisMode === "pressure-o2" &&
-    (pressureKpa > 125 || plottedRuns.some((r) => (r.pressureKpa ?? 0) > 130))
-      ? 320
-      : 125
-  const flowToX = (f: number) => padL + (Math.min(50, Math.max(0, f)) / 50) * plotW
-  const pressToX = (pKpa: number) =>
-    padL + ((Math.min(pressMax, Math.max(25, pKpa)) - 25) / (pressMax - 25)) * plotW
-  const o2ToY = (o2: number) => padT + (1 - (Math.min(46, Math.max(10, o2)) - 10) / 36) * plotH
-
+  const flowAxis = chartAxis([flowCms, ...plottedRuns.map((r) => r.flowCms)], [0, 50], 10)
+  const pressureAxis = chartAxis([pressureKpa, ...plottedRuns.flatMap((r) => r.pressureKpa === null ? [] : [r.pressureKpa])], [0, 125], 25)
+  const oxygenAxis = chartAxis([o2Pct, ...plottedRuns.map((r) => r.o2Pct)], [10, 46], 5)
+  const flowToX = (flow: number) => padL + axisFraction(flow, flowAxis) * plotW
+  const pressToX = (pressure: number) => padL + axisFraction(pressure, pressureAxis) * plotW
+  const o2ToY = (oxygen: number) => padT + (1 - axisFraction(oxygen, oxygenAxis)) * plotH
   const uCurvePointsStr = BASS_U_CURVE_POINTS.map(
     (pt) => `${flowToX(pt.flowCms).toFixed(1)},${o2ToY(pt.locO2Pct).toFixed(1)}`,
   ).join(" ")
 
-  const uCurveFillStr = `${flowToX(0.2).toFixed(1)},${o2ToY(46).toFixed(1)} ${uCurvePointsStr} ${flowToX(50).toFixed(1)},${o2ToY(46).toFixed(1)}`
-
   const userX = axisMode === "flow-o2" ? flowToX(flowCms) : pressToX(pressureKpa)
   const userY = o2ToY(o2Pct)
-  const regimeLabels = ru ? REGIME_LABELS_RU : REGIME_LABELS_EN
   const scenarios = getMissionScenarios(locale)
   const crewEnvs = getCrewEnvironments(locale)
 
@@ -298,8 +162,8 @@ export function EnvironmentsView({
       <div>
         <h1>
           {ru
-            ? "Условия миссии и 2D-карта режимов горения"
-            : "Mission Environments & 2D Combustion Regime Map"}
+            ? "Условия миссии и 2D-карта экспериментальных данных"
+            : "Mission Environments & 2D Experimental Data Map"}
         </h1>
         <p className="muted">
           {ru
@@ -331,7 +195,7 @@ export function EnvironmentsView({
               className={`regime-tab-btn ${axisMode === "flow-o2" ? "active" : ""}`}
               onClick={() => setAxisMode("flow-o2")}
             >
-              {ru ? "U-кривая: Поток vs O₂" : "U-Curve: Airflow vs O₂"}
+              {ru ? "Поток vs O₂" : "Airflow vs O₂"}
             </button>
             <button
               type="button"
@@ -340,7 +204,7 @@ export function EnvironmentsView({
               className={`regime-tab-btn ${axisMode === "pressure-o2" ? "active" : ""}`}
               onClick={() => setAxisMode("pressure-o2")}
             >
-              {ru ? "Конверт: Давление vs O₂" : "Envelope: Pressure vs O₂"}
+              {ru ? "Давление vs O₂" : "Pressure vs O₂"}
             </button>
             <button
               type="button"
@@ -350,8 +214,8 @@ export function EnvironmentsView({
               onClick={() => setShowAllRuns(!showAllRuns)}
             >
               {showAllRuns
-                ? ru ? `Все прогоны (${digitizedRuns.length})` : `All Runs (${digitizedRuns.length})`
-                : ru ? `Ключевые точки (${PSI_TEST_RUNS.length})` : `Key Runs (${PSI_TEST_RUNS.length})`}
+                ? ru ? `Все прогоны (${allFilteredRuns.length})` : `All Runs (${allFilteredRuns.length})`
+                : ru ? `Обзор (${keyRuns.length})` : `Overview (${keyRuns.length})`}
             </button>
           </div>
 
@@ -384,9 +248,7 @@ export function EnvironmentsView({
               <div className="slider-head">
                 <span>{ru ? "Кислород O₂" : "Oxygen O₂"}</span>
                 <strong>
-                  {refLoc.isCalibrated
-                    ? `${o2Pct}% (${ru ? "ориентир PMMA" : "PMMA guide"} ~${effectiveLoi}%)`
-                    : `${o2Pct}% O₂`}
+                  {o2Pct}% O₂
                 </strong>
               </div>
               <input
@@ -449,16 +311,18 @@ export function EnvironmentsView({
             </label>
 
             <div className="regime-legend-inline">
-              <span>
-                <i style={{ background: "#ff7a6b" }} /> {ru ? "Горение" : "Flame"}
-              </span>
-              <span>
-                <i style={{ background: "#ffc46b" }} /> {ru ? "Тление" : "Cool/Smolder"}
-              </span>
-              <span>
-                <i style={{ background: "#63e2b7" }} /> {ru ? "Затухание" : "Quenched"}
-              </span>
+              <span><i style={{ background: "#ff7a6b" }} /> {ru ? "Горение / выгорание" : "Burning / completion"}</span>
+              <span><i style={{ background: "#ffc46b" }} /> {ru ? "Холодное пламя" : "Cool flame"}</span>
+              <span><i style={{ background: "#63e2b7" }} /> {ru ? "Затухание / срыв" : "Extinction / blowoff"}</span>
+              <span><i style={{ background: "#b8becb" }} /> {ru ? "Другой / неизвестный исход" : "Other / unknown outcome"}</span>
             </div>
+            {axisMode === "flow-o2" && (
+              <Button type="button" variant="outline" size="sm" aria-pressed={showSchematic} onClick={() => setShowSchematic(!showSchematic)}>
+                {showSchematic
+                  ? ru ? "Скрыть схему BASS-II" : "Hide BASS-II schematic"
+                  : ru ? "Показать схему BASS-II" : "Show BASS-II schematic"}
+              </Button>
+            )}
 
             <Button type="button" variant="outline" size="sm" onClick={onAsk}>
               {ru ? "Спросить ИИ об этих условиях" : "Ask AI About This Scenario"}
@@ -471,9 +335,9 @@ export function EnvironmentsView({
                 viewBox={`0 0 ${svgW} ${svgH}`}
                 className="envelope-svg"
                 role="img"
-                aria-label={ru ? "Двумерная карта режимов горения NASA PSI" : "NASA PSI 2D Combustion Regime Map"}
+                aria-label={ru ? "Двумерная карта экспериментальных данных NASA" : "NASA experimental observations"}
               >
-                {[15, 20, 25, 30, 35, 40, 45].map((o2Val) => {
+                {oxygenAxis.ticks.map((o2Val) => {
                   const y = o2ToY(o2Val)
                   return (
                     <g key={o2Val}>
@@ -487,7 +351,7 @@ export function EnvironmentsView({
 
                 {axisMode === "flow-o2" ? (
                   <>
-                    {[0, 10, 20, 30, 40, 50].map((fVal) => {
+                    {flowAxis.ticks.map((fVal) => {
                       const x = flowToX(fVal)
                       return (
                         <g key={fVal}>
@@ -500,39 +364,24 @@ export function EnvironmentsView({
                     })}
                     <text x={padL + plotW / 2} y={svgH - 5} textAnchor="middle" fill="#cfd5e2" fontSize="11.5">
                       {ru
-                        ? "Скорость обдува (см/с) · ориентирная U-кривая NASA BASS-II"
-                        : "Forced Airflow Velocity (cm/s) · Schematic NASA BASS-II Ref"}
+                        ? "Скорость обдува (см/с)"
+                        : "Forced Airflow Velocity (cm/s)"}
                     </text>
 
-                    <polygon
-                      points={uCurveFillStr}
-                      fill={refLoc.isCalibrated ? "rgba(232, 93, 74, 0.1)" : "rgba(232, 93, 74, 0.04)"}
-                    />
-                    <polyline
-                      points={uCurvePointsStr}
-                      fill="none"
-                      stroke="#ff9e64"
-                      strokeWidth="2.4"
-                      strokeDasharray={refLoc.isCalibrated ? undefined : "6 4"}
-                      strokeOpacity={refLoc.isCalibrated ? 1 : 0.45}
-                    />
-
-                    <text x={svgW - padR - 8} y={padT + 14} textAnchor="end" fill="#ff9e8e" fontSize="11" fontWeight="600">
-                      {ru ? "Устойчивое горение" : "Sustained Flame Spread"}
-                    </text>
-                    <text x={svgW - padR - 8} y={svgH - padB - 8} textAnchor="end" fill="#63e2b7" fontSize="11">
-                      {refLoc.isCalibrated
-                        ? ru
-                          ? `Ориентир затухания BASS-II (<${effectiveLoi}% O₂)`
-                          : `BASS-II Schematic Ref (<${effectiveLoi}% O₂)`
-                        : ru
-                          ? "Ориентир BASS-II (только 0g, 101.3 кПа)"
-                          : "BASS-II schematic ref (0g, 101.3 kPa only)"}
-                    </text>
+                    {showSchematic && (
+                      <polyline
+                        points={uCurvePointsStr}
+                        fill="none"
+                        stroke="#ff9e64"
+                        strokeWidth="2.4"
+                        strokeDasharray="6 4"
+                        strokeOpacity={0.6}
+                      />
+                    )}
                   </>
                 ) : (
                   <>
-                    {(pressMax === 320 ? [50, 101, 150, 200, 250, 300] : [30, 50, 70, 90, 110]).map((pKpa) => {
+                    {pressureAxis.ticks.map((pKpa) => {
                       const x = pressToX(pKpa)
                       return (
                         <g key={pKpa}>
@@ -545,28 +394,11 @@ export function EnvironmentsView({
                     })}
                     <text x={padL + plotW / 2} y={svgH - 5} textAnchor="middle" fill="#cfd5e2" fontSize="11.5">
                       {ru
-                        ? "Давление отсека (кПа) · Конверт норм NASA SEA"
-                        : "Cabin Pressure (kPa) · NASA SEA Exploration Envelope"}
+                        ? "Давление (кПа)"
+                        : "Pressure (kPa)"}
                     </text>
 
-                    <polygon
-                      points={`${pressToX(25)},${o2ToY(46)} ${pressToX(125)},${o2ToY(46)} ${pressToX(125)},${o2ToY(21)} ${pressToX(56.5)},${o2ToY(34)} ${pressToX(25)},${o2ToY(36)}`}
-                      fill="rgba(232, 93, 74, 0.12)"
-                      stroke="rgba(232, 93, 74, 0.45)"
-                      strokeDasharray="5 3"
-                    />
-                    <rect
-                      x={pressToX(52)}
-                      y={o2ToY(36)}
-                      width={Math.max(4, pressToX(64) - pressToX(52))}
-                      height={o2ToY(30) - o2ToY(36)}
-                      rx="5"
-                      fill="rgba(255, 170, 76, 0.16)"
-                      stroke="#ffaa4c"
-                    />
-                    <text x={pressToX(58)} y={o2ToY(36) - 6} textAnchor="middle" fill="#ffbe73" fontSize="11" fontWeight="600">
-                      {ru ? "Луна SEA (34% O₂)" : "Lunar SEA (34% O₂)"}
-                    </text>
+
                   </>
                 )}
 
@@ -604,7 +436,7 @@ export function EnvironmentsView({
                     axisMode === "flow-o2" ? flowToX(run.flowCms) : pressToX(run.pressureKpa!)
                   const cy = o2ToY(run.o2Pct)
                   const isSelected = activeRun?.id === run.id
-                  const color = REGIME_COLORS[run.regime]
+                  const color = OUTCOME_COLORS[run.outcome]
                   return (
                     <g
                       key={run.id}
@@ -668,6 +500,20 @@ export function EnvironmentsView({
               </svg>
             </div>
 
+            {useMocks && <p className="muted">{ru ? "Демонстрационный режим: локальный каталог." : "Demo mode: local catalog."}</p>}
+            {runsLoading && <QueryLoading label={ru ? "Загрузка прогонов…" : "Loading experiment runs…"} />}
+            {runsFailed && <QueryFailure
+              label={ru ? "Часть прогонов не загружена; карта может быть неполной." : "Some runs could not be loaded; the map may be incomplete."}
+              fetching={runQueries.some((query) => query.isFetching)}
+              retry={() => { runQueries.forEach((query) => { if (query.isError) void query.refetch() }) }}
+            />}
+            {showSchematic && axisMode === "flow-o2" && <p className="muted">
+              {ru
+                ? "Пунктир — иллюстративная U-кривая IGNIS с опорным минимумом 13.6% O₂ для стержня PMMA O13a (BASS-II, 0g, 1 атм). Остальные точки схемы не являются измерениями или калиброванной границей. Схема не переносится на другие материалы, геометрию или условия."
+                : "Dashed line: IGNIS illustrative U-curve anchored to the reported 13.6% O₂ minimum for PMMA rod O13a (BASS-II, 0g, 1 atm). Other schematic points are not measurements or a calibrated boundary. It does not apply to other materials, geometries or conditions."}{" "}
+              <a href="https://ntrs.nasa.gov/citations/20210011385" target="_blank" rel="noreferrer">NASA/TM-20210011385 §6.1.4.2</a>
+            </p>}
+
             {plottedRuns.length > 0 && (
               <div className="mobile-run-cards" role="list" aria-label={ru ? "Точки испытаний NASA PSI" : "NASA PSI test runs"}>
                 {plottedRuns.slice(0, 12).map((run) => {
@@ -680,12 +526,12 @@ export function EnvironmentsView({
                       onClick={() => setSelectedRunId(run.id)}
                     >
                       <div className="mobile-run-card-top">
-                        <i style={{ background: REGIME_COLORS[run.regime] }} />
+                        <i style={{ background: OUTCOME_COLORS[run.outcome] }} />
                         <strong>{run.runCode}</strong>
                         <span>{run.o2Pct}% O₂</span>
                       </div>
                       <small>
-                        {run.flowCms} {ru ? "см/с" : "cm/s"} · {ru ? run.fuelLabelRu : run.fuelLabel}
+                        {run.flowCms} {ru ? "см/с" : "cm/s"} · {run.fuelLabel}
                       </small>
                     </button>
                   )
@@ -705,11 +551,11 @@ export function EnvironmentsView({
               <div className="psi-run-inspector">
                 <div className="psi-run-inspector-head">
                   <div>
-                    <span className="regime-pill" style={{ borderColor: REGIME_COLORS[activeRun.regime], color: REGIME_COLORS[activeRun.regime] }}>
-                      {regimeLabels[activeRun.regime]}
+                    <span className="regime-pill" style={{ borderColor: OUTCOME_COLORS[activeRun.outcome], color: OUTCOME_COLORS[activeRun.outcome] }}>
+                      {OUTCOME_LABELS[activeRun.outcome][ru ? 1 : 0]}
                     </span>
                     <strong>
-                      {activeRun.runCode} ({ru ? activeRun.fuelLabelRu : activeRun.fuelLabel})
+                      {activeRun.runCode} ({activeRun.fuelLabel})
                     </strong>
                     <span className="muted"> · {activeRun.citation}</span>
                   </div>
@@ -720,7 +566,7 @@ export function EnvironmentsView({
                 <p className="muted" style={{ margin: 0 }}>
                   {activeRun.o2Pct}% O₂ ·{" "}
                   {activeRun.pressureKpa !== null
-                    ? `${activeRun.pressureKpa} ${ru ? "кПа" : "kPa"}`
+                    ? `${Number(activeRun.pressureKpa.toFixed(3))} ${ru ? "кПа" : "kPa"}`
                     : ru
                       ? "давление не указано"
                       : "pressure unrecorded"}{" "}
@@ -732,13 +578,10 @@ export function EnvironmentsView({
           </div>
         </div>
 
-        <div className={`envelope-status status-${riskState}`}>
+        <div className="envelope-status">
           <div>
-            <strong>
-              {riskState === "danger" ? <Flame size={16} /> : riskState === "caution" ? <Wind size={16} /> : <ShieldCheck size={16} />}
-              {riskTitle}
-            </strong>
-            <p>{riskDetail}</p>
+            <strong><Wind size={16} /> {evidenceTitle}</strong>
+            <p>{evidenceDetail}</p>
           </div>
         </div>
 

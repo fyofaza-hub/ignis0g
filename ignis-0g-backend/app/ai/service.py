@@ -1,4 +1,5 @@
 import asyncio
+import json
 import logging
 import re
 from time import monotonic
@@ -8,7 +9,14 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, ValidationError
 
 from app.ai.embeddings import vector_parameter
 from app.ai.ingestion import index_revision
-from app.ai.prompts import build_compare_messages, build_messages, rewrite_messages
+from app.ai.prompts import (
+    build_compare_messages,
+    build_messages,
+    chat_response_language,
+    compare_response_language,
+    repair_answer_messages,
+    rewrite_messages,
+)
 from app.ai.providers import EmbeddingProvider, LLMProvider, ProviderUnavailable, RerankerProvider
 from app.ai.retrieval import Evidence, PgVectorRepository, named_studies, section_pattern
 from app.ai.settings import RagSettings, settings_from_env
@@ -71,11 +79,27 @@ def invalid_answer(question: str, reason: str) -> ChatResponse:
     return response
 
 
+def _contains_cyrillic(value: object) -> bool:
+    if isinstance(value, str):
+        return bool(re.search(r"[А-Яа-яЁё]", value))
+    if isinstance(value, list):
+        return any(_contains_cyrillic(item) for item in value)
+    if isinstance(value, dict):
+        return any(_contains_cyrillic(item) for item in value.values())
+    return False
+
+
+def _response_has_unexpected_cyrillic(raw: object, keys: tuple[str, ...]) -> bool:
+    if not isinstance(raw, dict) or raw.get("status") == "insufficient_evidence":
+        return False
+    return any(_contains_cyrillic(raw.get(key)) for key in keys)
+
+
 def insufficient_evidence_compare(
     focus: str | None = None,
     locale: Literal["en", "ru"] | None = None,
 ) -> CompareResponse:
-    russian = locale == "ru" or bool(focus and re.search(r"[А-Яа-яЁё]", focus))
+    russian = compare_response_language(focus, locale) == "Russian"
     summary = (
         "В проиндексированных источниках недостаточно данных для прямого ИИ-сравнения выбранных экспериментов."
         if russian else "Insufficient indexed evidence to compare the selected experiments."
@@ -88,6 +112,9 @@ def insufficient_evidence_compare(
         limitations=[],
         citations=[],
     )
+
+
+_REPAIRABLE_REASONS = frozenset({"uncited_measurement", "no_citations", "ungrounded_general_answer"})
 
 
 class RagService:
@@ -156,9 +183,80 @@ class RagService:
             evidence, self.settings.context_limit, question=query, diversify=request.scope == "global",
         )
         logger.info("rag stage=generation context_count=%d", len(context))
-        result = validate_answer(await self.llm.generate(build_messages(request, context)), context, request.message)
+        target_language = chat_response_language(request.message, request.history)
+        messages = build_messages(request, context)
+        raw = await self._generate_in_expected_language(
+            messages,
+            target_language=target_language,
+            fields=("answer", "suggested_questions"),
+        )
+        result, reason = _validate_answer_detail(raw, context, request.message)
+        if reason in _REPAIRABLE_REASONS and isinstance(raw, dict):
+            result = await self._repair_invalid_answer(
+                messages, raw, context, request.message, result, reason, target_language,
+            )
         logger.info("rag outcome=%s citations=%d elapsed_ms=%d", result.status, len(result.citations), (monotonic() - started) * 1000)
         return result
+
+    async def _repair_invalid_answer(
+        self,
+        messages: list[dict[str, str]],
+        invalid_raw: dict,
+        evidence: list[Evidence],
+        question: str,
+        fallback_result: ChatResponse,
+        reason: str,
+        target_language: Literal["English", "Russian"],
+    ) -> ChatResponse:
+        logger.info("rag stage=validation_repair reason=%s", reason)
+        raw_answer = invalid_raw.get("answer")
+        offending = _uncited_measurement_lines(raw_answer) if reason == "uncited_measurement" and isinstance(raw_answer, str) else ()
+        repair_msgs = repair_answer_messages(
+            messages,
+            invalid_raw,
+            reason=reason,
+            offending_lines=offending,
+            evidence_count=len(evidence),
+            language=target_language,
+        )
+        try:
+            repaired = await self.llm.generate(repair_msgs)
+        except ProviderUnavailable:
+            return fallback_result
+        if target_language == "English" and _response_has_unexpected_cyrillic(repaired, ("answer", "suggested_questions")):
+            return fallback_result
+        repaired_result, repaired_reason = _validate_answer_detail(repaired, evidence, question)
+        return repaired_result if repaired_reason is None else fallback_result
+
+    async def _generate_in_expected_language(
+        self,
+        messages: list[dict[str, str]],
+        *,
+        target_language: Literal["English", "Russian"],
+        fields: tuple[str, ...],
+    ) -> object:
+        raw = await self.llm.generate(messages)
+        if target_language == "English" and _response_has_unexpected_cyrillic(raw, fields):
+            logger.info("rag stage=language_retry target=English")
+            retry_messages = [
+                *messages,
+                {"role": "assistant", "content": json.dumps(raw, ensure_ascii=False)},
+                {
+                    "role": "user",
+                    "content": (
+                        "Rewrite the exact same JSON response strictly in English. "
+                        "Keep the exact same scientific facts, citation numbers [n], and JSON schema, "
+                        "and remove all Cyrillic/Russian text."
+                    ),
+                },
+            ]
+            try:
+                retried = await self.llm.generate(retry_messages)
+            except ProviderUnavailable:
+                return raw
+            if isinstance(retried, dict):
+                return retried
+        return raw
 
     async def compare(self, request: CompareRequest) -> CompareResponse:
         started = monotonic()
@@ -222,7 +320,11 @@ class RagService:
         context = select_context(
             interleaved, context_limit, question=f"{' '.join(request.study_ids)} {query}", diversify=True,
         )
-        raw = await self.llm.generate(build_compare_messages(request, context))
+        raw = await self._generate_in_expected_language(
+            build_compare_messages(request, context),
+            target_language=compare_response_language(request.focus, request.locale),
+            fields=("summary", "similarities", "differences", "limitations"),
+        )
         result = validate_comparison(raw, context, request.focus, request.locale)
         logger.info("rag compare outcome=%s citations=%d elapsed_ms=%d", result.status, len(result.citations), (monotonic() - started) * 1000)
         return result
@@ -301,6 +403,7 @@ def select_context(
 def suggested_questions(raw: object, current_question: str) -> list[str]:
     if not isinstance(raw, list):
         return []
+    english_only = chat_response_language(current_question) == "English" and bool(re.search(r"[A-Za-z]", current_question))
     questions = []
     seen = {" ".join(current_question.casefold().split())}
     for item in raw:
@@ -311,6 +414,7 @@ def suggested_questions(raw: object, current_question: str) -> list[str]:
             not 5 <= len(question) <= 160
             or not question.endswith(("?", "？", "؟"))
             or re.search(r"[<>\[\]`]|://", question)
+            or (english_only and re.search(r"[А-Яа-яЁё]", question))
         ):
             continue
         key = question.casefold()
@@ -341,38 +445,57 @@ def normalize_citations(answer: str, count: int) -> str:
     return re.sub(r"\[([0-9][0-9,\s–-]*)\]", replace, answer)
 
 
-def validate_answer(raw: object, evidence: list[Evidence], question: str) -> ChatResponse:
+def _uncited_measurement_lines(answer: str) -> list[str]:
+    return [
+        block.strip()
+        for block in re.split(r"\n+", answer)
+        if len(block.strip()) > 35
+        and not block.strip().startswith("#")
+        and not block.strip().endswith(":")
+        and not re.search(r"\[[0-9]+\]", block)
+        and re.search(
+            r"\b\d+(?:[.,]\d+)?\s*(?:%|атм|кПа|мм²/с|мм/с|см/с|atm|kPa|mm²/s|mm/s|cm/s)(?!\w)",
+            block,
+            re.I,
+        )
+    ]
+
+
+def _validate_answer_detail(raw: object, evidence: list[Evidence], question: str) -> tuple[ChatResponse, str | None]:
     try:
         result = GroundedAnswer.model_validate(raw)
     except ValidationError:
-        return invalid_answer(question, "invalid_response_shape")
+        return invalid_answer(question, "invalid_response_shape"), "invalid_response_shape"
 
     suggestions = suggested_questions(result.suggested_questions, question)
     if result.status == "insufficient_evidence":
-        return insufficient_evidence(question, suggestions=suggestions)
+        return insufficient_evidence(question, suggestions=suggestions), None
 
     answer = result.answer.strip()
     try:
         answer = normalize_citations(answer, len(evidence))
     except ValueError:
-        return invalid_answer(question, "citation_out_of_range")
+        return invalid_answer(question, "citation_out_of_range"), "citation_out_of_range"
 
     markers = list(dict.fromkeys(re.findall(r"\[([0-9]+)\]", answer)))
     indices = list(dict.fromkeys(result.citation_indices))
     if result.basis == "general_knowledge":
         if not answer or indices or markers or re.search(r"<(?:/?[A-Za-z]|!--)", answer):
-            return invalid_answer(question, "ungrounded_general_answer")
+            return invalid_answer(question, "ungrounded_general_answer"), "ungrounded_general_answer"
         label = (
             "Общие знания — пояснение вне загруженных исследований."
             if not question or re.search(r"[А-Яа-яЁё]", question)
             else "General knowledge — explanation outside the uploaded studies."
         )
-        return ChatResponse(
-            status="answered",
-            answer=f"{label}\n\n{answer}",
-            citations=[],
-            related_study_ids=[],
-            suggested_questions=suggestions,
+        return (
+            ChatResponse(
+                status="answered",
+                answer=f"{label}\n\n{answer}",
+                citations=[],
+                related_study_ids=[],
+                suggested_questions=suggestions,
+            ),
+            None,
         )
 
     valid_markers = {str(index) for index in range(1, len(evidence) + 1)}
@@ -389,17 +512,10 @@ def validate_answer(raw: object, evidence: list[Evidence], question: str) -> Cha
         reason = "invalid_citation_indices"
     elif re.search(r"\[[0-9]+\]\([^\n)]*\)|(?m:^\s{0,3}\[[0-9]+\]:)", answer):
         reason = "linked_citation"
-    elif any(
-        len(block.strip()) > 35
-        and not block.strip().startswith("#")
-        and not block.strip().endswith(":")
-        and not re.search(r"\[[0-9]+\]", block)
-        and re.search(r"\b\d+(?:[.,]\d+)?\s*(?:%|атм|кПа|мм²/с|мм/с|см/с|atm|kPa|mm²/s|mm/s|cm/s)(?!\w)", block, re.I)
-        for block in re.split(r"\n+", answer)
-    ):
+    elif _uncited_measurement_lines(answer):
         reason = "uncited_measurement"
     if reason:
-        return invalid_answer(question, reason)
+        return invalid_answer(question, reason), reason
 
     cited = [evidence[int(marker) - 1] for marker in markers]
     renumber = {marker: str(number) for number, marker in enumerate(markers, start=1)}
@@ -411,13 +527,20 @@ def validate_answer(raw: object, evidence: list[Evidence], question: str) -> Cha
         )
         for item in cited
     ]
-    return ChatResponse(
-        status="answered",
-        answer=answer,
-        citations=citations,
-        related_study_ids=list(dict.fromkeys(item.study_slug for item in cited)),
-        suggested_questions=suggestions,
+    return (
+        ChatResponse(
+            status="answered",
+            answer=answer,
+            citations=citations,
+            related_study_ids=list(dict.fromkeys(item.study_slug for item in cited)),
+            suggested_questions=suggestions,
+        ),
+        None,
     )
+
+
+def validate_answer(raw: object, evidence: list[Evidence], question: str) -> ChatResponse:
+    return _validate_answer_detail(raw, evidence, question)[0]
 
 
 def validate_comparison(

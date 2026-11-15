@@ -1,3 +1,4 @@
+import { nasaContentUrl } from "@/lib/nasa-content"
 import { ArrowUpRight } from "@/components/ui/icons"
 import type { Source, SourceType } from "@/domain/types"
 import { useLocale } from "@/i18n"
@@ -37,7 +38,7 @@ export function SourceList({ sources }: { sources: Source[] }) {
         <li key={source.id}>
           <span className="muted">{kinds[source.source_type] ?? (ru ? "Документ" : "Document")}</span>
           {source.url ? (
-            <a href={source.url} target="_blank" rel="noreferrer">
+            <a href={nasaContentUrl(source.url)} target="_blank" rel="noreferrer">
               {source.title}
               <ArrowUpRight size={14} />
             </a>

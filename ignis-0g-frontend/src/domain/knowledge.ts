@@ -310,26 +310,6 @@ export function getQuickMeta(id: string, locale: Locale = "en"): StudyQuickMeta 
   return base
 }
 
-export type FlameRegime = "flame_spread" | "smoldering_cool" | "quenched"
-
-export interface PsiTestRunPoint {
-  id: string
-  runCode: string
-  studyId: string
-  program: string
-  fuelCategory: "solid" | "liquid" | "gas"
-  fuelLabel: string
-  fuelLabelRu: string
-  o2Pct: number
-  pressureKpa: number | null
-  flowCms: number
-  gravityG: number
-  regime: FlameRegime
-  metric: string
-  metricRu: string
-  citation: string
-}
-
 /** Schematic microgravity 1-atm U-curve guide anchored to the 13.6% O₂ BASS-II PMMA minimum (TM-20210011385 §6.1.4.2). */
 export const BASS_U_CURVE_POINTS: { flowCms: number; locO2Pct: number }[] = [
   { flowCms: 0.2, locO2Pct: 22.0 },
@@ -344,210 +324,6 @@ export const BASS_U_CURVE_POINTS: { flowCms: number; locO2Pct: number }[] = [
   { flowCms: 50.0, locO2Pct: 20.4 },
 ]
 
-export function interpolateBassLocO2(flowCms: number): number {
-  const pts = BASS_U_CURVE_POINTS
-  if (flowCms <= pts[0].flowCms) return pts[0].locO2Pct
-  if (flowCms >= pts[pts.length - 1].flowCms) return pts[pts.length - 1].locO2Pct
-  for (let i = 0; i < pts.length - 1; i++) {
-    const a = pts[i]
-    const b = pts[i + 1]
-    if (flowCms >= a.flowCms && flowCms <= b.flowCms) {
-      const t = (flowCms - a.flowCms) / (b.flowCms - a.flowCms)
-      return Number((a.locO2Pct + t * (b.locO2Pct - a.locO2Pct)).toFixed(1))
-    }
-  }
-  return 16.0
-}
-
-export interface BassLocReference {
-  locO2Pct: number
-  isCalibrated: boolean
-}
-
-/**
- * Returns the 0g 1-atm BASS-II reference boundary without applying uncalibrated
- * empirical pressure or gravity correction constants.
- */
-export function getReferenceBassLoc(params: {
-  flowCms: number
-  pressureKpa: number
-  gravityG: number
-  fuel?: "solid" | "liquid" | "gas" | "aerosol_pyrolysis" | "reference" | null
-}): BassLocReference {
-  const locO2Pct = interpolateBassLocO2(params.flowCms)
-  const nearMicrogravity = params.gravityG < 0.05
-  const nearOneAtm = Math.abs(params.pressureKpa - 101.3) <= 10
-  const compatibleFuel = !params.fuel || params.fuel === "solid" || params.fuel === "reference"
-  return {
-    locO2Pct,
-    isCalibrated: nearMicrogravity && nearOneAtm && compatibleFuel,
-  }
-}
-
-export function computeEffectiveLoi(params: {
-  flowCms: number
-  pressureKpa: number
-  gravityG: number
-}): number {
-  return interpolateBassLocO2(params.flowCms)
-}
-
-export const PSI_TEST_RUNS: PsiTestRunPoint[] = [
-  {
-    id: "bass-run-gmt45-t4",
-    runCode: "BASS-II GMT45-T4",
-    studyId: "bass-bass-ii-bass-m",
-    program: "BASS",
-    fuelCategory: "solid",
-    fuelLabel: "SIBAL fabric (2.2 cm wide)",
-    fuelLabelRu: "Ткань SIBAL (ширина 2.2 см)",
-    o2Pct: 18.7,
-    pressureKpa: 101.3,
-    flowCms: 2.2,
-    gravityG: 0,
-    regime: "quenched",
-    metric: "Quenched as airflow stepped down from 10 to 2.2 cm/s",
-    metricRu: "Затухание при снижении обдува с 10 до 2.2 см/с",
-    citation: "NASA/TM-20210011385 Table 7.1",
-  },
-  {
-    id: "bass-run-gmt178-t14",
-    runCode: "BASS-II GMT178-T14",
-    studyId: "bass-bass-ii-bass-m",
-    program: "BASS",
-    fuelCategory: "solid",
-    fuelLabel: "SIBAL fabric (2.2 cm wide)",
-    fuelLabelRu: "Ткань SIBAL (ширина 2.2 см)",
-    o2Pct: 16.9,
-    pressureKpa: 101.3,
-    flowCms: 2.8,
-    gravityG: 0,
-    regime: "quenched",
-    metric: "Quenched as airflow stepped down from 4 to 2.8 cm/s",
-    metricRu: "Затухание при снижении обдува с 4 до 2.8 см/с",
-    citation: "NASA/TM-20210011385 Table 7.1",
-  },
-  {
-    id: "bass-run-gmt190-t21",
-    runCode: "BASS-II GMT190-T21",
-    studyId: "bass-bass-ii-bass-m",
-    program: "BASS",
-    fuelCategory: "solid",
-    fuelLabel: "SIBAL fabric (1.2 cm wide, blowoff 11→47 cm/s)",
-    fuelLabelRu: "Ткань SIBAL (ширина 1.2 см, срыв 11→47 см/с)",
-    o2Pct: 17.2,
-    pressureKpa: 101.3,
-    flowCms: 47.0,
-    gravityG: 0,
-    regime: "quenched",
-    metric: "Convective flame blow-off at 47 cm/s",
-    metricRu: "Конвективный срыв пламени при 47 см/с",
-    citation: "NASA/TM-20210011385 Table 7.1",
-  },
-  {
-    id: "bass-run-m8",
-    runCode: "BASS-II M8",
-    studyId: "bass-bass-ii-bass-m",
-    program: "BASS",
-    fuelCategory: "solid",
-    fuelLabel: "PMMA slab (plateaus 10→6→5 cm/s)",
-    fuelLabelRu: "Пластина PMMA (плато 10→6→5 см/с)",
-    o2Pct: 19.1,
-    pressureKpa: null,
-    flowCms: 6.0,
-    gravityG: 0,
-    regime: "flame_spread",
-    metric: "Flame spread rate 0.057 → 0.056 → 0.04 mm/s (final 18.2% O₂)",
-    metricRu: "Скорость пламени 0.057 → 0.056 → 0.04 мм/с (конечн. 18.2% O₂)",
-    citation: "NASA/TM-20210011385 Table 5.1",
-  },
-  {
-    id: "bass-run-o13a",
-    runCode: "BASS-II O13a",
-    studyId: "bass-bass-ii-bass-m",
-    program: "BASS",
-    fuelCategory: "solid",
-    fuelLabel: "Clear PMMA rod (12.7 mm dia.)",
-    fuelLabelRu: "Стержень PMMA (Ø 12.7 мм)",
-    o2Pct: 13.6,
-    pressureKpa: null,
-    flowCms: 5.0,
-    gravityG: 0,
-    regime: "flame_spread",
-    metric: "Post-ignition flame survived to 13.6% final O₂ before self-extinction",
-    metricRu: "После розжига пламя держалось до 13.6% O₂ перед самозатуханием",
-    citation: "NASA/TM-20210011385 §6.1.4 p. 68, Table A.5",
-  },
-  {
-    id: "saffire-run-i-1",
-    runCode: "Saffire I-1",
-    studyId: "saffire-i-iii",
-    program: "Saffire",
-    fuelCategory: "solid",
-    fuelLabel: "SIBAL panel (40.6×94 cm)",
-    fuelLabelRu: "Панель SIBAL (40.6×94 см)",
-    o2Pct: 21.7,
-    pressureKpa: null,
-    flowCms: 20.0,
-    gravityG: 0,
-    regime: "flame_spread",
-    metric: "Steady spread at 1.8 mm/s (420 s burn, O₂ 21.7→21.5%)",
-    metricRu: "Стационарное распространение 1.8 мм/с (420 с, O₂ 21.7→21.5%)",
-    citation: "NTRS 20180005168 Table 1",
-  },
-  {
-    id: "flex-run-035",
-    runCode: "FLEX-035",
-    studyId: "flex-1",
-    program: "FLEX",
-    fuelCategory: "liquid",
-    fuelLabel: "n-Heptane droplet (3.85 mm, free-floating)",
-    fuelLabelRu: "Капля н-гептана (3.85 мм, свободная)",
-    o2Pct: 21.0,
-    pressureKpa: 102.4,
-    flowCms: 0,
-    gravityG: 0,
-    regime: "smoldering_cool",
-    metric: "Radiative visible extinction followed by cool flame burning (8.9 s visible burn)",
-    metricRu: "Видимое затухание и последующее холодное пламя (8.9 с)",
-    citation: "NASA/TP-2015-216046 Table IX & Fig. 39",
-  },
-  {
-    id: "flex-run-054",
-    runCode: "FLEX-054",
-    studyId: "flex-1",
-    program: "FLEX",
-    fuelCategory: "liquid",
-    fuelLabel: "Methanol droplet (3.56 mm, 541.4 mmHg)",
-    fuelLabelRu: "Капля метанола (3.56 мм, 541.4 мм рт. ст.)",
-    o2Pct: 20.0,
-    pressureKpa: 72.2,
-    flowCms: 0,
-    gravityG: 0,
-    regime: "quenched",
-    metric: "Radiative extinction at 0.71 atm (29 s burn, K=0.41 mm²/s)",
-    metricRu: "Радиационное затухание при 0.71 атм (29 с, K=0.41 мм²/с)",
-    citation: "NASA/TP-2015-216046 Table IX",
-  },
-  {
-    id: "flex-run-069",
-    runCode: "FLEX-069",
-    studyId: "flex-1",
-    program: "FLEX",
-    fuelCategory: "liquid",
-    fuelLabel: "n-Heptane droplet (1.10 mm, 767.1 mmHg)",
-    fuelLabelRu: "Капля н-гептана (1.10 мм, 767.1 мм рт. ст.)",
-    o2Pct: 14.0,
-    pressureKpa: 102.3,
-    flowCms: 0,
-    gravityG: 0,
-    regime: "flame_spread",
-    metric: "Burned to completion in 14% O₂ (1.3 s, K=0.94 mm²/s)",
-    metricRu: "Полное выгорание при 14% O₂ (1.3 с, K=0.94 мм²/с)",
-    citation: "NASA/TP-2015-216046 Table IX",
-  },
-]
-
 export function detectEvidenceGaps(
   params: {
     o2Pct: number
@@ -559,25 +335,25 @@ export function detectEvidenceGaps(
 ): { title: string; detail: string; severity: "warning" | "info" }[] {
   const gaps: { title: string; detail: string; severity: "warning" | "info" }[] = []
   const ru = locale === "ru"
-  if (params.gravityG >= 0.05 && params.gravityG <= 0.85) {
+  if (params.gravityG > 0) {
     gaps.push({
       title: ru
-        ? `Частичная гравитация (${params.gravityG.toFixed(2)}g — Луна 0.16g / Марс 0.38g)`
-        : `Partial Gravity Gap (${params.gravityG.toFixed(2)}g — Lunar 0.16g / Martian 0.38g)`,
+        ? `Гравитация сценария: ${params.gravityG.toFixed(2)}g`
+        : `Scenario gravity: ${params.gravityG.toFixed(2)}g`,
       detail: ru
-        ? "Прямые длительные испытания в частичной гравитации на борту МКС отсутствуют. Чистая 0g и земная 1g не ограничивают риск 0.16g–0.38g сверху: слабая плавучесть подпитывает зону реакции свежим O₂ без сдувания пламени."
-        : "Long-duration partial-gravity combustion tests are absent from ISS datasets. Pure 0g and 1g do not bound 0.16g–0.38g fire risk: gentle buoyancy feeds fresh O₂ into the flame zone without blowing it off.",
+        ? "Прогоны на этой карте относятся к микрогравитации. Они не подтверждают результаты при выбранной гравитации; автоматическая экстраполяция не выполняется."
+        : "The runs on this map report microgravity experiments. They do not establish results at the selected gravity; no automatic extrapolation is performed.",
       severity: "warning",
     })
   }
   if (params.o2Pct > 50) {
     gaps.push({
       title: ru
-        ? `Высококислородная атмосфера (${params.o2Pct}% O₂ / режим скафандра EVA)`
-        : `High-Oxygen Atmosphere (${params.o2Pct}% O₂ / EVA Spacesuit Regime)`,
+        ? `Высокая доля кислорода: ${params.o2Pct}% O₂`
+        : `High oxygen fraction: ${params.o2Pct}% O₂`,
       detail: ru
-        ? "При O₂ > 50% и пониженном давлении (29.6 кПа) большинство конструкционных полимеров и тканей МКС переходят в режим быстрого выгорания; открытая база PSI содержит преимущественно точки ≤ 50% O₂."
-        : "Above 50% O₂ at reduced pressure (29.6 kPa), most structural polymers and fabrics transition to rapid burning; open PSI datasets primarily cover ≤ 50% O₂.",
+        ? "Положение выбранного сценария на графике не является результатом эксперимента. Проверяйте наличие прогона с такими же условиями, материалом и геометрией; карта не предсказывает исход горения."
+        : "The selected scenario marker is not an experimental result. Check for a reported run with matching conditions, material and geometry; this map does not predict combustion outcomes.",
       severity: "warning",
     })
   }
@@ -609,7 +385,7 @@ const CREW_ENVIRONMENTS_BILINGUAL: { en: CrewEnvironmentCard; ru: CrewEnvironmen
       gravityText: "1.0 g (natural buoyant flow ~20–30 cm/s)",
       ventilationText: "Natural upward convection",
       fireRiskSummary:
-        "Buoyancy sweeps hot products upward and can blow off weak flames, while accelerating upward spread. Not always conservative for 0g under low HVAC airflow.",
+        "Buoyancy sweeps hot products upward and can blow off weak flames, while accelerating upward spread. Shown non-conservative for specific low-flow 0g cases, e.g. cylindrical PMMA rod O13a burning at 13.6% O₂ in 0g vs 15.4% in 1g (NASA/TM-20210011385).",
       linkedStudyIds: ["earth-baseline-nasa-std-6001-test-1", "bass-bass-ii-bass-m", "bass-m-milliken"],
     },
     ru: {
@@ -622,7 +398,7 @@ const CREW_ENVIRONMENTS_BILINGUAL: { en: CrewEnvironmentCard; ru: CrewEnvironmen
       gravityText: "1.0 g (естественная плавучесть ~20–30 см/с)",
       ventilationText: "Естественная конвекция вверх",
       fireRiskSummary:
-        "Плавучесть уносит горячие продукты вверх и может сдувать слабые пламёна, но ускоряет вертикальное распространение огня. Не всегда консервативен для 0g при слабом потоке HVAC.",
+        "Плавучесть уносит горячие продукты вверх и может сдувать слабые пламёна, но ускоряет вертикальное распространение. Для отдельных режимов слабого обдува в 0g тест 1g не консервативен (напр., стержень PMMA O13a горел при 13.6% O₂ в 0g против 15.4% в 1g, NASA/TM-20210011385).",
       linkedStudyIds: ["earth-baseline-nasa-std-6001-test-1", "bass-bass-ii-bass-m", "bass-m-milliken"],
     },
   },
@@ -637,7 +413,7 @@ const CREW_ENVIRONMENTS_BILINGUAL: { en: CrewEnvironmentCard; ru: CrewEnvironmen
       gravityText: "0g (microgravity)",
       ventilationText: "Forced HVAC ventilation 5–20 cm/s",
       fireRiskSummary:
-        "In still air, flames radiative-quench; however, low HVAC flow (1–10 cm/s) hits the BASS U-curve minimum where solids burn at lower O₂ (down to 13.6% in BASS-II) and smoke particles grow larger.",
+        "In BASS-II (0g, 1 atm), low forced flow (1–10 cm/s) lowered the extinction limit for cylindrical PMMA rod O13a to 13.6% O₂ at 5 cm/s (TM-20210011385 §6.1.4.2), while flat SIBAL fabric quenched at 16.9–18.7% O₂ (Table 7.1). Separately, SAME (MSG, 0–8.1 cm/s, DOI 10.1016/j.firesaf.2018.04.004) showed 0g smoke particle size distributions differ from 1g over 10–1800 s aging.",
       linkedStudyIds: ["iss-cabin-atmosphere", "bass-bass-ii-bass-m", "saffire-i-iii", "same-same-r"],
     },
     ru: {
@@ -650,7 +426,7 @@ const CREW_ENVIRONMENTS_BILINGUAL: { en: CrewEnvironmentCard; ru: CrewEnvironmen
       gravityText: "0g (микрогравитация)",
       ventilationText: "Принудительная вентиляция HVAC 5–20 см/с",
       fireRiskSummary:
-        "В штиле пламя гаснет от радиационных потерь, но слабый обдув HVAC (1–10 см/с) создаёт минимум U-кривой: материалы горят при более низком O₂ (до 13.6% в BASS-II), а частицы дыма крупнее.",
+        "В BASS-II (0g, 1 атм) слабый обдув (1–10 см/с) снизил предел затухания цилиндрического стержня PMMA O13a до 13.6% O₂ при 5 см/с (TM-20210011385 §6.1.4.2), тогда как плоская ткань SIBAL гасла при 16.9–18.7% O₂ (Table 7.1). Отдельно SAME (MSG, 0–8.1 см/с, DOI 10.1016/j.firesaf.2018.04.004) показал отличие распределения частиц дыма по размерам в 0g от 1g за 10–1800 с.",
       linkedStudyIds: ["iss-cabin-atmosphere", "bass-bass-ii-bass-m", "saffire-i-iii", "same-same-r"],
     },
   },
@@ -665,7 +441,7 @@ const CREW_ENVIRONMENTS_BILINGUAL: { en: CrewEnvironmentCard; ru: CrewEnvironmen
       gravityText: "Moon 1/6 g (0.16 g) · Mars 3/8 g (0.38 g)",
       ventilationText: "ECLSS ventilation + partial-gravity buoyancy",
       fireRiskSummary:
-        "Higher O₂ mole fraction (34%) reduces nitrogen thermal ballast and sharply accelerates solid polymer ignition and spread. At 1/6g, buoyant convection supplies O₂ more effectively than in 0g.",
+        "NASA EAWG selected 56.5 kPa / 34% O₂ (N₂ diluent) to reduce EVA prebreathe time while driving subatmospheric flammability validation in SoFIE and ACME BRE. In SoFIE-MIST (ICES-2023-133), black cast PMMA rods (6.4–12.7 mm, 40–100 kPa, 10 cm/s opposed flow) showed lower limiting O₂ in 0g than in 1g; direct 0.16g/0.38g test runs are absent from this catalog.",
       linkedStudyIds: ["exploration-atmosphere-sea-lunar-mars", "sofie-mist", "sofie-gel", "acme-bre"],
     },
     ru: {
@@ -678,7 +454,7 @@ const CREW_ENVIRONMENTS_BILINGUAL: { en: CrewEnvironmentCard; ru: CrewEnvironmen
       gravityText: "Луна 1/6 g (0.16 g) · Марс 3/8 g (0.38 g)",
       ventilationText: "Вентиляция жизнеобеспечения + слабая плавучесть",
       fireRiskSummary:
-        "Повышенная мольная доля O₂ (34%) снижает теплоёмкость балластного азота и резко ускоряет прогрев и разгар твёрдых полимеров. В 1/6g конвекция доставляет O₂ к фронту пламени эффективнее, чем в 0g.",
+        "NASA EAWG выбрало режим 56.5 кПа / 34% O₂ (N₂) для сокращения десатурации перед выходом в скафандре; он служит целевой средой для валидации в SoFIE и ACME BRE. В SoFIE-MIST (ICES-2023-133) чёрные стержни PMMA (6.4–12.7 мм, 40–100 кПа, встречный поток 10 см/с) показали более низкий предельный O₂ в 0g, чем в 1g; прямых прогонов при 0.16g/0.38g в каталоге нет.",
       linkedStudyIds: ["exploration-atmosphere-sea-lunar-mars", "sofie-mist", "sofie-gel", "acme-bre"],
     },
   },

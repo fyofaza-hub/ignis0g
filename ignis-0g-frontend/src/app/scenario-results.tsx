@@ -1,3 +1,4 @@
+import { exportSourceUrl, nasaContentUrl } from "@/lib/nasa-content"
 import { useEffect, useState } from "react"
 import { useQuery } from "@tanstack/react-query"
 import { api, useMocks } from "@/api/client"
@@ -5,7 +6,6 @@ import { Button } from "@/components/ui/button"
 import { AlertTriangle, CheckCircle2, Share, X } from "@/components/ui/icons"
 import type { Scenario, ScenarioStudy } from "@/domain/types"
 import { useLocale } from "@/i18n"
-import { getMockStudyDetail } from "@/mocks/data"
 import { QueryFailure, QueryLoading } from "./query-feedback"
 import { downloadFile } from "./study-evidence"
 
@@ -24,7 +24,11 @@ function fieldShortLabel(key: string, ru: boolean): string {
 
 function exportResults(format: "csv" | "json", scenario: Scenario, studies: ScenarioStudy[]) {
   if (format === "json") {
-    downloadFile("ignis-scenario.json", JSON.stringify({ scenario, basis: "independent_catalog_ranges", studies }, null, 2), "application/json")
+    const exportedStudies = studies.map((study) => ({
+      ...study,
+      source_urls: study.source_urls.map((url) => exportSourceUrl(url)),
+    }))
+    downloadFile("ignis-scenario.json", JSON.stringify({ scenario, basis: "independent_catalog_ranges", studies: exportedStudies }, null, 2), "application/json")
     return
   }
   const rows = [
@@ -34,7 +38,7 @@ function exportResults(format: "csv" | "json", scenario: Scenario, studies: Scen
     ],
     ...studies.map((study) => [
       study.study_id, study.title, study.score, study.fuel, study.material, study.facility,
-      study.source_urls.join(" "), study.matched.join(" "), study.outside.join(" "), study.unknown.join(" "),
+      study.source_urls.map((url) => exportSourceUrl(url)).join(" "), study.matched.join(" "), study.outside.join(" "), study.unknown.join(" "),
       "independent_catalog_ranges", ...fields.flatMap(({ key }) => [scenario[key], study[key]?.[0], study[key]?.[1]]),
       scenario.fuel, scenario.pillar, study.ranking_version, study.reported_parameter_count, study.source_count, study.run_count, study.jointly_reported_run_ids?.join("; "), study.limitations?.join("; "),
     ]),
@@ -99,17 +103,7 @@ export function ScenarioResults({
 
   const query = useQuery({
     queryKey: ["scenario-ranking", locale, scenario],
-    queryFn: async ({ signal }) => {
-      const res = await api.rankScenario(scenario, signal)
-      return res.map((study) => {
-        const localized = getMockStudyDetail(study.study_id, locale)
-        return {
-          ...study,
-          title: localized?.title ?? study.title,
-          material: (localized?.conditions.fuel_material as string | undefined) ?? study.material,
-        }
-      })
-    },
+    queryFn: ({ signal }) => api.rankScenario(scenario, signal),
     staleTime: 60_000,
     gcTime: 60_000,
   })
@@ -367,7 +361,7 @@ export function ScenarioResults({
               {study.source_urls.length > 0 && (
                 <div className="ranking-card-sources">
                   {study.source_urls.map((url, index) => (
-                    <a key={url} href={url} target="_blank" rel="noreferrer">
+                    <a key={url} href={nasaContentUrl(url)} target="_blank" rel="noreferrer">
                       {ru ? `Источник ${index + 1}` : `Source ${index + 1}`}
                     </a>
                   ))}

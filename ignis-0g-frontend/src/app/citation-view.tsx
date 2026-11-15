@@ -1,14 +1,17 @@
 import { ArrowUpRight, FileText, X } from "@/components/ui/icons"
 import type { Citation } from "@/domain/types"
 import type { Locale } from "@/i18n"
+import { nasaContentUrl } from "@/lib/nasa-content"
 
 function formatSourceHost(url: string): string {
+  const normalized = nasaContentUrl(url)
+  if (normalized.startsWith("/")) return normalized
   try {
-    const parsed = new URL(url)
+    const parsed = new URL(normalized)
     const suffix = parsed.pathname && parsed.pathname !== "/" ? parsed.pathname : ""
     return `${parsed.hostname}${suffix}`
   } catch {
-    return url
+    return normalized
   }
 }
 
@@ -122,7 +125,7 @@ export function CitationInspector({
       <div className="citation-inspector-footer">
         <a
           className="citation-nasa-link"
-          href={citation.url}
+          href={nasaContentUrl(citation.url)}
           target="_blank"
           rel="noreferrer"
         >
@@ -179,7 +182,7 @@ export function CitationList({
               </span>
             </div>
             <p>{c.excerpt}</p>
-            <a href={c.url} target="_blank" rel="noreferrer">
+            <a href={nasaContentUrl(c.url)} target="_blank" rel="noreferrer">
               {ru ? "Открыть источник NASA" : "Open NASA source"} ({formatSourceHost(c.url)}) <ArrowUpRight size={13} />
             </a>
           </details>
